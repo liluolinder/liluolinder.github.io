@@ -1,0 +1,6 @@
+:HL["/_next/static/chunks/2oc2qsfb_os6z.css","style"]
+:HL["https://erbws.github.io/logo.png","image"]
+:HL["https://avatars.githubusercontent.com/u/48244729","image"]
+:HL["https://cdn-img.gitcode.com/cd/ee/053cde9ee58c0346e86cff4eaeb9283be1a4a71a7ed72f2623eda21b86807578.jpg","image"]
+:HL["https://copur.xyz/image/avatar.webp","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"(public)","param":null,"prefetchHints":0,"slots":{"children":{"name":"friends","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"-6kvxbnE0eXspe4h4Ru3f"}
