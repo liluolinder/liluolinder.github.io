@@ -1,0 +1,1126 @@
+1:"$Sreact.fragment"
+2:I[59188,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"BackgroundProvider"]
+3:I[57715,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"BackgroundWrapper"]
+4:I[3374,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"Header"]
+5:I[39756,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"default"]
+6:I[37457,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"default"]
+7:I[58234,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"Footer"]
+8:I[46133,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"BackgroundToggle"]
+a:I[97367,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
+b:"$Sreact.suspense"
+e:I[97367,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"ViewportBoundary"]
+10:I[97367,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"MetadataBoundary"]
+12:I[68027,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"default",1]
+:HL["/_next/static/chunks/229v-8t9cez03.css","style"]
+:HC["/",""]
+0:{"P":null,"c":["","articles","Cangjie","1_%E5%88%9D%E8%AF%86%E4%BB%93%E9%A2%89","3_%E4%BB%93%E9%A2%89%E7%9A%84%E5%8F%98%E9%87%8F"],"q":"","i":false,"f":[[["",{"children":["(public)",{"children":["articles",{"children":[["slug","Cangjie/1_%E5%88%9D%E8%AF%86%E4%BB%93%E9%A2%89/3_%E4%BB%93%E9%A2%89%E7%9A%84%E5%8F%98%E9%87%8F","c",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/229v-8t9cez03.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0j-hrkdk-8sp1.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/3oax6b5zaxt_z.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/_next/static/chunks/0jubty45h__ir.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh-CN","suppressHydrationWarning":true,"children":["$","body",null,{"className":"min-h-screen flex flex-col text-gray-900 dark:text-gray-100 font-sans","children":["$","$L2",null,{"children":[["$","$L3",null,{}],["$","$L4",null,{}],["$","main",null,{"className":"flex-1","children":["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L7",null,{}],["$","$L8",null,{}]]}]}]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:style","children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:1:props:style","children":404}],["$","div",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:2:props:style","children":["$","h2",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:2:props:children:props:style","children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L9",[["$","script","script-0",{"src":"/_next/static/chunks/1gtjbot4ps5zt.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/3h-meue_9zse5.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]]}],{},null,false,null]},null,false,"$@d"]},null,false,"$@d"]},null,false,"$@d"]},null,false,null],["$","$1","h",{"children":[null,["$","$Le",null,{"children":"$Lf"}],["$","div",null,{"hidden":true,"children":["$","$L10",null,{"children":["$","$b",null,{"name":"Next.Metadata","children":"$L11"}]}]}],null]}],false]],"m":"$undefined","G":["$12",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/229v-8t9cez03.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"rDF-sbH0DLbbucvTPs2HX"}
+13:[]
+d:"$W13"
+14:I[23597,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/3h-meue_9zse5.js"],"TocSidebar"]
+15:T2886,
+## 2.1 什么是变量？
+
+简单来说，**变量**就是程序中用来存放数据的"盒子"。你可以把它想象成一个贴了标签的容器——标签是变量名，容器里装的就是数据。
+
+```Cangjie
+let age = 18      // 用 age 这个"盒子"存放数字 18
+let name = "仓颉"  // 用 name 这个"盒子"存放文字"仓颉"
+```
+
+在上面的代码中：
+
+- `age` 和 `name` 就是变量名（标识符）
+- `18` 和 `"仓颉"` 是存放在变量中的数据
+- `=` 是赋值，意思是把右边的数据放进左边的"盒子"里
+- `let` 是修饰符，用于设置变量的各类属性
+
+变量的核心作用是**让程序能记住和复用数据**，而不是每次都写死具体的值。
+
+---
+
+## 2.2 如何定义变量
+
+在仓颉中，变量的定义格式如下：
+
+```Cangjie
+修饰符 变量名: 变量类型 = 初始值
+```
+
+看起来有点复杂？别担心，我们逐个拆解。
+
+### 修饰符
+
+修饰符决定了变量的"性格"——能不能改、谁能看到它等等。常用的修饰符有：
+
+**1. 可变性修饰符**（最常用，决定了变量能不能被修改）
+
+| 修饰符 | 含义 | 举例 |
+|--------|------|------|
+| `let` | 不可变——初始化后不能再改 | `let age = 18` |
+| `var` | 可变——随时可以修改 | `var score = 0` |
+
+> [!TIP]
+> 不确定要不要改？默认用 `let`，需要修改时再改成 `var`。这样可以避免意外修改数据。
+
+**2. const 修饰符**（声明常量，比 `let` 更严格）
+
+- 必须在声明时**立即初始化**
+- 一旦赋值，永远不能改变
+- 详见 [2.3 const 修饰符](#23-const-修饰符)
+
+**3. 其他修饰符**（后续文章详细介绍）
+
+- 可见性修饰符：`private`、`public` 等，控制谁能访问这个变量
+- 静态性修饰符：`static`，影响变量的存储方式
+
+### 变量名
+
+变量名就是一个合法的仓颉标识符，命名规则在[上一篇文章](./1_仓颉的标识符)已经介绍过。
+
+### 变量类型
+
+变量类型告诉编译器这个"盒子"能装什么样的数据，比如：
+
+- `Int64` —— 整数
+- `Float64` —— 小数
+- `String` —— 文本字符串
+
+> [!TIP]
+> 当初始值的类型很明确时，可以**省略类型标注**，编译器会自动推断：
+
+```Cangjie
+let a: Int64 = 6666
+let b = a       // 编译器自动推断 b 也是 Int64 类型
+```
+
+### 初始值
+
+初始值就是变量创建时放进"盒子"里的第一个数据。
+
+> [!IMPORTANT]
+> 如果标注了变量类型，初始值的类型必须和变量类型一致，否则会报错。
+
+> [!CAUTION]
+> **局部变量和实例成员变量**：可以省略初始值，但必须标注类型，且在引用前必须完成初始化。
+>
+> **全局变量和静态成员变量**：必须指定初始值，不能省略。
+
+---
+
+### 示例
+
+**示例 1：let 与 var 的区别**
+
+```Cangjie
+main() {
+    let a: Int64      // 声明不可变变量 a，暂不初始化
+    var b: Int64 = 1145  // 声明可变变量 b，初始值为 1145
+    b = 1919          // ✅ var 变量可以修改
+    a = b             // ✅ a 尚未初始化，这里是首次赋值（初始化），不算修改
+    println(a)
+    println(b)
+}
+```
+
+运行结果：
+
+```Bash
+1919
+1919
+```
+
+**示例 2：尝试修改不可变变量会报错**
+
+```Cangjie
+main() {
+    let sec: String = "咕咕嘎嘎"
+    sec = "哈基米"  // ❌ 报错：cannot assign to immutable value
+}
+```
+
+**示例 3：const 必须立即初始化**
+
+```Cangjie
+main() {
+    const pi  // ❌ 报错：const variable declaration must be initialized
+}
+```
+
+**示例 4：全局变量和静态成员变量必须初始化**
+
+```Cangjie
+const pi: Float64   // ❌ 报错：const variable declaration must be initialized
+var px: String      // ❌ 报错：var variable declaration must be initialized
+
+main() {}
+
+class Player {
+    static let score: Int32  // ❌ 报错：static variable 'score' needs to be initialized
+}
+```
+
+### 特殊情况
+
+> [!NOTE]
+> 以下内容涉及编译器的保守策略，初学者可以先了解，学完后续内容再深入理解。
+> 内容参考 [Cangjie 官方文档](https://cangjie-lang.cn/docs?url=https%3A%2F%2Fcj-docs.gitcode.com%2Fzh%2F1.1.3%2Fdev-guide%2Fsource_zh_cn%2Fbasic_programming_concepts%2Fprogram_structure.html%23%25E5%258F%2598%25E9%2587%258F)
+
+**1. 编译器无法判断是否一定会初始化时**
+
+```Cangjie
+func calc(a: Int32) {
+    println(a)
+    return a * a
+}
+
+main() {
+    let a: String
+    if (calc(32) == 0) {  // 编译器无法确定这个条件是否成立
+        a = "1"
+    }
+    a = "2"  // ❌ 报错：编译器不确定 a 是否已被初始化
+}
+```
+
+**2. 静态成员变量在函数/lambda 中赋值时**
+
+```Cangjie
+func foo(a: () -> Unit) {}
+
+class A {
+    public static var ctx: Int64  // ❌ 报错：静态变量没有初始化
+
+    static init() {
+        let lambda = {=> ctx = 10}  // 编译器无法确定 lambda 是否会被执行
+        foo(lambda)
+    }
+}
+
+main() {}
+```
+
+**3. try-catch 场景**
+
+```Cangjie
+main() {
+    let a: String
+    try {
+        a = "1"
+    } catch (_) {
+        a = "2"  // ❌ 报错：编译器假设 try 块可能抛异常，a 可能未被初始化
+    }
+}
+```
+
+---
+
+## 2.3 const 修饰符
+
+`const` 用来声明**常量**——在编译时就确定值，运行时不可改变。
+
+```Cangjie
+const pi: Float64 = 3.14159
+const greeting = "Hello"  // 可以省略类型标注
+```
+
+> [!IMPORTANT]
+> - const 变量**不能省略**初始化表达式
+> - const 变量可以是全局变量、局部变量、静态成员变量
+> - const 变量**不能**在扩展中定义
+> - const 变量可以访问对应类型的所有实例成员，也可以调用对应类型的所有非 mut 实例成员函数
+
+> [!WARNING]
+> const 变量初始化后，其类型的**所有成员都是 const 的**（深度 const，包含成员的成员），因此其成员也不可变。
+
+---
+
+## 2.4 值类型和引用类型变量
+
+变量根据数据存储方式的不同，分为**值类型**和**引用类型**两类。
+
+### 简单理解
+
+| 类型 | 类比 | 特点 |
+|------|------|------|
+| 值类型 | 复印件——每个人手里一份独立的副本 | 修改自己的副本不影响别人 |
+| 引用类型 | 共享文档——多个人看同一份文件 | 一个人改了，其他人也能看到变化 |
+
+### 具体区别
+
+**值类型变量**（如 `Int64`、`Float64`、`struct` 等）：
+
+- 每个变量有自己独立的数据副本
+- 赋值时会产生拷贝，原来的数据会被覆盖
+- `let` 修饰的值类型变量，数据完全不可变
+
+**引用类型变量**（如 `class`、`Array` 等）：
+
+- 多个变量可以引用同一份数据
+- 赋值只是改变引用关系，不会拷贝数据
+- `let` 修饰的引用类型变量，只是**引用关系不可变**，但引用的数据本身是可以被修改的
+
+> [!TIP]
+> 简单记忆：`基本数据类型`和 `struct` 是值类型，`class` 和 `Array` 是引用类型。
+
+### 示例
+
+```Cangjie
+struct Copy {       // 值类型
+    var data = 2012
+}
+
+class Share {       // 引用类型
+    var data = 2012
+}
+
+main() {
+    // ─── 值类型演示 ───
+    let c1 = Copy()
+    var c2 = c1       // c2 拿到 c1 的一份独立拷贝
+    c2.data = 2023    // 修改 c2 不影响 c1
+    println("${c1.data}, ${c2.data}")
+
+    // ─── 引用类型演示 ───
+    let s1 = Share()
+    let s2 = s1       // s2 和 s1 指向同一份数据
+    s2.data = 2023    // 修改 s2 也会影响 s1
+    println("${s1.data}, ${s2.data}")
+}
+```
+
+运行结果：
+
+```Bash
+2012, 2023    // c1 没变，c2 改了 → 值类型：各管各的
+2023, 2023    // s1 也变了 → 引用类型：一改全改
+```
+
+**解读**：
+
+- **值类型** `Copy`：`c2 = c1` 时复制了一份独立的数据，改 `c2` 不影响 `c1`
+- **引用类型** `Share`：`s2 = s1` 时两者指向同一份数据，改 `s2` 连 `s1` 也跟着变
+
+> [!TIP]
+> 记住：值类型赋值 = 复印（各管各的），引用类型赋值 = 共享链接（一改全改）。
+
+---
+
+如果将上面程序中的 `var c2 = c1` 改成 `let c2 = c1`，则编译会报错：
+
+```Cangjie
+struct Copy {
+    var data = 2012
+}
+
+main() {
+    let c1 = Copy()
+    let c2 = c1
+    c2.data = 2023  // ❌ 报错：cannot assign to immutable value
+}
+```
+
+因为 `let` 修饰的值类型变量，其数据完全不可变，连成员字段都不能修改。
+
+---
+
+## 2.5 作用域
+
+### 什么是作用域？
+
+**作用域**就是变量的"有效范围"——一个变量在哪些地方能被使用，哪些地方看不到它。
+
+你可以把作用域想象成**房间**：
+
+- 在一个房间里放的东西，这个房间里的人都能看到
+- 里屋的人能看到外屋的东西，但外屋的人看不到里屋的东西
+- 如果里屋和外屋有同名的东西，里屋的人优先用里屋的
+
+### 仓颉中的作用域规则
+
+在仓颉中，**一对大括号 `{}` 就圈出了一个作用域**。大括号可以嵌套，形成"外层作用域"和"内层作用域"。
+
+核心规则只有三条：
+
+1. **当前作用域定义的变量，在当前和内层作用域都能用**
+2. **内层作用域定义的变量，外层看不到**
+3. **内层可以和外层定义同名变量，内层的会"遮盖"外层的**
+
+> [!NOTE]
+> 仓颉不允许单独写一对大括号 `{}`，大括号必须依附于 `if`、`for`、函数体、类体等语法结构。
+
+### 示例
+
+```Cangjie
+let element = "仓颉"        // ① 顶层作用域
+
+main() {
+    println(element)         // ② 此时 element = "仓颉"（来自外层）
+    let element = 9          // ③ main 作用域内重新定义 element
+    if (element > 0) {
+        let element = 2023   // ④ if 作用域内再次重新定义 element
+        println(element)     // ⑤ 此时 element = 2023（最内层优先）
+    }
+    println(element)         // ⑥ 此时 element = 9（if 里的已失效）
+}
+```
+
+运行结果：
+
+```Bash
+仓颉
+2023
+9
+```
+
+**逐行解读**：
+
+| 行号 | 输出 | 原因 |
+|------|------|------|
+| ② | `仓颉` | 此时 main 里还没定义 `element`，用的是顶层作用域的 |
+| ⑤ | `2023` | if 里重新定义了 `element`，遮盖了外层的 `9` |
+| ⑥ | `9` | 离开 if 块后，if 里的 `element` 失效，回到 main 作用域的 `9` |
+
+> [!TIP]
+> 简单记忆：变量从内向外查找——先找当前作用域，找不到就往外层找，直到找到为止。
+9:["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L14",null,{"content":"$15"}],"$L16","$L17"]}]
+18:I[59537,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/3h-meue_9zse5.js"],"ArticleNavSidebar"]
+19:I[22016,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/3h-meue_9zse5.js"],""]
+1a:I[96438,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/3h-meue_9zse5.js"],"ArticleContent"]
+16:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L18",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/1_初识仓颉","sort":0,"cover":"$undefined","published":true,"mtime":1782315943790.307},{"slug":"Cangjie/1_初识仓颉/1_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/1_初识仓颉","sort":1,"cover":"$undefined","published":true,"mtime":1782315943790.3762},{"slug":"Cangjie/2_基本数据类型/1_整形","title":"整型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/2_基本数据类型","sort":1,"cover":"$undefined","published":true,"mtime":1782315943790.3762},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/2_基本数据类型","sort":1,"cover":"$undefined","published":true,"mtime":1782315943790.6504},{"slug":"Cangjie/1_初识仓颉/2_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/1_初识仓颉","sort":2,"cover":"$undefined","published":true,"mtime":1782315943790.3762},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/2_基本数据类型","sort":2,"cover":"$undefined","published":true,"mtime":1782315943790.6504},{"slug":"Cangjie/1_初识仓颉/3_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/1_初识仓颉","sort":3,"cover":"$undefined","published":true,"mtime":1782315943790.3762},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/2_基本数据类型","sort":3,"cover":"$undefined","published":true,"mtime":1782315943790.6504},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/2_基本数据类型","sort":4,"cover":"$undefined","published":true,"mtime":1782315943790.6504},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/2_基本数据类型","sort":5,"cover":"$undefined","published":true,"mtime":1782315943790.6504},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/2_基本数据类型","sort":6,"cover":"$undefined","published":true,"mtime":1782315943790.6504}],"currentSlug":"Cangjie/1_初识仓颉/3_仓颉的变量"}]]}]}]
+1b:T2886,
+## 2.1 什么是变量？
+
+简单来说，**变量**就是程序中用来存放数据的"盒子"。你可以把它想象成一个贴了标签的容器——标签是变量名，容器里装的就是数据。
+
+```Cangjie
+let age = 18      // 用 age 这个"盒子"存放数字 18
+let name = "仓颉"  // 用 name 这个"盒子"存放文字"仓颉"
+```
+
+在上面的代码中：
+
+- `age` 和 `name` 就是变量名（标识符）
+- `18` 和 `"仓颉"` 是存放在变量中的数据
+- `=` 是赋值，意思是把右边的数据放进左边的"盒子"里
+- `let` 是修饰符，用于设置变量的各类属性
+
+变量的核心作用是**让程序能记住和复用数据**，而不是每次都写死具体的值。
+
+---
+
+## 2.2 如何定义变量
+
+在仓颉中，变量的定义格式如下：
+
+```Cangjie
+修饰符 变量名: 变量类型 = 初始值
+```
+
+看起来有点复杂？别担心，我们逐个拆解。
+
+### 修饰符
+
+修饰符决定了变量的"性格"——能不能改、谁能看到它等等。常用的修饰符有：
+
+**1. 可变性修饰符**（最常用，决定了变量能不能被修改）
+
+| 修饰符 | 含义 | 举例 |
+|--------|------|------|
+| `let` | 不可变——初始化后不能再改 | `let age = 18` |
+| `var` | 可变——随时可以修改 | `var score = 0` |
+
+> [!TIP]
+> 不确定要不要改？默认用 `let`，需要修改时再改成 `var`。这样可以避免意外修改数据。
+
+**2. const 修饰符**（声明常量，比 `let` 更严格）
+
+- 必须在声明时**立即初始化**
+- 一旦赋值，永远不能改变
+- 详见 [2.3 const 修饰符](#23-const-修饰符)
+
+**3. 其他修饰符**（后续文章详细介绍）
+
+- 可见性修饰符：`private`、`public` 等，控制谁能访问这个变量
+- 静态性修饰符：`static`，影响变量的存储方式
+
+### 变量名
+
+变量名就是一个合法的仓颉标识符，命名规则在[上一篇文章](./1_仓颉的标识符)已经介绍过。
+
+### 变量类型
+
+变量类型告诉编译器这个"盒子"能装什么样的数据，比如：
+
+- `Int64` —— 整数
+- `Float64` —— 小数
+- `String` —— 文本字符串
+
+> [!TIP]
+> 当初始值的类型很明确时，可以**省略类型标注**，编译器会自动推断：
+
+```Cangjie
+let a: Int64 = 6666
+let b = a       // 编译器自动推断 b 也是 Int64 类型
+```
+
+### 初始值
+
+初始值就是变量创建时放进"盒子"里的第一个数据。
+
+> [!IMPORTANT]
+> 如果标注了变量类型，初始值的类型必须和变量类型一致，否则会报错。
+
+> [!CAUTION]
+> **局部变量和实例成员变量**：可以省略初始值，但必须标注类型，且在引用前必须完成初始化。
+>
+> **全局变量和静态成员变量**：必须指定初始值，不能省略。
+
+---
+
+### 示例
+
+**示例 1：let 与 var 的区别**
+
+```Cangjie
+main() {
+    let a: Int64      // 声明不可变变量 a，暂不初始化
+    var b: Int64 = 1145  // 声明可变变量 b，初始值为 1145
+    b = 1919          // ✅ var 变量可以修改
+    a = b             // ✅ a 尚未初始化，这里是首次赋值（初始化），不算修改
+    println(a)
+    println(b)
+}
+```
+
+运行结果：
+
+```Bash
+1919
+1919
+```
+
+**示例 2：尝试修改不可变变量会报错**
+
+```Cangjie
+main() {
+    let sec: String = "咕咕嘎嘎"
+    sec = "哈基米"  // ❌ 报错：cannot assign to immutable value
+}
+```
+
+**示例 3：const 必须立即初始化**
+
+```Cangjie
+main() {
+    const pi  // ❌ 报错：const variable declaration must be initialized
+}
+```
+
+**示例 4：全局变量和静态成员变量必须初始化**
+
+```Cangjie
+const pi: Float64   // ❌ 报错：const variable declaration must be initialized
+var px: String      // ❌ 报错：var variable declaration must be initialized
+
+main() {}
+
+class Player {
+    static let score: Int32  // ❌ 报错：static variable 'score' needs to be initialized
+}
+```
+
+### 特殊情况
+
+> [!NOTE]
+> 以下内容涉及编译器的保守策略，初学者可以先了解，学完后续内容再深入理解。
+> 内容参考 [Cangjie 官方文档](https://cangjie-lang.cn/docs?url=https%3A%2F%2Fcj-docs.gitcode.com%2Fzh%2F1.1.3%2Fdev-guide%2Fsource_zh_cn%2Fbasic_programming_concepts%2Fprogram_structure.html%23%25E5%258F%2598%25E9%2587%258F)
+
+**1. 编译器无法判断是否一定会初始化时**
+
+```Cangjie
+func calc(a: Int32) {
+    println(a)
+    return a * a
+}
+
+main() {
+    let a: String
+    if (calc(32) == 0) {  // 编译器无法确定这个条件是否成立
+        a = "1"
+    }
+    a = "2"  // ❌ 报错：编译器不确定 a 是否已被初始化
+}
+```
+
+**2. 静态成员变量在函数/lambda 中赋值时**
+
+```Cangjie
+func foo(a: () -> Unit) {}
+
+class A {
+    public static var ctx: Int64  // ❌ 报错：静态变量没有初始化
+
+    static init() {
+        let lambda = {=> ctx = 10}  // 编译器无法确定 lambda 是否会被执行
+        foo(lambda)
+    }
+}
+
+main() {}
+```
+
+**3. try-catch 场景**
+
+```Cangjie
+main() {
+    let a: String
+    try {
+        a = "1"
+    } catch (_) {
+        a = "2"  // ❌ 报错：编译器假设 try 块可能抛异常，a 可能未被初始化
+    }
+}
+```
+
+---
+
+## 2.3 const 修饰符
+
+`const` 用来声明**常量**——在编译时就确定值，运行时不可改变。
+
+```Cangjie
+const pi: Float64 = 3.14159
+const greeting = "Hello"  // 可以省略类型标注
+```
+
+> [!IMPORTANT]
+> - const 变量**不能省略**初始化表达式
+> - const 变量可以是全局变量、局部变量、静态成员变量
+> - const 变量**不能**在扩展中定义
+> - const 变量可以访问对应类型的所有实例成员，也可以调用对应类型的所有非 mut 实例成员函数
+
+> [!WARNING]
+> const 变量初始化后，其类型的**所有成员都是 const 的**（深度 const，包含成员的成员），因此其成员也不可变。
+
+---
+
+## 2.4 值类型和引用类型变量
+
+变量根据数据存储方式的不同，分为**值类型**和**引用类型**两类。
+
+### 简单理解
+
+| 类型 | 类比 | 特点 |
+|------|------|------|
+| 值类型 | 复印件——每个人手里一份独立的副本 | 修改自己的副本不影响别人 |
+| 引用类型 | 共享文档——多个人看同一份文件 | 一个人改了，其他人也能看到变化 |
+
+### 具体区别
+
+**值类型变量**（如 `Int64`、`Float64`、`struct` 等）：
+
+- 每个变量有自己独立的数据副本
+- 赋值时会产生拷贝，原来的数据会被覆盖
+- `let` 修饰的值类型变量，数据完全不可变
+
+**引用类型变量**（如 `class`、`Array` 等）：
+
+- 多个变量可以引用同一份数据
+- 赋值只是改变引用关系，不会拷贝数据
+- `let` 修饰的引用类型变量，只是**引用关系不可变**，但引用的数据本身是可以被修改的
+
+> [!TIP]
+> 简单记忆：`基本数据类型`和 `struct` 是值类型，`class` 和 `Array` 是引用类型。
+
+### 示例
+
+```Cangjie
+struct Copy {       // 值类型
+    var data = 2012
+}
+
+class Share {       // 引用类型
+    var data = 2012
+}
+
+main() {
+    // ─── 值类型演示 ───
+    let c1 = Copy()
+    var c2 = c1       // c2 拿到 c1 的一份独立拷贝
+    c2.data = 2023    // 修改 c2 不影响 c1
+    println("${c1.data}, ${c2.data}")
+
+    // ─── 引用类型演示 ───
+    let s1 = Share()
+    let s2 = s1       // s2 和 s1 指向同一份数据
+    s2.data = 2023    // 修改 s2 也会影响 s1
+    println("${s1.data}, ${s2.data}")
+}
+```
+
+运行结果：
+
+```Bash
+2012, 2023    // c1 没变，c2 改了 → 值类型：各管各的
+2023, 2023    // s1 也变了 → 引用类型：一改全改
+```
+
+**解读**：
+
+- **值类型** `Copy`：`c2 = c1` 时复制了一份独立的数据，改 `c2` 不影响 `c1`
+- **引用类型** `Share`：`s2 = s1` 时两者指向同一份数据，改 `s2` 连 `s1` 也跟着变
+
+> [!TIP]
+> 记住：值类型赋值 = 复印（各管各的），引用类型赋值 = 共享链接（一改全改）。
+
+---
+
+如果将上面程序中的 `var c2 = c1` 改成 `let c2 = c1`，则编译会报错：
+
+```Cangjie
+struct Copy {
+    var data = 2012
+}
+
+main() {
+    let c1 = Copy()
+    let c2 = c1
+    c2.data = 2023  // ❌ 报错：cannot assign to immutable value
+}
+```
+
+因为 `let` 修饰的值类型变量，其数据完全不可变，连成员字段都不能修改。
+
+---
+
+## 2.5 作用域
+
+### 什么是作用域？
+
+**作用域**就是变量的"有效范围"——一个变量在哪些地方能被使用，哪些地方看不到它。
+
+你可以把作用域想象成**房间**：
+
+- 在一个房间里放的东西，这个房间里的人都能看到
+- 里屋的人能看到外屋的东西，但外屋的人看不到里屋的东西
+- 如果里屋和外屋有同名的东西，里屋的人优先用里屋的
+
+### 仓颉中的作用域规则
+
+在仓颉中，**一对大括号 `{}` 就圈出了一个作用域**。大括号可以嵌套，形成"外层作用域"和"内层作用域"。
+
+核心规则只有三条：
+
+1. **当前作用域定义的变量，在当前和内层作用域都能用**
+2. **内层作用域定义的变量，外层看不到**
+3. **内层可以和外层定义同名变量，内层的会"遮盖"外层的**
+
+> [!NOTE]
+> 仓颉不允许单独写一对大括号 `{}`，大括号必须依附于 `if`、`for`、函数体、类体等语法结构。
+
+### 示例
+
+```Cangjie
+let element = "仓颉"        // ① 顶层作用域
+
+main() {
+    println(element)         // ② 此时 element = "仓颉"（来自外层）
+    let element = 9          // ③ main 作用域内重新定义 element
+    if (element > 0) {
+        let element = 2023   // ④ if 作用域内再次重新定义 element
+        println(element)     // ⑤ 此时 element = 2023（最内层优先）
+    }
+    println(element)         // ⑥ 此时 element = 9（if 里的已失效）
+}
+```
+
+运行结果：
+
+```Bash
+仓颉
+2023
+9
+```
+
+**逐行解读**：
+
+| 行号 | 输出 | 原因 |
+|------|------|------|
+| ② | `仓颉` | 此时 main 里还没定义 `element`，用的是顶层作用域的 |
+| ⑤ | `2023` | if 里重新定义了 `element`，遮盖了外层的 `9` |
+| ⑥ | `9` | 离开 if 块后，if 里的 `element` 失效，回到 main 作用域的 `9` |
+
+> [!TIP]
+> 简单记忆：变量从内向外查找——先找当前作用域，找不到就往外层找，直到找到为止。
+17:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$L19",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-06-24"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"仓颉的变量"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"更方便的管理数据"}]]}],["$","$L1a",null,{"content":"$1b"}],"$L1c"]}]}]
+1d:I[28093,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/3h-meue_9zse5.js"],"MobileArticlePanel"]
+1e:T2886,
+## 2.1 什么是变量？
+
+简单来说，**变量**就是程序中用来存放数据的"盒子"。你可以把它想象成一个贴了标签的容器——标签是变量名，容器里装的就是数据。
+
+```Cangjie
+let age = 18      // 用 age 这个"盒子"存放数字 18
+let name = "仓颉"  // 用 name 这个"盒子"存放文字"仓颉"
+```
+
+在上面的代码中：
+
+- `age` 和 `name` 就是变量名（标识符）
+- `18` 和 `"仓颉"` 是存放在变量中的数据
+- `=` 是赋值，意思是把右边的数据放进左边的"盒子"里
+- `let` 是修饰符，用于设置变量的各类属性
+
+变量的核心作用是**让程序能记住和复用数据**，而不是每次都写死具体的值。
+
+---
+
+## 2.2 如何定义变量
+
+在仓颉中，变量的定义格式如下：
+
+```Cangjie
+修饰符 变量名: 变量类型 = 初始值
+```
+
+看起来有点复杂？别担心，我们逐个拆解。
+
+### 修饰符
+
+修饰符决定了变量的"性格"——能不能改、谁能看到它等等。常用的修饰符有：
+
+**1. 可变性修饰符**（最常用，决定了变量能不能被修改）
+
+| 修饰符 | 含义 | 举例 |
+|--------|------|------|
+| `let` | 不可变——初始化后不能再改 | `let age = 18` |
+| `var` | 可变——随时可以修改 | `var score = 0` |
+
+> [!TIP]
+> 不确定要不要改？默认用 `let`，需要修改时再改成 `var`。这样可以避免意外修改数据。
+
+**2. const 修饰符**（声明常量，比 `let` 更严格）
+
+- 必须在声明时**立即初始化**
+- 一旦赋值，永远不能改变
+- 详见 [2.3 const 修饰符](#23-const-修饰符)
+
+**3. 其他修饰符**（后续文章详细介绍）
+
+- 可见性修饰符：`private`、`public` 等，控制谁能访问这个变量
+- 静态性修饰符：`static`，影响变量的存储方式
+
+### 变量名
+
+变量名就是一个合法的仓颉标识符，命名规则在[上一篇文章](./1_仓颉的标识符)已经介绍过。
+
+### 变量类型
+
+变量类型告诉编译器这个"盒子"能装什么样的数据，比如：
+
+- `Int64` —— 整数
+- `Float64` —— 小数
+- `String` —— 文本字符串
+
+> [!TIP]
+> 当初始值的类型很明确时，可以**省略类型标注**，编译器会自动推断：
+
+```Cangjie
+let a: Int64 = 6666
+let b = a       // 编译器自动推断 b 也是 Int64 类型
+```
+
+### 初始值
+
+初始值就是变量创建时放进"盒子"里的第一个数据。
+
+> [!IMPORTANT]
+> 如果标注了变量类型，初始值的类型必须和变量类型一致，否则会报错。
+
+> [!CAUTION]
+> **局部变量和实例成员变量**：可以省略初始值，但必须标注类型，且在引用前必须完成初始化。
+>
+> **全局变量和静态成员变量**：必须指定初始值，不能省略。
+
+---
+
+### 示例
+
+**示例 1：let 与 var 的区别**
+
+```Cangjie
+main() {
+    let a: Int64      // 声明不可变变量 a，暂不初始化
+    var b: Int64 = 1145  // 声明可变变量 b，初始值为 1145
+    b = 1919          // ✅ var 变量可以修改
+    a = b             // ✅ a 尚未初始化，这里是首次赋值（初始化），不算修改
+    println(a)
+    println(b)
+}
+```
+
+运行结果：
+
+```Bash
+1919
+1919
+```
+
+**示例 2：尝试修改不可变变量会报错**
+
+```Cangjie
+main() {
+    let sec: String = "咕咕嘎嘎"
+    sec = "哈基米"  // ❌ 报错：cannot assign to immutable value
+}
+```
+
+**示例 3：const 必须立即初始化**
+
+```Cangjie
+main() {
+    const pi  // ❌ 报错：const variable declaration must be initialized
+}
+```
+
+**示例 4：全局变量和静态成员变量必须初始化**
+
+```Cangjie
+const pi: Float64   // ❌ 报错：const variable declaration must be initialized
+var px: String      // ❌ 报错：var variable declaration must be initialized
+
+main() {}
+
+class Player {
+    static let score: Int32  // ❌ 报错：static variable 'score' needs to be initialized
+}
+```
+
+### 特殊情况
+
+> [!NOTE]
+> 以下内容涉及编译器的保守策略，初学者可以先了解，学完后续内容再深入理解。
+> 内容参考 [Cangjie 官方文档](https://cangjie-lang.cn/docs?url=https%3A%2F%2Fcj-docs.gitcode.com%2Fzh%2F1.1.3%2Fdev-guide%2Fsource_zh_cn%2Fbasic_programming_concepts%2Fprogram_structure.html%23%25E5%258F%2598%25E9%2587%258F)
+
+**1. 编译器无法判断是否一定会初始化时**
+
+```Cangjie
+func calc(a: Int32) {
+    println(a)
+    return a * a
+}
+
+main() {
+    let a: String
+    if (calc(32) == 0) {  // 编译器无法确定这个条件是否成立
+        a = "1"
+    }
+    a = "2"  // ❌ 报错：编译器不确定 a 是否已被初始化
+}
+```
+
+**2. 静态成员变量在函数/lambda 中赋值时**
+
+```Cangjie
+func foo(a: () -> Unit) {}
+
+class A {
+    public static var ctx: Int64  // ❌ 报错：静态变量没有初始化
+
+    static init() {
+        let lambda = {=> ctx = 10}  // 编译器无法确定 lambda 是否会被执行
+        foo(lambda)
+    }
+}
+
+main() {}
+```
+
+**3. try-catch 场景**
+
+```Cangjie
+main() {
+    let a: String
+    try {
+        a = "1"
+    } catch (_) {
+        a = "2"  // ❌ 报错：编译器假设 try 块可能抛异常，a 可能未被初始化
+    }
+}
+```
+
+---
+
+## 2.3 const 修饰符
+
+`const` 用来声明**常量**——在编译时就确定值，运行时不可改变。
+
+```Cangjie
+const pi: Float64 = 3.14159
+const greeting = "Hello"  // 可以省略类型标注
+```
+
+> [!IMPORTANT]
+> - const 变量**不能省略**初始化表达式
+> - const 变量可以是全局变量、局部变量、静态成员变量
+> - const 变量**不能**在扩展中定义
+> - const 变量可以访问对应类型的所有实例成员，也可以调用对应类型的所有非 mut 实例成员函数
+
+> [!WARNING]
+> const 变量初始化后，其类型的**所有成员都是 const 的**（深度 const，包含成员的成员），因此其成员也不可变。
+
+---
+
+## 2.4 值类型和引用类型变量
+
+变量根据数据存储方式的不同，分为**值类型**和**引用类型**两类。
+
+### 简单理解
+
+| 类型 | 类比 | 特点 |
+|------|------|------|
+| 值类型 | 复印件——每个人手里一份独立的副本 | 修改自己的副本不影响别人 |
+| 引用类型 | 共享文档——多个人看同一份文件 | 一个人改了，其他人也能看到变化 |
+
+### 具体区别
+
+**值类型变量**（如 `Int64`、`Float64`、`struct` 等）：
+
+- 每个变量有自己独立的数据副本
+- 赋值时会产生拷贝，原来的数据会被覆盖
+- `let` 修饰的值类型变量，数据完全不可变
+
+**引用类型变量**（如 `class`、`Array` 等）：
+
+- 多个变量可以引用同一份数据
+- 赋值只是改变引用关系，不会拷贝数据
+- `let` 修饰的引用类型变量，只是**引用关系不可变**，但引用的数据本身是可以被修改的
+
+> [!TIP]
+> 简单记忆：`基本数据类型`和 `struct` 是值类型，`class` 和 `Array` 是引用类型。
+
+### 示例
+
+```Cangjie
+struct Copy {       // 值类型
+    var data = 2012
+}
+
+class Share {       // 引用类型
+    var data = 2012
+}
+
+main() {
+    // ─── 值类型演示 ───
+    let c1 = Copy()
+    var c2 = c1       // c2 拿到 c1 的一份独立拷贝
+    c2.data = 2023    // 修改 c2 不影响 c1
+    println("${c1.data}, ${c2.data}")
+
+    // ─── 引用类型演示 ───
+    let s1 = Share()
+    let s2 = s1       // s2 和 s1 指向同一份数据
+    s2.data = 2023    // 修改 s2 也会影响 s1
+    println("${s1.data}, ${s2.data}")
+}
+```
+
+运行结果：
+
+```Bash
+2012, 2023    // c1 没变，c2 改了 → 值类型：各管各的
+2023, 2023    // s1 也变了 → 引用类型：一改全改
+```
+
+**解读**：
+
+- **值类型** `Copy`：`c2 = c1` 时复制了一份独立的数据，改 `c2` 不影响 `c1`
+- **引用类型** `Share`：`s2 = s1` 时两者指向同一份数据，改 `s2` 连 `s1` 也跟着变
+
+> [!TIP]
+> 记住：值类型赋值 = 复印（各管各的），引用类型赋值 = 共享链接（一改全改）。
+
+---
+
+如果将上面程序中的 `var c2 = c1` 改成 `let c2 = c1`，则编译会报错：
+
+```Cangjie
+struct Copy {
+    var data = 2012
+}
+
+main() {
+    let c1 = Copy()
+    let c2 = c1
+    c2.data = 2023  // ❌ 报错：cannot assign to immutable value
+}
+```
+
+因为 `let` 修饰的值类型变量，其数据完全不可变，连成员字段都不能修改。
+
+---
+
+## 2.5 作用域
+
+### 什么是作用域？
+
+**作用域**就是变量的"有效范围"——一个变量在哪些地方能被使用，哪些地方看不到它。
+
+你可以把作用域想象成**房间**：
+
+- 在一个房间里放的东西，这个房间里的人都能看到
+- 里屋的人能看到外屋的东西，但外屋的人看不到里屋的东西
+- 如果里屋和外屋有同名的东西，里屋的人优先用里屋的
+
+### 仓颉中的作用域规则
+
+在仓颉中，**一对大括号 `{}` 就圈出了一个作用域**。大括号可以嵌套，形成"外层作用域"和"内层作用域"。
+
+核心规则只有三条：
+
+1. **当前作用域定义的变量，在当前和内层作用域都能用**
+2. **内层作用域定义的变量，外层看不到**
+3. **内层可以和外层定义同名变量，内层的会"遮盖"外层的**
+
+> [!NOTE]
+> 仓颉不允许单独写一对大括号 `{}`，大括号必须依附于 `if`、`for`、函数体、类体等语法结构。
+
+### 示例
+
+```Cangjie
+let element = "仓颉"        // ① 顶层作用域
+
+main() {
+    println(element)         // ② 此时 element = "仓颉"（来自外层）
+    let element = 9          // ③ main 作用域内重新定义 element
+    if (element > 0) {
+        let element = 2023   // ④ if 作用域内再次重新定义 element
+        println(element)     // ⑤ 此时 element = 2023（最内层优先）
+    }
+    println(element)         // ⑥ 此时 element = 9（if 里的已失效）
+}
+```
+
+运行结果：
+
+```Bash
+仓颉
+2023
+9
+```
+
+**逐行解读**：
+
+| 行号 | 输出 | 原因 |
+|------|------|------|
+| ② | `仓颉` | 此时 main 里还没定义 `element`，用的是顶层作用域的 |
+| ⑤ | `2023` | if 里重新定义了 `element`，遮盖了外层的 `9` |
+| ⑥ | `9` | 离开 if 块后，if 里的 `element` 失效，回到 main 作用域的 `9` |
+
+> [!TIP]
+> 简单记忆：变量从内向外查找——先找当前作用域，找不到就往外层找，直到找到为止。
+1c:["$","$L1d",null,{"content":"$1e","collection":"Cangjie/1_初识仓颉","rootColPath":"Cangjie","allArticles":["$16:props:children:props:children:2:props:articles:0","$16:props:children:props:children:2:props:articles:1","$16:props:children:props:children:2:props:articles:2","$16:props:children:props:children:2:props:articles:3",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"collection":"$undefined","sort":1,"cover":"$undefined","published":true,"mtime":1782315943790.6504},"$16:props:children:props:children:2:props:articles:4","$16:props:children:props:children:2:props:articles:5","$16:props:children:props:children:2:props:articles:6","$16:props:children:props:children:2:props:articles:7","$16:props:children:props:children:2:props:articles:8","$16:props:children:props:children:2:props:articles:9","$16:props:children:props:children:2:props:articles:10"],"currentSlug":"Cangjie/1_初识仓颉/3_仓颉的变量"}]
+f:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+1f:I[27201,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"IconMark"]
+c:null
+11:[["$","title","0",{"children":"仓颉的变量 | Seline Blog"}],["$","meta","1",{"name":"description","content":"更方便的管理数据"}],["$","link","2",{"rel":"icon","href":"/favicon.ico?favicon.2vob68tjqpejf.ico","sizes":"256x256","type":"image/x-icon"}],["$","link","3",{"rel":"icon","href":"/images/avatar.webp"}],["$","$L1f","4",{}]]

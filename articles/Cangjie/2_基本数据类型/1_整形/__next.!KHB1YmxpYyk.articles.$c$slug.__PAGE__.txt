@@ -1,0 +1,372 @@
+1:"$Sreact.fragment"
+2:I[23597,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/3h-meue_9zse5.js"],"TocSidebar"]
+4:I[59537,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/3h-meue_9zse5.js"],"ArticleNavSidebar"]
+9:I[22016,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/3h-meue_9zse5.js"],""]
+a:I[96438,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/3h-meue_9zse5.js"],"ArticleContent"]
+d:I[97367,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
+e:"$Sreact.suspense"
+10:I[28093,["/_next/static/chunks/0j-hrkdk-8sp1.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/3h-meue_9zse5.js"],"MobileArticlePanel"]
+3:T1012,
+## 什么是整型？
+
+**整型**就是用来表示整数的类型，比如 0、1、-42、100 等。在仓颉中，整型分为两大类：
+
+- **有符号整型**：可以表示正数、负数和零（如 `Int8`、`Int64`）
+- **无符号整型**：只能表示零和正数（如 `UInt8`、`UInt64`）
+
+> [!TIP]
+> 简单记忆：带 `U` 前缀的就是无符号（Unsigned），只能存非负数；不带 `U` 的可以存负数。
+
+---
+
+## 整型类型一览
+
+| 类型 | 位数 | 表示范围 | 说明 |
+|------|------|----------|------|
+| `Int8` | 8 | -2⁷ ~ 2⁷-1（-128 ~ 127） | |
+| `Int16` | 16 | -2¹⁵ ~ 2¹⁵-1（-32768 ~ 32767） | |
+| `Int32` | 32 | -2³¹ ~ 2³¹-1（-2147483648 ~ 2147483647） | |
+| `Int64` | 64 | -2⁶³ ~ 2⁶³-1（-9223372036854775808 ~ 9223372036854775807） | **首选类型** |
+| `IntNative` | 平台相关 | 平台相关 | 与系统位宽一致 |
+| `UInt8` | 8 | 0 ~ 2⁸-1（0 ~ 255） | |
+| `UInt16` | 16 | 0 ~ 2¹⁶-1（0 ~ 65535） | |
+| `UInt32` | 32 | 0 ~ 2³²-1（0 ~ 4294967295） | |
+| `UInt64` | 64 | 0 ~ 2⁶⁴-1（0 ~ 18446744073709551615） | |
+| `UIntNative` | 平台相关 | 平台相关 | 与系统位宽一致 |
+
+> [!TIP]
+> 在不确定用哪种整型时，**首选 `Int64`**。原因：
+> - 表示范围足够大，不容易溢出
+> - 整数字面量默认推断为 `Int64`，可以避免不必要的类型转换
+
+---
+
+## 整数字面量
+
+字面量就是代码中直接写出来的数值。仓颉支持 4 种进制写法：
+
+| 进制 | 前缀 | 示例 | 十进制值 |
+|------|------|------|----------|
+| 二进制 | `0b` 或 `0B` | `0b00011000` | 24 |
+| 八进制 | `0o` 或 `0O` | `0o30` | 24 |
+| 十进制 | 无前缀 | `24` | 24 |
+| 十六进制 | `0x` 或 `0X` | `0x18` | 24 |
+
+可以用下划线 `_` 作为分隔符，方便阅读：
+
+```Cangjie
+let million = 1_000_000     // 更易读
+let binary = 0b0001_1000    // 二进制也支持
+```
+
+### 超出范围会报错
+
+如果字面量的值超出了变量类型的表示范围，编译器会报错：
+
+```Cangjie
+let x: Int8 = 128          // ❌ Int8 最大是 127
+let y: UInt8 = 256         // ❌ UInt8 最大是 255
+let z: Int32 = 0x8000_0000 // ❌ 超出 Int32 范围
+```
+
+---
+
+## 类型后缀
+
+可以通过在数字后面加**后缀**来明确指定字面量的类型：
+
+| 后缀 | 类型 | 后缀 | 类型 |
+|------|------|------|------|
+| `i8` | `Int8` | `u8` | `UInt8` |
+| `i16` | `Int16` | `u16` | `UInt16` |
+| `i32` | `Int32` | `u32` | `UInt32` |
+| `i64` | `Int64` | `u64` | `UInt64` |
+
+使用示例：
+
+```Cangjie
+var x = 100i8      // x 是 Int8 类型，值为 100
+var y = 0x10u64    // y 是 UInt64 类型，值为 16
+var z = 0o432i32   // z 是 Int32 类型，值为 282
+```
+
+> [!TIP]
+> 加后缀后就不需要再写 `: Int8` 这样的类型标注了，编译器能自动识别。
+
+---
+
+## 字符字节字面量
+
+仓颉支持用 `b'字符'` 的形式来表示 `UInt8` 类型的值，本质上是取该 ASCII 字符的编码值：
+
+```Cangjie
+main() {
+    var a = b'x'        // a 是 UInt8 类型，值为 120（'x' 的 ASCII 码）
+    var b = b'\n'       // b 是 UInt8 类型，值为 10（换行符的 ASCII 码）
+    var c = b'\u{78}'   // c 是 UInt8 类型，值为 120（0x78 = 120）
+    c = b'\u{90}' - b'\u{66}' + c  // 可以参与运算
+}
+```
+
+其中 `\u{}` 是**用十六进制数表示字符编码**的转义写法，花括号内填写十六进制数值，编译器会将其转换为对应的 `UInt8` 值。例如 `\u{78}` 就等于十六进制 `0x78`，即十进制 `120`。
+
+> [!NOTE]
+> - `\u{}` 内最多两位十六进制数，且值必须小于 256（因为 `UInt8` 最大就是 255）
+> - 只能使用 ASCII 字符，不能用于中文等多字节字符
+
+---
+
+## 小结
+
+| 概念 | 要点 |
+|------|------|
+| 整型分类 | 有符号（`Int` 系列）和无符号（`UInt` 系列） |
+| 首选类型 | `Int64`，默认推断类型 |
+| 字面量进制 | 二进制 `0b`、八进制 `0o`、十进制、十六进制 `0x` |
+| 类型后缀 | `i8`/`i16`/`i32`/`i64` 和 `u8`/`u16`/`u32`/`u64` |
+| 字节字面量 | `b'x'` 表示 ASCII 字符的 UInt8 值 |
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L4",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782315943790.307},{"slug":"Cangjie/1_初识仓颉/1_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782315943790.3762},{"slug":"Cangjie/2_基本数据类型/1_整形","title":"整型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782315943790.3762},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782315943790.6504},{"slug":"Cangjie/1_初识仓颉/2_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782315943790.3762},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782315943790.6504},{"slug":"Cangjie/1_初识仓颉/3_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782315943790.3762},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782315943790.6504},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782315943790.6504},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782315943790.6504},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782315943790.6504}],"currentSlug":"Cangjie/2_基本数据类型/1_整形"}]]}]}],"$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"rDF-sbH0DLbbucvTPs2HX"}
+b:T1012,
+## 什么是整型？
+
+**整型**就是用来表示整数的类型，比如 0、1、-42、100 等。在仓颉中，整型分为两大类：
+
+- **有符号整型**：可以表示正数、负数和零（如 `Int8`、`Int64`）
+- **无符号整型**：只能表示零和正数（如 `UInt8`、`UInt64`）
+
+> [!TIP]
+> 简单记忆：带 `U` 前缀的就是无符号（Unsigned），只能存非负数；不带 `U` 的可以存负数。
+
+---
+
+## 整型类型一览
+
+| 类型 | 位数 | 表示范围 | 说明 |
+|------|------|----------|------|
+| `Int8` | 8 | -2⁷ ~ 2⁷-1（-128 ~ 127） | |
+| `Int16` | 16 | -2¹⁵ ~ 2¹⁵-1（-32768 ~ 32767） | |
+| `Int32` | 32 | -2³¹ ~ 2³¹-1（-2147483648 ~ 2147483647） | |
+| `Int64` | 64 | -2⁶³ ~ 2⁶³-1（-9223372036854775808 ~ 9223372036854775807） | **首选类型** |
+| `IntNative` | 平台相关 | 平台相关 | 与系统位宽一致 |
+| `UInt8` | 8 | 0 ~ 2⁸-1（0 ~ 255） | |
+| `UInt16` | 16 | 0 ~ 2¹⁶-1（0 ~ 65535） | |
+| `UInt32` | 32 | 0 ~ 2³²-1（0 ~ 4294967295） | |
+| `UInt64` | 64 | 0 ~ 2⁶⁴-1（0 ~ 18446744073709551615） | |
+| `UIntNative` | 平台相关 | 平台相关 | 与系统位宽一致 |
+
+> [!TIP]
+> 在不确定用哪种整型时，**首选 `Int64`**。原因：
+> - 表示范围足够大，不容易溢出
+> - 整数字面量默认推断为 `Int64`，可以避免不必要的类型转换
+
+---
+
+## 整数字面量
+
+字面量就是代码中直接写出来的数值。仓颉支持 4 种进制写法：
+
+| 进制 | 前缀 | 示例 | 十进制值 |
+|------|------|------|----------|
+| 二进制 | `0b` 或 `0B` | `0b00011000` | 24 |
+| 八进制 | `0o` 或 `0O` | `0o30` | 24 |
+| 十进制 | 无前缀 | `24` | 24 |
+| 十六进制 | `0x` 或 `0X` | `0x18` | 24 |
+
+可以用下划线 `_` 作为分隔符，方便阅读：
+
+```Cangjie
+let million = 1_000_000     // 更易读
+let binary = 0b0001_1000    // 二进制也支持
+```
+
+### 超出范围会报错
+
+如果字面量的值超出了变量类型的表示范围，编译器会报错：
+
+```Cangjie
+let x: Int8 = 128          // ❌ Int8 最大是 127
+let y: UInt8 = 256         // ❌ UInt8 最大是 255
+let z: Int32 = 0x8000_0000 // ❌ 超出 Int32 范围
+```
+
+---
+
+## 类型后缀
+
+可以通过在数字后面加**后缀**来明确指定字面量的类型：
+
+| 后缀 | 类型 | 后缀 | 类型 |
+|------|------|------|------|
+| `i8` | `Int8` | `u8` | `UInt8` |
+| `i16` | `Int16` | `u16` | `UInt16` |
+| `i32` | `Int32` | `u32` | `UInt32` |
+| `i64` | `Int64` | `u64` | `UInt64` |
+
+使用示例：
+
+```Cangjie
+var x = 100i8      // x 是 Int8 类型，值为 100
+var y = 0x10u64    // y 是 UInt64 类型，值为 16
+var z = 0o432i32   // z 是 Int32 类型，值为 282
+```
+
+> [!TIP]
+> 加后缀后就不需要再写 `: Int8` 这样的类型标注了，编译器能自动识别。
+
+---
+
+## 字符字节字面量
+
+仓颉支持用 `b'字符'` 的形式来表示 `UInt8` 类型的值，本质上是取该 ASCII 字符的编码值：
+
+```Cangjie
+main() {
+    var a = b'x'        // a 是 UInt8 类型，值为 120（'x' 的 ASCII 码）
+    var b = b'\n'       // b 是 UInt8 类型，值为 10（换行符的 ASCII 码）
+    var c = b'\u{78}'   // c 是 UInt8 类型，值为 120（0x78 = 120）
+    c = b'\u{90}' - b'\u{66}' + c  // 可以参与运算
+}
+```
+
+其中 `\u{}` 是**用十六进制数表示字符编码**的转义写法，花括号内填写十六进制数值，编译器会将其转换为对应的 `UInt8` 值。例如 `\u{78}` 就等于十六进制 `0x78`，即十进制 `120`。
+
+> [!NOTE]
+> - `\u{}` 内最多两位十六进制数，且值必须小于 256（因为 `UInt8` 最大就是 255）
+> - 只能使用 ASCII 字符，不能用于中文等多字节字符
+
+---
+
+## 小结
+
+| 概念 | 要点 |
+|------|------|
+| 整型分类 | 有符号（`Int` 系列）和无符号（`UInt` 系列） |
+| 首选类型 | `Int64`，默认推断类型 |
+| 字面量进制 | 二进制 `0b`、八进制 `0o`、十进制、十六进制 `0x` |
+| 类型后缀 | `i8`/`i16`/`i32`/`i64` 和 `u8`/`u16`/`u32`/`u64` |
+| 字节字面量 | `b'x'` 表示 ASCII 字符的 UInt8 值 |
+5:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$L9",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-06-24"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"整型"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"仓颉的基本数据类型"}]]}],["$","$La",null,{"content":"$b"}],"$Lc"]}]}]
+6:["$","script","script-0",{"src":"/_next/static/chunks/1gtjbot4ps5zt.js","async":true}]
+7:["$","script","script-1",{"src":"/_next/static/chunks/3h-meue_9zse5.js","async":true}]
+8:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
+11:T1012,
+## 什么是整型？
+
+**整型**就是用来表示整数的类型，比如 0、1、-42、100 等。在仓颉中，整型分为两大类：
+
+- **有符号整型**：可以表示正数、负数和零（如 `Int8`、`Int64`）
+- **无符号整型**：只能表示零和正数（如 `UInt8`、`UInt64`）
+
+> [!TIP]
+> 简单记忆：带 `U` 前缀的就是无符号（Unsigned），只能存非负数；不带 `U` 的可以存负数。
+
+---
+
+## 整型类型一览
+
+| 类型 | 位数 | 表示范围 | 说明 |
+|------|------|----------|------|
+| `Int8` | 8 | -2⁷ ~ 2⁷-1（-128 ~ 127） | |
+| `Int16` | 16 | -2¹⁵ ~ 2¹⁵-1（-32768 ~ 32767） | |
+| `Int32` | 32 | -2³¹ ~ 2³¹-1（-2147483648 ~ 2147483647） | |
+| `Int64` | 64 | -2⁶³ ~ 2⁶³-1（-9223372036854775808 ~ 9223372036854775807） | **首选类型** |
+| `IntNative` | 平台相关 | 平台相关 | 与系统位宽一致 |
+| `UInt8` | 8 | 0 ~ 2⁸-1（0 ~ 255） | |
+| `UInt16` | 16 | 0 ~ 2¹⁶-1（0 ~ 65535） | |
+| `UInt32` | 32 | 0 ~ 2³²-1（0 ~ 4294967295） | |
+| `UInt64` | 64 | 0 ~ 2⁶⁴-1（0 ~ 18446744073709551615） | |
+| `UIntNative` | 平台相关 | 平台相关 | 与系统位宽一致 |
+
+> [!TIP]
+> 在不确定用哪种整型时，**首选 `Int64`**。原因：
+> - 表示范围足够大，不容易溢出
+> - 整数字面量默认推断为 `Int64`，可以避免不必要的类型转换
+
+---
+
+## 整数字面量
+
+字面量就是代码中直接写出来的数值。仓颉支持 4 种进制写法：
+
+| 进制 | 前缀 | 示例 | 十进制值 |
+|------|------|------|----------|
+| 二进制 | `0b` 或 `0B` | `0b00011000` | 24 |
+| 八进制 | `0o` 或 `0O` | `0o30` | 24 |
+| 十进制 | 无前缀 | `24` | 24 |
+| 十六进制 | `0x` 或 `0X` | `0x18` | 24 |
+
+可以用下划线 `_` 作为分隔符，方便阅读：
+
+```Cangjie
+let million = 1_000_000     // 更易读
+let binary = 0b0001_1000    // 二进制也支持
+```
+
+### 超出范围会报错
+
+如果字面量的值超出了变量类型的表示范围，编译器会报错：
+
+```Cangjie
+let x: Int8 = 128          // ❌ Int8 最大是 127
+let y: UInt8 = 256         // ❌ UInt8 最大是 255
+let z: Int32 = 0x8000_0000 // ❌ 超出 Int32 范围
+```
+
+---
+
+## 类型后缀
+
+可以通过在数字后面加**后缀**来明确指定字面量的类型：
+
+| 后缀 | 类型 | 后缀 | 类型 |
+|------|------|------|------|
+| `i8` | `Int8` | `u8` | `UInt8` |
+| `i16` | `Int16` | `u16` | `UInt16` |
+| `i32` | `Int32` | `u32` | `UInt32` |
+| `i64` | `Int64` | `u64` | `UInt64` |
+
+使用示例：
+
+```Cangjie
+var x = 100i8      // x 是 Int8 类型，值为 100
+var y = 0x10u64    // y 是 UInt64 类型，值为 16
+var z = 0o432i32   // z 是 Int32 类型，值为 282
+```
+
+> [!TIP]
+> 加后缀后就不需要再写 `: Int8` 这样的类型标注了，编译器能自动识别。
+
+---
+
+## 字符字节字面量
+
+仓颉支持用 `b'字符'` 的形式来表示 `UInt8` 类型的值，本质上是取该 ASCII 字符的编码值：
+
+```Cangjie
+main() {
+    var a = b'x'        // a 是 UInt8 类型，值为 120（'x' 的 ASCII 码）
+    var b = b'\n'       // b 是 UInt8 类型，值为 10（换行符的 ASCII 码）
+    var c = b'\u{78}'   // c 是 UInt8 类型，值为 120（0x78 = 120）
+    c = b'\u{90}' - b'\u{66}' + c  // 可以参与运算
+}
+```
+
+其中 `\u{}` 是**用十六进制数表示字符编码**的转义写法，花括号内填写十六进制数值，编译器会将其转换为对应的 `UInt8` 值。例如 `\u{78}` 就等于十六进制 `0x78`，即十进制 `120`。
+
+> [!NOTE]
+> - `\u{}` 内最多两位十六进制数，且值必须小于 256（因为 `UInt8` 最大就是 255）
+> - 只能使用 ASCII 字符，不能用于中文等多字节字符
+
+---
+
+## 小结
+
+| 概念 | 要点 |
+|------|------|
+| 整型分类 | 有符号（`Int` 系列）和无符号（`UInt` 系列） |
+| 首选类型 | `Int64`，默认推断类型 |
+| 字面量进制 | 二进制 `0b`、八进制 `0o`、十进制、十六进制 `0x` |
+| 类型后缀 | `i8`/`i16`/`i32`/`i64` 和 `u8`/`u16`/`u32`/`u64` |
+| 字节字面量 | `b'x'` 表示 ASCII 字符的 UInt8 值 |
+c:["$","$L10",null,{"content":"$11","collection":"Cangjie/2_基本数据类型","rootColPath":"Cangjie","allArticles":["$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:0","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:1","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:2","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:3",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782315943790.6504},"$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:4","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:5","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:6","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:7","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:8","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:9","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:10"],"currentSlug":"Cangjie/2_基本数据类型/1_整形"}]
+f:null
