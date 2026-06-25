@@ -1,0 +1,486 @@
+1:"$Sreact.fragment"
+2:I[23597,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/2qx2ht961c-86.js"],"TocSidebar"]
+4:I[59537,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/2qx2ht961c-86.js"],"ArticleNavSidebar"]
+9:I[22016,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/2qx2ht961c-86.js"],""]
+a:I[96438,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/2qx2ht961c-86.js"],"ArticleContent"]
+d:I[97367,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
+e:"$Sreact.suspense"
+10:I[28093,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/2qx2ht961c-86.js"],"MobileArticlePanel"]
+3:T14af,
+> 万恶起源——为程序元素命名
+
+> [!NOTE]
+> 对于熟悉其他编程语言的读者或者不在意较多细节内容的读者，可以跳过本节内容或者直接[总结](#1)查看部分
+
+## 1.3.1 什么是标识符？
+
+在编程中，**标识符**就是给程序中的各种元素起的名字，比如变量名、函数名等。就好比现实生活中给人起名字一样，仓颉语言对"名字"有一些规则要求。
+
+仓颉的标识符分为两类：
+
+- **普通标识符** —— 最常用的命名方式
+- **原始标识符** —— 一种特殊的命名方式，允许使用关键字作为名字
+
+下面我们分别介绍。
+
+---
+
+## 1.3.2 普通标识符
+
+### 命名规则
+
+普通标识符的命名规则可以简单理解为：
+
+1. **开头字符**只能是：中文字符、英文字母、下划线（`_`）、其他符合[XID_Start](#134-关于-unicode-字符集选读)的字符
+2. **开头之后**可以接：中文字符、英文字母、数字、下划线、其他符合[XID_Continue](#134-关于-unicode-字符集选读)的字符
+3. **不能**与仓颉的**关键字**相同（如 `main`、`for`、`while`、`spawn` 等）
+
+> [!CAUTION]
+> 数字不能开头！`3abc` 是非法的。
+
+另外，如果用下划线 `_` 开头，后面**至少要跟一个字符**，不能只有一个孤零零的 `_`。
+
+> [!TIP]
+> 此处并非指_不能作为标识符使用，见[Q2](#q2为什么-_-不能单独作标识符)。
+
+### 示例
+
+```Cangjie
+// ✅ 合法的普通标识符
+hello       // 英文字母开头
+test
+Demo
+_abc_       // 下划线开头，后面有字符
+仓颉         // 中文开头
+a1b1c1      // 字母开头，后面接数字
+
+// ❌ 非法的普通标识符
+ab&c    // & 不是合法字符
+3abc    // 数字不能作为开头
+while   // while 是仓颉关键字，普通标识符不能用
+```
+
+---
+
+## 1.3.3 原始标识符
+
+### 为什么需要原始标识符？
+
+有时候你可能需要用仓颉的关键字（如 `if`、`while`）作为名字，但普通标识符不允许这样做。这时候就可以用**原始标识符**。
+
+### 使用方式
+
+在普通标识符或关键字的外面加上一对**反引号**（`` ` ` ``）即可：
+
+```Cangjie
+// ✅ 合法的原始标识符
+`abc`       // 普通标识符加反引号
+`_abc`
+`a1b2c3`
+`if`        // 关键字加反引号，现在可以作为名字使用了
+`while`
+
+// ❌ 非法的原始标识符
+`ab&c`      // 内部的普通标识符本身就不合法
+`3abc`      // 同上，数字不能开头
+```
+
+### 使用场景
+> [!NOTE]
+> 下方代码暂时看不懂也没有关系， 后续会详细学习 
+
+```Cangjie
+main() {
+    let a = 1
+    a |> println
+    `test`()   // 如果 test 是关键字，可以用反引号包裹
+}
+
+func `test`() {
+
+}
+```
+
+---
+
+## 1.3.4 关于 Unicode 字符集（选读）
+
+> [!NOTE]
+> 本节内容偏底层细节，初学者可以跳过，了解"标识符支持中文和英文开头"即可。
+
+仓颉的标识符规则基于 Unicode 标准 15.0.0，涉及两个核心概念：
+
+- **XID_Start**：可以作为标识符**开头**的字符集合，包含中文、英文字母等
+- **XID_Continue**：可以作为标识符**后续**字符的集合，包含中文、英文字母、阿拉伯数字等
+
+也就是说，前面说的"开头字符"和"后续字符"的规则，本质上就是 XID_Start 和 XID_Continue 的定义。
+
+此外，仓颉会对所有标识符进行 [NFC 规范化](https://www.unicode.org/reports/tr15/tr15-53.html)。简单来说，如果两个标识符在 NFC 后长得一样，它们会被视为同一个标识符。
+
+> 详细定义可参考 [Unicode 标准文档](https://www.unicode.org/reports/tr31/tr31-37.html)
+
+---
+
+## 1.3.5 总结
+
+| 类型 | 规则 | 示例 |
+|------|------|------|
+| 普通标识符 | 中文/字母/`_` 开头，后接中文/字母/数字/`_`（不可单独出现）；不能是关键字 | `hello`、`仓颉`、`_abc` |
+| 原始标识符 | 用反引号包裹普通标识符或关键字 | `` `if` ``、`` `while` ``、`` `abc` `` |
+
+**一句话记忆**：普通标识符用中文/字母/下划线开头，不能是关键字；想用关键字当名字就加反引号。
+
+---
+
+## 1.3.6 常见问题
+
+### Q1：可以用中文命名变量吗？
+
+可以！仓颉支持中文字符作为标识符，这是仓颉的特色之一：
+
+```Cangjie
+let 年龄 = 18
+let 姓名 = "张三"
+```
+
+> [!TIP]
+> 虽然技术上完全合法，但在实际项目中，建议在使用英文命名，避免出现编码错误。
+
+### Q2：为什么 `_` 不能单独作标识符？
+
+在仓颉中，单独的 `_` 有特殊用途——它表示"我不在乎这个值"，常用于忽略不需要的变量。比如从函数返回多个值时，用 `_` 表示"这个返回值我不需要"。
+
+```Cangjie
+let (name, _) = ("小明", 18)  // 只关心 name，不关心年龄
+```
+
+所以 `_` 被保留作特殊用法，不能当作普通标识符。
+
+### Q3：关键字有多少个？我该怎么记住？
+
+仓颉有几十个关键字，包括 `main`、`if`、`else`、`for`、`while`、`let`、`var`、`func`、`class`、`struct` 等等。
+
+**不需要死记硬背！** 你只需要知道：
+- 使用普通标识符时，如果编译器报错说"这个是关键字"，换个名字就行
+- 实在想用关键字做名字，加反引号用原始标识符
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L4",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782405738483.4219},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782405738483.5276},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782405738483.5276},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782405738483.5276},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782405738484.148},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782405738483.5276},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782405738484.148},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782405738483.5276},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782405738484.148},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782405738484.148},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782405738484.148},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782405738484.148},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782405738484.148}],"currentSlug":"Cangjie/1_初识仓颉/3_仓颉的标识符"}]]}]}],"$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"totQfpwo0v4Tg_dmPdBcS"}
+b:T14af,
+> 万恶起源——为程序元素命名
+
+> [!NOTE]
+> 对于熟悉其他编程语言的读者或者不在意较多细节内容的读者，可以跳过本节内容或者直接[总结](#1)查看部分
+
+## 1.3.1 什么是标识符？
+
+在编程中，**标识符**就是给程序中的各种元素起的名字，比如变量名、函数名等。就好比现实生活中给人起名字一样，仓颉语言对"名字"有一些规则要求。
+
+仓颉的标识符分为两类：
+
+- **普通标识符** —— 最常用的命名方式
+- **原始标识符** —— 一种特殊的命名方式，允许使用关键字作为名字
+
+下面我们分别介绍。
+
+---
+
+## 1.3.2 普通标识符
+
+### 命名规则
+
+普通标识符的命名规则可以简单理解为：
+
+1. **开头字符**只能是：中文字符、英文字母、下划线（`_`）、其他符合[XID_Start](#134-关于-unicode-字符集选读)的字符
+2. **开头之后**可以接：中文字符、英文字母、数字、下划线、其他符合[XID_Continue](#134-关于-unicode-字符集选读)的字符
+3. **不能**与仓颉的**关键字**相同（如 `main`、`for`、`while`、`spawn` 等）
+
+> [!CAUTION]
+> 数字不能开头！`3abc` 是非法的。
+
+另外，如果用下划线 `_` 开头，后面**至少要跟一个字符**，不能只有一个孤零零的 `_`。
+
+> [!TIP]
+> 此处并非指_不能作为标识符使用，见[Q2](#q2为什么-_-不能单独作标识符)。
+
+### 示例
+
+```Cangjie
+// ✅ 合法的普通标识符
+hello       // 英文字母开头
+test
+Demo
+_abc_       // 下划线开头，后面有字符
+仓颉         // 中文开头
+a1b1c1      // 字母开头，后面接数字
+
+// ❌ 非法的普通标识符
+ab&c    // & 不是合法字符
+3abc    // 数字不能作为开头
+while   // while 是仓颉关键字，普通标识符不能用
+```
+
+---
+
+## 1.3.3 原始标识符
+
+### 为什么需要原始标识符？
+
+有时候你可能需要用仓颉的关键字（如 `if`、`while`）作为名字，但普通标识符不允许这样做。这时候就可以用**原始标识符**。
+
+### 使用方式
+
+在普通标识符或关键字的外面加上一对**反引号**（`` ` ` ``）即可：
+
+```Cangjie
+// ✅ 合法的原始标识符
+`abc`       // 普通标识符加反引号
+`_abc`
+`a1b2c3`
+`if`        // 关键字加反引号，现在可以作为名字使用了
+`while`
+
+// ❌ 非法的原始标识符
+`ab&c`      // 内部的普通标识符本身就不合法
+`3abc`      // 同上，数字不能开头
+```
+
+### 使用场景
+> [!NOTE]
+> 下方代码暂时看不懂也没有关系， 后续会详细学习 
+
+```Cangjie
+main() {
+    let a = 1
+    a |> println
+    `test`()   // 如果 test 是关键字，可以用反引号包裹
+}
+
+func `test`() {
+
+}
+```
+
+---
+
+## 1.3.4 关于 Unicode 字符集（选读）
+
+> [!NOTE]
+> 本节内容偏底层细节，初学者可以跳过，了解"标识符支持中文和英文开头"即可。
+
+仓颉的标识符规则基于 Unicode 标准 15.0.0，涉及两个核心概念：
+
+- **XID_Start**：可以作为标识符**开头**的字符集合，包含中文、英文字母等
+- **XID_Continue**：可以作为标识符**后续**字符的集合，包含中文、英文字母、阿拉伯数字等
+
+也就是说，前面说的"开头字符"和"后续字符"的规则，本质上就是 XID_Start 和 XID_Continue 的定义。
+
+此外，仓颉会对所有标识符进行 [NFC 规范化](https://www.unicode.org/reports/tr15/tr15-53.html)。简单来说，如果两个标识符在 NFC 后长得一样，它们会被视为同一个标识符。
+
+> 详细定义可参考 [Unicode 标准文档](https://www.unicode.org/reports/tr31/tr31-37.html)
+
+---
+
+## 1.3.5 总结
+
+| 类型 | 规则 | 示例 |
+|------|------|------|
+| 普通标识符 | 中文/字母/`_` 开头，后接中文/字母/数字/`_`（不可单独出现）；不能是关键字 | `hello`、`仓颉`、`_abc` |
+| 原始标识符 | 用反引号包裹普通标识符或关键字 | `` `if` ``、`` `while` ``、`` `abc` `` |
+
+**一句话记忆**：普通标识符用中文/字母/下划线开头，不能是关键字；想用关键字当名字就加反引号。
+
+---
+
+## 1.3.6 常见问题
+
+### Q1：可以用中文命名变量吗？
+
+可以！仓颉支持中文字符作为标识符，这是仓颉的特色之一：
+
+```Cangjie
+let 年龄 = 18
+let 姓名 = "张三"
+```
+
+> [!TIP]
+> 虽然技术上完全合法，但在实际项目中，建议在使用英文命名，避免出现编码错误。
+
+### Q2：为什么 `_` 不能单独作标识符？
+
+在仓颉中，单独的 `_` 有特殊用途——它表示"我不在乎这个值"，常用于忽略不需要的变量。比如从函数返回多个值时，用 `_` 表示"这个返回值我不需要"。
+
+```Cangjie
+let (name, _) = ("小明", 18)  // 只关心 name，不关心年龄
+```
+
+所以 `_` 被保留作特殊用法，不能当作普通标识符。
+
+### Q3：关键字有多少个？我该怎么记住？
+
+仓颉有几十个关键字，包括 `main`、`if`、`else`、`for`、`while`、`let`、`var`、`func`、`class`、`struct` 等等。
+
+**不需要死记硬背！** 你只需要知道：
+- 使用普通标识符时，如果编译器报错说"这个是关键字"，换个名字就行
+- 实在想用关键字做名字，加反引号用原始标识符
+5:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$L9",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-06-24"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"仓颉的标识符"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"为程序元素命名"}]]}],["$","$La",null,{"content":"$b"}],"$Lc"]}]}]
+6:["$","script","script-0",{"src":"/_next/static/chunks/1gtjbot4ps5zt.js","async":true}]
+7:["$","script","script-1",{"src":"/_next/static/chunks/2qx2ht961c-86.js","async":true}]
+8:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
+11:T14af,
+> 万恶起源——为程序元素命名
+
+> [!NOTE]
+> 对于熟悉其他编程语言的读者或者不在意较多细节内容的读者，可以跳过本节内容或者直接[总结](#1)查看部分
+
+## 1.3.1 什么是标识符？
+
+在编程中，**标识符**就是给程序中的各种元素起的名字，比如变量名、函数名等。就好比现实生活中给人起名字一样，仓颉语言对"名字"有一些规则要求。
+
+仓颉的标识符分为两类：
+
+- **普通标识符** —— 最常用的命名方式
+- **原始标识符** —— 一种特殊的命名方式，允许使用关键字作为名字
+
+下面我们分别介绍。
+
+---
+
+## 1.3.2 普通标识符
+
+### 命名规则
+
+普通标识符的命名规则可以简单理解为：
+
+1. **开头字符**只能是：中文字符、英文字母、下划线（`_`）、其他符合[XID_Start](#134-关于-unicode-字符集选读)的字符
+2. **开头之后**可以接：中文字符、英文字母、数字、下划线、其他符合[XID_Continue](#134-关于-unicode-字符集选读)的字符
+3. **不能**与仓颉的**关键字**相同（如 `main`、`for`、`while`、`spawn` 等）
+
+> [!CAUTION]
+> 数字不能开头！`3abc` 是非法的。
+
+另外，如果用下划线 `_` 开头，后面**至少要跟一个字符**，不能只有一个孤零零的 `_`。
+
+> [!TIP]
+> 此处并非指_不能作为标识符使用，见[Q2](#q2为什么-_-不能单独作标识符)。
+
+### 示例
+
+```Cangjie
+// ✅ 合法的普通标识符
+hello       // 英文字母开头
+test
+Demo
+_abc_       // 下划线开头，后面有字符
+仓颉         // 中文开头
+a1b1c1      // 字母开头，后面接数字
+
+// ❌ 非法的普通标识符
+ab&c    // & 不是合法字符
+3abc    // 数字不能作为开头
+while   // while 是仓颉关键字，普通标识符不能用
+```
+
+---
+
+## 1.3.3 原始标识符
+
+### 为什么需要原始标识符？
+
+有时候你可能需要用仓颉的关键字（如 `if`、`while`）作为名字，但普通标识符不允许这样做。这时候就可以用**原始标识符**。
+
+### 使用方式
+
+在普通标识符或关键字的外面加上一对**反引号**（`` ` ` ``）即可：
+
+```Cangjie
+// ✅ 合法的原始标识符
+`abc`       // 普通标识符加反引号
+`_abc`
+`a1b2c3`
+`if`        // 关键字加反引号，现在可以作为名字使用了
+`while`
+
+// ❌ 非法的原始标识符
+`ab&c`      // 内部的普通标识符本身就不合法
+`3abc`      // 同上，数字不能开头
+```
+
+### 使用场景
+> [!NOTE]
+> 下方代码暂时看不懂也没有关系， 后续会详细学习 
+
+```Cangjie
+main() {
+    let a = 1
+    a |> println
+    `test`()   // 如果 test 是关键字，可以用反引号包裹
+}
+
+func `test`() {
+
+}
+```
+
+---
+
+## 1.3.4 关于 Unicode 字符集（选读）
+
+> [!NOTE]
+> 本节内容偏底层细节，初学者可以跳过，了解"标识符支持中文和英文开头"即可。
+
+仓颉的标识符规则基于 Unicode 标准 15.0.0，涉及两个核心概念：
+
+- **XID_Start**：可以作为标识符**开头**的字符集合，包含中文、英文字母等
+- **XID_Continue**：可以作为标识符**后续**字符的集合，包含中文、英文字母、阿拉伯数字等
+
+也就是说，前面说的"开头字符"和"后续字符"的规则，本质上就是 XID_Start 和 XID_Continue 的定义。
+
+此外，仓颉会对所有标识符进行 [NFC 规范化](https://www.unicode.org/reports/tr15/tr15-53.html)。简单来说，如果两个标识符在 NFC 后长得一样，它们会被视为同一个标识符。
+
+> 详细定义可参考 [Unicode 标准文档](https://www.unicode.org/reports/tr31/tr31-37.html)
+
+---
+
+## 1.3.5 总结
+
+| 类型 | 规则 | 示例 |
+|------|------|------|
+| 普通标识符 | 中文/字母/`_` 开头，后接中文/字母/数字/`_`（不可单独出现）；不能是关键字 | `hello`、`仓颉`、`_abc` |
+| 原始标识符 | 用反引号包裹普通标识符或关键字 | `` `if` ``、`` `while` ``、`` `abc` `` |
+
+**一句话记忆**：普通标识符用中文/字母/下划线开头，不能是关键字；想用关键字当名字就加反引号。
+
+---
+
+## 1.3.6 常见问题
+
+### Q1：可以用中文命名变量吗？
+
+可以！仓颉支持中文字符作为标识符，这是仓颉的特色之一：
+
+```Cangjie
+let 年龄 = 18
+let 姓名 = "张三"
+```
+
+> [!TIP]
+> 虽然技术上完全合法，但在实际项目中，建议在使用英文命名，避免出现编码错误。
+
+### Q2：为什么 `_` 不能单独作标识符？
+
+在仓颉中，单独的 `_` 有特殊用途——它表示"我不在乎这个值"，常用于忽略不需要的变量。比如从函数返回多个值时，用 `_` 表示"这个返回值我不需要"。
+
+```Cangjie
+let (name, _) = ("小明", 18)  // 只关心 name，不关心年龄
+```
+
+所以 `_` 被保留作特殊用法，不能当作普通标识符。
+
+### Q3：关键字有多少个？我该怎么记住？
+
+仓颉有几十个关键字，包括 `main`、`if`、`else`、`for`、`while`、`let`、`var`、`func`、`class`、`struct` 等等。
+
+**不需要死记硬背！** 你只需要知道：
+- 使用普通标识符时，如果编译器报错说"这个是关键字"，换个名字就行
+- 实在想用关键字做名字，加反引号用原始标识符
+c:["$","$L10",null,{"content":"$11","collection":"Cangjie/1_初识仓颉","rootColPath":"Cangjie","allArticles":["$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:0","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:1","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:2",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782405738484.148},"$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:3","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:4","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:5","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:6","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:7","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:8","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:9","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:10","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:11","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:12"],"currentSlug":"Cangjie/1_初识仓颉/3_仓颉的标识符"}]
+f:null

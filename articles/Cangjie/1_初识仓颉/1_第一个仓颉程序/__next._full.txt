@@ -1,0 +1,841 @@
+1:"$Sreact.fragment"
+2:I[59188,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"BackgroundProvider"]
+3:I[57715,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"BackgroundWrapper"]
+4:I[3374,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"Header"]
+5:I[39756,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"default"]
+6:I[37457,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"default"]
+7:I[58234,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"Footer"]
+8:I[46133,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"BackgroundToggle"]
+a:I[97367,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
+b:"$Sreact.suspense"
+e:I[97367,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"ViewportBoundary"]
+10:I[97367,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"MetadataBoundary"]
+12:I[68027,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"default",1]
+:HL["/_next/static/chunks/2e9j017mspeav.css","style"]
+:HC["/",""]
+0:{"P":null,"c":["","articles","Cangjie","1_%E5%88%9D%E8%AF%86%E4%BB%93%E9%A2%89","1_%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%BB%93%E9%A2%89%E7%A8%8B%E5%BA%8F"],"q":"","i":false,"f":[[["",{"children":["(public)",{"children":["articles",{"children":[["slug","Cangjie/1_%E5%88%9D%E8%AF%86%E4%BB%93%E9%A2%89/1_%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%BB%93%E9%A2%89%E7%A8%8B%E5%BA%8F","c",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/2e9j017mspeav.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/2ai11ns562z2u.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/3oax6b5zaxt_z.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/_next/static/chunks/0jubty45h__ir.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh-CN","suppressHydrationWarning":true,"children":["$","body",null,{"className":"min-h-screen flex flex-col text-gray-900 dark:text-gray-100 font-sans","children":["$","$L2",null,{"children":[["$","$L3",null,{}],["$","$L4",null,{}],["$","main",null,{"className":"flex-1","children":["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L7",null,{}],["$","$L8",null,{}]]}]}]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:style","children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:1:props:style","children":404}],["$","div",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:2:props:style","children":["$","h2",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:2:props:children:props:style","children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L9",[["$","script","script-0",{"src":"/_next/static/chunks/1gtjbot4ps5zt.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/2qx2ht961c-86.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]]}],{},null,false,null]},null,false,"$@d"]},null,false,"$@d"]},null,false,"$@d"]},null,false,null],["$","$1","h",{"children":[null,["$","$Le",null,{"children":"$Lf"}],["$","div",null,{"hidden":true,"children":["$","$L10",null,{"children":["$","$b",null,{"name":"Next.Metadata","children":"$L11"}]}]}],null]}],false]],"m":"$undefined","G":["$12",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/2e9j017mspeav.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"totQfpwo0v4Tg_dmPdBcS"}
+13:[]
+d:"$W13"
+14:I[23597,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/2qx2ht961c-86.js"],"TocSidebar"]
+15:T215c,
+## 1.1.1 第一个仓颉程序
+
+欢迎来到Cangjie编程语言的世界！本教程将手把手带你编写并运行第一个仓颉程序。即使你之前没有任何编程经验，也不用担心——我们会从最基础的操作开始讲解。
+
+---
+
+## 准备工作
+
+在开始之前，你需要准备两样东西：
+
+1. **安装 Cangjie 编译器** —— 你可以从[官方下载页面](https://cangjie-lang.cn/download)下载最新版本并安装。
+2. **准备一个文本编辑器** —— 推荐使用 [VS Code](https://code.visualstudio.com/)（免费且好用），当然你也可以用记事本等任何能编辑文字的软件。
+
+---
+
+## 1.1.2 什么是"编译器"？
+
+计算机只能理解二进制（0 和 1），看不懂我们写的 `println("Hello, World")` 这种代码。**编译器**就像一个"翻译官"，把你写的代码翻译成计算机能执行的程序。
+
+所以，写仓颉程序的流程就是：
+
+```
+你写代码 (.cj 文件)  →  编译器 (cjc) 翻译  →  可执行程序  →  运行看结果
+```
+
+---
+
+## 1.1.3 方法一：直接用 cjc 编译器（最简方式）
+
+这个方法步骤最少，适合想快速体验"Hello World"的同学。
+
+### 第 1 步：创建项目文件夹
+
+在你的电脑上任意位置创建一个新文件，名字随意，比如叫 `hello.cj`。（一定要有.cj后缀）
+
+> `.cj` 是仓颉源码文件的扩展名，就像 Word 文档的扩展名是 `.docx` 一样。
+
+> [!NOTE]
+> 文件夹名字建议用英文，避免一些工具对中文路径支持不佳。
+
+### 第 2 步：打开源码文件
+
+用 VS Code（或记事本）打开 `hello.cj`。
+
+
+### 第 3 步：编写代码
+
+在 `hello.cj` 中输入以下代码：
+
+```Cangjie
+main() {
+    println("Hello, World")
+}
+```
+
+> [!TIP]
+> **代码解读**（看不懂没关系，先有个印象）：
+> - `main()` —— 程序的入口，运行程序时会从这里开始执行。
+> - `println(...)` —— 是一个"打印"函数，作用是把括号里的内容显示在屏幕上。
+> - `"Hello, World"` —— 要显示的文字，用双引号包裹。
+> - 花括号 `{ }` —— 表示 `main()` 函数要执行的代码范围。
+
+### 第 4 步：编译代码
+
+打开终端，使用 `cd` 命令切换到 `hello.cj` 所在的文件夹：
+
+```Bash
+cd 你存放hello.cj的路径
+```
+
+> [!NOTE]
+>  如果你把文件夹放在了桌面，路径一般是 `C:\Users\你的用户名\Desktop`。
+>  在 VS Code 中，可以直接右键文件夹选择"在终端中打开"，省去 `cd` 的步骤。
+
+然后在终端中输入以下命令进行编译：
+
+```Bash
+cjc hello.cj -o hello
+```
+
+> [!TIP]
+> **这条命令是什么意思？**
+> - `cjc` —— 调用仓颉编译器
+> - `hello.cj` —— 告诉编译器要编译哪个文件
+> - `-o hello` —— 指定编译后输出的可执行文件叫 `hello`
+>
+> **如果你是 Windows 系统**，建议在 `hello` 后面加上 `.exe`，即：
+> ```Bash
+> cjc hello.cj -o hello.exe
+> ```
+
+如果编译成功，终端不会显示错误信息，并且文件夹里会多出一个可执行文件（`hello` 或 `hello.exe`）。
+
+### 第 5 步：运行程序
+
+编译成功后，在终端中输入：
+
+```Bash
+# Windows 系统
+hello.exe
+
+# macOS / Linux 系统
+./hello
+```
+
+你会看到屏幕上输出：
+
+```Bash
+Hello, World
+```
+
+🎉 **恭喜！你写并运行了第一个仓颉程序！**
+
+---
+
+## 1.1.4 方法二：使用 cjpm 项目管理工具（推荐）
+
+> [!IMPORTANT]
+> 在实际开发中，我们几乎不会直接用 `cjc` 编译单个文件，而是使用仓颉的项目管理工具 **cjpm**（Cangjie Project Manager）。
+>
+> `cjpm` 可以帮助你：
+> - ✅ 快速创建项目模板
+> - ✅ 自动管理编译和运行
+> - ✅ 后续还能管理依赖包
+
+下面我们用 cjpm 来创建同样的"Hello World"程序。
+
+### 第 1 步：创建并初始化项目
+
+创建一个新文件夹，比如叫 `demo`，用 VS Code 打开它。
+
+然后在终端中输入：
+
+```Bash
+cjpm init
+```
+
+执行成功后，终端会提示 `cjpm init success`。此时 `cjpm` 会在当前目录下自动生成项目结构：
+
+```Bash
+demo                        # 项目根文件夹
+├── cjpm.toml               # 项目的配置文件（类似身份证）
+└── src                     # 存放源码的文件夹
+    └── main.cj             # 默认生成的源码文件（程序入口）
+```
+
+> [!NOTE]
+> 看到 `cjpm.toml` 你可能会好奇它是什么——简单来说，它记录了你的项目叫什么名字、用哪个版本等信息。后续文章会详细介绍，现在你只需要知道它是由 `cjpm init` 自动生成的就行。
+
+### 第 2 步：打开源码文件看看
+
+打开 `src` 文件夹下的 `main.cj`，里面已经有 cjpm 帮你写好的示例代码：
+
+```Cangjie
+package demo
+
+main(): Int64 {
+    println("hello world")
+    return 0
+}
+```
+
+和之前直接用 `cjc` 的代码相比，这里多了几样东西：
+
+| 新内容 | 说明 | 类比 |
+|--------|------|------|
+| `package demo` | 声明这个文件属于 `demo` 包（可以理解为"这个文件是 demo 项目的一部分"） | 就像班级里的每个同学属于某个班级一样 |
+| `main(): Int64` | 这里的 `: Int64` 表示 `main()` 函数会返回一个整数 | 就像"我做完事情后会告诉你一个数字结果" |
+| `return 0` | 返回数字 0 给操作系统，表示程序正常结束 | 相当于"报告，任务完成，一切正常！" |
+
+> [!TIP]
+> > 对于现在的你来说，可以暂时忽略 `package demo`、`Int64` 和 `return 0`，只需要知道：
+> > - `main()` 是程序开始执行的地方
+> > - `println(...)` 是打印内容到屏幕上
+> >
+> > 其余的内容在后面文章中都会学到。
+
+### 第 3 步：编译并运行
+
+在终端中输入一条命令即可完成编译 + 运行：
+
+```Bash
+cjpm run
+```
+
+你会看到屏幕上输出：
+
+```Bash
+hello world
+```
+
+> [!NOTE]
+> 这里输出的是 `hello world`（小写），因为 cjpm 生成的示例代码用的是小写。如果你想改成 `Hello, World`（大写），可以直接编辑 `main.cj` 中的 `println` 内容。
+
+🎉 **又成功了！现在你已经掌握了两种运行仓颉程序的方法。**
+
+---
+
+## 1.1.5 两种方法对比
+
+| 对比项 | 方法一：cjc 直接编译 | 方法二：cjpm 项目管理 |
+|--------|---------------------|---------------------|
+| 适合场景 | 快速测试单个文件 | 正式项目开发 |
+| 命令数量 | 两步：编译 → 运行 | 一步：`cjpm run` |
+| 项目结构 | 手动管理 | 自动生成 |
+| 后续扩展 | 需要自己配置 | 支持包管理、依赖等 |
+
+> [!TIP]
+> 对于本教程后面的文章，**建议使用 cjpm 方式**创建项目，更接近真实开发流程。
+
+---
+
+## 1.1.6 动手试一试 ✏️
+
+试着修改 `main.cj` 中的代码，把 `hello world` 改成你自己的名字，比如：
+
+```Cangjie
+main(): Int64 {
+    println("你好，我是牢大！")
+    return 0
+}
+```
+
+然后再次运行 `cjpm run`，看看屏幕上是不是输出了你修改的内容？
+
+---
+
+## 1.1.7 常见问题（小白看这里 👀）
+
+### Q1：终端提示"cjc 不是内部或外部命令"
+
+**原因**：编译器没有安装，或者安装后没有配置环境变量。
+
+**解决方法**：
+1. 检查是否已经安装了仓颉编译器
+2. 如果已安装，尝试重启终端或重启电脑
+3. 如果还是不行，请参考官方文档的环境变量配置说明
+
+### Q2：编译时报错，提示语法错误
+
+**原因**：代码可能有拼写错误，比如全角符号、漏了括号等。
+
+**解决方法**：
+- 检查代码中的括号 `()` 和花括号 `{}` 是否成对出现
+- 检查双引号 `""` 是否为英文半角符号（中文引号 `""` 不行）
+- 检查是否有单词拼写错误，比如 `println` 写成了 `printl`
+
+
+### Q3：运行程序后窗口一闪而过
+
+**原因**：程序执行完就自动退出了，这是正常现象。
+
+**解决方法**：如果是在 VS Code 终端中运行，输出会保留在终端里，可以慢慢看。
+
+---
+
+## 1.1.8 总结
+
+| 知识点 | 内容 |
+|--------|------|
+| 源码文件 | 以 `.cj` 结尾，里面写仓颉代码 |
+| 入口函数 | `main()` 是程序开始执行的起点 |
+| 打印输出 | `println("内容")` 可以把内容显示在屏幕上 |
+| 编译命令 | `cjc 文件名.cj -o 输出名` |
+| 运行命令 | `cjpm run`（推荐）|
+| 编译器作用 | 把人类写的代码翻译成计算机能执行的程序 |
+
+> [!TIP]
+> 下一步 → 学习[仓颉的注释](./2_仓颉的注释/)，给你的代码添加说明文字！ 
+9:["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L14",null,{"content":"$15"}],"$L16","$L17"]}]
+18:I[59537,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/2qx2ht961c-86.js"],"ArticleNavSidebar"]
+19:I[22016,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/2qx2ht961c-86.js"],""]
+1a:I[96438,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/2qx2ht961c-86.js"],"ArticleContent"]
+16:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L18",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"cover":"$undefined","published":true,"mtime":1782405738483.4219},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"cover":"$undefined","published":true,"mtime":1782405738483.5276},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"cover":"$undefined","published":true,"mtime":1782405738483.5276},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"cover":"$undefined","published":true,"mtime":1782405738483.5276},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"cover":"$undefined","published":true,"mtime":1782405738484.148},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"cover":"$undefined","published":true,"mtime":1782405738483.5276},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"cover":"$undefined","published":true,"mtime":1782405738484.148},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"cover":"$undefined","published":true,"mtime":1782405738483.5276},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"cover":"$undefined","published":true,"mtime":1782405738484.148},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"cover":"$undefined","published":true,"mtime":1782405738484.148},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"cover":"$undefined","published":true,"mtime":1782405738484.148},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"cover":"$undefined","published":true,"mtime":1782405738484.148},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"cover":"$undefined","published":true,"mtime":1782405738484.148}],"currentSlug":"Cangjie/1_初识仓颉/1_第一个仓颉程序"}]]}]}]
+1b:T215c,
+## 1.1.1 第一个仓颉程序
+
+欢迎来到Cangjie编程语言的世界！本教程将手把手带你编写并运行第一个仓颉程序。即使你之前没有任何编程经验，也不用担心——我们会从最基础的操作开始讲解。
+
+---
+
+## 准备工作
+
+在开始之前，你需要准备两样东西：
+
+1. **安装 Cangjie 编译器** —— 你可以从[官方下载页面](https://cangjie-lang.cn/download)下载最新版本并安装。
+2. **准备一个文本编辑器** —— 推荐使用 [VS Code](https://code.visualstudio.com/)（免费且好用），当然你也可以用记事本等任何能编辑文字的软件。
+
+---
+
+## 1.1.2 什么是"编译器"？
+
+计算机只能理解二进制（0 和 1），看不懂我们写的 `println("Hello, World")` 这种代码。**编译器**就像一个"翻译官"，把你写的代码翻译成计算机能执行的程序。
+
+所以，写仓颉程序的流程就是：
+
+```
+你写代码 (.cj 文件)  →  编译器 (cjc) 翻译  →  可执行程序  →  运行看结果
+```
+
+---
+
+## 1.1.3 方法一：直接用 cjc 编译器（最简方式）
+
+这个方法步骤最少，适合想快速体验"Hello World"的同学。
+
+### 第 1 步：创建项目文件夹
+
+在你的电脑上任意位置创建一个新文件，名字随意，比如叫 `hello.cj`。（一定要有.cj后缀）
+
+> `.cj` 是仓颉源码文件的扩展名，就像 Word 文档的扩展名是 `.docx` 一样。
+
+> [!NOTE]
+> 文件夹名字建议用英文，避免一些工具对中文路径支持不佳。
+
+### 第 2 步：打开源码文件
+
+用 VS Code（或记事本）打开 `hello.cj`。
+
+
+### 第 3 步：编写代码
+
+在 `hello.cj` 中输入以下代码：
+
+```Cangjie
+main() {
+    println("Hello, World")
+}
+```
+
+> [!TIP]
+> **代码解读**（看不懂没关系，先有个印象）：
+> - `main()` —— 程序的入口，运行程序时会从这里开始执行。
+> - `println(...)` —— 是一个"打印"函数，作用是把括号里的内容显示在屏幕上。
+> - `"Hello, World"` —— 要显示的文字，用双引号包裹。
+> - 花括号 `{ }` —— 表示 `main()` 函数要执行的代码范围。
+
+### 第 4 步：编译代码
+
+打开终端，使用 `cd` 命令切换到 `hello.cj` 所在的文件夹：
+
+```Bash
+cd 你存放hello.cj的路径
+```
+
+> [!NOTE]
+>  如果你把文件夹放在了桌面，路径一般是 `C:\Users\你的用户名\Desktop`。
+>  在 VS Code 中，可以直接右键文件夹选择"在终端中打开"，省去 `cd` 的步骤。
+
+然后在终端中输入以下命令进行编译：
+
+```Bash
+cjc hello.cj -o hello
+```
+
+> [!TIP]
+> **这条命令是什么意思？**
+> - `cjc` —— 调用仓颉编译器
+> - `hello.cj` —— 告诉编译器要编译哪个文件
+> - `-o hello` —— 指定编译后输出的可执行文件叫 `hello`
+>
+> **如果你是 Windows 系统**，建议在 `hello` 后面加上 `.exe`，即：
+> ```Bash
+> cjc hello.cj -o hello.exe
+> ```
+
+如果编译成功，终端不会显示错误信息，并且文件夹里会多出一个可执行文件（`hello` 或 `hello.exe`）。
+
+### 第 5 步：运行程序
+
+编译成功后，在终端中输入：
+
+```Bash
+# Windows 系统
+hello.exe
+
+# macOS / Linux 系统
+./hello
+```
+
+你会看到屏幕上输出：
+
+```Bash
+Hello, World
+```
+
+🎉 **恭喜！你写并运行了第一个仓颉程序！**
+
+---
+
+## 1.1.4 方法二：使用 cjpm 项目管理工具（推荐）
+
+> [!IMPORTANT]
+> 在实际开发中，我们几乎不会直接用 `cjc` 编译单个文件，而是使用仓颉的项目管理工具 **cjpm**（Cangjie Project Manager）。
+>
+> `cjpm` 可以帮助你：
+> - ✅ 快速创建项目模板
+> - ✅ 自动管理编译和运行
+> - ✅ 后续还能管理依赖包
+
+下面我们用 cjpm 来创建同样的"Hello World"程序。
+
+### 第 1 步：创建并初始化项目
+
+创建一个新文件夹，比如叫 `demo`，用 VS Code 打开它。
+
+然后在终端中输入：
+
+```Bash
+cjpm init
+```
+
+执行成功后，终端会提示 `cjpm init success`。此时 `cjpm` 会在当前目录下自动生成项目结构：
+
+```Bash
+demo                        # 项目根文件夹
+├── cjpm.toml               # 项目的配置文件（类似身份证）
+└── src                     # 存放源码的文件夹
+    └── main.cj             # 默认生成的源码文件（程序入口）
+```
+
+> [!NOTE]
+> 看到 `cjpm.toml` 你可能会好奇它是什么——简单来说，它记录了你的项目叫什么名字、用哪个版本等信息。后续文章会详细介绍，现在你只需要知道它是由 `cjpm init` 自动生成的就行。
+
+### 第 2 步：打开源码文件看看
+
+打开 `src` 文件夹下的 `main.cj`，里面已经有 cjpm 帮你写好的示例代码：
+
+```Cangjie
+package demo
+
+main(): Int64 {
+    println("hello world")
+    return 0
+}
+```
+
+和之前直接用 `cjc` 的代码相比，这里多了几样东西：
+
+| 新内容 | 说明 | 类比 |
+|--------|------|------|
+| `package demo` | 声明这个文件属于 `demo` 包（可以理解为"这个文件是 demo 项目的一部分"） | 就像班级里的每个同学属于某个班级一样 |
+| `main(): Int64` | 这里的 `: Int64` 表示 `main()` 函数会返回一个整数 | 就像"我做完事情后会告诉你一个数字结果" |
+| `return 0` | 返回数字 0 给操作系统，表示程序正常结束 | 相当于"报告，任务完成，一切正常！" |
+
+> [!TIP]
+> > 对于现在的你来说，可以暂时忽略 `package demo`、`Int64` 和 `return 0`，只需要知道：
+> > - `main()` 是程序开始执行的地方
+> > - `println(...)` 是打印内容到屏幕上
+> >
+> > 其余的内容在后面文章中都会学到。
+
+### 第 3 步：编译并运行
+
+在终端中输入一条命令即可完成编译 + 运行：
+
+```Bash
+cjpm run
+```
+
+你会看到屏幕上输出：
+
+```Bash
+hello world
+```
+
+> [!NOTE]
+> 这里输出的是 `hello world`（小写），因为 cjpm 生成的示例代码用的是小写。如果你想改成 `Hello, World`（大写），可以直接编辑 `main.cj` 中的 `println` 内容。
+
+🎉 **又成功了！现在你已经掌握了两种运行仓颉程序的方法。**
+
+---
+
+## 1.1.5 两种方法对比
+
+| 对比项 | 方法一：cjc 直接编译 | 方法二：cjpm 项目管理 |
+|--------|---------------------|---------------------|
+| 适合场景 | 快速测试单个文件 | 正式项目开发 |
+| 命令数量 | 两步：编译 → 运行 | 一步：`cjpm run` |
+| 项目结构 | 手动管理 | 自动生成 |
+| 后续扩展 | 需要自己配置 | 支持包管理、依赖等 |
+
+> [!TIP]
+> 对于本教程后面的文章，**建议使用 cjpm 方式**创建项目，更接近真实开发流程。
+
+---
+
+## 1.1.6 动手试一试 ✏️
+
+试着修改 `main.cj` 中的代码，把 `hello world` 改成你自己的名字，比如：
+
+```Cangjie
+main(): Int64 {
+    println("你好，我是牢大！")
+    return 0
+}
+```
+
+然后再次运行 `cjpm run`，看看屏幕上是不是输出了你修改的内容？
+
+---
+
+## 1.1.7 常见问题（小白看这里 👀）
+
+### Q1：终端提示"cjc 不是内部或外部命令"
+
+**原因**：编译器没有安装，或者安装后没有配置环境变量。
+
+**解决方法**：
+1. 检查是否已经安装了仓颉编译器
+2. 如果已安装，尝试重启终端或重启电脑
+3. 如果还是不行，请参考官方文档的环境变量配置说明
+
+### Q2：编译时报错，提示语法错误
+
+**原因**：代码可能有拼写错误，比如全角符号、漏了括号等。
+
+**解决方法**：
+- 检查代码中的括号 `()` 和花括号 `{}` 是否成对出现
+- 检查双引号 `""` 是否为英文半角符号（中文引号 `""` 不行）
+- 检查是否有单词拼写错误，比如 `println` 写成了 `printl`
+
+
+### Q3：运行程序后窗口一闪而过
+
+**原因**：程序执行完就自动退出了，这是正常现象。
+
+**解决方法**：如果是在 VS Code 终端中运行，输出会保留在终端里，可以慢慢看。
+
+---
+
+## 1.1.8 总结
+
+| 知识点 | 内容 |
+|--------|------|
+| 源码文件 | 以 `.cj` 结尾，里面写仓颉代码 |
+| 入口函数 | `main()` 是程序开始执行的起点 |
+| 打印输出 | `println("内容")` 可以把内容显示在屏幕上 |
+| 编译命令 | `cjc 文件名.cj -o 输出名` |
+| 运行命令 | `cjpm run`（推荐）|
+| 编译器作用 | 把人类写的代码翻译成计算机能执行的程序 |
+
+> [!TIP]
+> 下一步 → 学习[仓颉的注释](./2_仓颉的注释/)，给你的代码添加说明文字！ 
+17:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$L19",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-06-24"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"第一个仓颉程序"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"步入Cangjie的世界，从零运行起你的第一个程序"}]]}],["$","$L1a",null,{"content":"$1b"}],"$L1c"]}]}]
+1d:I[28093,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/2qx2ht961c-86.js"],"MobileArticlePanel"]
+1e:T215c,
+## 1.1.1 第一个仓颉程序
+
+欢迎来到Cangjie编程语言的世界！本教程将手把手带你编写并运行第一个仓颉程序。即使你之前没有任何编程经验，也不用担心——我们会从最基础的操作开始讲解。
+
+---
+
+## 准备工作
+
+在开始之前，你需要准备两样东西：
+
+1. **安装 Cangjie 编译器** —— 你可以从[官方下载页面](https://cangjie-lang.cn/download)下载最新版本并安装。
+2. **准备一个文本编辑器** —— 推荐使用 [VS Code](https://code.visualstudio.com/)（免费且好用），当然你也可以用记事本等任何能编辑文字的软件。
+
+---
+
+## 1.1.2 什么是"编译器"？
+
+计算机只能理解二进制（0 和 1），看不懂我们写的 `println("Hello, World")` 这种代码。**编译器**就像一个"翻译官"，把你写的代码翻译成计算机能执行的程序。
+
+所以，写仓颉程序的流程就是：
+
+```
+你写代码 (.cj 文件)  →  编译器 (cjc) 翻译  →  可执行程序  →  运行看结果
+```
+
+---
+
+## 1.1.3 方法一：直接用 cjc 编译器（最简方式）
+
+这个方法步骤最少，适合想快速体验"Hello World"的同学。
+
+### 第 1 步：创建项目文件夹
+
+在你的电脑上任意位置创建一个新文件，名字随意，比如叫 `hello.cj`。（一定要有.cj后缀）
+
+> `.cj` 是仓颉源码文件的扩展名，就像 Word 文档的扩展名是 `.docx` 一样。
+
+> [!NOTE]
+> 文件夹名字建议用英文，避免一些工具对中文路径支持不佳。
+
+### 第 2 步：打开源码文件
+
+用 VS Code（或记事本）打开 `hello.cj`。
+
+
+### 第 3 步：编写代码
+
+在 `hello.cj` 中输入以下代码：
+
+```Cangjie
+main() {
+    println("Hello, World")
+}
+```
+
+> [!TIP]
+> **代码解读**（看不懂没关系，先有个印象）：
+> - `main()` —— 程序的入口，运行程序时会从这里开始执行。
+> - `println(...)` —— 是一个"打印"函数，作用是把括号里的内容显示在屏幕上。
+> - `"Hello, World"` —— 要显示的文字，用双引号包裹。
+> - 花括号 `{ }` —— 表示 `main()` 函数要执行的代码范围。
+
+### 第 4 步：编译代码
+
+打开终端，使用 `cd` 命令切换到 `hello.cj` 所在的文件夹：
+
+```Bash
+cd 你存放hello.cj的路径
+```
+
+> [!NOTE]
+>  如果你把文件夹放在了桌面，路径一般是 `C:\Users\你的用户名\Desktop`。
+>  在 VS Code 中，可以直接右键文件夹选择"在终端中打开"，省去 `cd` 的步骤。
+
+然后在终端中输入以下命令进行编译：
+
+```Bash
+cjc hello.cj -o hello
+```
+
+> [!TIP]
+> **这条命令是什么意思？**
+> - `cjc` —— 调用仓颉编译器
+> - `hello.cj` —— 告诉编译器要编译哪个文件
+> - `-o hello` —— 指定编译后输出的可执行文件叫 `hello`
+>
+> **如果你是 Windows 系统**，建议在 `hello` 后面加上 `.exe`，即：
+> ```Bash
+> cjc hello.cj -o hello.exe
+> ```
+
+如果编译成功，终端不会显示错误信息，并且文件夹里会多出一个可执行文件（`hello` 或 `hello.exe`）。
+
+### 第 5 步：运行程序
+
+编译成功后，在终端中输入：
+
+```Bash
+# Windows 系统
+hello.exe
+
+# macOS / Linux 系统
+./hello
+```
+
+你会看到屏幕上输出：
+
+```Bash
+Hello, World
+```
+
+🎉 **恭喜！你写并运行了第一个仓颉程序！**
+
+---
+
+## 1.1.4 方法二：使用 cjpm 项目管理工具（推荐）
+
+> [!IMPORTANT]
+> 在实际开发中，我们几乎不会直接用 `cjc` 编译单个文件，而是使用仓颉的项目管理工具 **cjpm**（Cangjie Project Manager）。
+>
+> `cjpm` 可以帮助你：
+> - ✅ 快速创建项目模板
+> - ✅ 自动管理编译和运行
+> - ✅ 后续还能管理依赖包
+
+下面我们用 cjpm 来创建同样的"Hello World"程序。
+
+### 第 1 步：创建并初始化项目
+
+创建一个新文件夹，比如叫 `demo`，用 VS Code 打开它。
+
+然后在终端中输入：
+
+```Bash
+cjpm init
+```
+
+执行成功后，终端会提示 `cjpm init success`。此时 `cjpm` 会在当前目录下自动生成项目结构：
+
+```Bash
+demo                        # 项目根文件夹
+├── cjpm.toml               # 项目的配置文件（类似身份证）
+└── src                     # 存放源码的文件夹
+    └── main.cj             # 默认生成的源码文件（程序入口）
+```
+
+> [!NOTE]
+> 看到 `cjpm.toml` 你可能会好奇它是什么——简单来说，它记录了你的项目叫什么名字、用哪个版本等信息。后续文章会详细介绍，现在你只需要知道它是由 `cjpm init` 自动生成的就行。
+
+### 第 2 步：打开源码文件看看
+
+打开 `src` 文件夹下的 `main.cj`，里面已经有 cjpm 帮你写好的示例代码：
+
+```Cangjie
+package demo
+
+main(): Int64 {
+    println("hello world")
+    return 0
+}
+```
+
+和之前直接用 `cjc` 的代码相比，这里多了几样东西：
+
+| 新内容 | 说明 | 类比 |
+|--------|------|------|
+| `package demo` | 声明这个文件属于 `demo` 包（可以理解为"这个文件是 demo 项目的一部分"） | 就像班级里的每个同学属于某个班级一样 |
+| `main(): Int64` | 这里的 `: Int64` 表示 `main()` 函数会返回一个整数 | 就像"我做完事情后会告诉你一个数字结果" |
+| `return 0` | 返回数字 0 给操作系统，表示程序正常结束 | 相当于"报告，任务完成，一切正常！" |
+
+> [!TIP]
+> > 对于现在的你来说，可以暂时忽略 `package demo`、`Int64` 和 `return 0`，只需要知道：
+> > - `main()` 是程序开始执行的地方
+> > - `println(...)` 是打印内容到屏幕上
+> >
+> > 其余的内容在后面文章中都会学到。
+
+### 第 3 步：编译并运行
+
+在终端中输入一条命令即可完成编译 + 运行：
+
+```Bash
+cjpm run
+```
+
+你会看到屏幕上输出：
+
+```Bash
+hello world
+```
+
+> [!NOTE]
+> 这里输出的是 `hello world`（小写），因为 cjpm 生成的示例代码用的是小写。如果你想改成 `Hello, World`（大写），可以直接编辑 `main.cj` 中的 `println` 内容。
+
+🎉 **又成功了！现在你已经掌握了两种运行仓颉程序的方法。**
+
+---
+
+## 1.1.5 两种方法对比
+
+| 对比项 | 方法一：cjc 直接编译 | 方法二：cjpm 项目管理 |
+|--------|---------------------|---------------------|
+| 适合场景 | 快速测试单个文件 | 正式项目开发 |
+| 命令数量 | 两步：编译 → 运行 | 一步：`cjpm run` |
+| 项目结构 | 手动管理 | 自动生成 |
+| 后续扩展 | 需要自己配置 | 支持包管理、依赖等 |
+
+> [!TIP]
+> 对于本教程后面的文章，**建议使用 cjpm 方式**创建项目，更接近真实开发流程。
+
+---
+
+## 1.1.6 动手试一试 ✏️
+
+试着修改 `main.cj` 中的代码，把 `hello world` 改成你自己的名字，比如：
+
+```Cangjie
+main(): Int64 {
+    println("你好，我是牢大！")
+    return 0
+}
+```
+
+然后再次运行 `cjpm run`，看看屏幕上是不是输出了你修改的内容？
+
+---
+
+## 1.1.7 常见问题（小白看这里 👀）
+
+### Q1：终端提示"cjc 不是内部或外部命令"
+
+**原因**：编译器没有安装，或者安装后没有配置环境变量。
+
+**解决方法**：
+1. 检查是否已经安装了仓颉编译器
+2. 如果已安装，尝试重启终端或重启电脑
+3. 如果还是不行，请参考官方文档的环境变量配置说明
+
+### Q2：编译时报错，提示语法错误
+
+**原因**：代码可能有拼写错误，比如全角符号、漏了括号等。
+
+**解决方法**：
+- 检查代码中的括号 `()` 和花括号 `{}` 是否成对出现
+- 检查双引号 `""` 是否为英文半角符号（中文引号 `""` 不行）
+- 检查是否有单词拼写错误，比如 `println` 写成了 `printl`
+
+
+### Q3：运行程序后窗口一闪而过
+
+**原因**：程序执行完就自动退出了，这是正常现象。
+
+**解决方法**：如果是在 VS Code 终端中运行，输出会保留在终端里，可以慢慢看。
+
+---
+
+## 1.1.8 总结
+
+| 知识点 | 内容 |
+|--------|------|
+| 源码文件 | 以 `.cj` 结尾，里面写仓颉代码 |
+| 入口函数 | `main()` 是程序开始执行的起点 |
+| 打印输出 | `println("内容")` 可以把内容显示在屏幕上 |
+| 编译命令 | `cjc 文件名.cj -o 输出名` |
+| 运行命令 | `cjpm run`（推荐）|
+| 编译器作用 | 把人类写的代码翻译成计算机能执行的程序 |
+
+> [!TIP]
+> 下一步 → 学习[仓颉的注释](./2_仓颉的注释/)，给你的代码添加说明文字！ 
+1c:["$","$L1d",null,{"content":"$1e","collection":"Cangjie/1_初识仓颉","rootColPath":"Cangjie","allArticles":["$16:props:children:props:children:2:props:articles:0","$16:props:children:props:children:2:props:articles:1","$16:props:children:props:children:2:props:articles:2",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"collection":"$undefined","sort":1,"cover":"$undefined","published":true,"mtime":1782405738484.148},"$16:props:children:props:children:2:props:articles:3","$16:props:children:props:children:2:props:articles:4","$16:props:children:props:children:2:props:articles:5","$16:props:children:props:children:2:props:articles:6","$16:props:children:props:children:2:props:articles:7","$16:props:children:props:children:2:props:articles:8","$16:props:children:props:children:2:props:articles:9","$16:props:children:props:children:2:props:articles:10","$16:props:children:props:children:2:props:articles:11","$16:props:children:props:children:2:props:articles:12"],"currentSlug":"Cangjie/1_初识仓颉/1_第一个仓颉程序"}]
+f:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+1f:I[27201,["/_next/static/chunks/2ai11ns562z2u.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"IconMark"]
+c:null
+11:[["$","title","0",{"children":"第一个仓颉程序 | Seline Blog"}],["$","meta","1",{"name":"description","content":"步入Cangjie的世界，从零运行起你的第一个程序"}],["$","link","2",{"rel":"icon","href":"/favicon.ico?favicon.2vob68tjqpejf.ico","sizes":"256x256","type":"image/x-icon"}],["$","link","3",{"rel":"icon","href":"/images/avatar.webp"}],["$","$L1f","4",{}]]
