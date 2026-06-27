@@ -9,4 +9,4 @@
 :HL["https://cdn-img.gitcode.com/cd/ee/053cde9ee58c0346e86cff4eaeb9283be1a4a71a7ed72f2623eda21b86807578.jpg","image",{"referrerPolicy":"no-referrer"}]
 :HL["https://pic.cnblogs.com/avatar/3418689/20240330230625.png","image",{"referrerPolicy":"no-referrer"}]
 :HL["https://copur.xyz/image/avatar.webp","image",{"referrerPolicy":"no-referrer"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"(public)","param":null,"prefetchHints":0,"slots":{"children":{"name":"friends","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"v54HacFXGFLL1zMbUIgdZ"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"(public)","param":null,"prefetchHints":0,"slots":{"children":{"name":"friends","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"-AFncyPxYB7CPsN1dHBMr"}
