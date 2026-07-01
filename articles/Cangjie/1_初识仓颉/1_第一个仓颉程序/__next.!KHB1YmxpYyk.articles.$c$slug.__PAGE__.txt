@@ -1,12 +1,12 @@
 1:"$Sreact.fragment"
-2:I[23597,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/2qx2ht961c-86.js"],"TocSidebar"]
-9:I[59537,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/2qx2ht961c-86.js"],"ArticleNavSidebar"]
-a:I[22016,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/2qx2ht961c-86.js"],""]
-b:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/2qx2ht961c-86.js"],"ArticleContent"]
+2:I[23597,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"TocSidebar"]
+9:I[59537,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleNavSidebar"]
+a:I[22016,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],""]
+b:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleContent"]
 e:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
 f:"$Sreact.suspense"
-11:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/2qx2ht961c-86.js"],"MobileArticlePanel"]
-3:T215c,
+11:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"MobileArticlePanel"]
+3:T2d91,
 ## 1.1.1 第一个仓颉程序
 
 欢迎来到Cangjie编程语言的世界！本教程将手把手带你编写并运行第一个仓颉程序。即使你之前没有任何编程经验，也不用担心——我们会从最基础的操作开始讲解。
@@ -180,9 +180,14 @@ main(): Int64 {
 > [!TIP]
 > > 对于现在的你来说，可以暂时忽略 `package demo`、`Int64` 和 `return 0`，只需要知道：
 > > - `main()` 是程序开始执行的地方
+> > - `Int64`表示main函数返回的类型，此处为Int64类型，如果留空则为Unit类型。[方案一](#第-3-步编写代码)就是Unit类型
+> > - 如果使用Int64作为返回类型，则在成功运行后返回return0
+> > - 关于Unit类型参考[Unit类型](../2_基本数据类型/9_Unit类型)
 > > - `println(...)` 是打印内容到屏幕上
-> >
+
 > > 其余的内容在后面文章中都会学到。
+
+---
 
 ### 第 3 步：编译并运行
 
@@ -216,6 +221,82 @@ hello world
 
 > [!TIP]
 > 对于本教程后面的文章，**建议使用 cjpm 方式**创建项目，更接近真实开发流程。
+
+---
+
+## 补充知识：为什么main函数返回 `Int64` 时要写 `return 0`？
+
+你可能会好奇：为什么需要写 `return 0`？不写行不行？这里给你解释清楚。
+
+> [!TIP]
+> **核心一句话：你是在向操作系统"交成绩单"** 📋
+>
+> 程序跑完后，会返回一个**整数**给操作系统，告诉它"我执行得怎么样"：
+> - `0` = ✅ 一切顺利
+> - 非 `0` = ❌ 出问题了
+
+这个 `return 0` 的规矩**不是仓颉特有的**，几乎所有编程语言都一样
+
+这个习惯从 Unix 时代一直延续到现在，Linux、Windows、macOS 都认它。
+
+#### 不写 `return 0` 行不行？
+
+分两种情况：
+
+**情况一：`main(): Int64`** —— 必须写 ✅
+
+```Cangjie
+main(): Int64 {
+    println("hello")
+    return 0       // ✅ 0 是 Int64，符合要求
+}
+```
+
+你告诉编译器"我会返回一个整数"，那你就必须真的返回，否则编译报错。如果你不小心写错了：
+
+```Cangjie
+main(): Int64 {
+    println("hello")
+    return "成功"   // ❌
+}
+```
+
+**情况二：`main()`** —— 不用写 🎉
+
+```Cangjie
+main() {
+    println("hello")
+                    // 没有 return，编译器自动处理
+}
+```
+
+这时候 `main()` 的返回类型是 `Unit`（类似其他语言的 `void`），你不需要写 `return`，编译器会自动帮你处理收尾工作。
+
+#### 一张图看懂区别 🖼️
+
+```
+main(): Int64 {          main() {
+    println("hello")         println("hello")
+    return 0                // 没有 return
+}                        }
+     │                         │
+     ▼                         ▼
+返回 Int64 值 0           返回 Unit（啥也没有）
+     │                         │
+     ▼                         ▼
+操作系统收到退出码 0      操作系统默认视为 0
+程序 ✅ 正常结束          程序 ✅ 正常结束（隐式）
+```
+
+**简单记法：**
+- `Int64` 版本 → 你**主动汇报**"一切OK"
+- `Unit` 版本 → 编译器**帮你代劳**，省事但不灵活
+
+> [!TIP]
+> 看到这里你可能会觉得有点复杂——没关系，作为初学者，你只需要记住：
+> - **`main(): Int64` 搭配 `return 0`，表示"程序成功跑完了"** ✅
+> - 具体为什么，等你学得更多了自然就懂了 😊
+
 
 ---
 
@@ -260,6 +341,26 @@ main(): Int64 {
 **原因**：程序执行完就自动退出了，这是正常现象。
 
 **解决方法**：如果是在 VS Code 终端中运行，输出会保留在终端里，可以慢慢看。
+
+### Q4：仓颉的表达式后面要加分号吗？
+
+**不需要，但加了也不会报错。** 仓颉的表达式后面**不用**加分号，这是它和 C、Java 等语言的一个明显区别：
+
+```Cangjie
+main() {
+    println("hello")       // ✅ 不加分号
+    println("world")       // ✅ 这也是
+}
+```
+
+出于习惯加上分号也可以，编译器不会报错：
+
+```Cangjie
+main() {
+    println("hello");      // ⚠️ 允许，但不推荐
+    println("world");      // ⚠️ 建议统一风格，都不加分号
+}
+```
 
 ---
 
@@ -276,9 +377,9 @@ main(): Int64 {
 
 > [!TIP]
 > 下一步 → 学习[仓颉的注释](./2_仓颉的注释/)，给你的代码添加说明文字！ 
-0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],"$L4","$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"S-ts5_ElrYk3g2q7gPw11"}
-4:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L9",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782823107247.583},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782823107247.6562},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782823107247.6562},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782823107247.6562},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782823107248.077},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782823107247.6562},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782823107248.077},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782823107247.6562},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782823107248.077},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782823107248.077},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782823107248.077},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782823107248.077},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782823107248.077}],"currentSlug":"Cangjie/1_初识仓颉/1_第一个仓颉程序"}]]}]}]
-c:T215c,
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],"$L4","$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"sIRyTn8oIQyn-IMiUHL0d"}
+4:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L9",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782907295689.8206},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"published":true,"mtime":1782907295689.8806},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782907295689.8806},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782907295689.8806},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782907295689.8806},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782907295689.8806},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/2_基本数据类型/10_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/2_基本数据类型/11_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"published":true,"mtime":1782907295690.2476}],"currentSlug":"Cangjie/1_初识仓颉/1_第一个仓颉程序"}]]}]}]
+c:T2d91,
 ## 1.1.1 第一个仓颉程序
 
 欢迎来到Cangjie编程语言的世界！本教程将手把手带你编写并运行第一个仓颉程序。即使你之前没有任何编程经验，也不用担心——我们会从最基础的操作开始讲解。
@@ -452,9 +553,14 @@ main(): Int64 {
 > [!TIP]
 > > 对于现在的你来说，可以暂时忽略 `package demo`、`Int64` 和 `return 0`，只需要知道：
 > > - `main()` 是程序开始执行的地方
+> > - `Int64`表示main函数返回的类型，此处为Int64类型，如果留空则为Unit类型。[方案一](#第-3-步编写代码)就是Unit类型
+> > - 如果使用Int64作为返回类型，则在成功运行后返回return0
+> > - 关于Unit类型参考[Unit类型](../2_基本数据类型/9_Unit类型)
 > > - `println(...)` 是打印内容到屏幕上
-> >
+
 > > 其余的内容在后面文章中都会学到。
+
+---
 
 ### 第 3 步：编译并运行
 
@@ -488,6 +594,82 @@ hello world
 
 > [!TIP]
 > 对于本教程后面的文章，**建议使用 cjpm 方式**创建项目，更接近真实开发流程。
+
+---
+
+## 补充知识：为什么main函数返回 `Int64` 时要写 `return 0`？
+
+你可能会好奇：为什么需要写 `return 0`？不写行不行？这里给你解释清楚。
+
+> [!TIP]
+> **核心一句话：你是在向操作系统"交成绩单"** 📋
+>
+> 程序跑完后，会返回一个**整数**给操作系统，告诉它"我执行得怎么样"：
+> - `0` = ✅ 一切顺利
+> - 非 `0` = ❌ 出问题了
+
+这个 `return 0` 的规矩**不是仓颉特有的**，几乎所有编程语言都一样
+
+这个习惯从 Unix 时代一直延续到现在，Linux、Windows、macOS 都认它。
+
+#### 不写 `return 0` 行不行？
+
+分两种情况：
+
+**情况一：`main(): Int64`** —— 必须写 ✅
+
+```Cangjie
+main(): Int64 {
+    println("hello")
+    return 0       // ✅ 0 是 Int64，符合要求
+}
+```
+
+你告诉编译器"我会返回一个整数"，那你就必须真的返回，否则编译报错。如果你不小心写错了：
+
+```Cangjie
+main(): Int64 {
+    println("hello")
+    return "成功"   // ❌
+}
+```
+
+**情况二：`main()`** —— 不用写 🎉
+
+```Cangjie
+main() {
+    println("hello")
+                    // 没有 return，编译器自动处理
+}
+```
+
+这时候 `main()` 的返回类型是 `Unit`（类似其他语言的 `void`），你不需要写 `return`，编译器会自动帮你处理收尾工作。
+
+#### 一张图看懂区别 🖼️
+
+```
+main(): Int64 {          main() {
+    println("hello")         println("hello")
+    return 0                // 没有 return
+}                        }
+     │                         │
+     ▼                         ▼
+返回 Int64 值 0           返回 Unit（啥也没有）
+     │                         │
+     ▼                         ▼
+操作系统收到退出码 0      操作系统默认视为 0
+程序 ✅ 正常结束          程序 ✅ 正常结束（隐式）
+```
+
+**简单记法：**
+- `Int64` 版本 → 你**主动汇报**"一切OK"
+- `Unit` 版本 → 编译器**帮你代劳**，省事但不灵活
+
+> [!TIP]
+> 看到这里你可能会觉得有点复杂——没关系，作为初学者，你只需要记住：
+> - **`main(): Int64` 搭配 `return 0`，表示"程序成功跑完了"** ✅
+> - 具体为什么，等你学得更多了自然就懂了 😊
+
 
 ---
 
@@ -532,6 +714,26 @@ main(): Int64 {
 **原因**：程序执行完就自动退出了，这是正常现象。
 
 **解决方法**：如果是在 VS Code 终端中运行，输出会保留在终端里，可以慢慢看。
+
+### Q4：仓颉的表达式后面要加分号吗？
+
+**不需要，但加了也不会报错。** 仓颉的表达式后面**不用**加分号，这是它和 C、Java 等语言的一个明显区别：
+
+```Cangjie
+main() {
+    println("hello")       // ✅ 不加分号
+    println("world")       // ✅ 这也是
+}
+```
+
+出于习惯加上分号也可以，编译器不会报错：
+
+```Cangjie
+main() {
+    println("hello");      // ⚠️ 允许，但不推荐
+    println("world");      // ⚠️ 建议统一风格，都不加分号
+}
+```
 
 ---
 
@@ -549,10 +751,10 @@ main(): Int64 {
 > [!TIP]
 > 下一步 → 学习[仓颉的注释](./2_仓颉的注释/)，给你的代码添加说明文字！ 
 5:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$La",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-06-24"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"第一个仓颉程序"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"步入Cangjie的世界，从零运行起你的第一个程序"}]]}],["$","$Lb",null,{"content":"$c"}],"$Ld"]}]}]
-6:["$","script","script-0",{"src":"/_next/static/chunks/1gtjbot4ps5zt.js","async":true}]
-7:["$","script","script-1",{"src":"/_next/static/chunks/2qx2ht961c-86.js","async":true}]
+6:["$","script","script-0",{"src":"/_next/static/chunks/0g4o6d4sifcpo.js","async":true}]
+7:["$","script","script-1",{"src":"/_next/static/chunks/1ssz3eabjrzaj.js","async":true}]
 8:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
-12:T215c,
+12:T2d91,
 ## 1.1.1 第一个仓颉程序
 
 欢迎来到Cangjie编程语言的世界！本教程将手把手带你编写并运行第一个仓颉程序。即使你之前没有任何编程经验，也不用担心——我们会从最基础的操作开始讲解。
@@ -726,9 +928,14 @@ main(): Int64 {
 > [!TIP]
 > > 对于现在的你来说，可以暂时忽略 `package demo`、`Int64` 和 `return 0`，只需要知道：
 > > - `main()` 是程序开始执行的地方
+> > - `Int64`表示main函数返回的类型，此处为Int64类型，如果留空则为Unit类型。[方案一](#第-3-步编写代码)就是Unit类型
+> > - 如果使用Int64作为返回类型，则在成功运行后返回return0
+> > - 关于Unit类型参考[Unit类型](../2_基本数据类型/9_Unit类型)
 > > - `println(...)` 是打印内容到屏幕上
-> >
+
 > > 其余的内容在后面文章中都会学到。
+
+---
 
 ### 第 3 步：编译并运行
 
@@ -762,6 +969,82 @@ hello world
 
 > [!TIP]
 > 对于本教程后面的文章，**建议使用 cjpm 方式**创建项目，更接近真实开发流程。
+
+---
+
+## 补充知识：为什么main函数返回 `Int64` 时要写 `return 0`？
+
+你可能会好奇：为什么需要写 `return 0`？不写行不行？这里给你解释清楚。
+
+> [!TIP]
+> **核心一句话：你是在向操作系统"交成绩单"** 📋
+>
+> 程序跑完后，会返回一个**整数**给操作系统，告诉它"我执行得怎么样"：
+> - `0` = ✅ 一切顺利
+> - 非 `0` = ❌ 出问题了
+
+这个 `return 0` 的规矩**不是仓颉特有的**，几乎所有编程语言都一样
+
+这个习惯从 Unix 时代一直延续到现在，Linux、Windows、macOS 都认它。
+
+#### 不写 `return 0` 行不行？
+
+分两种情况：
+
+**情况一：`main(): Int64`** —— 必须写 ✅
+
+```Cangjie
+main(): Int64 {
+    println("hello")
+    return 0       // ✅ 0 是 Int64，符合要求
+}
+```
+
+你告诉编译器"我会返回一个整数"，那你就必须真的返回，否则编译报错。如果你不小心写错了：
+
+```Cangjie
+main(): Int64 {
+    println("hello")
+    return "成功"   // ❌
+}
+```
+
+**情况二：`main()`** —— 不用写 🎉
+
+```Cangjie
+main() {
+    println("hello")
+                    // 没有 return，编译器自动处理
+}
+```
+
+这时候 `main()` 的返回类型是 `Unit`（类似其他语言的 `void`），你不需要写 `return`，编译器会自动帮你处理收尾工作。
+
+#### 一张图看懂区别 🖼️
+
+```
+main(): Int64 {          main() {
+    println("hello")         println("hello")
+    return 0                // 没有 return
+}                        }
+     │                         │
+     ▼                         ▼
+返回 Int64 值 0           返回 Unit（啥也没有）
+     │                         │
+     ▼                         ▼
+操作系统收到退出码 0      操作系统默认视为 0
+程序 ✅ 正常结束          程序 ✅ 正常结束（隐式）
+```
+
+**简单记法：**
+- `Int64` 版本 → 你**主动汇报**"一切OK"
+- `Unit` 版本 → 编译器**帮你代劳**，省事但不灵活
+
+> [!TIP]
+> 看到这里你可能会觉得有点复杂——没关系，作为初学者，你只需要记住：
+> - **`main(): Int64` 搭配 `return 0`，表示"程序成功跑完了"** ✅
+> - 具体为什么，等你学得更多了自然就懂了 😊
+
 
 ---
 
@@ -807,6 +1090,26 @@ main(): Int64 {
 
 **解决方法**：如果是在 VS Code 终端中运行，输出会保留在终端里，可以慢慢看。
 
+### Q4：仓颉的表达式后面要加分号吗？
+
+**不需要，但加了也不会报错。** 仓颉的表达式后面**不用**加分号，这是它和 C、Java 等语言的一个明显区别：
+
+```Cangjie
+main() {
+    println("hello")       // ✅ 不加分号
+    println("world")       // ✅ 这也是
+}
+```
+
+出于习惯加上分号也可以，编译器不会报错：
+
+```Cangjie
+main() {
+    println("hello");      // ⚠️ 允许，但不推荐
+    println("world");      // ⚠️ 建议统一风格，都不加分号
+}
+```
+
 ---
 
 ## 1.1.8 总结
@@ -822,5 +1125,5 @@ main(): Int64 {
 
 > [!TIP]
 > 下一步 → 学习[仓颉的注释](./2_仓颉的注释/)，给你的代码添加说明文字！ 
-d:["$","$L11",null,{"content":"$12","collection":"Cangjie/1_初识仓颉","rootColPath":"Cangjie","allArticles":["$4:props:children:props:children:2:props:articles:0","$4:props:children:props:children:2:props:articles:1","$4:props:children:props:children:2:props:articles:2",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782823107248.077},"$4:props:children:props:children:2:props:articles:3","$4:props:children:props:children:2:props:articles:4","$4:props:children:props:children:2:props:articles:5","$4:props:children:props:children:2:props:articles:6","$4:props:children:props:children:2:props:articles:7","$4:props:children:props:children:2:props:articles:8","$4:props:children:props:children:2:props:articles:9","$4:props:children:props:children:2:props:articles:10","$4:props:children:props:children:2:props:articles:11","$4:props:children:props:children:2:props:articles:12"],"currentSlug":"Cangjie/1_初识仓颉/1_第一个仓颉程序"}]
+d:["$","$L11",null,{"content":"$12","collection":"Cangjie/1_初识仓颉","rootColPath":"Cangjie","allArticles":["$4:props:children:props:children:2:props:articles:0","$4:props:children:props:children:2:props:articles:1","$4:props:children:props:children:2:props:articles:2","$4:props:children:props:children:2:props:articles:3","$4:props:children:props:children:2:props:articles:4","$4:props:children:props:children:2:props:articles:5",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782907295690.8328},"$4:props:children:props:children:2:props:articles:6","$4:props:children:props:children:2:props:articles:7","$4:props:children:props:children:2:props:articles:8","$4:props:children:props:children:2:props:articles:9","$4:props:children:props:children:2:props:articles:10","$4:props:children:props:children:2:props:articles:11","$4:props:children:props:children:2:props:articles:12","$4:props:children:props:children:2:props:articles:13","$4:props:children:props:children:2:props:articles:14","$4:props:children:props:children:2:props:articles:15","$4:props:children:props:children:2:props:articles:16","$4:props:children:props:children:2:props:articles:17","$4:props:children:props:children:2:props:articles:18","$4:props:children:props:children:2:props:articles:19","$4:props:children:props:children:2:props:articles:20","$4:props:children:props:children:2:props:articles:21","$4:props:children:props:children:2:props:articles:22","$4:props:children:props:children:2:props:articles:23"],"currentSlug":"Cangjie/1_初识仓颉/1_第一个仓颉程序"}]
 10:null

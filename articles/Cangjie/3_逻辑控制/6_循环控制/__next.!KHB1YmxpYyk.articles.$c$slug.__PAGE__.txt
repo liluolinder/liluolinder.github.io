@@ -1,0 +1,754 @@
+1:"$Sreact.fragment"
+2:I[23597,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"TocSidebar"]
+9:I[59537,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleNavSidebar"]
+a:I[22016,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],""]
+b:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleContent"]
+e:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
+f:"$Sreact.suspense"
+11:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"MobileArticlePanel"]
+3:T1640,
+## 3.6.1 为什么要循环控制？
+
+前面我们学了三种循环：`while`、`do-while`、`for-in`。它们都是"条件满足就一直执行"。
+
+但有时候你需要在循环中途**提前结束**或**跳过某次**：
+
+> 比如你在一个水果篮里找橘子：
+> - 找到橘子后，后面的水果就不用看了 → **`break`**（提前终止整个循环）
+> - 看到苹果，不感兴趣，直接看下一个 → **`continue`**（跳过本轮，进入下一轮）
+
+仓颉提供了两个循环控制表达式：**`break`** 和 **`continue`**，它们的类型都是 `Nothing`。
+
+---
+
+## 3.6.2 break：提前终止循环
+
+`break` 用于**立即结束整个循环**，执行循环后面的代码。
+
+### 例子：找到第一个能被 5 整除的数
+
+```Cangjie
+main() {
+    let numbers = [12, 18, 25, 36, 49, 55]
+    for (number in numbers) {
+        if (number % 5 == 0) {
+            println(number)
+            break       // 找到后立即结束循环
+        }
+    }
+}
+```
+
+运行结果：
+
+```Bash
+25
+```
+
+> [!TIP]
+> 如果没有 `break`，循环会遍历所有数字，输出 25 和 55（两个都能被 5 整除）。
+> 有了 `break`，找到第一个就停，后面的 36、49、55 都不再检查了。
+
+### break 在 while 中使用
+
+```Cangjie
+main() {
+    var i = 0
+    while (true) {          // 死循环
+        if (i >= 5) {
+            break           // 条件满足时退出
+        }
+        println(i)
+        i++
+    }
+}
+```
+
+运行结果：
+
+```Bash
+0
+1
+2
+3
+4
+```
+
+> [!NOTE]
+> `while (true)` + `break` 是一种常见写法——在循环体中间判断退出条件，比写在 `while` 条件里更灵活。
+
+---
+
+## 3.6.3 continue：跳过本轮循环
+
+`continue` 用于**提前结束本轮循环**，直接进入下一轮。
+
+### 例子：打印数组中的奇数
+
+```Cangjie
+main() {
+    let numbers = [12, 18, 25, 36, 49, 55]
+    for (number in numbers) {
+        if (number % 2 == 0) {
+            continue        // 偶数跳过，不打印
+        }
+        println(number)
+    }
+}
+```
+
+运行结果：
+
+```Bash
+25
+49
+55
+```
+
+循环过程：
+1. `12` → 偶数 → `continue` → 跳过，进入下一轮
+2. `18` → 偶数 → `continue` → 跳过
+3. `25` → 奇数 → 打印 `25`
+4. `36` → 偶数 → `continue` → 跳过
+5. `49` → 奇数 → 打印 `49`
+6. `55` → 奇数 → 打印 `55`
+
+### continue 在 while 中使用
+
+```Cangjie
+main() {
+    var i = 0
+    while (i < 10) {
+        i++
+        if (i % 2 == 0) {
+            continue        // 偶数跳过
+        }
+        println(i)           // 只打印奇数
+    }
+}
+```
+
+运行结果：
+
+```Bash
+1
+3
+5
+7
+9
+```
+
+> [!WARNING]
+> 在 `while` 中使用 `continue` 要小心：如果 `continue` 在变量更新**之前**执行，可能导致死循环。
+>
+> ```Cangjie
+> var i = 0
+> while (i < 10) {
+>     if (i % 2 == 0) {
+>         continue    // ❌ i 还没增加，会一直 i=0 死循环
+>     }
+>     i++
+> }
+> ```
+
+---
+
+## 3.6.4 break vs continue 对比
+
+| | `break` | `continue` |
+|---|---------|-----------|
+| 作用 | **终止整个循环** | **跳过本轮循环** |
+| 后续执行 | 继续执行循环后面的代码 | 进入下一轮循环 |
+| 适用场景 | 找到目标后就不需要继续找了 | 对当前元素不感兴趣，看下一个 |
+| 类比 | 找到橘子，后面的水果不看了 | 看到苹果，跳过，看下一个 |
+
+---
+
+## 3.6.5 break 和 continue 的类型
+
+`break` 和 `continue` 的类型都是 **`Nothing`**（不是 `Unit`）。
+
+`Nothing` 是一个特殊的类型，表示"永远不会有值"——因为 `break` 和 `continue` 一旦执行，就会跳出或跳过循环，根本不会返回任何值。
+
+> [!TIP]
+> 你不需要主动使用 `Nothing` 类型，了解即可。它和 `Unit` 的区别：
+> - `Unit`：有值，值是 `()`（"有一个空值"）
+> - `Nothing`：永远不会有值（"根本不会执行到这里"）
+
+---
+
+## 3.6.6 小结
+
+| 概念 | 要点 |
+|------|------|
+| `break` | 提前终止整个循环 |
+| `continue` | 跳过本轮循环，进入下一轮 |
+| 类型 | 都是 `Nothing` |
+| 适用循环 | `while`、`do-while`、`for-in` |
+| 常见用途 | `break`：找到目标后停止；`continue`：跳过不符合条件的元素 |
+
+---
+
+## 常见问题
+
+### Q1：`break` 和 `continue` 能用在嵌套循环中吗？
+
+**可以，但它们只作用于当前所在的循环层**，不会影响外层循环：
+
+```Cangjie
+main() {
+    for (i in 0..3) {
+        for (j in 0..3) {
+            if (j == 2) {
+                break       // 只跳出内层 for (j)，外层继续
+            }
+            print("(${i},${j}) ")
+        }
+        println()
+    }
+}
+```
+
+运行结果：
+
+```Bash
+(0,0) (0,1)
+(1,0) (1,1)
+(2,0) (2,1)
+```
+
+### Q2：`continue` 在 `while` 和 `for-in` 中的行为一样吗？
+
+**不完全一样。** 在 `for-in` 中，`continue` 后会自动取下一个元素；但在 `while` 中，如果你在变量更新之前 `continue`，可能会导致死循环。
+
+```Cangjie
+// for-in：安全，continue 后自动取下一个元素
+for (i in 0..5) {
+    if (i % 2 == 0) { continue }
+    println(i)
+}
+
+// while：需要小心，确保 continue 前变量已更新
+var i = 0
+while (i < 5) {
+    i++                 // 在 continue 之前更新
+    if (i % 2 == 0) { continue }
+    println(i)
+}
+```
+
+### Q3：`break` 能用在 `if` 中吗？
+
+**不能。** `break` 和 `continue` 只能用在循环体（`while`、`do-while`、`for-in`）中，不能用在 `if` 里（除非 `if` 在循环体中）。
+
+```Cangjie
+if (true) {
+    break       // ❌ 编译报错：break 不在循环中
+}
+
+for (i in 0..5) {
+    if (i == 3) {
+        break   // ✅ 正确：break 在 for-in 循环体中
+    }
+}
+```
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],"$L4","$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"sIRyTn8oIQyn-IMiUHL0d"}
+4:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L9",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782907295689.8206},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"published":true,"mtime":1782907295689.8806},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782907295689.8806},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782907295689.8806},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782907295689.8806},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782907295689.8806},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/2_基本数据类型/10_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/2_基本数据类型/11_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"published":true,"mtime":1782907295690.2476}],"currentSlug":"Cangjie/3_逻辑控制/6_循环控制"}]]}]}]
+c:T1640,
+## 3.6.1 为什么要循环控制？
+
+前面我们学了三种循环：`while`、`do-while`、`for-in`。它们都是"条件满足就一直执行"。
+
+但有时候你需要在循环中途**提前结束**或**跳过某次**：
+
+> 比如你在一个水果篮里找橘子：
+> - 找到橘子后，后面的水果就不用看了 → **`break`**（提前终止整个循环）
+> - 看到苹果，不感兴趣，直接看下一个 → **`continue`**（跳过本轮，进入下一轮）
+
+仓颉提供了两个循环控制表达式：**`break`** 和 **`continue`**，它们的类型都是 `Nothing`。
+
+---
+
+## 3.6.2 break：提前终止循环
+
+`break` 用于**立即结束整个循环**，执行循环后面的代码。
+
+### 例子：找到第一个能被 5 整除的数
+
+```Cangjie
+main() {
+    let numbers = [12, 18, 25, 36, 49, 55]
+    for (number in numbers) {
+        if (number % 5 == 0) {
+            println(number)
+            break       // 找到后立即结束循环
+        }
+    }
+}
+```
+
+运行结果：
+
+```Bash
+25
+```
+
+> [!TIP]
+> 如果没有 `break`，循环会遍历所有数字，输出 25 和 55（两个都能被 5 整除）。
+> 有了 `break`，找到第一个就停，后面的 36、49、55 都不再检查了。
+
+### break 在 while 中使用
+
+```Cangjie
+main() {
+    var i = 0
+    while (true) {          // 死循环
+        if (i >= 5) {
+            break           // 条件满足时退出
+        }
+        println(i)
+        i++
+    }
+}
+```
+
+运行结果：
+
+```Bash
+0
+1
+2
+3
+4
+```
+
+> [!NOTE]
+> `while (true)` + `break` 是一种常见写法——在循环体中间判断退出条件，比写在 `while` 条件里更灵活。
+
+---
+
+## 3.6.3 continue：跳过本轮循环
+
+`continue` 用于**提前结束本轮循环**，直接进入下一轮。
+
+### 例子：打印数组中的奇数
+
+```Cangjie
+main() {
+    let numbers = [12, 18, 25, 36, 49, 55]
+    for (number in numbers) {
+        if (number % 2 == 0) {
+            continue        // 偶数跳过，不打印
+        }
+        println(number)
+    }
+}
+```
+
+运行结果：
+
+```Bash
+25
+49
+55
+```
+
+循环过程：
+1. `12` → 偶数 → `continue` → 跳过，进入下一轮
+2. `18` → 偶数 → `continue` → 跳过
+3. `25` → 奇数 → 打印 `25`
+4. `36` → 偶数 → `continue` → 跳过
+5. `49` → 奇数 → 打印 `49`
+6. `55` → 奇数 → 打印 `55`
+
+### continue 在 while 中使用
+
+```Cangjie
+main() {
+    var i = 0
+    while (i < 10) {
+        i++
+        if (i % 2 == 0) {
+            continue        // 偶数跳过
+        }
+        println(i)           // 只打印奇数
+    }
+}
+```
+
+运行结果：
+
+```Bash
+1
+3
+5
+7
+9
+```
+
+> [!WARNING]
+> 在 `while` 中使用 `continue` 要小心：如果 `continue` 在变量更新**之前**执行，可能导致死循环。
+>
+> ```Cangjie
+> var i = 0
+> while (i < 10) {
+>     if (i % 2 == 0) {
+>         continue    // ❌ i 还没增加，会一直 i=0 死循环
+>     }
+>     i++
+> }
+> ```
+
+---
+
+## 3.6.4 break vs continue 对比
+
+| | `break` | `continue` |
+|---|---------|-----------|
+| 作用 | **终止整个循环** | **跳过本轮循环** |
+| 后续执行 | 继续执行循环后面的代码 | 进入下一轮循环 |
+| 适用场景 | 找到目标后就不需要继续找了 | 对当前元素不感兴趣，看下一个 |
+| 类比 | 找到橘子，后面的水果不看了 | 看到苹果，跳过，看下一个 |
+
+---
+
+## 3.6.5 break 和 continue 的类型
+
+`break` 和 `continue` 的类型都是 **`Nothing`**（不是 `Unit`）。
+
+`Nothing` 是一个特殊的类型，表示"永远不会有值"——因为 `break` 和 `continue` 一旦执行，就会跳出或跳过循环，根本不会返回任何值。
+
+> [!TIP]
+> 你不需要主动使用 `Nothing` 类型，了解即可。它和 `Unit` 的区别：
+> - `Unit`：有值，值是 `()`（"有一个空值"）
+> - `Nothing`：永远不会有值（"根本不会执行到这里"）
+
+---
+
+## 3.6.6 小结
+
+| 概念 | 要点 |
+|------|------|
+| `break` | 提前终止整个循环 |
+| `continue` | 跳过本轮循环，进入下一轮 |
+| 类型 | 都是 `Nothing` |
+| 适用循环 | `while`、`do-while`、`for-in` |
+| 常见用途 | `break`：找到目标后停止；`continue`：跳过不符合条件的元素 |
+
+---
+
+## 常见问题
+
+### Q1：`break` 和 `continue` 能用在嵌套循环中吗？
+
+**可以，但它们只作用于当前所在的循环层**，不会影响外层循环：
+
+```Cangjie
+main() {
+    for (i in 0..3) {
+        for (j in 0..3) {
+            if (j == 2) {
+                break       // 只跳出内层 for (j)，外层继续
+            }
+            print("(${i},${j}) ")
+        }
+        println()
+    }
+}
+```
+
+运行结果：
+
+```Bash
+(0,0) (0,1)
+(1,0) (1,1)
+(2,0) (2,1)
+```
+
+### Q2：`continue` 在 `while` 和 `for-in` 中的行为一样吗？
+
+**不完全一样。** 在 `for-in` 中，`continue` 后会自动取下一个元素；但在 `while` 中，如果你在变量更新之前 `continue`，可能会导致死循环。
+
+```Cangjie
+// for-in：安全，continue 后自动取下一个元素
+for (i in 0..5) {
+    if (i % 2 == 0) { continue }
+    println(i)
+}
+
+// while：需要小心，确保 continue 前变量已更新
+var i = 0
+while (i < 5) {
+    i++                 // 在 continue 之前更新
+    if (i % 2 == 0) { continue }
+    println(i)
+}
+```
+
+### Q3：`break` 能用在 `if` 中吗？
+
+**不能。** `break` 和 `continue` 只能用在循环体（`while`、`do-while`、`for-in`）中，不能用在 `if` 里（除非 `if` 在循环体中）。
+
+```Cangjie
+if (true) {
+    break       // ❌ 编译报错：break 不在循环中
+}
+
+for (i in 0..5) {
+    if (i == 3) {
+        break   // ✅ 正确：break 在 for-in 循环体中
+    }
+}
+```
+5:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$La",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-07-01"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"循环控制"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"仓颉的逻辑控制——break 与 continue"}]]}],["$","$Lb",null,{"content":"$c"}],"$Ld"]}]}]
+6:["$","script","script-0",{"src":"/_next/static/chunks/0g4o6d4sifcpo.js","async":true}]
+7:["$","script","script-1",{"src":"/_next/static/chunks/1ssz3eabjrzaj.js","async":true}]
+8:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
+12:T1640,
+## 3.6.1 为什么要循环控制？
+
+前面我们学了三种循环：`while`、`do-while`、`for-in`。它们都是"条件满足就一直执行"。
+
+但有时候你需要在循环中途**提前结束**或**跳过某次**：
+
+> 比如你在一个水果篮里找橘子：
+> - 找到橘子后，后面的水果就不用看了 → **`break`**（提前终止整个循环）
+> - 看到苹果，不感兴趣，直接看下一个 → **`continue`**（跳过本轮，进入下一轮）
+
+仓颉提供了两个循环控制表达式：**`break`** 和 **`continue`**，它们的类型都是 `Nothing`。
+
+---
+
+## 3.6.2 break：提前终止循环
+
+`break` 用于**立即结束整个循环**，执行循环后面的代码。
+
+### 例子：找到第一个能被 5 整除的数
+
+```Cangjie
+main() {
+    let numbers = [12, 18, 25, 36, 49, 55]
+    for (number in numbers) {
+        if (number % 5 == 0) {
+            println(number)
+            break       // 找到后立即结束循环
+        }
+    }
+}
+```
+
+运行结果：
+
+```Bash
+25
+```
+
+> [!TIP]
+> 如果没有 `break`，循环会遍历所有数字，输出 25 和 55（两个都能被 5 整除）。
+> 有了 `break`，找到第一个就停，后面的 36、49、55 都不再检查了。
+
+### break 在 while 中使用
+
+```Cangjie
+main() {
+    var i = 0
+    while (true) {          // 死循环
+        if (i >= 5) {
+            break           // 条件满足时退出
+        }
+        println(i)
+        i++
+    }
+}
+```
+
+运行结果：
+
+```Bash
+0
+1
+2
+3
+4
+```
+
+> [!NOTE]
+> `while (true)` + `break` 是一种常见写法——在循环体中间判断退出条件，比写在 `while` 条件里更灵活。
+
+---
+
+## 3.6.3 continue：跳过本轮循环
+
+`continue` 用于**提前结束本轮循环**，直接进入下一轮。
+
+### 例子：打印数组中的奇数
+
+```Cangjie
+main() {
+    let numbers = [12, 18, 25, 36, 49, 55]
+    for (number in numbers) {
+        if (number % 2 == 0) {
+            continue        // 偶数跳过，不打印
+        }
+        println(number)
+    }
+}
+```
+
+运行结果：
+
+```Bash
+25
+49
+55
+```
+
+循环过程：
+1. `12` → 偶数 → `continue` → 跳过，进入下一轮
+2. `18` → 偶数 → `continue` → 跳过
+3. `25` → 奇数 → 打印 `25`
+4. `36` → 偶数 → `continue` → 跳过
+5. `49` → 奇数 → 打印 `49`
+6. `55` → 奇数 → 打印 `55`
+
+### continue 在 while 中使用
+
+```Cangjie
+main() {
+    var i = 0
+    while (i < 10) {
+        i++
+        if (i % 2 == 0) {
+            continue        // 偶数跳过
+        }
+        println(i)           // 只打印奇数
+    }
+}
+```
+
+运行结果：
+
+```Bash
+1
+3
+5
+7
+9
+```
+
+> [!WARNING]
+> 在 `while` 中使用 `continue` 要小心：如果 `continue` 在变量更新**之前**执行，可能导致死循环。
+>
+> ```Cangjie
+> var i = 0
+> while (i < 10) {
+>     if (i % 2 == 0) {
+>         continue    // ❌ i 还没增加，会一直 i=0 死循环
+>     }
+>     i++
+> }
+> ```
+
+---
+
+## 3.6.4 break vs continue 对比
+
+| | `break` | `continue` |
+|---|---------|-----------|
+| 作用 | **终止整个循环** | **跳过本轮循环** |
+| 后续执行 | 继续执行循环后面的代码 | 进入下一轮循环 |
+| 适用场景 | 找到目标后就不需要继续找了 | 对当前元素不感兴趣，看下一个 |
+| 类比 | 找到橘子，后面的水果不看了 | 看到苹果，跳过，看下一个 |
+
+---
+
+## 3.6.5 break 和 continue 的类型
+
+`break` 和 `continue` 的类型都是 **`Nothing`**（不是 `Unit`）。
+
+`Nothing` 是一个特殊的类型，表示"永远不会有值"——因为 `break` 和 `continue` 一旦执行，就会跳出或跳过循环，根本不会返回任何值。
+
+> [!TIP]
+> 你不需要主动使用 `Nothing` 类型，了解即可。它和 `Unit` 的区别：
+> - `Unit`：有值，值是 `()`（"有一个空值"）
+> - `Nothing`：永远不会有值（"根本不会执行到这里"）
+
+---
+
+## 3.6.6 小结
+
+| 概念 | 要点 |
+|------|------|
+| `break` | 提前终止整个循环 |
+| `continue` | 跳过本轮循环，进入下一轮 |
+| 类型 | 都是 `Nothing` |
+| 适用循环 | `while`、`do-while`、`for-in` |
+| 常见用途 | `break`：找到目标后停止；`continue`：跳过不符合条件的元素 |
+
+---
+
+## 常见问题
+
+### Q1：`break` 和 `continue` 能用在嵌套循环中吗？
+
+**可以，但它们只作用于当前所在的循环层**，不会影响外层循环：
+
+```Cangjie
+main() {
+    for (i in 0..3) {
+        for (j in 0..3) {
+            if (j == 2) {
+                break       // 只跳出内层 for (j)，外层继续
+            }
+            print("(${i},${j}) ")
+        }
+        println()
+    }
+}
+```
+
+运行结果：
+
+```Bash
+(0,0) (0,1)
+(1,0) (1,1)
+(2,0) (2,1)
+```
+
+### Q2：`continue` 在 `while` 和 `for-in` 中的行为一样吗？
+
+**不完全一样。** 在 `for-in` 中，`continue` 后会自动取下一个元素；但在 `while` 中，如果你在变量更新之前 `continue`，可能会导致死循环。
+
+```Cangjie
+// for-in：安全，continue 后自动取下一个元素
+for (i in 0..5) {
+    if (i % 2 == 0) { continue }
+    println(i)
+}
+
+// while：需要小心，确保 continue 前变量已更新
+var i = 0
+while (i < 5) {
+    i++                 // 在 continue 之前更新
+    if (i % 2 == 0) { continue }
+    println(i)
+}
+```
+
+### Q3：`break` 能用在 `if` 中吗？
+
+**不能。** `break` 和 `continue` 只能用在循环体（`while`、`do-while`、`for-in`）中，不能用在 `if` 里（除非 `if` 在循环体中）。
+
+```Cangjie
+if (true) {
+    break       // ❌ 编译报错：break 不在循环中
+}
+
+for (i in 0..5) {
+    if (i == 3) {
+        break   // ✅ 正确：break 在 for-in 循环体中
+    }
+}
+```
+d:["$","$L11",null,{"content":"$12","collection":"Cangjie/3_逻辑控制","rootColPath":"Cangjie","allArticles":["$4:props:children:props:children:2:props:articles:0","$4:props:children:props:children:2:props:articles:1","$4:props:children:props:children:2:props:articles:2","$4:props:children:props:children:2:props:articles:3","$4:props:children:props:children:2:props:articles:4","$4:props:children:props:children:2:props:articles:5",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782907295690.8328},"$4:props:children:props:children:2:props:articles:6","$4:props:children:props:children:2:props:articles:7","$4:props:children:props:children:2:props:articles:8","$4:props:children:props:children:2:props:articles:9","$4:props:children:props:children:2:props:articles:10","$4:props:children:props:children:2:props:articles:11","$4:props:children:props:children:2:props:articles:12","$4:props:children:props:children:2:props:articles:13","$4:props:children:props:children:2:props:articles:14","$4:props:children:props:children:2:props:articles:15","$4:props:children:props:children:2:props:articles:16","$4:props:children:props:children:2:props:articles:17","$4:props:children:props:children:2:props:articles:18","$4:props:children:props:children:2:props:articles:19","$4:props:children:props:children:2:props:articles:20","$4:props:children:props:children:2:props:articles:21","$4:props:children:props:children:2:props:articles:22","$4:props:children:props:children:2:props:articles:23"],"currentSlug":"Cangjie/3_逻辑控制/6_循环控制"}]
+10:null

@@ -1,0 +1,658 @@
+1:"$Sreact.fragment"
+2:I[23597,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"TocSidebar"]
+9:I[59537,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleNavSidebar"]
+a:I[22016,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],""]
+b:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleContent"]
+e:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
+f:"$Sreact.suspense"
+11:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"MobileArticlePanel"]
+3:T1637,
+## 2.9.1 什么是 Unit 类型？
+
+**Unit 类型**是一个特殊的类型，它表示"**没有实际的值**"。你可以把它理解为一个"占位符"——告诉编译器"这里有一个返回值，但这个返回值没有意义"。
+
+> [!TIP]
+> 在其他编程语言中，Unit 类型有各种不同的名字：
+> - **Java / C++** → `void`（空）
+> - **TypeScript** → `void`（空）
+> - **仓颉** → **`Unit`**（单位）
+
+Unit 类型**只有一个值**，就是一对空括号 `()`：
+
+```Cangjie
+let u: Unit = ()    // () 是 Unit 类型唯一的值
+println(u)         // 输出：()
+```
+
+---
+
+## 2.9.2 哪些表达式是 Unit 类型？
+
+在实际编程中，你**不需要主动声明 Unit 类型**，它更多时候是作为"函数的返回值"或"某些表达式的类型"自动出现的。
+
+### 1. 没有返回值的函数
+
+当一个函数不需要返回任何有意义的值时，它的返回类型就是 `Unit`。比如 `println` 函数：
+
+```Cangjie
+main() {
+    let result = println("你好")  //输出你好
+    println(result)         // 输出：()
+}
+```
+
+运行结果
+```Bash
+你好
+()
+```
+
+如果你写 `main()` 而不写返回类型，它默认也是 `Unit`：
+
+```Cangjie
+main() {                // 等同于 main(): Unit
+    println("hello")
+                        // 不需要写 return，程序结束后自动 "返回" ()
+}
+```
+
+### 2. 赋值表达式
+
+赋值操作 `=` 本身也是一个表达式，它的值就是 `()`：
+
+```Cangjie
+main() {
+    var x = 10
+    let result = (x = 20)   // 赋值表达式的值是 ()
+    println(result)          // 输出：()
+}
+```
+
+### 3. 复合赋值表达式
+
+`+=`、`-=`、`*=` 等复合赋值表达式也是 Unit 类型：
+
+```Cangjie
+main() {
+    var x = 10
+    let result = (x += 5)   // 复合赋值的值是 ()
+    println(result)          // 输出：()
+}
+```
+
+### 4. 循环表达式
+
+`while` 和 `for-in` 循环整个表达式的类型也是 `Unit`：
+
+```Cangjie
+main() {
+    let result = while (false) {
+        println("不会执行")
+    }
+    println(result)          // 输出：()
+}
+```
+
+---
+
+## 2.9.3 Unit 类型能做什么？
+
+Unit 类型虽然"没有实际的值"，但它有几个重要的作用：
+
+### 1. 区分"有返回值"和"没有返回值"
+
+在仓颉中，**每个表达式都有类型**，即使是"没有返回值"的操作，也得有一个类型来表示"没有值"——这个类型就是 `Unit`。
+
+```Cangjie
+let a = 10          // Int64    —— 有意义的整数
+let b = println("")  // Unit     —— 没有意义，只是打印
+```
+
+
+### 2. 在 `main()` 函数中省略返回类型
+
+当你看下面两个写法时，它们的效果是一样的：
+
+```Cangjie
+main() {            // 返回类型是 Unit
+    println("hello")
+}
+```
+
+```Cangjie
+main(): Unit {      // 显式写出 Unit（但通常省略）
+    println("hello")
+}
+```
+当然如果在某些情况返回类型声明为了Unit类型，编译器或报错 或者 你只是想调皮一下也可以这么干
+
+```Cangjie
+main(): Unit {      // 显式写出 Unit（但通常省略）
+    println("hello")
+    return ()
+}
+```
+
+---
+
+## 2.9.4 Unit 支持的操作
+
+Unit 类型支持的操作**非常有限**，只有三种：
+
+| 操作 | 示例 | 说明 |
+|------|------|------|
+| 赋值 | `let a = ()` | 把 Unit 值赋给变量 |
+| 判等 | `() == ()` | 判断两个 Unit 是否相等 |
+| 判不等 | `() != ()` | 判断两个 Unit 是否不等 |
+
+```Cangjie
+main() {
+    let a = ()
+    let b = ()
+
+    println(a == b)     // 输出：true（所有 () 都相等）
+    println(a != b)     // 输出：false
+}
+```
+
+除此之外，`+`、`-`、`*`、`/` 等运算符对 Unit 都无效。
+
+---
+
+## 2.9.5 小结
+
+| 概念 | 要点 |
+|------|------|
+| 类型名 | `Unit` |
+| 唯一值 | `()`（一对空括号） |
+| 相当于其他语言 | `void`（Java/C++）、`None`（Python） |
+| 哪些表达式是 Unit | `println()`、赋值、复合赋值、循环等 |
+| 支持的操作 | 赋值、判等、判不等（不支持其他运算） |
+| 常见用法 | 表示函数没有返回值、`main()` 省略返回类型 |
+
+---
+
+## 常见问题
+
+### Q1：`Unit` 和 `void` 完全一样吗？
+
+**不完全一样**。虽然它们都表示"没有值"，但有一个重要区别：
+
+- **C++/Java 的 `void`** —— 不能声明变量（不能写 `void v;`）
+- **仓颉的 `Unit`** —— 可以声明变量，因为它有一个实际的值 `()`（可以写 `let u: Unit = ()`）
+
+> [!TIP]
+> 简单记：`Unit` 就像有一个"空盒子"`()`，而 `void` 连盒子都没有。
+
+### Q2：什么时候需要显式写 `: Unit`？
+
+**几乎不需要**。通常只有两种情况：
+1. 你**特别想强调**某个函数没有返回值（比如教学演示时）
+2. 泛型编程中需要明确指定类型参数
+
+日常写代码时，直接省略就好：
+
+```Cangjie
+// ✅ 常见写法
+main() {
+    println("不用写 :Unit")
+}
+
+// ✅ 也可以显式写（效果一样，但通常没必要）
+main(): Unit {
+    println("显式写了 :Unit")
+}
+```
+
+### Q3：如果一个函数`return 0`，返回类型还能是 `Unit` 吗？
+
+**不行！** 返回 `Unit` 的函数不能 `return` 任何有意义的数值：
+
+```Cangjie
+main(): Unit {
+    println("hello")
+    return 0        // ❌ 报错：期望 Unit，但得到 Int64
+}
+```
+
+这也就是为什么你在[第一个仓颉程序](../1_初识仓颉/1_第一个仓颉程序.md)中看到 `main(): Int64` 时要搭配 `return 0` 的原因——两者类型必须匹配。
+
+### Q4：`()` 既是 Unit 的字面量，又是空元组吗？
+
+在仓颉中，`()` **就是 Unit 类型唯一的值**，不要和元组混淆。元组至少要有两个元素才能算元组，`()` 不是元组。
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],"$L4","$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"sIRyTn8oIQyn-IMiUHL0d"}
+4:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L9",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782907295689.8206},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"published":true,"mtime":1782907295689.8806},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782907295689.8806},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782907295689.8806},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782907295689.8806},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782907295689.8806},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"published":true,"mtime":1782907295690.8328},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/2_基本数据类型/10_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"published":true,"mtime":1782907295690.2476},{"slug":"Cangjie/2_基本数据类型/11_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"published":true,"mtime":1782907295690.2476}],"currentSlug":"Cangjie/2_基本数据类型/9_Unit类型"}]]}]}]
+c:T1637,
+## 2.9.1 什么是 Unit 类型？
+
+**Unit 类型**是一个特殊的类型，它表示"**没有实际的值**"。你可以把它理解为一个"占位符"——告诉编译器"这里有一个返回值，但这个返回值没有意义"。
+
+> [!TIP]
+> 在其他编程语言中，Unit 类型有各种不同的名字：
+> - **Java / C++** → `void`（空）
+> - **TypeScript** → `void`（空）
+> - **仓颉** → **`Unit`**（单位）
+
+Unit 类型**只有一个值**，就是一对空括号 `()`：
+
+```Cangjie
+let u: Unit = ()    // () 是 Unit 类型唯一的值
+println(u)         // 输出：()
+```
+
+---
+
+## 2.9.2 哪些表达式是 Unit 类型？
+
+在实际编程中，你**不需要主动声明 Unit 类型**，它更多时候是作为"函数的返回值"或"某些表达式的类型"自动出现的。
+
+### 1. 没有返回值的函数
+
+当一个函数不需要返回任何有意义的值时，它的返回类型就是 `Unit`。比如 `println` 函数：
+
+```Cangjie
+main() {
+    let result = println("你好")  //输出你好
+    println(result)         // 输出：()
+}
+```
+
+运行结果
+```Bash
+你好
+()
+```
+
+如果你写 `main()` 而不写返回类型，它默认也是 `Unit`：
+
+```Cangjie
+main() {                // 等同于 main(): Unit
+    println("hello")
+                        // 不需要写 return，程序结束后自动 "返回" ()
+}
+```
+
+### 2. 赋值表达式
+
+赋值操作 `=` 本身也是一个表达式，它的值就是 `()`：
+
+```Cangjie
+main() {
+    var x = 10
+    let result = (x = 20)   // 赋值表达式的值是 ()
+    println(result)          // 输出：()
+}
+```
+
+### 3. 复合赋值表达式
+
+`+=`、`-=`、`*=` 等复合赋值表达式也是 Unit 类型：
+
+```Cangjie
+main() {
+    var x = 10
+    let result = (x += 5)   // 复合赋值的值是 ()
+    println(result)          // 输出：()
+}
+```
+
+### 4. 循环表达式
+
+`while` 和 `for-in` 循环整个表达式的类型也是 `Unit`：
+
+```Cangjie
+main() {
+    let result = while (false) {
+        println("不会执行")
+    }
+    println(result)          // 输出：()
+}
+```
+
+---
+
+## 2.9.3 Unit 类型能做什么？
+
+Unit 类型虽然"没有实际的值"，但它有几个重要的作用：
+
+### 1. 区分"有返回值"和"没有返回值"
+
+在仓颉中，**每个表达式都有类型**，即使是"没有返回值"的操作，也得有一个类型来表示"没有值"——这个类型就是 `Unit`。
+
+```Cangjie
+let a = 10          // Int64    —— 有意义的整数
+let b = println("")  // Unit     —— 没有意义，只是打印
+```
+
+
+### 2. 在 `main()` 函数中省略返回类型
+
+当你看下面两个写法时，它们的效果是一样的：
+
+```Cangjie
+main() {            // 返回类型是 Unit
+    println("hello")
+}
+```
+
+```Cangjie
+main(): Unit {      // 显式写出 Unit（但通常省略）
+    println("hello")
+}
+```
+当然如果在某些情况返回类型声明为了Unit类型，编译器或报错 或者 你只是想调皮一下也可以这么干
+
+```Cangjie
+main(): Unit {      // 显式写出 Unit（但通常省略）
+    println("hello")
+    return ()
+}
+```
+
+---
+
+## 2.9.4 Unit 支持的操作
+
+Unit 类型支持的操作**非常有限**，只有三种：
+
+| 操作 | 示例 | 说明 |
+|------|------|------|
+| 赋值 | `let a = ()` | 把 Unit 值赋给变量 |
+| 判等 | `() == ()` | 判断两个 Unit 是否相等 |
+| 判不等 | `() != ()` | 判断两个 Unit 是否不等 |
+
+```Cangjie
+main() {
+    let a = ()
+    let b = ()
+
+    println(a == b)     // 输出：true（所有 () 都相等）
+    println(a != b)     // 输出：false
+}
+```
+
+除此之外，`+`、`-`、`*`、`/` 等运算符对 Unit 都无效。
+
+---
+
+## 2.9.5 小结
+
+| 概念 | 要点 |
+|------|------|
+| 类型名 | `Unit` |
+| 唯一值 | `()`（一对空括号） |
+| 相当于其他语言 | `void`（Java/C++）、`None`（Python） |
+| 哪些表达式是 Unit | `println()`、赋值、复合赋值、循环等 |
+| 支持的操作 | 赋值、判等、判不等（不支持其他运算） |
+| 常见用法 | 表示函数没有返回值、`main()` 省略返回类型 |
+
+---
+
+## 常见问题
+
+### Q1：`Unit` 和 `void` 完全一样吗？
+
+**不完全一样**。虽然它们都表示"没有值"，但有一个重要区别：
+
+- **C++/Java 的 `void`** —— 不能声明变量（不能写 `void v;`）
+- **仓颉的 `Unit`** —— 可以声明变量，因为它有一个实际的值 `()`（可以写 `let u: Unit = ()`）
+
+> [!TIP]
+> 简单记：`Unit` 就像有一个"空盒子"`()`，而 `void` 连盒子都没有。
+
+### Q2：什么时候需要显式写 `: Unit`？
+
+**几乎不需要**。通常只有两种情况：
+1. 你**特别想强调**某个函数没有返回值（比如教学演示时）
+2. 泛型编程中需要明确指定类型参数
+
+日常写代码时，直接省略就好：
+
+```Cangjie
+// ✅ 常见写法
+main() {
+    println("不用写 :Unit")
+}
+
+// ✅ 也可以显式写（效果一样，但通常没必要）
+main(): Unit {
+    println("显式写了 :Unit")
+}
+```
+
+### Q3：如果一个函数`return 0`，返回类型还能是 `Unit` 吗？
+
+**不行！** 返回 `Unit` 的函数不能 `return` 任何有意义的数值：
+
+```Cangjie
+main(): Unit {
+    println("hello")
+    return 0        // ❌ 报错：期望 Unit，但得到 Int64
+}
+```
+
+这也就是为什么你在[第一个仓颉程序](../1_初识仓颉/1_第一个仓颉程序.md)中看到 `main(): Int64` 时要搭配 `return 0` 的原因——两者类型必须匹配。
+
+### Q4：`()` 既是 Unit 的字面量，又是空元组吗？
+
+在仓颉中，`()` **就是 Unit 类型唯一的值**，不要和元组混淆。元组至少要有两个元素才能算元组，`()` 不是元组。
+5:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$La",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-07-01"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"Unit类型"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"仓颉的基本数据类型——Unit类型"}]]}],["$","$Lb",null,{"content":"$c"}],"$Ld"]}]}]
+6:["$","script","script-0",{"src":"/_next/static/chunks/0g4o6d4sifcpo.js","async":true}]
+7:["$","script","script-1",{"src":"/_next/static/chunks/1ssz3eabjrzaj.js","async":true}]
+8:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
+12:T1637,
+## 2.9.1 什么是 Unit 类型？
+
+**Unit 类型**是一个特殊的类型，它表示"**没有实际的值**"。你可以把它理解为一个"占位符"——告诉编译器"这里有一个返回值，但这个返回值没有意义"。
+
+> [!TIP]
+> 在其他编程语言中，Unit 类型有各种不同的名字：
+> - **Java / C++** → `void`（空）
+> - **TypeScript** → `void`（空）
+> - **仓颉** → **`Unit`**（单位）
+
+Unit 类型**只有一个值**，就是一对空括号 `()`：
+
+```Cangjie
+let u: Unit = ()    // () 是 Unit 类型唯一的值
+println(u)         // 输出：()
+```
+
+---
+
+## 2.9.2 哪些表达式是 Unit 类型？
+
+在实际编程中，你**不需要主动声明 Unit 类型**，它更多时候是作为"函数的返回值"或"某些表达式的类型"自动出现的。
+
+### 1. 没有返回值的函数
+
+当一个函数不需要返回任何有意义的值时，它的返回类型就是 `Unit`。比如 `println` 函数：
+
+```Cangjie
+main() {
+    let result = println("你好")  //输出你好
+    println(result)         // 输出：()
+}
+```
+
+运行结果
+```Bash
+你好
+()
+```
+
+如果你写 `main()` 而不写返回类型，它默认也是 `Unit`：
+
+```Cangjie
+main() {                // 等同于 main(): Unit
+    println("hello")
+                        // 不需要写 return，程序结束后自动 "返回" ()
+}
+```
+
+### 2. 赋值表达式
+
+赋值操作 `=` 本身也是一个表达式，它的值就是 `()`：
+
+```Cangjie
+main() {
+    var x = 10
+    let result = (x = 20)   // 赋值表达式的值是 ()
+    println(result)          // 输出：()
+}
+```
+
+### 3. 复合赋值表达式
+
+`+=`、`-=`、`*=` 等复合赋值表达式也是 Unit 类型：
+
+```Cangjie
+main() {
+    var x = 10
+    let result = (x += 5)   // 复合赋值的值是 ()
+    println(result)          // 输出：()
+}
+```
+
+### 4. 循环表达式
+
+`while` 和 `for-in` 循环整个表达式的类型也是 `Unit`：
+
+```Cangjie
+main() {
+    let result = while (false) {
+        println("不会执行")
+    }
+    println(result)          // 输出：()
+}
+```
+
+---
+
+## 2.9.3 Unit 类型能做什么？
+
+Unit 类型虽然"没有实际的值"，但它有几个重要的作用：
+
+### 1. 区分"有返回值"和"没有返回值"
+
+在仓颉中，**每个表达式都有类型**，即使是"没有返回值"的操作，也得有一个类型来表示"没有值"——这个类型就是 `Unit`。
+
+```Cangjie
+let a = 10          // Int64    —— 有意义的整数
+let b = println("")  // Unit     —— 没有意义，只是打印
+```
+
+
+### 2. 在 `main()` 函数中省略返回类型
+
+当你看下面两个写法时，它们的效果是一样的：
+
+```Cangjie
+main() {            // 返回类型是 Unit
+    println("hello")
+}
+```
+
+```Cangjie
+main(): Unit {      // 显式写出 Unit（但通常省略）
+    println("hello")
+}
+```
+当然如果在某些情况返回类型声明为了Unit类型，编译器或报错 或者 你只是想调皮一下也可以这么干
+
+```Cangjie
+main(): Unit {      // 显式写出 Unit（但通常省略）
+    println("hello")
+    return ()
+}
+```
+
+---
+
+## 2.9.4 Unit 支持的操作
+
+Unit 类型支持的操作**非常有限**，只有三种：
+
+| 操作 | 示例 | 说明 |
+|------|------|------|
+| 赋值 | `let a = ()` | 把 Unit 值赋给变量 |
+| 判等 | `() == ()` | 判断两个 Unit 是否相等 |
+| 判不等 | `() != ()` | 判断两个 Unit 是否不等 |
+
+```Cangjie
+main() {
+    let a = ()
+    let b = ()
+
+    println(a == b)     // 输出：true（所有 () 都相等）
+    println(a != b)     // 输出：false
+}
+```
+
+除此之外，`+`、`-`、`*`、`/` 等运算符对 Unit 都无效。
+
+---
+
+## 2.9.5 小结
+
+| 概念 | 要点 |
+|------|------|
+| 类型名 | `Unit` |
+| 唯一值 | `()`（一对空括号） |
+| 相当于其他语言 | `void`（Java/C++）、`None`（Python） |
+| 哪些表达式是 Unit | `println()`、赋值、复合赋值、循环等 |
+| 支持的操作 | 赋值、判等、判不等（不支持其他运算） |
+| 常见用法 | 表示函数没有返回值、`main()` 省略返回类型 |
+
+---
+
+## 常见问题
+
+### Q1：`Unit` 和 `void` 完全一样吗？
+
+**不完全一样**。虽然它们都表示"没有值"，但有一个重要区别：
+
+- **C++/Java 的 `void`** —— 不能声明变量（不能写 `void v;`）
+- **仓颉的 `Unit`** —— 可以声明变量，因为它有一个实际的值 `()`（可以写 `let u: Unit = ()`）
+
+> [!TIP]
+> 简单记：`Unit` 就像有一个"空盒子"`()`，而 `void` 连盒子都没有。
+
+### Q2：什么时候需要显式写 `: Unit`？
+
+**几乎不需要**。通常只有两种情况：
+1. 你**特别想强调**某个函数没有返回值（比如教学演示时）
+2. 泛型编程中需要明确指定类型参数
+
+日常写代码时，直接省略就好：
+
+```Cangjie
+// ✅ 常见写法
+main() {
+    println("不用写 :Unit")
+}
+
+// ✅ 也可以显式写（效果一样，但通常没必要）
+main(): Unit {
+    println("显式写了 :Unit")
+}
+```
+
+### Q3：如果一个函数`return 0`，返回类型还能是 `Unit` 吗？
+
+**不行！** 返回 `Unit` 的函数不能 `return` 任何有意义的数值：
+
+```Cangjie
+main(): Unit {
+    println("hello")
+    return 0        // ❌ 报错：期望 Unit，但得到 Int64
+}
+```
+
+这也就是为什么你在[第一个仓颉程序](../1_初识仓颉/1_第一个仓颉程序.md)中看到 `main(): Int64` 时要搭配 `return 0` 的原因——两者类型必须匹配。
+
+### Q4：`()` 既是 Unit 的字面量，又是空元组吗？
+
+在仓颉中，`()` **就是 Unit 类型唯一的值**，不要和元组混淆。元组至少要有两个元素才能算元组，`()` 不是元组。
+d:["$","$L11",null,{"content":"$12","collection":"Cangjie/2_基本数据类型","rootColPath":"Cangjie","allArticles":["$4:props:children:props:children:2:props:articles:0","$4:props:children:props:children:2:props:articles:1","$4:props:children:props:children:2:props:articles:2","$4:props:children:props:children:2:props:articles:3","$4:props:children:props:children:2:props:articles:4","$4:props:children:props:children:2:props:articles:5",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782907295690.8328},"$4:props:children:props:children:2:props:articles:6","$4:props:children:props:children:2:props:articles:7","$4:props:children:props:children:2:props:articles:8","$4:props:children:props:children:2:props:articles:9","$4:props:children:props:children:2:props:articles:10","$4:props:children:props:children:2:props:articles:11","$4:props:children:props:children:2:props:articles:12","$4:props:children:props:children:2:props:articles:13","$4:props:children:props:children:2:props:articles:14","$4:props:children:props:children:2:props:articles:15","$4:props:children:props:children:2:props:articles:16","$4:props:children:props:children:2:props:articles:17","$4:props:children:props:children:2:props:articles:18","$4:props:children:props:children:2:props:articles:19","$4:props:children:props:children:2:props:articles:20","$4:props:children:props:children:2:props:articles:21","$4:props:children:props:children:2:props:articles:22","$4:props:children:props:children:2:props:articles:23"],"currentSlug":"Cangjie/2_基本数据类型/9_Unit类型"}]
+10:null
