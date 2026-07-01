@@ -1,0 +1,1162 @@
+1:"$Sreact.fragment"
+2:I[23597,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"TocSidebar"]
+9:I[59537,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleNavSidebar"]
+a:I[22016,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],""]
+b:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleContent"]
+e:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
+f:"$Sreact.suspense"
+11:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"MobileArticlePanel"]
+3:T28bd,
+## 4.1.1 什么是函数？
+
+你有没有遇到过这种情况——写了一段代码做加法，过一会又需要做同样的加法，只能把代码再写一遍？如果这样的操作重复很多次，代码就会变得又长又乱。
+
+**函数**就是解决这个问题的好帮手。你可以把函数想象成一个"加工机器"：
+
+```
+原材料（参数） → [ 函数这台机器 ] → 成品（返回值）
+```
+
+- 你给机器**输入**一些材料（参数）
+- 机器按照预先设定好的步骤**加工**（函数体）
+- 机器给你**输出**一个结果（返回值）
+
+函数最大的好处是：**写一次，用无数次**。而且函数还能让代码更容易阅读——给一段操作起一个有意义的名字，别人看代码时就能立马明白它的作用。
+
+---
+
+## 4.1.2 函数定义的语法
+
+在仓颉中，函数使用关键字 `func` 定义，基本格式如下：
+
+```Cangjie
+func 函数名(参数列表): 返回值类型 {
+    // 函数体——要执行的代码
+}
+```
+
+逐项拆解：
+
+| 组成部分 | 说明 | 类比 |
+|---------|------|------|
+| `func` | 告诉编译器"我要定义一个函数" | 就像说"我来设计一台机器" |
+| `函数名` | 合法的标识符，用来调用这个函数 | 机器的名字，比如"加法器" |
+| `(参数列表)` | 函数需要的输入数据，多个参数用逗号隔开 | 机器的进料口 |
+| `: 返回值类型` | 函数加工完后返回什么类型的数据（可选） | 机器的出料口规格 |
+| `{ }` | 函数体，大括号里写具体要执行的代码 | 机器内部的运作流程 |
+
+### 第一个函数示例
+
+来看一个最简单的函数：
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    return a + b
+}
+```
+
+这个函数叫 `add`（加法），它：
+- 接收两个整数 `a` 和 `b`（参数）
+- 返回一个整数（`: Int64`）
+- 把 `a` 和 `b` 相加并返回结果（函数体）
+
+> [!TIP]
+> 定义好函数后，你可以在代码中随时调用它：
+> ```Cangjie
+> let result = add(3, 5)     // result = 8
+> println(add(10, 20))       // 输出 30
+> ```
+
+---
+
+## 4.1.3 参数列表
+
+参数是函数接收的"输入数据"。一个函数可以有 **0 个**或多个参数。
+
+```Cangjie
+func sayHello() {                      // 无参数
+    println("你好！")
+}
+
+func greet(name: String) {              // 1 个参数
+    println("你好，${name}！")
+}
+
+func add(a: Int64, b: Int64): Int64 {   // 2 个参数
+    return a + b
+}
+```
+
+仓颉的参数分为两类：**非命名参数**和**命名参数**。
+
+### 非命名参数
+
+非命名参数的定义方式：`参数名: 类型`
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    return a + b
+}
+```
+
+调用时按**位置**传参——第一个值给第一个参数，第二个值给第二个参数：
+
+```Cangjie
+add(3, 5)    // a = 3, b = 5
+```
+
+### 命名参数
+
+命名参数的定义方式：`参数名!: 类型` —— 在参数名后面多了个 `!`
+
+```Cangjie
+func add(a!: Int64, b!: Int64): Int64 {
+    return a + b
+}
+```
+
+调用时需要指定参数名：
+
+```Cangjie
+add(a: 3, b: 5)       // ✅ 命名参数调用
+add(3, 5)             // ❌ 报错：命名参数必须指定参数名
+```
+
+> [!NOTE]
+> 命名参数的最大好处是在调用时**参数顺序可以随意调换**：
+> ```Cangjie
+> add(b: 5, a: 3)    // ✅ 顺序无所谓
+> ```
+
+### 命名参数还能设置默认值
+
+通过 `参数名!: 类型 = 默认值` 的语法，可以给命名参数设置默认值：
+
+```Cangjie
+func add(a!: Int64 = 1, b!: Int64 = 1): Int64 {
+    return a + b
+}
+
+add()            // 使用默认值：a=1, b=1 → 结果 2
+add(a: 10)       // a=10, b=1(默认) → 结果 11
+add(b: 20)       // a=1(默认), b=20 → 结果 21
+add(a: 3, b: 7)  // a=3, b=7 → 结果 10
+```
+
+> [!IMPORTANT]
+> 只有**命名参数**可以设置默认值，非命名参数不行。
+
+### 非命名参数和命名参数混用
+
+两者可以在同一个函数中同时使用，但注意顺序：**非命名参数必须在命名参数之前**。
+
+```Cangjie
+func example(a: Int64, b!: Int64, c!: Int64) {  // ✅ 先非命名，后命名
+    // ...
+}
+
+func example(a!: Int64, b: Int64) {              // ❌ 报错：命名参数后面不能再跟非命名参数
+    // ...
+}
+```
+
+### 参数的特性
+
+**1. 参数是不可变的**
+
+在函数内部不能给参数重新赋值：
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    a = a + b     // ❌ 报错：不能给不可变变量赋值
+    return a
+}
+```
+
+> [!TIP]
+> 参数默认就是不可变的（相当于 `let`），如果需要修改，可以先把参数赋值给一个 `var` 变量：
+> ```Cangjie
+> func add(a: Int64, b: Int64): Int64 {
+>     var _a = a     // ✅ 拷贝一份到可变变量
+>     _a = _a + b
+>     return _a
+> }
+> ```
+
+**2. 参数的作用域**
+
+参数从函数开始到函数结束都有效：
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    var _a = a      // ✅ 可以用参数 a
+    var b = b       // ❌ 报错：参数 b 已经被定义了，不能重复声明
+    return a
+}
+```
+
+---
+
+## 4.1.4 函数返回值类型
+
+返回值类型就是函数"加工完"返回的数据类型。在仓颉中，返回值类型是**可选**的。
+
+### 方式一：显式指定返回值类型
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {   // : Int64 表示返回整数
+    return a + b
+}
+```
+
+> [!CAUTION]
+> 如果指定了返回值类型，函数体内所有 `return` 后面的表达式类型都必须匹配：
+> ```Cangjie
+> func add(a: Int64, b: Int64): Int64 {
+>     return (a, b)     // ❌ 报错：返回的是元组，不是 Int64
+> }
+> ```
+
+### 方式二：省略返回值类型（编译器自动推导）
+
+```Cangjie
+func add(a: Int64, b: Int64) {   // 没写返回值类型
+    return a + b                 // 编译器自动推导出返回类型是 Int64
+}
+```
+
+编译器会根据 `return` 后面的表达式类型，自动推导出函数的返回值类型。
+
+> [!WARNING]
+> 并不是所有情况都能成功推导。如果推导失败，编译器会报错，此时需要显式指定返回值类型。
+
+### 特殊：返回类型为 Unit
+
+`Unit` 表示"什么都不返回"（类似其他语言的 `void`）。当指定返回类型为 `Unit` 时，编译器会在所有可能返回的地方自动插入 `return ()`：
+
+```Cangjie
+func foo(): Unit {
+    println("你好")
+    // 不需要写 return，编译器自动处理
+}
+```
+
+---
+
+## 4.1.5 函数体
+
+函数体就是大括号 `{}` 里的内容，定义了函数被调用时具体执行的代码。
+
+### 函数体里可以写什么？
+
+- 变量定义
+- 表达式
+- 控制流（if、for、while 等）
+- 甚至可以**定义新的函数**（嵌套函数）
+
+```Cangjie
+func add(a: Int64, b: Int64) {
+    var r = 0          // 变量定义
+    r = a + b          // 表达式
+    return r           // 返回
+}
+```
+
+### return 语句
+
+函数体中用 `return` 来终止函数的执行并返回结果。有两种形式：
+
+| 形式 | 说明 | 适用场景 |
+|------|------|----------|
+| `return expr` | 返回表达式 expr 的值 | 函数有返回值 |
+| `return` | 相当于 `return ()` | 函数返回类型为 Unit |
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    return a + b        // ✅ 返回表达式结果
+}
+
+func foo(): Unit {
+    println("干活")
+    return              // ✅ 什么都不返回，仅结束函数
+}
+```
+
+> [!NOTE]
+> `return` 表达式本身是一个特殊类型——`Nothing` 类型，并不是它后面跟着的表达式类型。
+> `Nothing` 是一个特殊的类型，表示"永远不会有值"
+
+### 函数体的类型
+
+函数体本身也有"类型"——类型是函数体内**最后一项**的类型：
+
+| 最后一项 | 函数体类型 | 示例 |
+|---------|-----------|------|
+| 表达式 | 该表达式的类型 | `a + b` → Int64 |
+| 变量定义 | Unit | `let x = 1` → Unit |
+| 函数声明 | Unit | `func inner() {}` → Unit |
+| 空函数体 | Unit | `{}` → Unit |
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    a + b                     // 最后一项是表达式，类型 Int64
+}                             // 函数体类型 = Int64，匹配返回值类型
+
+func foo(): Unit {
+    let s = "Hello"          // 最后一项是变量定义，类型 Unit
+    print(s)                 // ✅ 最后一项是 println()，这是表达式
+}                            // 但 println() 返回 Unit，所以匹配
+```
+
+> [!TIP]
+> 这是Cangjie的一大特性
+
+>在[if分支结构](../3_逻辑控制/1_if分支结构)中，我们介绍了
+```Cangjie 
+let bit = if (voltage < 2.5) {
+    0
+} else {
+    1
+}
+```
+>其本质也是此特性，借助此特性，我们在主函数返回Int64类型的时候也可以省略return 直接写0，返回Unit类型除了不写，也可以直接写`()`例如
+
+```Cangjie
+main():Int64{
+    println('Hello World')
+    0
+}
+```
+
+```Cangjie
+main(){
+    println('Hello World')
+    ()
+}
+```
+
+### 局部变量和作用域
+
+在函数体内定义的变量，作用域从定义处开始，到函数体结束：
+
+```Cangjie
+let r = 0                     // 全局变量 r
+
+func add(a: Int64, b: Int64) {
+    var r = 0                 // 局部变量 r（遮盖了全局的 r）
+    r = a + b
+    return r                  // 这里用的是局部变量 r
+}
+```
+
+> [!TIP]
+> 局部变量可以"遮盖"外层的同名变量。在函数体内，同名的局部变量优先级更高。
+
+---
+
+## 4.1.6 动手试一试 ✏️
+
+新建一个仓颉项目，试着编写一个函数实现"长方形面积计算"：
+
+```Cangjie
+func area(width: Float64, height: Float64): Float64 {
+    return width * height
+}
+
+main() {
+    let w = 5.0
+    let h = 3.0
+    println("面积 = ${area(w, h)}")   // 输出：面积 = 15
+}
+```
+
+试着修改函数，让它支持**默认值**（宽和高都默认为 1.0），然后分别测试传参和不传参的效果。
+
+---
+
+## 4.1.7 总结
+
+| 知识点 | 说明 |
+|--------|------|
+| `func` 关键字 | 用于定义函数 |
+| 非命名参数 | 按位置传参，格式 `p: T` |
+| 命名参数 | 按名称传参，格式 `p!: T`，可设置默认值 |
+| 返回值类型 | 可选，编译器可自动推导 |
+| 函数体 | 用 `{}` 包裹，最后一项决定函数体类型 |
+| `return` | 终止函数执行并返回值 |
+| 局部变量 | 函数内定义，可遮盖外层同名变量 |
+
+> [!TIP]
+> 下一步 → 学习[调用函数](./2_调用函数/)，看看如何灵活地使用你定义好的函数！
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],"$L4","$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"ZLeK0pn4ygJgGb8IJWxNx"}
+4:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L9",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782915711808.6968},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"published":true,"mtime":1782915711808.7678},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782915711808.7678},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"published":true,"mtime":1782915711809.9539},{"slug":"Cangjie/4_函数/1_定义函数","title":"定义函数","description":"学会编写可复用的代码块","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":1,"published":true,"mtime":1782915711810.1077},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782915711808.7678},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"published":true,"mtime":1782915711809.9539},{"slug":"Cangjie/4_函数/2_调用函数","title":"调用函数","description":"学会灵活调用仓颉函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":2,"published":true,"mtime":1782915711810.465},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782915711808.7678},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"published":true,"mtime":1782915711809.9539},{"slug":"Cangjie/4_函数/3_函数类型","title":"函数类型","description":"仓颉中函数也是一等公民","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":3,"published":true,"mtime":1782915711810.465},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782915711808.7678},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"published":true,"mtime":1782915711810.1077},{"slug":"Cangjie/4_函数/4_lambda表达式","title":"Lambda表达式","description":"快速创建匿名函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":4,"published":true,"mtime":1782915711810.465},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"published":true,"mtime":1782915711810.1077},{"slug":"Cangjie/4_函数/5_嵌套函数","title":"嵌套函数","description":"函数内部定义函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":5,"published":true,"mtime":1782915711810.465},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"published":true,"mtime":1782915711810.1077},{"slug":"Cangjie/4_函数/6_闭包","title":"闭包","description":"捕获变量的函数与lambda","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":6,"published":true,"mtime":1782915711810.465},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/2_基本数据类型/10_nothing类型","title":"Nothing类型","description":"仓颉的基本数据类型——Nothing类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/2_基本数据类型/11_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/2_基本数据类型/12_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":12,"published":true,"mtime":1782915711809.125}],"currentSlug":"Cangjie/4_函数/1_定义函数"}]]}]}]
+c:T28bd,
+## 4.1.1 什么是函数？
+
+你有没有遇到过这种情况——写了一段代码做加法，过一会又需要做同样的加法，只能把代码再写一遍？如果这样的操作重复很多次，代码就会变得又长又乱。
+
+**函数**就是解决这个问题的好帮手。你可以把函数想象成一个"加工机器"：
+
+```
+原材料（参数） → [ 函数这台机器 ] → 成品（返回值）
+```
+
+- 你给机器**输入**一些材料（参数）
+- 机器按照预先设定好的步骤**加工**（函数体）
+- 机器给你**输出**一个结果（返回值）
+
+函数最大的好处是：**写一次，用无数次**。而且函数还能让代码更容易阅读——给一段操作起一个有意义的名字，别人看代码时就能立马明白它的作用。
+
+---
+
+## 4.1.2 函数定义的语法
+
+在仓颉中，函数使用关键字 `func` 定义，基本格式如下：
+
+```Cangjie
+func 函数名(参数列表): 返回值类型 {
+    // 函数体——要执行的代码
+}
+```
+
+逐项拆解：
+
+| 组成部分 | 说明 | 类比 |
+|---------|------|------|
+| `func` | 告诉编译器"我要定义一个函数" | 就像说"我来设计一台机器" |
+| `函数名` | 合法的标识符，用来调用这个函数 | 机器的名字，比如"加法器" |
+| `(参数列表)` | 函数需要的输入数据，多个参数用逗号隔开 | 机器的进料口 |
+| `: 返回值类型` | 函数加工完后返回什么类型的数据（可选） | 机器的出料口规格 |
+| `{ }` | 函数体，大括号里写具体要执行的代码 | 机器内部的运作流程 |
+
+### 第一个函数示例
+
+来看一个最简单的函数：
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    return a + b
+}
+```
+
+这个函数叫 `add`（加法），它：
+- 接收两个整数 `a` 和 `b`（参数）
+- 返回一个整数（`: Int64`）
+- 把 `a` 和 `b` 相加并返回结果（函数体）
+
+> [!TIP]
+> 定义好函数后，你可以在代码中随时调用它：
+> ```Cangjie
+> let result = add(3, 5)     // result = 8
+> println(add(10, 20))       // 输出 30
+> ```
+
+---
+
+## 4.1.3 参数列表
+
+参数是函数接收的"输入数据"。一个函数可以有 **0 个**或多个参数。
+
+```Cangjie
+func sayHello() {                      // 无参数
+    println("你好！")
+}
+
+func greet(name: String) {              // 1 个参数
+    println("你好，${name}！")
+}
+
+func add(a: Int64, b: Int64): Int64 {   // 2 个参数
+    return a + b
+}
+```
+
+仓颉的参数分为两类：**非命名参数**和**命名参数**。
+
+### 非命名参数
+
+非命名参数的定义方式：`参数名: 类型`
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    return a + b
+}
+```
+
+调用时按**位置**传参——第一个值给第一个参数，第二个值给第二个参数：
+
+```Cangjie
+add(3, 5)    // a = 3, b = 5
+```
+
+### 命名参数
+
+命名参数的定义方式：`参数名!: 类型` —— 在参数名后面多了个 `!`
+
+```Cangjie
+func add(a!: Int64, b!: Int64): Int64 {
+    return a + b
+}
+```
+
+调用时需要指定参数名：
+
+```Cangjie
+add(a: 3, b: 5)       // ✅ 命名参数调用
+add(3, 5)             // ❌ 报错：命名参数必须指定参数名
+```
+
+> [!NOTE]
+> 命名参数的最大好处是在调用时**参数顺序可以随意调换**：
+> ```Cangjie
+> add(b: 5, a: 3)    // ✅ 顺序无所谓
+> ```
+
+### 命名参数还能设置默认值
+
+通过 `参数名!: 类型 = 默认值` 的语法，可以给命名参数设置默认值：
+
+```Cangjie
+func add(a!: Int64 = 1, b!: Int64 = 1): Int64 {
+    return a + b
+}
+
+add()            // 使用默认值：a=1, b=1 → 结果 2
+add(a: 10)       // a=10, b=1(默认) → 结果 11
+add(b: 20)       // a=1(默认), b=20 → 结果 21
+add(a: 3, b: 7)  // a=3, b=7 → 结果 10
+```
+
+> [!IMPORTANT]
+> 只有**命名参数**可以设置默认值，非命名参数不行。
+
+### 非命名参数和命名参数混用
+
+两者可以在同一个函数中同时使用，但注意顺序：**非命名参数必须在命名参数之前**。
+
+```Cangjie
+func example(a: Int64, b!: Int64, c!: Int64) {  // ✅ 先非命名，后命名
+    // ...
+}
+
+func example(a!: Int64, b: Int64) {              // ❌ 报错：命名参数后面不能再跟非命名参数
+    // ...
+}
+```
+
+### 参数的特性
+
+**1. 参数是不可变的**
+
+在函数内部不能给参数重新赋值：
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    a = a + b     // ❌ 报错：不能给不可变变量赋值
+    return a
+}
+```
+
+> [!TIP]
+> 参数默认就是不可变的（相当于 `let`），如果需要修改，可以先把参数赋值给一个 `var` 变量：
+> ```Cangjie
+> func add(a: Int64, b: Int64): Int64 {
+>     var _a = a     // ✅ 拷贝一份到可变变量
+>     _a = _a + b
+>     return _a
+> }
+> ```
+
+**2. 参数的作用域**
+
+参数从函数开始到函数结束都有效：
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    var _a = a      // ✅ 可以用参数 a
+    var b = b       // ❌ 报错：参数 b 已经被定义了，不能重复声明
+    return a
+}
+```
+
+---
+
+## 4.1.4 函数返回值类型
+
+返回值类型就是函数"加工完"返回的数据类型。在仓颉中，返回值类型是**可选**的。
+
+### 方式一：显式指定返回值类型
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {   // : Int64 表示返回整数
+    return a + b
+}
+```
+
+> [!CAUTION]
+> 如果指定了返回值类型，函数体内所有 `return` 后面的表达式类型都必须匹配：
+> ```Cangjie
+> func add(a: Int64, b: Int64): Int64 {
+>     return (a, b)     // ❌ 报错：返回的是元组，不是 Int64
+> }
+> ```
+
+### 方式二：省略返回值类型（编译器自动推导）
+
+```Cangjie
+func add(a: Int64, b: Int64) {   // 没写返回值类型
+    return a + b                 // 编译器自动推导出返回类型是 Int64
+}
+```
+
+编译器会根据 `return` 后面的表达式类型，自动推导出函数的返回值类型。
+
+> [!WARNING]
+> 并不是所有情况都能成功推导。如果推导失败，编译器会报错，此时需要显式指定返回值类型。
+
+### 特殊：返回类型为 Unit
+
+`Unit` 表示"什么都不返回"（类似其他语言的 `void`）。当指定返回类型为 `Unit` 时，编译器会在所有可能返回的地方自动插入 `return ()`：
+
+```Cangjie
+func foo(): Unit {
+    println("你好")
+    // 不需要写 return，编译器自动处理
+}
+```
+
+---
+
+## 4.1.5 函数体
+
+函数体就是大括号 `{}` 里的内容，定义了函数被调用时具体执行的代码。
+
+### 函数体里可以写什么？
+
+- 变量定义
+- 表达式
+- 控制流（if、for、while 等）
+- 甚至可以**定义新的函数**（嵌套函数）
+
+```Cangjie
+func add(a: Int64, b: Int64) {
+    var r = 0          // 变量定义
+    r = a + b          // 表达式
+    return r           // 返回
+}
+```
+
+### return 语句
+
+函数体中用 `return` 来终止函数的执行并返回结果。有两种形式：
+
+| 形式 | 说明 | 适用场景 |
+|------|------|----------|
+| `return expr` | 返回表达式 expr 的值 | 函数有返回值 |
+| `return` | 相当于 `return ()` | 函数返回类型为 Unit |
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    return a + b        // ✅ 返回表达式结果
+}
+
+func foo(): Unit {
+    println("干活")
+    return              // ✅ 什么都不返回，仅结束函数
+}
+```
+
+> [!NOTE]
+> `return` 表达式本身是一个特殊类型——`Nothing` 类型，并不是它后面跟着的表达式类型。
+> `Nothing` 是一个特殊的类型，表示"永远不会有值"
+
+### 函数体的类型
+
+函数体本身也有"类型"——类型是函数体内**最后一项**的类型：
+
+| 最后一项 | 函数体类型 | 示例 |
+|---------|-----------|------|
+| 表达式 | 该表达式的类型 | `a + b` → Int64 |
+| 变量定义 | Unit | `let x = 1` → Unit |
+| 函数声明 | Unit | `func inner() {}` → Unit |
+| 空函数体 | Unit | `{}` → Unit |
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    a + b                     // 最后一项是表达式，类型 Int64
+}                             // 函数体类型 = Int64，匹配返回值类型
+
+func foo(): Unit {
+    let s = "Hello"          // 最后一项是变量定义，类型 Unit
+    print(s)                 // ✅ 最后一项是 println()，这是表达式
+}                            // 但 println() 返回 Unit，所以匹配
+```
+
+> [!TIP]
+> 这是Cangjie的一大特性
+
+>在[if分支结构](../3_逻辑控制/1_if分支结构)中，我们介绍了
+```Cangjie 
+let bit = if (voltage < 2.5) {
+    0
+} else {
+    1
+}
+```
+>其本质也是此特性，借助此特性，我们在主函数返回Int64类型的时候也可以省略return 直接写0，返回Unit类型除了不写，也可以直接写`()`例如
+
+```Cangjie
+main():Int64{
+    println('Hello World')
+    0
+}
+```
+
+```Cangjie
+main(){
+    println('Hello World')
+    ()
+}
+```
+
+### 局部变量和作用域
+
+在函数体内定义的变量，作用域从定义处开始，到函数体结束：
+
+```Cangjie
+let r = 0                     // 全局变量 r
+
+func add(a: Int64, b: Int64) {
+    var r = 0                 // 局部变量 r（遮盖了全局的 r）
+    r = a + b
+    return r                  // 这里用的是局部变量 r
+}
+```
+
+> [!TIP]
+> 局部变量可以"遮盖"外层的同名变量。在函数体内，同名的局部变量优先级更高。
+
+---
+
+## 4.1.6 动手试一试 ✏️
+
+新建一个仓颉项目，试着编写一个函数实现"长方形面积计算"：
+
+```Cangjie
+func area(width: Float64, height: Float64): Float64 {
+    return width * height
+}
+
+main() {
+    let w = 5.0
+    let h = 3.0
+    println("面积 = ${area(w, h)}")   // 输出：面积 = 15
+}
+```
+
+试着修改函数，让它支持**默认值**（宽和高都默认为 1.0），然后分别测试传参和不传参的效果。
+
+---
+
+## 4.1.7 总结
+
+| 知识点 | 说明 |
+|--------|------|
+| `func` 关键字 | 用于定义函数 |
+| 非命名参数 | 按位置传参，格式 `p: T` |
+| 命名参数 | 按名称传参，格式 `p!: T`，可设置默认值 |
+| 返回值类型 | 可选，编译器可自动推导 |
+| 函数体 | 用 `{}` 包裹，最后一项决定函数体类型 |
+| `return` | 终止函数执行并返回值 |
+| 局部变量 | 函数内定义，可遮盖外层同名变量 |
+
+> [!TIP]
+> 下一步 → 学习[调用函数](./2_调用函数/)，看看如何灵活地使用你定义好的函数！
+5:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$La",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-07-01"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"定义函数"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"学会编写可复用的代码块"}]]}],["$","$Lb",null,{"content":"$c"}],"$Ld"]}]}]
+6:["$","script","script-0",{"src":"/_next/static/chunks/0g4o6d4sifcpo.js","async":true}]
+7:["$","script","script-1",{"src":"/_next/static/chunks/1ssz3eabjrzaj.js","async":true}]
+8:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
+12:T28bd,
+## 4.1.1 什么是函数？
+
+你有没有遇到过这种情况——写了一段代码做加法，过一会又需要做同样的加法，只能把代码再写一遍？如果这样的操作重复很多次，代码就会变得又长又乱。
+
+**函数**就是解决这个问题的好帮手。你可以把函数想象成一个"加工机器"：
+
+```
+原材料（参数） → [ 函数这台机器 ] → 成品（返回值）
+```
+
+- 你给机器**输入**一些材料（参数）
+- 机器按照预先设定好的步骤**加工**（函数体）
+- 机器给你**输出**一个结果（返回值）
+
+函数最大的好处是：**写一次，用无数次**。而且函数还能让代码更容易阅读——给一段操作起一个有意义的名字，别人看代码时就能立马明白它的作用。
+
+---
+
+## 4.1.2 函数定义的语法
+
+在仓颉中，函数使用关键字 `func` 定义，基本格式如下：
+
+```Cangjie
+func 函数名(参数列表): 返回值类型 {
+    // 函数体——要执行的代码
+}
+```
+
+逐项拆解：
+
+| 组成部分 | 说明 | 类比 |
+|---------|------|------|
+| `func` | 告诉编译器"我要定义一个函数" | 就像说"我来设计一台机器" |
+| `函数名` | 合法的标识符，用来调用这个函数 | 机器的名字，比如"加法器" |
+| `(参数列表)` | 函数需要的输入数据，多个参数用逗号隔开 | 机器的进料口 |
+| `: 返回值类型` | 函数加工完后返回什么类型的数据（可选） | 机器的出料口规格 |
+| `{ }` | 函数体，大括号里写具体要执行的代码 | 机器内部的运作流程 |
+
+### 第一个函数示例
+
+来看一个最简单的函数：
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    return a + b
+}
+```
+
+这个函数叫 `add`（加法），它：
+- 接收两个整数 `a` 和 `b`（参数）
+- 返回一个整数（`: Int64`）
+- 把 `a` 和 `b` 相加并返回结果（函数体）
+
+> [!TIP]
+> 定义好函数后，你可以在代码中随时调用它：
+> ```Cangjie
+> let result = add(3, 5)     // result = 8
+> println(add(10, 20))       // 输出 30
+> ```
+
+---
+
+## 4.1.3 参数列表
+
+参数是函数接收的"输入数据"。一个函数可以有 **0 个**或多个参数。
+
+```Cangjie
+func sayHello() {                      // 无参数
+    println("你好！")
+}
+
+func greet(name: String) {              // 1 个参数
+    println("你好，${name}！")
+}
+
+func add(a: Int64, b: Int64): Int64 {   // 2 个参数
+    return a + b
+}
+```
+
+仓颉的参数分为两类：**非命名参数**和**命名参数**。
+
+### 非命名参数
+
+非命名参数的定义方式：`参数名: 类型`
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    return a + b
+}
+```
+
+调用时按**位置**传参——第一个值给第一个参数，第二个值给第二个参数：
+
+```Cangjie
+add(3, 5)    // a = 3, b = 5
+```
+
+### 命名参数
+
+命名参数的定义方式：`参数名!: 类型` —— 在参数名后面多了个 `!`
+
+```Cangjie
+func add(a!: Int64, b!: Int64): Int64 {
+    return a + b
+}
+```
+
+调用时需要指定参数名：
+
+```Cangjie
+add(a: 3, b: 5)       // ✅ 命名参数调用
+add(3, 5)             // ❌ 报错：命名参数必须指定参数名
+```
+
+> [!NOTE]
+> 命名参数的最大好处是在调用时**参数顺序可以随意调换**：
+> ```Cangjie
+> add(b: 5, a: 3)    // ✅ 顺序无所谓
+> ```
+
+### 命名参数还能设置默认值
+
+通过 `参数名!: 类型 = 默认值` 的语法，可以给命名参数设置默认值：
+
+```Cangjie
+func add(a!: Int64 = 1, b!: Int64 = 1): Int64 {
+    return a + b
+}
+
+add()            // 使用默认值：a=1, b=1 → 结果 2
+add(a: 10)       // a=10, b=1(默认) → 结果 11
+add(b: 20)       // a=1(默认), b=20 → 结果 21
+add(a: 3, b: 7)  // a=3, b=7 → 结果 10
+```
+
+> [!IMPORTANT]
+> 只有**命名参数**可以设置默认值，非命名参数不行。
+
+### 非命名参数和命名参数混用
+
+两者可以在同一个函数中同时使用，但注意顺序：**非命名参数必须在命名参数之前**。
+
+```Cangjie
+func example(a: Int64, b!: Int64, c!: Int64) {  // ✅ 先非命名，后命名
+    // ...
+}
+
+func example(a!: Int64, b: Int64) {              // ❌ 报错：命名参数后面不能再跟非命名参数
+    // ...
+}
+```
+
+### 参数的特性
+
+**1. 参数是不可变的**
+
+在函数内部不能给参数重新赋值：
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    a = a + b     // ❌ 报错：不能给不可变变量赋值
+    return a
+}
+```
+
+> [!TIP]
+> 参数默认就是不可变的（相当于 `let`），如果需要修改，可以先把参数赋值给一个 `var` 变量：
+> ```Cangjie
+> func add(a: Int64, b: Int64): Int64 {
+>     var _a = a     // ✅ 拷贝一份到可变变量
+>     _a = _a + b
+>     return _a
+> }
+> ```
+
+**2. 参数的作用域**
+
+参数从函数开始到函数结束都有效：
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    var _a = a      // ✅ 可以用参数 a
+    var b = b       // ❌ 报错：参数 b 已经被定义了，不能重复声明
+    return a
+}
+```
+
+---
+
+## 4.1.4 函数返回值类型
+
+返回值类型就是函数"加工完"返回的数据类型。在仓颉中，返回值类型是**可选**的。
+
+### 方式一：显式指定返回值类型
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {   // : Int64 表示返回整数
+    return a + b
+}
+```
+
+> [!CAUTION]
+> 如果指定了返回值类型，函数体内所有 `return` 后面的表达式类型都必须匹配：
+> ```Cangjie
+> func add(a: Int64, b: Int64): Int64 {
+>     return (a, b)     // ❌ 报错：返回的是元组，不是 Int64
+> }
+> ```
+
+### 方式二：省略返回值类型（编译器自动推导）
+
+```Cangjie
+func add(a: Int64, b: Int64) {   // 没写返回值类型
+    return a + b                 // 编译器自动推导出返回类型是 Int64
+}
+```
+
+编译器会根据 `return` 后面的表达式类型，自动推导出函数的返回值类型。
+
+> [!WARNING]
+> 并不是所有情况都能成功推导。如果推导失败，编译器会报错，此时需要显式指定返回值类型。
+
+### 特殊：返回类型为 Unit
+
+`Unit` 表示"什么都不返回"（类似其他语言的 `void`）。当指定返回类型为 `Unit` 时，编译器会在所有可能返回的地方自动插入 `return ()`：
+
+```Cangjie
+func foo(): Unit {
+    println("你好")
+    // 不需要写 return，编译器自动处理
+}
+```
+
+---
+
+## 4.1.5 函数体
+
+函数体就是大括号 `{}` 里的内容，定义了函数被调用时具体执行的代码。
+
+### 函数体里可以写什么？
+
+- 变量定义
+- 表达式
+- 控制流（if、for、while 等）
+- 甚至可以**定义新的函数**（嵌套函数）
+
+```Cangjie
+func add(a: Int64, b: Int64) {
+    var r = 0          // 变量定义
+    r = a + b          // 表达式
+    return r           // 返回
+}
+```
+
+### return 语句
+
+函数体中用 `return` 来终止函数的执行并返回结果。有两种形式：
+
+| 形式 | 说明 | 适用场景 |
+|------|------|----------|
+| `return expr` | 返回表达式 expr 的值 | 函数有返回值 |
+| `return` | 相当于 `return ()` | 函数返回类型为 Unit |
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    return a + b        // ✅ 返回表达式结果
+}
+
+func foo(): Unit {
+    println("干活")
+    return              // ✅ 什么都不返回，仅结束函数
+}
+```
+
+> [!NOTE]
+> `return` 表达式本身是一个特殊类型——`Nothing` 类型，并不是它后面跟着的表达式类型。
+> `Nothing` 是一个特殊的类型，表示"永远不会有值"
+
+### 函数体的类型
+
+函数体本身也有"类型"——类型是函数体内**最后一项**的类型：
+
+| 最后一项 | 函数体类型 | 示例 |
+|---------|-----------|------|
+| 表达式 | 该表达式的类型 | `a + b` → Int64 |
+| 变量定义 | Unit | `let x = 1` → Unit |
+| 函数声明 | Unit | `func inner() {}` → Unit |
+| 空函数体 | Unit | `{}` → Unit |
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    a + b                     // 最后一项是表达式，类型 Int64
+}                             // 函数体类型 = Int64，匹配返回值类型
+
+func foo(): Unit {
+    let s = "Hello"          // 最后一项是变量定义，类型 Unit
+    print(s)                 // ✅ 最后一项是 println()，这是表达式
+}                            // 但 println() 返回 Unit，所以匹配
+```
+
+> [!TIP]
+> 这是Cangjie的一大特性
+
+>在[if分支结构](../3_逻辑控制/1_if分支结构)中，我们介绍了
+```Cangjie 
+let bit = if (voltage < 2.5) {
+    0
+} else {
+    1
+}
+```
+>其本质也是此特性，借助此特性，我们在主函数返回Int64类型的时候也可以省略return 直接写0，返回Unit类型除了不写，也可以直接写`()`例如
+
+```Cangjie
+main():Int64{
+    println('Hello World')
+    0
+}
+```
+
+```Cangjie
+main(){
+    println('Hello World')
+    ()
+}
+```
+
+### 局部变量和作用域
+
+在函数体内定义的变量，作用域从定义处开始，到函数体结束：
+
+```Cangjie
+let r = 0                     // 全局变量 r
+
+func add(a: Int64, b: Int64) {
+    var r = 0                 // 局部变量 r（遮盖了全局的 r）
+    r = a + b
+    return r                  // 这里用的是局部变量 r
+}
+```
+
+> [!TIP]
+> 局部变量可以"遮盖"外层的同名变量。在函数体内，同名的局部变量优先级更高。
+
+---
+
+## 4.1.6 动手试一试 ✏️
+
+新建一个仓颉项目，试着编写一个函数实现"长方形面积计算"：
+
+```Cangjie
+func area(width: Float64, height: Float64): Float64 {
+    return width * height
+}
+
+main() {
+    let w = 5.0
+    let h = 3.0
+    println("面积 = ${area(w, h)}")   // 输出：面积 = 15
+}
+```
+
+试着修改函数，让它支持**默认值**（宽和高都默认为 1.0），然后分别测试传参和不传参的效果。
+
+---
+
+## 4.1.7 总结
+
+| 知识点 | 说明 |
+|--------|------|
+| `func` 关键字 | 用于定义函数 |
+| 非命名参数 | 按位置传参，格式 `p: T` |
+| 命名参数 | 按名称传参，格式 `p!: T`，可设置默认值 |
+| 返回值类型 | 可选，编译器可自动推导 |
+| 函数体 | 用 `{}` 包裹，最后一项决定函数体类型 |
+| `return` | 终止函数执行并返回值 |
+| 局部变量 | 函数内定义，可遮盖外层同名变量 |
+
+> [!TIP]
+> 下一步 → 学习[调用函数](./2_调用函数/)，看看如何灵活地使用你定义好的函数！
+d:["$","$L11",null,{"content":"$12","collection":"Cangjie/4_函数","rootColPath":"Cangjie","allArticles":["$4:props:children:props:children:2:props:articles:0","$4:props:children:props:children:2:props:articles:1","$4:props:children:props:children:2:props:articles:2","$4:props:children:props:children:2:props:articles:3","$4:props:children:props:children:2:props:articles:4","$4:props:children:props:children:2:props:articles:5","$4:props:children:props:children:2:props:articles:6",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782915711810.465},"$4:props:children:props:children:2:props:articles:7","$4:props:children:props:children:2:props:articles:8","$4:props:children:props:children:2:props:articles:9","$4:props:children:props:children:2:props:articles:10","$4:props:children:props:children:2:props:articles:11","$4:props:children:props:children:2:props:articles:12","$4:props:children:props:children:2:props:articles:13","$4:props:children:props:children:2:props:articles:14","$4:props:children:props:children:2:props:articles:15","$4:props:children:props:children:2:props:articles:16","$4:props:children:props:children:2:props:articles:17","$4:props:children:props:children:2:props:articles:18","$4:props:children:props:children:2:props:articles:19","$4:props:children:props:children:2:props:articles:20","$4:props:children:props:children:2:props:articles:21","$4:props:children:props:children:2:props:articles:22","$4:props:children:props:children:2:props:articles:23","$4:props:children:props:children:2:props:articles:24","$4:props:children:props:children:2:props:articles:25","$4:props:children:props:children:2:props:articles:26","$4:props:children:props:children:2:props:articles:27","$4:props:children:props:children:2:props:articles:28","$4:props:children:props:children:2:props:articles:29","$4:props:children:props:children:2:props:articles:30"],"currentSlug":"Cangjie/4_函数/1_定义函数"}]
+10:null

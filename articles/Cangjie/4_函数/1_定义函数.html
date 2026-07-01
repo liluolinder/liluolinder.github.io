@@ -1,0 +1,814 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><link rel="preconnect" href="/" crossorigin=""/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="/images/logo.webp" referrerPolicy="no-referrer"/><link rel="stylesheet" href="/_next/static/chunks/2e9j017mspeav.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/10qk6v6416kh8.js"/><script src="/_next/static/chunks/27jktro2p5rq9.js" async=""></script><script src="/_next/static/chunks/2nykiepra7i1k.js" async=""></script><script src="/_next/static/chunks/082obv3v03b-9.js" async=""></script><script src="/_next/static/chunks/turbopack-1srmeewbkltcr.js" async=""></script><script src="/_next/static/chunks/0o--8oop24u_f.js" async=""></script><script src="/_next/static/chunks/3oax6b5zaxt_z.js" async=""></script><script src="/_next/static/chunks/0jubty45h__ir.js" async=""></script><script src="/_next/static/chunks/0g4o6d4sifcpo.js" async=""></script><script src="/_next/static/chunks/1ssz3eabjrzaj.js" async=""></script><title>定义函数 | Seline Blog</title><meta name="description" content="学会编写可复用的代码块"/><link rel="icon" href="/favicon.ico?favicon.2vob68tjqpejf.ico" sizes="256x256" type="image/x-icon"/><link rel="icon" href="/images/avatar.webp"/><script src="/_next/static/chunks/0cz1d0mv5g_q7.js" noModule=""></script></head><body class="min-h-screen flex flex-col text-gray-900 dark:text-gray-100 font-sans"><div hidden=""><!--$--><!--/$--></div><div class="fixed inset-0 -z-10 overflow-hidden"><div class="absolute inset-0 bg-cover bg-center" style="background-image:url(/images/bg1.webp);opacity:0"></div><div class="absolute inset-0 bg-gradient-to-br from-white/30 via-white/15 to-white/30 dark:from-gray-950/40 dark:via-gray-900/25 dark:to-slate-950/40"></div></div><header class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-5xl"><div class="liquid-glass-header h-14 flex items-center justify-between px-4 sm:px-6 rounded-2xl shadow-lg"><a class="flex items-center gap-2 group" href="/"><span class="w-auto h-9 rounded-lg overflow-hidden flex-shrink-0"><img src="/images/logo.webp" alt="琉离铟落的小窝" referrerPolicy="no-referrer" class="h-full w-auto object-contain"/></span><span class="text-base font-bold bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">琉离铟落的小窝</span></a><div class="flex items-center gap-2"><nav class="hidden md:flex items-center gap-1"><a class="relative px-3 py-1.5 text-sm font-medium rounded-lg transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" href="/">首页</a><a class="relative px-3 py-1.5 text-sm font-medium rounded-lg transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" href="/articles">文章</a><a class="relative px-3 py-1.5 text-sm font-medium rounded-lg transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" href="/archives">归档</a><a class="relative px-3 py-1.5 text-sm font-medium rounded-lg transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" href="/projects">项目</a><a class="relative px-3 py-1.5 text-sm font-medium rounded-lg transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" href="/friends">友链</a><a class="relative px-3 py-1.5 text-sm font-medium rounded-lg transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" href="/about">关于</a></nav><button class="md:hidden w-9 h-9 flex items-center justify-center rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"><span class="text-lg">☰</span></button></div></div></header><main class="flex-1"><div class="min-h-screen pb-16"><aside class="fixed right-6 top-1/2 -translate-y-1/2 w-[220px] hidden xl:block z-10"><div class="liquid-glass rounded-2xl p-5 max-h-[70vh] overflow-y-auto"><h3 class="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-wider mb-3">目录</h3><nav class="space-y-1"><a href="#411-什么是函数" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">4.1.1 什么是函数？</a><a href="#412-函数定义的语法" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">4.1.2 函数定义的语法</a><a href="#第一个函数示例" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">第一个函数示例</a><a href="#413-参数列表" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">4.1.3 参数列表</a><a href="#非命名参数" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">非命名参数</a><a href="#命名参数" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">命名参数</a><a href="#命名参数还能设置默认值" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">命名参数还能设置默认值</a><a href="#非命名参数和命名参数混用" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">非命名参数和命名参数混用</a><a href="#参数的特性" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">参数的特性</a><a href="#414-函数返回值类型" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">4.1.4 函数返回值类型</a><a href="#方式一显式指定返回值类型" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">方式一：显式指定返回值类型</a><a href="#方式二省略返回值类型编译器自动推导" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">方式二：省略返回值类型（编译器自动推导）</a><a href="#特殊返回类型为-unit" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">特殊：返回类型为 Unit</a><a href="#415-函数体" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">4.1.5 函数体</a><a href="#函数体里可以写什么" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">函数体里可以写什么？</a><a href="#return-语句" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">return 语句</a><a href="#函数体的类型" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">函数体的类型</a><a href="#局部变量和作用域" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">局部变量和作用域</a><a href="#416-动手试一试-" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">4.1.6 动手试一试 ✏️</a><a href="#417-总结" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">4.1.7 总结</a></nav></div><p class="text-[10px] text-gray-500 dark:text-gray-400 text-center mt-3">📖 文章目录</p></aside><aside class="fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10"><div class="liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto"><h3 class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">合集</h3><div class="w-full h-px bg-blue-100/50 dark:bg-blue-900/30"></div><nav class="space-y-0.5"><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg font-medium text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▼</span><span>Cangjie</span></span><span class="text-[10px] text-gray-400">31</span></button><div class="overflow-hidden" style="height:auto;opacity:1"><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▶</span><span>1_初识仓颉</span></span><span class="text-[10px] text-gray-400">5</span></button></div><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▶</span><span>2_基本数据类型</span></span><span class="text-[10px] text-gray-400">13</span></button></div><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▶</span><span>3_逻辑控制</span></span><span class="text-[10px] text-gray-400">7</span></button></div><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▼</span><span>4_函数</span></span><span class="text-[10px] text-gray-400">6</span></button><div class="overflow-hidden" style="height:auto;opacity:1"><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 font-medium" style="padding-left:36px" href="/articles/Cangjie/4_函数/1_定义函数"><span class="text-[10px] text-gray-400 mr-1.5">1<!-- -->.</span>定义函数</a><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" style="padding-left:36px" href="/articles/Cangjie/4_函数/2_调用函数"><span class="text-[10px] text-gray-400 mr-1.5">2<!-- -->.</span>调用函数</a><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" style="padding-left:36px" href="/articles/Cangjie/4_函数/3_函数类型"><span class="text-[10px] text-gray-400 mr-1.5">3<!-- -->.</span>函数类型</a><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" style="padding-left:36px" href="/articles/Cangjie/4_函数/4_lambda表达式"><span class="text-[10px] text-gray-400 mr-1.5">4<!-- -->.</span>Lambda表达式</a><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" style="padding-left:36px" href="/articles/Cangjie/4_函数/5_嵌套函数"><span class="text-[10px] text-gray-400 mr-1.5">5<!-- -->.</span>嵌套函数</a><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" style="padding-left:36px" href="/articles/Cangjie/4_函数/6_闭包"><span class="text-[10px] text-gray-400 mr-1.5">6<!-- -->.</span>闭包</a></div></div></div></nav></div></aside><div class="xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4"><div class="max-w-4xl mx-auto"><a class="inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors" href="/articles">← 返回文章列表</a><div class="mb-8"><div class="flex items-center gap-3 mb-3"><span class="text-sm text-gray-600 dark:text-gray-400">2026-07-01</span><div class="flex gap-1.5"><span class="text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400">#<!-- -->Cangjie</span><span class="text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400">#<!-- -->入门教程</span></div></div><h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight">定义函数</h1><p class="mt-3 text-gray-700 dark:text-gray-300 text-lg">学会编写可复用的代码块</p></div><div class="rounded-2xl p-6 liquid-glass-card  !p-8 md:!p-10"><article class="max-w-none"><div class="max-w-none markdown-body"><h2 id="411-什么是函数" style="scroll-margin-top:100px">4.1.1 什么是函数？</h2><p>你有没有遇到过这种情况——写了一段代码做加法，过一会又需要做同样的加法，只能把代码再写一遍？如果这样的操作重复很多次，代码就会变得又长又乱。</p><p><strong>函数</strong>就是解决这个问题的好帮手。你可以把函数想象成一个&quot;加工机器&quot;：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">code</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="%E5%8E%9F%E6%9D%90%E6%96%99%EF%BC%88%E5%8F%82%E6%95%B0%EF%BC%89%20%E2%86%92%20%5B%20%E5%87%BD%E6%95%B0%E8%BF%99%E5%8F%B0%E6%9C%BA%E5%99%A8%20%5D%20%E2%86%92%20%E6%88%90%E5%93%81%EF%BC%88%E8%BF%94%E5%9B%9E%E5%80%BC%EF%BC%89">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs">原材料（参数） → [ 函数这台机器 ] → 成品（返回值）</code></pre>
+</div><ul>
+<li>你给机器<strong>输入</strong>一些材料（参数）</li>
+<li>机器按照预先设定好的步骤<strong>加工</strong>（函数体）</li>
+<li>机器给你<strong>输出</strong>一个结果（返回值）</li>
+</ul>
+<p>函数最大的好处是：<strong>写一次，用无数次</strong>。而且函数还能让代码更容易阅读——给一段操作起一个有意义的名字，别人看代码时就能立马明白它的作用。</p><hr>
+<h2 id="412-函数定义的语法" style="scroll-margin-top:100px">4.1.2 函数定义的语法</h2><p>在仓颉中，函数使用关键字 <code>func</code> 定义，基本格式如下：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20%E5%87%BD%E6%95%B0%E5%90%8D(%E5%8F%82%E6%95%B0%E5%88%97%E8%A1%A8)%3A%20%E8%BF%94%E5%9B%9E%E5%80%BC%E7%B1%BB%E5%9E%8B%20%7B%0A%20%20%20%20%2F%2F%20%E5%87%BD%E6%95%B0%E4%BD%93%E2%80%94%E2%80%94%E8%A6%81%E6%89%A7%E8%A1%8C%E7%9A%84%E4%BB%A3%E7%A0%81%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func 函数名(参数列表): 返回值类型 {
+    // 函数体——要执行的代码
+}</code></pre>
+</div><p>逐项拆解：</p><div class="table-scroll-wrapper">
+<table>
+<thead>
+<tr>
+<th>组成部分</th>
+<th>说明</th>
+<th>类比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>func</code></td>
+<td>告诉编译器&quot;我要定义一个函数&quot;</td>
+<td>就像说&quot;我来设计一台机器&quot;</td>
+</tr>
+<tr>
+<td><code>函数名</code></td>
+<td>合法的标识符，用来调用这个函数</td>
+<td>机器的名字，比如&quot;加法器&quot;</td>
+</tr>
+<tr>
+<td><code>(参数列表)</code></td>
+<td>函数需要的输入数据，多个参数用逗号隔开</td>
+<td>机器的进料口</td>
+</tr>
+<tr>
+<td><code>: 返回值类型</code></td>
+<td>函数加工完后返回什么类型的数据（可选）</td>
+<td>机器的出料口规格</td>
+</tr>
+<tr>
+<td><code>{ }</code></td>
+<td>函数体，大括号里写具体要执行的代码</td>
+<td>机器内部的运作流程</td>
+</tr>
+</tbody>
+</table>
+</div><h3 id="第一个函数示例" style="scroll-margin-top:100px">第一个函数示例</h3><p>来看一个最简单的函数：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20add(a%3A%20Int64%2C%20b%3A%20Int64)%3A%20Int64%20%7B%0A%20%20%20%20return%20a%20%2B%20b%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func add(a: Int64, b: Int64): Int64 {
+    return a + b
+}</code></pre>
+</div><p>这个函数叫 <code>add</code>（加法），它：</p><ul>
+<li>接收两个整数 <code>a</code> 和 <code>b</code>（参数）</li>
+<li>返回一个整数（<code>: Int64</code>）</li>
+<li>把 <code>a</code> 和 <code>b</code> 相加并返回结果（函数体）</li>
+</ul>
+<div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#f0fdf4;border-color:#22c55e"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#22c55e40"><span class="text-lg">💡</span><span class="text-sm font-bold" style="color:#16a34a">TIP</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p>定义好函数后，你可以在代码中随时调用它：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="let%20result%20%3D%20add(3%2C%205)%20%20%20%20%20%2F%2F%20result%20%3D%208%0Aprintln(add(10%2C%2020))%20%20%20%20%20%20%20%2F%2F%20%E8%BE%93%E5%87%BA%2030">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">let result = add(3, 5)     // result = 8
+println(add(10, 20))       // 输出 30</code></pre>
+</div></div></div><hr>
+<h2 id="413-参数列表" style="scroll-margin-top:100px">4.1.3 参数列表</h2><p>参数是函数接收的&quot;输入数据&quot;。一个函数可以有 <strong>0 个</strong>或多个参数。</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20sayHello()%20%7B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E6%97%A0%E5%8F%82%E6%95%B0%0A%20%20%20%20println(%22%E4%BD%A0%E5%A5%BD%EF%BC%81%22)%0A%7D%0A%0Afunc%20greet(name%3A%20String)%20%7B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%201%20%E4%B8%AA%E5%8F%82%E6%95%B0%0A%20%20%20%20println(%22%E4%BD%A0%E5%A5%BD%EF%BC%8C%24%7Bname%7D%EF%BC%81%22)%0A%7D%0A%0Afunc%20add(a%3A%20Int64%2C%20b%3A%20Int64)%3A%20Int64%20%7B%20%20%20%2F%2F%202%20%E4%B8%AA%E5%8F%82%E6%95%B0%0A%20%20%20%20return%20a%20%2B%20b%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func sayHello() {                      // 无参数
+    println(&quot;你好！&quot;)
+}
+
+func greet(name: String) {              // 1 个参数
+    println(&quot;你好，${name}！&quot;)
+}
+
+func add(a: Int64, b: Int64): Int64 {   // 2 个参数
+    return a + b
+}</code></pre>
+</div><p>仓颉的参数分为两类：<strong>非命名参数</strong>和<strong>命名参数</strong>。</p><h3 id="非命名参数" style="scroll-margin-top:100px">非命名参数</h3><p>非命名参数的定义方式：<code>参数名: 类型</code></p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20add(a%3A%20Int64%2C%20b%3A%20Int64)%3A%20Int64%20%7B%0A%20%20%20%20return%20a%20%2B%20b%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func add(a: Int64, b: Int64): Int64 {
+    return a + b
+}</code></pre>
+</div><p>调用时按<strong>位置</strong>传参——第一个值给第一个参数，第二个值给第二个参数：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="add(3%2C%205)%20%20%20%20%2F%2F%20a%20%3D%203%2C%20b%20%3D%205">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">add(3, 5)    // a = 3, b = 5</code></pre>
+</div><h3 id="命名参数" style="scroll-margin-top:100px">命名参数</h3><p>命名参数的定义方式：<code>参数名!: 类型</code> —— 在参数名后面多了个 <code>!</code></p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20add(a!%3A%20Int64%2C%20b!%3A%20Int64)%3A%20Int64%20%7B%0A%20%20%20%20return%20a%20%2B%20b%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func add(a!: Int64, b!: Int64): Int64 {
+    return a + b
+}</code></pre>
+</div><p>调用时需要指定参数名：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="add(a%3A%203%2C%20b%3A%205)%20%20%20%20%20%20%20%2F%2F%20%E2%9C%85%20%E5%91%BD%E5%90%8D%E5%8F%82%E6%95%B0%E8%B0%83%E7%94%A8%0Aadd(3%2C%205)%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E2%9D%8C%20%E6%8A%A5%E9%94%99%EF%BC%9A%E5%91%BD%E5%90%8D%E5%8F%82%E6%95%B0%E5%BF%85%E9%A1%BB%E6%8C%87%E5%AE%9A%E5%8F%82%E6%95%B0%E5%90%8D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">add(a: 3, b: 5)       // ✅ 命名参数调用
+add(3, 5)             // ❌ 报错：命名参数必须指定参数名</code></pre>
+</div><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#eff6ff;border-color:#3b82f6"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#3b82f640"><span class="text-lg">ℹ️</span><span class="text-sm font-bold" style="color:#2563eb">NOTE</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p>命名参数的最大好处是在调用时<strong>参数顺序可以随意调换</strong>：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="add(b%3A%205%2C%20a%3A%203)%20%20%20%20%2F%2F%20%E2%9C%85%20%E9%A1%BA%E5%BA%8F%E6%97%A0%E6%89%80%E8%B0%93">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">add(b: 5, a: 3)    // ✅ 顺序无所谓</code></pre>
+</div></div></div><h3 id="命名参数还能设置默认值" style="scroll-margin-top:100px">命名参数还能设置默认值</h3><p>通过 <code>参数名!: 类型 = 默认值</code> 的语法，可以给命名参数设置默认值：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20add(a!%3A%20Int64%20%3D%201%2C%20b!%3A%20Int64%20%3D%201)%3A%20Int64%20%7B%0A%20%20%20%20return%20a%20%2B%20b%0A%7D%0A%0Aadd()%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E4%BD%BF%E7%94%A8%E9%BB%98%E8%AE%A4%E5%80%BC%EF%BC%9Aa%3D1%2C%20b%3D1%20%E2%86%92%20%E7%BB%93%E6%9E%9C%202%0Aadd(a%3A%2010)%20%20%20%20%20%20%20%2F%2F%20a%3D10%2C%20b%3D1(%E9%BB%98%E8%AE%A4)%20%E2%86%92%20%E7%BB%93%E6%9E%9C%2011%0Aadd(b%3A%2020)%20%20%20%20%20%20%20%2F%2F%20a%3D1(%E9%BB%98%E8%AE%A4)%2C%20b%3D20%20%E2%86%92%20%E7%BB%93%E6%9E%9C%2021%0Aadd(a%3A%203%2C%20b%3A%207)%20%20%2F%2F%20a%3D3%2C%20b%3D7%20%E2%86%92%20%E7%BB%93%E6%9E%9C%2010">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func add(a!: Int64 = 1, b!: Int64 = 1): Int64 {
+    return a + b
+}
+
+add()            // 使用默认值：a=1, b=1 → 结果 2
+add(a: 10)       // a=10, b=1(默认) → 结果 11
+add(b: 20)       // a=1(默认), b=20 → 结果 21
+add(a: 3, b: 7)  // a=3, b=7 → 结果 10</code></pre>
+</div><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#faf5ff;border-color:#a855f7"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#a855f740"><span class="text-lg">❗</span><span class="text-sm font-bold" style="color:#9333ea">IMPORTANT</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p>只有<strong>命名参数</strong>可以设置默认值，非命名参数不行。</p></div></div><h3 id="非命名参数和命名参数混用" style="scroll-margin-top:100px">非命名参数和命名参数混用</h3><p>两者可以在同一个函数中同时使用，但注意顺序：<strong>非命名参数必须在命名参数之前</strong>。</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20example(a%3A%20Int64%2C%20b!%3A%20Int64%2C%20c!%3A%20Int64)%20%7B%20%20%2F%2F%20%E2%9C%85%20%E5%85%88%E9%9D%9E%E5%91%BD%E5%90%8D%EF%BC%8C%E5%90%8E%E5%91%BD%E5%90%8D%0A%20%20%20%20%2F%2F%20...%0A%7D%0A%0Afunc%20example(a!%3A%20Int64%2C%20b%3A%20Int64)%20%7B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E2%9D%8C%20%E6%8A%A5%E9%94%99%EF%BC%9A%E5%91%BD%E5%90%8D%E5%8F%82%E6%95%B0%E5%90%8E%E9%9D%A2%E4%B8%8D%E8%83%BD%E5%86%8D%E8%B7%9F%E9%9D%9E%E5%91%BD%E5%90%8D%E5%8F%82%E6%95%B0%0A%20%20%20%20%2F%2F%20...%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func example(a: Int64, b!: Int64, c!: Int64) {  // ✅ 先非命名，后命名
+    // ...
+}
+
+func example(a!: Int64, b: Int64) {              // ❌ 报错：命名参数后面不能再跟非命名参数
+    // ...
+}</code></pre>
+</div><h3 id="参数的特性" style="scroll-margin-top:100px">参数的特性</h3><p><strong>1. 参数是不可变的</strong></p><p>在函数内部不能给参数重新赋值：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20add(a%3A%20Int64%2C%20b%3A%20Int64)%3A%20Int64%20%7B%0A%20%20%20%20a%20%3D%20a%20%2B%20b%20%20%20%20%20%2F%2F%20%E2%9D%8C%20%E6%8A%A5%E9%94%99%EF%BC%9A%E4%B8%8D%E8%83%BD%E7%BB%99%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC%0A%20%20%20%20return%20a%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func add(a: Int64, b: Int64): Int64 {
+    a = a + b     // ❌ 报错：不能给不可变变量赋值
+    return a
+}</code></pre>
+</div><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#f0fdf4;border-color:#22c55e"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#22c55e40"><span class="text-lg">💡</span><span class="text-sm font-bold" style="color:#16a34a">TIP</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p>参数默认就是不可变的（相当于 <code>let</code>），如果需要修改，可以先把参数赋值给一个 <code>var</code> 变量：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20add(a%3A%20Int64%2C%20b%3A%20Int64)%3A%20Int64%20%7B%0A%20%20%20%20var%20_a%20%3D%20a%20%20%20%20%20%2F%2F%20%E2%9C%85%20%E6%8B%B7%E8%B4%9D%E4%B8%80%E4%BB%BD%E5%88%B0%E5%8F%AF%E5%8F%98%E5%8F%98%E9%87%8F%0A%20%20%20%20_a%20%3D%20_a%20%2B%20b%0A%20%20%20%20return%20_a%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func add(a: Int64, b: Int64): Int64 {
+    var _a = a     // ✅ 拷贝一份到可变变量
+    _a = _a + b
+    return _a
+}</code></pre>
+</div></div></div><p><strong>2. 参数的作用域</strong></p><p>参数从函数开始到函数结束都有效：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20add(a%3A%20Int64%2C%20b%3A%20Int64)%3A%20Int64%20%7B%0A%20%20%20%20var%20_a%20%3D%20a%20%20%20%20%20%20%2F%2F%20%E2%9C%85%20%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%8F%82%E6%95%B0%20a%0A%20%20%20%20var%20b%20%3D%20b%20%20%20%20%20%20%20%2F%2F%20%E2%9D%8C%20%E6%8A%A5%E9%94%99%EF%BC%9A%E5%8F%82%E6%95%B0%20b%20%E5%B7%B2%E7%BB%8F%E8%A2%AB%E5%AE%9A%E4%B9%89%E4%BA%86%EF%BC%8C%E4%B8%8D%E8%83%BD%E9%87%8D%E5%A4%8D%E5%A3%B0%E6%98%8E%0A%20%20%20%20return%20a%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func add(a: Int64, b: Int64): Int64 {
+    var _a = a      // ✅ 可以用参数 a
+    var b = b       // ❌ 报错：参数 b 已经被定义了，不能重复声明
+    return a
+}</code></pre>
+</div><hr>
+<h2 id="414-函数返回值类型" style="scroll-margin-top:100px">4.1.4 函数返回值类型</h2><p>返回值类型就是函数&quot;加工完&quot;返回的数据类型。在仓颉中，返回值类型是<strong>可选</strong>的。</p><h3 id="方式一显式指定返回值类型" style="scroll-margin-top:100px">方式一：显式指定返回值类型</h3><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20add(a%3A%20Int64%2C%20b%3A%20Int64)%3A%20Int64%20%7B%20%20%20%2F%2F%20%3A%20Int64%20%E8%A1%A8%E7%A4%BA%E8%BF%94%E5%9B%9E%E6%95%B4%E6%95%B0%0A%20%20%20%20return%20a%20%2B%20b%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func add(a: Int64, b: Int64): Int64 {   // : Int64 表示返回整数
+    return a + b
+}</code></pre>
+</div><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#fef2f2;border-color:#ef4444"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#ef444440"><span class="text-lg">🚨</span><span class="text-sm font-bold" style="color:#dc2626">CAUTION</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p>如果指定了返回值类型，函数体内所有 <code>return</code> 后面的表达式类型都必须匹配：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20add(a%3A%20Int64%2C%20b%3A%20Int64)%3A%20Int64%20%7B%0A%20%20%20%20return%20(a%2C%20b)%20%20%20%20%20%2F%2F%20%E2%9D%8C%20%E6%8A%A5%E9%94%99%EF%BC%9A%E8%BF%94%E5%9B%9E%E7%9A%84%E6%98%AF%E5%85%83%E7%BB%84%EF%BC%8C%E4%B8%8D%E6%98%AF%20Int64%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func add(a: Int64, b: Int64): Int64 {
+    return (a, b)     // ❌ 报错：返回的是元组，不是 Int64
+}</code></pre>
+</div></div></div><h3 id="方式二省略返回值类型编译器自动推导" style="scroll-margin-top:100px">方式二：省略返回值类型（编译器自动推导）</h3><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20add(a%3A%20Int64%2C%20b%3A%20Int64)%20%7B%20%20%20%2F%2F%20%E6%B2%A1%E5%86%99%E8%BF%94%E5%9B%9E%E5%80%BC%E7%B1%BB%E5%9E%8B%0A%20%20%20%20return%20a%20%2B%20b%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E6%8E%A8%E5%AF%BC%E5%87%BA%E8%BF%94%E5%9B%9E%E7%B1%BB%E5%9E%8B%E6%98%AF%20Int64%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func add(a: Int64, b: Int64) {   // 没写返回值类型
+    return a + b                 // 编译器自动推导出返回类型是 Int64
+}</code></pre>
+</div><p>编译器会根据 <code>return</code> 后面的表达式类型，自动推导出函数的返回值类型。</p><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#fffbeb;border-color:#f59e0b"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#f59e0b40"><span class="text-lg">⚠️</span><span class="text-sm font-bold" style="color:#d97706">WARNING</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p>并不是所有情况都能成功推导。如果推导失败，编译器会报错，此时需要显式指定返回值类型。</p></div></div><h3 id="特殊返回类型为-unit" style="scroll-margin-top:100px">特殊：返回类型为 Unit</h3><p><code>Unit</code> 表示&quot;什么都不返回&quot;（类似其他语言的 <code>void</code>）。当指定返回类型为 <code>Unit</code> 时，编译器会在所有可能返回的地方自动插入 <code>return ()</code>：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20foo()%3A%20Unit%20%7B%0A%20%20%20%20println(%22%E4%BD%A0%E5%A5%BD%22)%0A%20%20%20%20%2F%2F%20%E4%B8%8D%E9%9C%80%E8%A6%81%E5%86%99%20return%EF%BC%8C%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E5%A4%84%E7%90%86%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func foo(): Unit {
+    println(&quot;你好&quot;)
+    // 不需要写 return，编译器自动处理
+}</code></pre>
+</div><hr>
+<h2 id="415-函数体" style="scroll-margin-top:100px">4.1.5 函数体</h2><p>函数体就是大括号 <code>{}</code> 里的内容，定义了函数被调用时具体执行的代码。</p><h3 id="函数体里可以写什么" style="scroll-margin-top:100px">函数体里可以写什么？</h3><ul>
+<li>变量定义</li>
+<li>表达式</li>
+<li>控制流（if、for、while 等）</li>
+<li>甚至可以<strong>定义新的函数</strong>（嵌套函数）</li>
+</ul>
+<div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20add(a%3A%20Int64%2C%20b%3A%20Int64)%20%7B%0A%20%20%20%20var%20r%20%3D%200%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89%0A%20%20%20%20r%20%3D%20a%20%2B%20b%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E8%A1%A8%E8%BE%BE%E5%BC%8F%0A%20%20%20%20return%20r%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E8%BF%94%E5%9B%9E%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func add(a: Int64, b: Int64) {
+    var r = 0          // 变量定义
+    r = a + b          // 表达式
+    return r           // 返回
+}</code></pre>
+</div><h3 id="return-语句" style="scroll-margin-top:100px">return 语句</h3><p>函数体中用 <code>return</code> 来终止函数的执行并返回结果。有两种形式：</p><div class="table-scroll-wrapper">
+<table>
+<thead>
+<tr>
+<th>形式</th>
+<th>说明</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>return expr</code></td>
+<td>返回表达式 expr 的值</td>
+<td>函数有返回值</td>
+</tr>
+<tr>
+<td><code>return</code></td>
+<td>相当于 <code>return ()</code></td>
+<td>函数返回类型为 Unit</td>
+</tr>
+</tbody>
+</table>
+</div><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20add(a%3A%20Int64%2C%20b%3A%20Int64)%3A%20Int64%20%7B%0A%20%20%20%20return%20a%20%2B%20b%20%20%20%20%20%20%20%20%2F%2F%20%E2%9C%85%20%E8%BF%94%E5%9B%9E%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%BB%93%E6%9E%9C%0A%7D%0A%0Afunc%20foo()%3A%20Unit%20%7B%0A%20%20%20%20println(%22%E5%B9%B2%E6%B4%BB%22)%0A%20%20%20%20return%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E2%9C%85%20%E4%BB%80%E4%B9%88%E9%83%BD%E4%B8%8D%E8%BF%94%E5%9B%9E%EF%BC%8C%E4%BB%85%E7%BB%93%E6%9D%9F%E5%87%BD%E6%95%B0%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func add(a: Int64, b: Int64): Int64 {
+    return a + b        // ✅ 返回表达式结果
+}
+
+func foo(): Unit {
+    println(&quot;干活&quot;)
+    return              // ✅ 什么都不返回，仅结束函数
+}</code></pre>
+</div><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#eff6ff;border-color:#3b82f6"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#3b82f640"><span class="text-lg">ℹ️</span><span class="text-sm font-bold" style="color:#2563eb">NOTE</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p><code>return</code> 表达式本身是一个特殊类型——<code>Nothing</code> 类型，并不是它后面跟着的表达式类型。<br><code>Nothing</code> 是一个特殊的类型，表示&quot;永远不会有值&quot;</p></div></div><h3 id="函数体的类型" style="scroll-margin-top:100px">函数体的类型</h3><p>函数体本身也有&quot;类型&quot;——类型是函数体内<strong>最后一项</strong>的类型：</p><div class="table-scroll-wrapper">
+<table>
+<thead>
+<tr>
+<th>最后一项</th>
+<th>函数体类型</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表达式</td>
+<td>该表达式的类型</td>
+<td><code>a + b</code> → Int64</td>
+</tr>
+<tr>
+<td>变量定义</td>
+<td>Unit</td>
+<td><code>let x = 1</code> → Unit</td>
+</tr>
+<tr>
+<td>函数声明</td>
+<td>Unit</td>
+<td><code>func inner() {}</code> → Unit</td>
+</tr>
+<tr>
+<td>空函数体</td>
+<td>Unit</td>
+<td><code>{}</code> → Unit</td>
+</tr>
+</tbody>
+</table>
+</div><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20add(a%3A%20Int64%2C%20b%3A%20Int64)%3A%20Int64%20%7B%0A%20%20%20%20a%20%2B%20b%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E6%9C%80%E5%90%8E%E4%B8%80%E9%A1%B9%E6%98%AF%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%8C%E7%B1%BB%E5%9E%8B%20Int64%0A%7D%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E5%87%BD%E6%95%B0%E4%BD%93%E7%B1%BB%E5%9E%8B%20%3D%20Int64%EF%BC%8C%E5%8C%B9%E9%85%8D%E8%BF%94%E5%9B%9E%E5%80%BC%E7%B1%BB%E5%9E%8B%0A%0Afunc%20foo()%3A%20Unit%20%7B%0A%20%20%20%20let%20s%20%3D%20%22Hello%22%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E6%9C%80%E5%90%8E%E4%B8%80%E9%A1%B9%E6%98%AF%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89%EF%BC%8C%E7%B1%BB%E5%9E%8B%20Unit%0A%20%20%20%20print(s)%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E2%9C%85%20%E6%9C%80%E5%90%8E%E4%B8%80%E9%A1%B9%E6%98%AF%20println()%EF%BC%8C%E8%BF%99%E6%98%AF%E8%A1%A8%E8%BE%BE%E5%BC%8F%0A%7D%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E4%BD%86%20println()%20%E8%BF%94%E5%9B%9E%20Unit%EF%BC%8C%E6%89%80%E4%BB%A5%E5%8C%B9%E9%85%8D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func add(a: Int64, b: Int64): Int64 {
+    a + b                     // 最后一项是表达式，类型 Int64
+}                             // 函数体类型 = Int64，匹配返回值类型
+
+func foo(): Unit {
+    let s = &quot;Hello&quot;          // 最后一项是变量定义，类型 Unit
+    print(s)                 // ✅ 最后一项是 println()，这是表达式
+}                            // 但 println() 返回 Unit，所以匹配</code></pre>
+</div><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#f0fdf4;border-color:#22c55e"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#22c55e40"><span class="text-lg">💡</span><span class="text-sm font-bold" style="color:#16a34a">TIP</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p>这是Cangjie的一大特性</p></div></div><blockquote class="my-4 border-l-4 border-blue-400 dark:border-blue-600 pl-4 py-2 bg-blue-50 dark:bg-blue-900/30 rounded-r-lg italic text-gray-600 dark:text-gray-400">在<a href="../3_%E9%80%BB%E8%BE%91%E6%8E%A7%E5%88%B6/1_if%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84">if分支结构</a>中，我们介绍了</blockquote><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="let%20bit%20%3D%20if%20(voltage%20%3C%202.5)%20%7B%0A%20%20%20%200%0A%7D%20else%20%7B%0A%20%20%20%201%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">let bit = if (voltage &lt; 2.5) {
+    0
+} else {
+    1
+}</code></pre>
+</div><blockquote class="my-4 border-l-4 border-blue-400 dark:border-blue-600 pl-4 py-2 bg-blue-50 dark:bg-blue-900/30 rounded-r-lg italic text-gray-600 dark:text-gray-400">其本质也是此特性，借助此特性，我们在主函数返回Int64类型的时候也可以省略return 直接写0，返回Unit类型除了不写，也可以直接写<code>()</code>例如</blockquote><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="main()%3AInt64%7B%0A%20%20%20%20println('Hello%20World')%0A%20%20%20%200%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">main():Int64{
+    println('Hello World')
+    0
+}</code></pre>
+</div><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="main()%7B%0A%20%20%20%20println('Hello%20World')%0A%20%20%20%20()%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">main(){
+    println('Hello World')
+    ()
+}</code></pre>
+</div><h3 id="局部变量和作用域" style="scroll-margin-top:100px">局部变量和作用域</h3><p>在函数体内定义的变量，作用域从定义处开始，到函数体结束：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="let%20r%20%3D%200%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%20r%0A%0Afunc%20add(a%3A%20Int64%2C%20b%3A%20Int64)%20%7B%0A%20%20%20%20var%20r%20%3D%200%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%20r%EF%BC%88%E9%81%AE%E7%9B%96%E4%BA%86%E5%85%A8%E5%B1%80%E7%9A%84%20r%EF%BC%89%0A%20%20%20%20r%20%3D%20a%20%2B%20b%0A%20%20%20%20return%20r%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E8%BF%99%E9%87%8C%E7%94%A8%E7%9A%84%E6%98%AF%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%20r%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">let r = 0                     // 全局变量 r
+
+func add(a: Int64, b: Int64) {
+    var r = 0                 // 局部变量 r（遮盖了全局的 r）
+    r = a + b
+    return r                  // 这里用的是局部变量 r
+}</code></pre>
+</div><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#f0fdf4;border-color:#22c55e"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#22c55e40"><span class="text-lg">💡</span><span class="text-sm font-bold" style="color:#16a34a">TIP</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p>局部变量可以&quot;遮盖&quot;外层的同名变量。在函数体内，同名的局部变量优先级更高。</p></div></div><hr>
+<h2 id="416-动手试一试-" style="scroll-margin-top:100px">4.1.6 动手试一试 ✏️</h2><p>新建一个仓颉项目，试着编写一个函数实现&quot;长方形面积计算&quot;：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20area(width%3A%20Float64%2C%20height%3A%20Float64)%3A%20Float64%20%7B%0A%20%20%20%20return%20width%20*%20height%0A%7D%0A%0Amain()%20%7B%0A%20%20%20%20let%20w%20%3D%205.0%0A%20%20%20%20let%20h%20%3D%203.0%0A%20%20%20%20println(%22%E9%9D%A2%E7%A7%AF%20%3D%20%24%7Barea(w%2C%20h)%7D%22)%20%20%20%2F%2F%20%E8%BE%93%E5%87%BA%EF%BC%9A%E9%9D%A2%E7%A7%AF%20%3D%2015%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func area(width: Float64, height: Float64): Float64 {
+    return width * height
+}
+
+main() {
+    let w = 5.0
+    let h = 3.0
+    println(&quot;面积 = ${area(w, h)}&quot;)   // 输出：面积 = 15
+}</code></pre>
+</div><p>试着修改函数，让它支持<strong>默认值</strong>（宽和高都默认为 1.0），然后分别测试传参和不传参的效果。</p><hr>
+<h2 id="417-总结" style="scroll-margin-top:100px">4.1.7 总结</h2><div class="table-scroll-wrapper">
+<table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>func</code> 关键字</td>
+<td>用于定义函数</td>
+</tr>
+<tr>
+<td>非命名参数</td>
+<td>按位置传参，格式 <code>p: T</code></td>
+</tr>
+<tr>
+<td>命名参数</td>
+<td>按名称传参，格式 <code>p!: T</code>，可设置默认值</td>
+</tr>
+<tr>
+<td>返回值类型</td>
+<td>可选，编译器可自动推导</td>
+</tr>
+<tr>
+<td>函数体</td>
+<td>用 <code>{}</code> 包裹，最后一项决定函数体类型</td>
+</tr>
+<tr>
+<td><code>return</code></td>
+<td>终止函数执行并返回值</td>
+</tr>
+<tr>
+<td>局部变量</td>
+<td>函数内定义，可遮盖外层同名变量</td>
+</tr>
+</tbody>
+</table>
+</div><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#f0fdf4;border-color:#22c55e"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#22c55e40"><span class="text-lg">💡</span><span class="text-sm font-bold" style="color:#16a34a">TIP</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p>下一步 → 学习<a href="./2_%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0/">调用函数</a>，看看如何灵活地使用你定义好的函数！</p></div></div></div></article></div><div class="xl:hidden"><button class="fixed top-20 right-4 z-50 w-8 h-8 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border border-blue-100/50 dark:border-gray-700/50 shadow-lg flex items-center justify-center text-blue-500 dark:text-blue-400 text-xs cursor-pointer" title="目录" tabindex="0">📖</button><div class="mt-12 mb-8"><div class="liquid-glass rounded-2xl p-5 space-y-3 max-h-[50vh] overflow-y-auto"><h3 class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">合集</h3><div class="w-full h-px bg-blue-100/50 dark:bg-blue-900/30"></div><nav class="space-y-0.5"><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg font-medium text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▼</span><span>Cangjie</span></span><span class="text-[10px] text-gray-400">31</span></button><div class="overflow-hidden" style="height:auto;opacity:1"><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▶</span><span>1_初识仓颉</span></span><span class="text-[10px] text-gray-400">5</span></button></div><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▶</span><span>2_基本数据类型</span></span><span class="text-[10px] text-gray-400">13</span></button></div><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▶</span><span>3_逻辑控制</span></span><span class="text-[10px] text-gray-400">7</span></button></div><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▼</span><span>4_函数</span></span><span class="text-[10px] text-gray-400">6</span></button><div class="overflow-hidden" style="height:0px;opacity:0"><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 font-medium" style="padding-left:36px" href="/articles/Cangjie/4_函数/1_定义函数"><span class="text-[10px] text-gray-400 mr-1.5">1<!-- -->.</span>定义函数</a><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" style="padding-left:36px" href="/articles/Cangjie/4_函数/2_调用函数"><span class="text-[10px] text-gray-400 mr-1.5">2<!-- -->.</span>调用函数</a><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" style="padding-left:36px" href="/articles/Cangjie/4_函数/3_函数类型"><span class="text-[10px] text-gray-400 mr-1.5">3<!-- -->.</span>函数类型</a><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" style="padding-left:36px" href="/articles/Cangjie/4_函数/4_lambda表达式"><span class="text-[10px] text-gray-400 mr-1.5">4<!-- -->.</span>Lambda表达式</a><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" style="padding-left:36px" href="/articles/Cangjie/4_函数/5_嵌套函数"><span class="text-[10px] text-gray-400 mr-1.5">5<!-- -->.</span>嵌套函数</a><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" style="padding-left:36px" href="/articles/Cangjie/4_函数/6_闭包"><span class="text-[10px] text-gray-400 mr-1.5">6<!-- -->.</span>闭包</a></div></div></div></nav></div></div></div></div></div></div><!--$--><!--/$--></main><footer class="border-t border-blue-100/50 dark:border-blue-900/30 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm"><div class="max-w-5xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4"><div class="text-sm text-gray-500 dark:text-gray-400">© <!-- -->2026<!-- --> <!-- -->琉离铟落的小窝<!-- -->. Built with 💙 &amp; Next.js</div><div class="flex items-center gap-4"><a href="https://github.com/liluolinder" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-500 transition-colors text-sm"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg></a><a href="https://gitcode.com/liluolinder" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-500 transition-colors text-sm"><span>GitCode</span></a><a href="mailto:liluolinder@qq.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-500 transition-colors text-sm"><span>Email</span></a></div></div></footer><div class="fixed inset-0 pointer-events-none z-40"></div><div class="fixed bottom-6 left-6 z-50 flex items-center gap-1 px-2 py-1.5 rounded-full bg-white/40 dark:bg-gray-800/50 backdrop-blur-xl border border-white/50 dark:border-gray-700/40 shadow-lg cursor-grab active:cursor-grabbing select-none" draggable="false" style="-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:none"><button class="w-8 h-8 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-white/40 dark:hover:bg-white/10 transition-colors" title="背景设置"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></button></div><script src="/_next/static/chunks/10qk6v6416kh8.js" id="_R_" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:I[59188,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"BackgroundProvider\"]\n3:I[57715,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"BackgroundWrapper\"]\n4:I[3374,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"Header\"]\n5:I[39756,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"default\"]\n6:I[37457,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"default\"]\n7:I[58234,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"Footer\"]\n8:I[46133,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"BackgroundToggle\"]\na:I[97367,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"OutletBoundary\"]\nb:\"$Sreact.suspense\"\ne:I[97367,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"ViewportBoundary\"]\n10:I[97367,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"MetadataBoundary\"]\n12:I[68027,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"default\",1]\n:HL[\"/_next/static/chunks/2e9j017mspeav.css\",\"style\"]\n:HC[\"/\",\"\"]\n"])</script><script>self.__next_f.push([1,"0:{\"P\":null,\"c\":[\"\",\"articles\",\"Cangjie\",\"4_%E5%87%BD%E6%95%B0\",\"1_%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0\"],\"q\":\"\",\"i\":false,\"f\":[[[\"\",{\"children\":[\"(public)\",{\"children\":[\"articles\",{\"children\":[[\"slug\",\"Cangjie/4_%E5%87%BD%E6%95%B0/1_%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0\",\"c\",null],{\"children\":[\"__PAGE__\",{}]}]}]}]},\"$undefined\",\"$undefined\",16],[[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/2e9j017mspeav.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/0o--8oop24u_f.js\",\"async\":true,\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-1\",{\"src\":\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"async\":true,\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-2\",{\"src\":\"/_next/static/chunks/0jubty45h__ir.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"zh-CN\",\"suppressHydrationWarning\":true,\"children\":[\"$\",\"body\",null,{\"className\":\"min-h-screen flex flex-col text-gray-900 dark:text-gray-100 font-sans\",\"children\":[\"$\",\"$L2\",null,{\"children\":[[\"$\",\"$L3\",null,{}],[\"$\",\"$L4\",null,{}],[\"$\",\"main\",null,{\"className\":\"flex-1\",\"children\":[\"$\",\"$L5\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L6\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":404}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]}],[\"$\",\"$L7\",null,{}],[\"$\",\"$L8\",null,{}]]}]}]}]]}],{\"children\":[[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L5\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L6\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":\"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:style\",\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":\"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:1:props:style\",\"children\":404}],[\"$\",\"div\",null,{\"style\":\"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:2:props:style\",\"children\":[\"$\",\"h2\",null,{\"style\":\"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:2:props:children:props:style\",\"children\":\"This page could not be found.\"}]}]]}]}]],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],{\"children\":[[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L5\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L6\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],{\"children\":[[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L5\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L6\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],{\"children\":[[\"$\",\"$1\",\"c\",{\"children\":[\"$L9\",[[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/0g4o6d4sifcpo.js\",\"async\":true,\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-1\",{\"src\":\"/_next/static/chunks/1ssz3eabjrzaj.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"$La\",null,{\"children\":[\"$\",\"$b\",null,{\"name\":\"Next.MetadataOutlet\",\"children\":\"$@c\"}]}]]}],{},null,false,null]},null,false,\"$@d\"]},null,false,\"$@d\"]},null,false,\"$@d\"]},null,false,null],[\"$\",\"$1\",\"h\",{\"children\":[null,[\"$\",\"$Le\",null,{\"children\":\"$Lf\"}],[\"$\",\"div\",null,{\"hidden\":true,\"children\":[\"$\",\"$L10\",null,{\"children\":[\"$\",\"$b\",null,{\"name\":\"Next.Metadata\",\"children\":\"$L11\"}]}]}],null]}],false]],\"m\":\"$undefined\",\"G\":[\"$12\",[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/2e9j017mspeav.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]]],\"S\":true,\"h\":null,\"s\":\"$undefined\",\"l\":\"$undefined\",\"p\":\"$undefined\",\"d\":\"$undefined\",\"b\":\"ZLeK0pn4ygJgGb8IJWxNx\"}\n"])</script><script>self.__next_f.push([1,"13:[]\nd:\"$W13\"\n"])</script><script>self.__next_f.push([1,"14:I[23597,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\",\"/_next/static/chunks/0g4o6d4sifcpo.js\",\"/_next/static/chunks/1ssz3eabjrzaj.js\"],\"TocSidebar\"]\n15:T28bd,"])</script><script>self.__next_f.push([1,"\n## 4.1.1 什么是函数？\n\n你有没有遇到过这种情况——写了一段代码做加法，过一会又需要做同样的加法，只能把代码再写一遍？如果这样的操作重复很多次，代码就会变得又长又乱。\n\n**函数**就是解决这个问题的好帮手。你可以把函数想象成一个\"加工机器\"：\n\n```\n原材料（参数） → [ 函数这台机器 ] → 成品（返回值）\n```\n\n- 你给机器**输入**一些材料（参数）\n- 机器按照预先设定好的步骤**加工**（函数体）\n- 机器给你**输出**一个结果（返回值）\n\n函数最大的好处是：**写一次，用无数次**。而且函数还能让代码更容易阅读——给一段操作起一个有意义的名字，别人看代码时就能立马明白它的作用。\n\n---\n\n## 4.1.2 函数定义的语法\n\n在仓颉中，函数使用关键字 `func` 定义，基本格式如下：\n\n```Cangjie\nfunc 函数名(参数列表): 返回值类型 {\n    // 函数体——要执行的代码\n}\n```\n\n逐项拆解：\n\n| 组成部分 | 说明 | 类比 |\n|---------|------|------|\n| `func` | 告诉编译器\"我要定义一个函数\" | 就像说\"我来设计一台机器\" |\n| `函数名` | 合法的标识符，用来调用这个函数 | 机器的名字，比如\"加法器\" |\n| `(参数列表)` | 函数需要的输入数据，多个参数用逗号隔开 | 机器的进料口 |\n| `: 返回值类型` | 函数加工完后返回什么类型的数据（可选） | 机器的出料口规格 |\n| `{ }` | 函数体，大括号里写具体要执行的代码 | 机器内部的运作流程 |\n\n### 第一个函数示例\n\n来看一个最简单的函数：\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    return a + b\n}\n```\n\n这个函数叫 `add`（加法），它：\n- 接收两个整数 `a` 和 `b`（参数）\n- 返回一个整数（`: Int64`）\n- 把 `a` 和 `b` 相加并返回结果（函数体）\n\n\u003e [!TIP]\n\u003e 定义好函数后，你可以在代码中随时调用它：\n\u003e ```Cangjie\n\u003e let result = add(3, 5)     // result = 8\n\u003e println(add(10, 20))       // 输出 30\n\u003e ```\n\n---\n\n## 4.1.3 参数列表\n\n参数是函数接收的\"输入数据\"。一个函数可以有 **0 个**或多个参数。\n\n```Cangjie\nfunc sayHello() {                      // 无参数\n    println(\"你好！\")\n}\n\nfunc greet(name: String) {              // 1 个参数\n    println(\"你好，${name}！\")\n}\n\nfunc add(a: Int64, b: Int64): Int64 {   // 2 个参数\n    return a + b\n}\n```\n\n仓颉的参数分为两类：**非命名参数**和**命名参数**。\n\n### 非命名参数\n\n非命名参数的定义方式：`参数名: 类型`\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    return a + b\n}\n```\n\n调用时按**位置**传参——第一个值给第一个参数，第二个值给第二个参数：\n\n```Cangjie\nadd(3, 5)    // a = 3, b = 5\n```\n\n### 命名参数\n\n命名参数的定义方式：`参数名!: 类型` —— 在参数名后面多了个 `!`\n\n```Cangjie\nfunc add(a!: Int64, b!: Int64): Int64 {\n    return a + b\n}\n```\n\n调用时需要指定参数名：\n\n```Cangjie\nadd(a: 3, b: 5)       // ✅ 命名参数调用\nadd(3, 5)             // ❌ 报错：命名参数必须指定参数名\n```\n\n\u003e [!NOTE]\n\u003e 命名参数的最大好处是在调用时**参数顺序可以随意调换**：\n\u003e ```Cangjie\n\u003e add(b: 5, a: 3)    // ✅ 顺序无所谓\n\u003e ```\n\n### 命名参数还能设置默认值\n\n通过 `参数名!: 类型 = 默认值` 的语法，可以给命名参数设置默认值：\n\n```Cangjie\nfunc add(a!: Int64 = 1, b!: Int64 = 1): Int64 {\n    return a + b\n}\n\nadd()            // 使用默认值：a=1, b=1 → 结果 2\nadd(a: 10)       // a=10, b=1(默认) → 结果 11\nadd(b: 20)       // a=1(默认), b=20 → 结果 21\nadd(a: 3, b: 7)  // a=3, b=7 → 结果 10\n```\n\n\u003e [!IMPORTANT]\n\u003e 只有**命名参数**可以设置默认值，非命名参数不行。\n\n### 非命名参数和命名参数混用\n\n两者可以在同一个函数中同时使用，但注意顺序：**非命名参数必须在命名参数之前**。\n\n```Cangjie\nfunc example(a: Int64, b!: Int64, c!: Int64) {  // ✅ 先非命名，后命名\n    // ...\n}\n\nfunc example(a!: Int64, b: Int64) {              // ❌ 报错：命名参数后面不能再跟非命名参数\n    // ...\n}\n```\n\n### 参数的特性\n\n**1. 参数是不可变的**\n\n在函数内部不能给参数重新赋值：\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    a = a + b     // ❌ 报错：不能给不可变变量赋值\n    return a\n}\n```\n\n\u003e [!TIP]\n\u003e 参数默认就是不可变的（相当于 `let`），如果需要修改，可以先把参数赋值给一个 `var` 变量：\n\u003e ```Cangjie\n\u003e func add(a: Int64, b: Int64): Int64 {\n\u003e     var _a = a     // ✅ 拷贝一份到可变变量\n\u003e     _a = _a + b\n\u003e     return _a\n\u003e }\n\u003e ```\n\n**2. 参数的作用域**\n\n参数从函数开始到函数结束都有效：\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    var _a = a      // ✅ 可以用参数 a\n    var b = b       // ❌ 报错：参数 b 已经被定义了，不能重复声明\n    return a\n}\n```\n\n---\n\n## 4.1.4 函数返回值类型\n\n返回值类型就是函数\"加工完\"返回的数据类型。在仓颉中，返回值类型是**可选**的。\n\n### 方式一：显式指定返回值类型\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {   // : Int64 表示返回整数\n    return a + b\n}\n```\n\n\u003e [!CAUTION]\n\u003e 如果指定了返回值类型，函数体内所有 `return` 后面的表达式类型都必须匹配：\n\u003e ```Cangjie\n\u003e func add(a: Int64, b: Int64): Int64 {\n\u003e     return (a, b)     // ❌ 报错：返回的是元组，不是 Int64\n\u003e }\n\u003e ```\n\n### 方式二：省略返回值类型（编译器自动推导）\n\n```Cangjie\nfunc add(a: Int64, b: Int64) {   // 没写返回值类型\n    return a + b                 // 编译器自动推导出返回类型是 Int64\n}\n```\n\n编译器会根据 `return` 后面的表达式类型，自动推导出函数的返回值类型。\n\n\u003e [!WARNING]\n\u003e 并不是所有情况都能成功推导。如果推导失败，编译器会报错，此时需要显式指定返回值类型。\n\n### 特殊：返回类型为 Unit\n\n`Unit` 表示\"什么都不返回\"（类似其他语言的 `void`）。当指定返回类型为 `Unit` 时，编译器会在所有可能返回的地方自动插入 `return ()`：\n\n```Cangjie\nfunc foo(): Unit {\n    println(\"你好\")\n    // 不需要写 return，编译器自动处理\n}\n```\n\n---\n\n## 4.1.5 函数体\n\n函数体就是大括号 `{}` 里的内容，定义了函数被调用时具体执行的代码。\n\n### 函数体里可以写什么？\n\n- 变量定义\n- 表达式\n- 控制流（if、for、while 等）\n- 甚至可以**定义新的函数**（嵌套函数）\n\n```Cangjie\nfunc add(a: Int64, b: Int64) {\n    var r = 0          // 变量定义\n    r = a + b          // 表达式\n    return r           // 返回\n}\n```\n\n### return 语句\n\n函数体中用 `return` 来终止函数的执行并返回结果。有两种形式：\n\n| 形式 | 说明 | 适用场景 |\n|------|------|----------|\n| `return expr` | 返回表达式 expr 的值 | 函数有返回值 |\n| `return` | 相当于 `return ()` | 函数返回类型为 Unit |\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    return a + b        // ✅ 返回表达式结果\n}\n\nfunc foo(): Unit {\n    println(\"干活\")\n    return              // ✅ 什么都不返回，仅结束函数\n}\n```\n\n\u003e [!NOTE]\n\u003e `return` 表达式本身是一个特殊类型——`Nothing` 类型，并不是它后面跟着的表达式类型。\n\u003e `Nothing` 是一个特殊的类型，表示\"永远不会有值\"\n\n### 函数体的类型\n\n函数体本身也有\"类型\"——类型是函数体内**最后一项**的类型：\n\n| 最后一项 | 函数体类型 | 示例 |\n|---------|-----------|------|\n| 表达式 | 该表达式的类型 | `a + b` → Int64 |\n| 变量定义 | Unit | `let x = 1` → Unit |\n| 函数声明 | Unit | `func inner() {}` → Unit |\n| 空函数体 | Unit | `{}` → Unit |\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    a + b                     // 最后一项是表达式，类型 Int64\n}                             // 函数体类型 = Int64，匹配返回值类型\n\nfunc foo(): Unit {\n    let s = \"Hello\"          // 最后一项是变量定义，类型 Unit\n    print(s)                 // ✅ 最后一项是 println()，这是表达式\n}                            // 但 println() 返回 Unit，所以匹配\n```\n\n\u003e [!TIP]\n\u003e 这是Cangjie的一大特性\n\n\u003e在[if分支结构](../3_逻辑控制/1_if分支结构)中，我们介绍了\n```Cangjie \nlet bit = if (voltage \u003c 2.5) {\n    0\n} else {\n    1\n}\n```\n\u003e其本质也是此特性，借助此特性，我们在主函数返回Int64类型的时候也可以省略return 直接写0，返回Unit类型除了不写，也可以直接写`()`例如\n\n```Cangjie\nmain():Int64{\n    println('Hello World')\n    0\n}\n```\n\n```Cangjie\nmain(){\n    println('Hello World')\n    ()\n}\n```\n\n### 局部变量和作用域\n\n在函数体内定义的变量，作用域从定义处开始，到函数体结束：\n\n```Cangjie\nlet r = 0                     // 全局变量 r\n\nfunc add(a: Int64, b: Int64) {\n    var r = 0                 // 局部变量 r（遮盖了全局的 r）\n    r = a + b\n    return r                  // 这里用的是局部变量 r\n}\n```\n\n\u003e [!TIP]\n\u003e 局部变量可以\"遮盖\"外层的同名变量。在函数体内，同名的局部变量优先级更高。\n\n---\n\n## 4.1.6 动手试一试 ✏️\n\n新建一个仓颉项目，试着编写一个函数实现\"长方形面积计算\"：\n\n```Cangjie\nfunc area(width: Float64, height: Float64): Float64 {\n    return width * height\n}\n\nmain() {\n    let w = 5.0\n    let h = 3.0\n    println(\"面积 = ${area(w, h)}\")   // 输出：面积 = 15\n}\n```\n\n试着修改函数，让它支持**默认值**（宽和高都默认为 1.0），然后分别测试传参和不传参的效果。\n\n---\n\n## 4.1.7 总结\n\n| 知识点 | 说明 |\n|--------|------|\n| `func` 关键字 | 用于定义函数 |\n| 非命名参数 | 按位置传参，格式 `p: T` |\n| 命名参数 | 按名称传参，格式 `p!: T`，可设置默认值 |\n| 返回值类型 | 可选，编译器可自动推导 |\n| 函数体 | 用 `{}` 包裹，最后一项决定函数体类型 |\n| `return` | 终止函数执行并返回值 |\n| 局部变量 | 函数内定义，可遮盖外层同名变量 |\n\n\u003e [!TIP]\n\u003e 下一步 → 学习[调用函数](./2_调用函数/)，看看如何灵活地使用你定义好的函数！\n"])</script><script>self.__next_f.push([1,"9:[\"$\",\"div\",null,{\"className\":\"min-h-screen pb-16\",\"children\":[[\"$\",\"$L14\",null,{\"content\":\"$15\"}],\"$L16\",\"$L17\"]}]\n"])</script><script>self.__next_f.push([1,"18:I[59537,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\",\"/_next/static/chunks/0g4o6d4sifcpo.js\",\"/_next/static/chunks/1ssz3eabjrzaj.js\"],\"ArticleNavSidebar\"]\n19:I[22016,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\",\"/_next/static/chunks/0g4o6d4sifcpo.js\",\"/_next/static/chunks/1ssz3eabjrzaj.js\"],\"\"]\n1a:I[96438,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\",\"/_next/static/chunks/0g4o6d4sifcpo.js\",\"/_next/static/chunks/1ssz3eabjrzaj.js\"],\"ArticleContent\"]\n"])</script><script>self.__next_f.push([1,"16:[\"$\",\"aside\",null,{\"className\":\"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10\",\"children\":[\"$\",\"div\",null,{\"className\":\"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto\",\"children\":[[\"$\",\"h3\",null,{\"className\":\"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider\",\"children\":\"合集\"}],[\"$\",\"div\",null,{\"className\":\"w-full h-px bg-blue-100/50 dark:bg-blue-900/30\"}],[\"$\",\"$L18\",null,{\"rootPath\":\"Cangjie\",\"rootName\":\"Cangjie\",\"articles\":[{\"slug\":\"Cangjie/1_初识仓颉/0_前言\",\"title\":\"初识仓颉\",\"description\":\"从零开始，走进仓颉的世界\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/1_初识仓颉\",\"sort\":0,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711808.6968},{\"slug\":\"Cangjie/2_基本数据类型/0_前言\",\"title\":\"前言\",\"description\":\"仓颉的基本数据类型详解\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":0,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711808.7678},{\"slug\":\"Cangjie/3_逻辑控制/0_前言\",\"title\":\"逻辑控制\",\"description\":\"仓颉的逻辑控制——分支与循环\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/3_逻辑控制\",\"sort\":0,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711809.125},{\"slug\":\"Cangjie/1_初识仓颉/1_第一个仓颉程序\",\"title\":\"第一个仓颉程序\",\"description\":\"步入Cangjie的世界，从零运行起你的第一个程序\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/1_初识仓颉\",\"sort\":1,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711808.7678},{\"slug\":\"Cangjie/2_基本数据类型/1_整数类型\",\"title\":\"整数类型\",\"description\":\"仓颉的基本数据类型\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":1,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711809.125},{\"slug\":\"Cangjie/3_逻辑控制/1_if分支结构\",\"title\":\"if分支结构\",\"description\":\"仓颉的逻辑控制\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/3_逻辑控制\",\"sort\":1,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711809.9539},{\"slug\":\"Cangjie/4_函数/1_定义函数\",\"title\":\"定义函数\",\"description\":\"学会编写可复用的代码块\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/4_函数\",\"sort\":1,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711810.1077},{\"slug\":\"Cangjie/1_初识仓颉/2_仓颉的注释\",\"title\":\"仓颉的注释\",\"description\":\"为程序解释含义\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/1_初识仓颉\",\"sort\":2,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711808.7678},{\"slug\":\"Cangjie/2_基本数据类型/2_浮点类型\",\"title\":\"浮点类型\",\"description\":\"仓颉的基本数据类型\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":2,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711809.125},{\"slug\":\"Cangjie/3_逻辑控制/2_match分支结构\",\"title\":\"match分支结构\",\"description\":\"仓颉的逻辑控制——match分支结构\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/3_逻辑控制\",\"sort\":2,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711809.9539},{\"slug\":\"Cangjie/4_函数/2_调用函数\",\"title\":\"调用函数\",\"description\":\"学会灵活调用仓颉函数\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/4_函数\",\"sort\":2,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711810.465},{\"slug\":\"Cangjie/1_初识仓颉/3_仓颉的标识符\",\"title\":\"仓颉的标识符\",\"description\":\"为程序元素命名\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/1_初识仓颉\",\"sort\":3,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711808.7678},{\"slug\":\"Cangjie/2_基本数据类型/3_字符型\",\"title\":\"字符型\",\"description\":\"仓颉的基本数据类型\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":3,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711809.125},{\"slug\":\"Cangjie/3_逻辑控制/3_while循环结构\",\"title\":\"while循环结构\",\"description\":\"仓颉的逻辑控制——while循环结构\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/3_逻辑控制\",\"sort\":3,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711809.9539},{\"slug\":\"Cangjie/4_函数/3_函数类型\",\"title\":\"函数类型\",\"description\":\"仓颉中函数也是一等公民\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/4_函数\",\"sort\":3,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711810.465},{\"slug\":\"Cangjie/1_初识仓颉/4_仓颉的变量\",\"title\":\"仓颉的变量\",\"description\":\"更方便的管理数据\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/1_初识仓颉\",\"sort\":4,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711808.7678},{\"slug\":\"Cangjie/2_基本数据类型/4_字符串型\",\"title\":\"字符串型\",\"description\":\"仓颉的基本数据类型\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":4,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711809.125},{\"slug\":\"Cangjie/3_逻辑控制/4_do-while循环结构\",\"title\":\"do-while循环结构\",\"description\":\"仓颉的逻辑控制——do-while循环结构\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/3_逻辑控制\",\"sort\":4,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711810.1077},{\"slug\":\"Cangjie/4_函数/4_lambda表达式\",\"title\":\"Lambda表达式\",\"description\":\"快速创建匿名函数\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/4_函数\",\"sort\":4,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711810.465},{\"slug\":\"Cangjie/2_基本数据类型/5_布尔类型\",\"title\":\"布尔类型\",\"description\":\"仓颉的基本数据类型\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":5,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711809.125},{\"slug\":\"Cangjie/3_逻辑控制/5_for-in循环结构\",\"title\":\"for-in循环结构\",\"description\":\"仓颉的逻辑控制——for-in循环结构\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/3_逻辑控制\",\"sort\":5,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711810.1077},{\"slug\":\"Cangjie/4_函数/5_嵌套函数\",\"title\":\"嵌套函数\",\"description\":\"函数内部定义函数\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/4_函数\",\"sort\":5,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711810.465},{\"slug\":\"Cangjie/2_基本数据类型/6_元组类型\",\"title\":\"元组类型\",\"description\":\"仓颉的基本数据类型\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":6,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711809.125},{\"slug\":\"Cangjie/3_逻辑控制/6_循环控制\",\"title\":\"循环控制\",\"description\":\"仓颉的逻辑控制——break 与 continue\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/3_逻辑控制\",\"sort\":6,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711810.1077},{\"slug\":\"Cangjie/4_函数/6_闭包\",\"title\":\"闭包\",\"description\":\"捕获变量的函数与lambda\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/4_函数\",\"sort\":6,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711810.465},{\"slug\":\"Cangjie/2_基本数据类型/7_数组类型\",\"title\":\"数组类型\",\"description\":\"仓颉的基本数据类型\",\"date\":\"2026-06-25\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":7,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711809.125},{\"slug\":\"Cangjie/2_基本数据类型/8_区间类型\",\"title\":\"区间类型\",\"description\":\"仓颉的基本数据类型——区间类型\",\"date\":\"2026-06-25\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":8,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711809.125},{\"slug\":\"Cangjie/2_基本数据类型/9_Unit类型\",\"title\":\"Unit类型\",\"description\":\"仓颉的基本数据类型——Unit类型\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":9,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711809.125},{\"slug\":\"Cangjie/2_基本数据类型/10_nothing类型\",\"title\":\"Nothing类型\",\"description\":\"仓颉的基本数据类型——Nothing类型\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":10,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711809.125},{\"slug\":\"Cangjie/2_基本数据类型/11_运算符\",\"title\":\"运算符\",\"description\":\"仓颉的基本运算操作符\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":11,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711809.125},{\"slug\":\"Cangjie/2_基本数据类型/12_类型转换\",\"title\":\"类型转换\",\"description\":\"仓颉的基本数据类型——数值类型转换\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":12,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711809.125}],\"currentSlug\":\"Cangjie/4_函数/1_定义函数\"}]]}]}]\n"])</script><script>self.__next_f.push([1,"1b:T28bd,"])</script><script>self.__next_f.push([1,"\n## 4.1.1 什么是函数？\n\n你有没有遇到过这种情况——写了一段代码做加法，过一会又需要做同样的加法，只能把代码再写一遍？如果这样的操作重复很多次，代码就会变得又长又乱。\n\n**函数**就是解决这个问题的好帮手。你可以把函数想象成一个\"加工机器\"：\n\n```\n原材料（参数） → [ 函数这台机器 ] → 成品（返回值）\n```\n\n- 你给机器**输入**一些材料（参数）\n- 机器按照预先设定好的步骤**加工**（函数体）\n- 机器给你**输出**一个结果（返回值）\n\n函数最大的好处是：**写一次，用无数次**。而且函数还能让代码更容易阅读——给一段操作起一个有意义的名字，别人看代码时就能立马明白它的作用。\n\n---\n\n## 4.1.2 函数定义的语法\n\n在仓颉中，函数使用关键字 `func` 定义，基本格式如下：\n\n```Cangjie\nfunc 函数名(参数列表): 返回值类型 {\n    // 函数体——要执行的代码\n}\n```\n\n逐项拆解：\n\n| 组成部分 | 说明 | 类比 |\n|---------|------|------|\n| `func` | 告诉编译器\"我要定义一个函数\" | 就像说\"我来设计一台机器\" |\n| `函数名` | 合法的标识符，用来调用这个函数 | 机器的名字，比如\"加法器\" |\n| `(参数列表)` | 函数需要的输入数据，多个参数用逗号隔开 | 机器的进料口 |\n| `: 返回值类型` | 函数加工完后返回什么类型的数据（可选） | 机器的出料口规格 |\n| `{ }` | 函数体，大括号里写具体要执行的代码 | 机器内部的运作流程 |\n\n### 第一个函数示例\n\n来看一个最简单的函数：\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    return a + b\n}\n```\n\n这个函数叫 `add`（加法），它：\n- 接收两个整数 `a` 和 `b`（参数）\n- 返回一个整数（`: Int64`）\n- 把 `a` 和 `b` 相加并返回结果（函数体）\n\n\u003e [!TIP]\n\u003e 定义好函数后，你可以在代码中随时调用它：\n\u003e ```Cangjie\n\u003e let result = add(3, 5)     // result = 8\n\u003e println(add(10, 20))       // 输出 30\n\u003e ```\n\n---\n\n## 4.1.3 参数列表\n\n参数是函数接收的\"输入数据\"。一个函数可以有 **0 个**或多个参数。\n\n```Cangjie\nfunc sayHello() {                      // 无参数\n    println(\"你好！\")\n}\n\nfunc greet(name: String) {              // 1 个参数\n    println(\"你好，${name}！\")\n}\n\nfunc add(a: Int64, b: Int64): Int64 {   // 2 个参数\n    return a + b\n}\n```\n\n仓颉的参数分为两类：**非命名参数**和**命名参数**。\n\n### 非命名参数\n\n非命名参数的定义方式：`参数名: 类型`\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    return a + b\n}\n```\n\n调用时按**位置**传参——第一个值给第一个参数，第二个值给第二个参数：\n\n```Cangjie\nadd(3, 5)    // a = 3, b = 5\n```\n\n### 命名参数\n\n命名参数的定义方式：`参数名!: 类型` —— 在参数名后面多了个 `!`\n\n```Cangjie\nfunc add(a!: Int64, b!: Int64): Int64 {\n    return a + b\n}\n```\n\n调用时需要指定参数名：\n\n```Cangjie\nadd(a: 3, b: 5)       // ✅ 命名参数调用\nadd(3, 5)             // ❌ 报错：命名参数必须指定参数名\n```\n\n\u003e [!NOTE]\n\u003e 命名参数的最大好处是在调用时**参数顺序可以随意调换**：\n\u003e ```Cangjie\n\u003e add(b: 5, a: 3)    // ✅ 顺序无所谓\n\u003e ```\n\n### 命名参数还能设置默认值\n\n通过 `参数名!: 类型 = 默认值` 的语法，可以给命名参数设置默认值：\n\n```Cangjie\nfunc add(a!: Int64 = 1, b!: Int64 = 1): Int64 {\n    return a + b\n}\n\nadd()            // 使用默认值：a=1, b=1 → 结果 2\nadd(a: 10)       // a=10, b=1(默认) → 结果 11\nadd(b: 20)       // a=1(默认), b=20 → 结果 21\nadd(a: 3, b: 7)  // a=3, b=7 → 结果 10\n```\n\n\u003e [!IMPORTANT]\n\u003e 只有**命名参数**可以设置默认值，非命名参数不行。\n\n### 非命名参数和命名参数混用\n\n两者可以在同一个函数中同时使用，但注意顺序：**非命名参数必须在命名参数之前**。\n\n```Cangjie\nfunc example(a: Int64, b!: Int64, c!: Int64) {  // ✅ 先非命名，后命名\n    // ...\n}\n\nfunc example(a!: Int64, b: Int64) {              // ❌ 报错：命名参数后面不能再跟非命名参数\n    // ...\n}\n```\n\n### 参数的特性\n\n**1. 参数是不可变的**\n\n在函数内部不能给参数重新赋值：\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    a = a + b     // ❌ 报错：不能给不可变变量赋值\n    return a\n}\n```\n\n\u003e [!TIP]\n\u003e 参数默认就是不可变的（相当于 `let`），如果需要修改，可以先把参数赋值给一个 `var` 变量：\n\u003e ```Cangjie\n\u003e func add(a: Int64, b: Int64): Int64 {\n\u003e     var _a = a     // ✅ 拷贝一份到可变变量\n\u003e     _a = _a + b\n\u003e     return _a\n\u003e }\n\u003e ```\n\n**2. 参数的作用域**\n\n参数从函数开始到函数结束都有效：\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    var _a = a      // ✅ 可以用参数 a\n    var b = b       // ❌ 报错：参数 b 已经被定义了，不能重复声明\n    return a\n}\n```\n\n---\n\n## 4.1.4 函数返回值类型\n\n返回值类型就是函数\"加工完\"返回的数据类型。在仓颉中，返回值类型是**可选**的。\n\n### 方式一：显式指定返回值类型\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {   // : Int64 表示返回整数\n    return a + b\n}\n```\n\n\u003e [!CAUTION]\n\u003e 如果指定了返回值类型，函数体内所有 `return` 后面的表达式类型都必须匹配：\n\u003e ```Cangjie\n\u003e func add(a: Int64, b: Int64): Int64 {\n\u003e     return (a, b)     // ❌ 报错：返回的是元组，不是 Int64\n\u003e }\n\u003e ```\n\n### 方式二：省略返回值类型（编译器自动推导）\n\n```Cangjie\nfunc add(a: Int64, b: Int64) {   // 没写返回值类型\n    return a + b                 // 编译器自动推导出返回类型是 Int64\n}\n```\n\n编译器会根据 `return` 后面的表达式类型，自动推导出函数的返回值类型。\n\n\u003e [!WARNING]\n\u003e 并不是所有情况都能成功推导。如果推导失败，编译器会报错，此时需要显式指定返回值类型。\n\n### 特殊：返回类型为 Unit\n\n`Unit` 表示\"什么都不返回\"（类似其他语言的 `void`）。当指定返回类型为 `Unit` 时，编译器会在所有可能返回的地方自动插入 `return ()`：\n\n```Cangjie\nfunc foo(): Unit {\n    println(\"你好\")\n    // 不需要写 return，编译器自动处理\n}\n```\n\n---\n\n## 4.1.5 函数体\n\n函数体就是大括号 `{}` 里的内容，定义了函数被调用时具体执行的代码。\n\n### 函数体里可以写什么？\n\n- 变量定义\n- 表达式\n- 控制流（if、for、while 等）\n- 甚至可以**定义新的函数**（嵌套函数）\n\n```Cangjie\nfunc add(a: Int64, b: Int64) {\n    var r = 0          // 变量定义\n    r = a + b          // 表达式\n    return r           // 返回\n}\n```\n\n### return 语句\n\n函数体中用 `return` 来终止函数的执行并返回结果。有两种形式：\n\n| 形式 | 说明 | 适用场景 |\n|------|------|----------|\n| `return expr` | 返回表达式 expr 的值 | 函数有返回值 |\n| `return` | 相当于 `return ()` | 函数返回类型为 Unit |\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    return a + b        // ✅ 返回表达式结果\n}\n\nfunc foo(): Unit {\n    println(\"干活\")\n    return              // ✅ 什么都不返回，仅结束函数\n}\n```\n\n\u003e [!NOTE]\n\u003e `return` 表达式本身是一个特殊类型——`Nothing` 类型，并不是它后面跟着的表达式类型。\n\u003e `Nothing` 是一个特殊的类型，表示\"永远不会有值\"\n\n### 函数体的类型\n\n函数体本身也有\"类型\"——类型是函数体内**最后一项**的类型：\n\n| 最后一项 | 函数体类型 | 示例 |\n|---------|-----------|------|\n| 表达式 | 该表达式的类型 | `a + b` → Int64 |\n| 变量定义 | Unit | `let x = 1` → Unit |\n| 函数声明 | Unit | `func inner() {}` → Unit |\n| 空函数体 | Unit | `{}` → Unit |\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    a + b                     // 最后一项是表达式，类型 Int64\n}                             // 函数体类型 = Int64，匹配返回值类型\n\nfunc foo(): Unit {\n    let s = \"Hello\"          // 最后一项是变量定义，类型 Unit\n    print(s)                 // ✅ 最后一项是 println()，这是表达式\n}                            // 但 println() 返回 Unit，所以匹配\n```\n\n\u003e [!TIP]\n\u003e 这是Cangjie的一大特性\n\n\u003e在[if分支结构](../3_逻辑控制/1_if分支结构)中，我们介绍了\n```Cangjie \nlet bit = if (voltage \u003c 2.5) {\n    0\n} else {\n    1\n}\n```\n\u003e其本质也是此特性，借助此特性，我们在主函数返回Int64类型的时候也可以省略return 直接写0，返回Unit类型除了不写，也可以直接写`()`例如\n\n```Cangjie\nmain():Int64{\n    println('Hello World')\n    0\n}\n```\n\n```Cangjie\nmain(){\n    println('Hello World')\n    ()\n}\n```\n\n### 局部变量和作用域\n\n在函数体内定义的变量，作用域从定义处开始，到函数体结束：\n\n```Cangjie\nlet r = 0                     // 全局变量 r\n\nfunc add(a: Int64, b: Int64) {\n    var r = 0                 // 局部变量 r（遮盖了全局的 r）\n    r = a + b\n    return r                  // 这里用的是局部变量 r\n}\n```\n\n\u003e [!TIP]\n\u003e 局部变量可以\"遮盖\"外层的同名变量。在函数体内，同名的局部变量优先级更高。\n\n---\n\n## 4.1.6 动手试一试 ✏️\n\n新建一个仓颉项目，试着编写一个函数实现\"长方形面积计算\"：\n\n```Cangjie\nfunc area(width: Float64, height: Float64): Float64 {\n    return width * height\n}\n\nmain() {\n    let w = 5.0\n    let h = 3.0\n    println(\"面积 = ${area(w, h)}\")   // 输出：面积 = 15\n}\n```\n\n试着修改函数，让它支持**默认值**（宽和高都默认为 1.0），然后分别测试传参和不传参的效果。\n\n---\n\n## 4.1.7 总结\n\n| 知识点 | 说明 |\n|--------|------|\n| `func` 关键字 | 用于定义函数 |\n| 非命名参数 | 按位置传参，格式 `p: T` |\n| 命名参数 | 按名称传参，格式 `p!: T`，可设置默认值 |\n| 返回值类型 | 可选，编译器可自动推导 |\n| 函数体 | 用 `{}` 包裹，最后一项决定函数体类型 |\n| `return` | 终止函数执行并返回值 |\n| 局部变量 | 函数内定义，可遮盖外层同名变量 |\n\n\u003e [!TIP]\n\u003e 下一步 → 学习[调用函数](./2_调用函数/)，看看如何灵活地使用你定义好的函数！\n"])</script><script>self.__next_f.push([1,"17:[\"$\",\"div\",null,{\"className\":\"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4\",\"children\":[\"$\",\"div\",null,{\"className\":\"max-w-4xl mx-auto\",\"children\":[[\"$\",\"$L19\",null,{\"href\":\"/articles\",\"className\":\"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors\",\"children\":\"← 返回文章列表\"}],[\"$\",\"div\",null,{\"className\":\"mb-8\",\"children\":[[\"$\",\"div\",null,{\"className\":\"flex items-center gap-3 mb-3\",\"children\":[[\"$\",\"span\",null,{\"className\":\"text-sm text-gray-600 dark:text-gray-400\",\"children\":\"2026-07-01\"}],[\"$\",\"div\",null,{\"className\":\"flex gap-1.5\",\"children\":[[\"$\",\"span\",\"Cangjie\",{\"className\":\"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400\",\"children\":[\"#\",\"Cangjie\"]}],[\"$\",\"span\",\"入门教程\",{\"className\":\"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400\",\"children\":[\"#\",\"入门教程\"]}]]}]]}],[\"$\",\"h1\",null,{\"className\":\"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight\",\"children\":\"定义函数\"}],[\"$\",\"p\",null,{\"className\":\"mt-3 text-gray-700 dark:text-gray-300 text-lg\",\"children\":\"学会编写可复用的代码块\"}]]}],[\"$\",\"$L1a\",null,{\"content\":\"$1b\"}],\"$L1c\"]}]}]\n"])</script><script>self.__next_f.push([1,"1d:I[28093,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\",\"/_next/static/chunks/0g4o6d4sifcpo.js\",\"/_next/static/chunks/1ssz3eabjrzaj.js\"],\"MobileArticlePanel\"]\n1e:T28bd,"])</script><script>self.__next_f.push([1,"\n## 4.1.1 什么是函数？\n\n你有没有遇到过这种情况——写了一段代码做加法，过一会又需要做同样的加法，只能把代码再写一遍？如果这样的操作重复很多次，代码就会变得又长又乱。\n\n**函数**就是解决这个问题的好帮手。你可以把函数想象成一个\"加工机器\"：\n\n```\n原材料（参数） → [ 函数这台机器 ] → 成品（返回值）\n```\n\n- 你给机器**输入**一些材料（参数）\n- 机器按照预先设定好的步骤**加工**（函数体）\n- 机器给你**输出**一个结果（返回值）\n\n函数最大的好处是：**写一次，用无数次**。而且函数还能让代码更容易阅读——给一段操作起一个有意义的名字，别人看代码时就能立马明白它的作用。\n\n---\n\n## 4.1.2 函数定义的语法\n\n在仓颉中，函数使用关键字 `func` 定义，基本格式如下：\n\n```Cangjie\nfunc 函数名(参数列表): 返回值类型 {\n    // 函数体——要执行的代码\n}\n```\n\n逐项拆解：\n\n| 组成部分 | 说明 | 类比 |\n|---------|------|------|\n| `func` | 告诉编译器\"我要定义一个函数\" | 就像说\"我来设计一台机器\" |\n| `函数名` | 合法的标识符，用来调用这个函数 | 机器的名字，比如\"加法器\" |\n| `(参数列表)` | 函数需要的输入数据，多个参数用逗号隔开 | 机器的进料口 |\n| `: 返回值类型` | 函数加工完后返回什么类型的数据（可选） | 机器的出料口规格 |\n| `{ }` | 函数体，大括号里写具体要执行的代码 | 机器内部的运作流程 |\n\n### 第一个函数示例\n\n来看一个最简单的函数：\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    return a + b\n}\n```\n\n这个函数叫 `add`（加法），它：\n- 接收两个整数 `a` 和 `b`（参数）\n- 返回一个整数（`: Int64`）\n- 把 `a` 和 `b` 相加并返回结果（函数体）\n\n\u003e [!TIP]\n\u003e 定义好函数后，你可以在代码中随时调用它：\n\u003e ```Cangjie\n\u003e let result = add(3, 5)     // result = 8\n\u003e println(add(10, 20))       // 输出 30\n\u003e ```\n\n---\n\n## 4.1.3 参数列表\n\n参数是函数接收的\"输入数据\"。一个函数可以有 **0 个**或多个参数。\n\n```Cangjie\nfunc sayHello() {                      // 无参数\n    println(\"你好！\")\n}\n\nfunc greet(name: String) {              // 1 个参数\n    println(\"你好，${name}！\")\n}\n\nfunc add(a: Int64, b: Int64): Int64 {   // 2 个参数\n    return a + b\n}\n```\n\n仓颉的参数分为两类：**非命名参数**和**命名参数**。\n\n### 非命名参数\n\n非命名参数的定义方式：`参数名: 类型`\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    return a + b\n}\n```\n\n调用时按**位置**传参——第一个值给第一个参数，第二个值给第二个参数：\n\n```Cangjie\nadd(3, 5)    // a = 3, b = 5\n```\n\n### 命名参数\n\n命名参数的定义方式：`参数名!: 类型` —— 在参数名后面多了个 `!`\n\n```Cangjie\nfunc add(a!: Int64, b!: Int64): Int64 {\n    return a + b\n}\n```\n\n调用时需要指定参数名：\n\n```Cangjie\nadd(a: 3, b: 5)       // ✅ 命名参数调用\nadd(3, 5)             // ❌ 报错：命名参数必须指定参数名\n```\n\n\u003e [!NOTE]\n\u003e 命名参数的最大好处是在调用时**参数顺序可以随意调换**：\n\u003e ```Cangjie\n\u003e add(b: 5, a: 3)    // ✅ 顺序无所谓\n\u003e ```\n\n### 命名参数还能设置默认值\n\n通过 `参数名!: 类型 = 默认值` 的语法，可以给命名参数设置默认值：\n\n```Cangjie\nfunc add(a!: Int64 = 1, b!: Int64 = 1): Int64 {\n    return a + b\n}\n\nadd()            // 使用默认值：a=1, b=1 → 结果 2\nadd(a: 10)       // a=10, b=1(默认) → 结果 11\nadd(b: 20)       // a=1(默认), b=20 → 结果 21\nadd(a: 3, b: 7)  // a=3, b=7 → 结果 10\n```\n\n\u003e [!IMPORTANT]\n\u003e 只有**命名参数**可以设置默认值，非命名参数不行。\n\n### 非命名参数和命名参数混用\n\n两者可以在同一个函数中同时使用，但注意顺序：**非命名参数必须在命名参数之前**。\n\n```Cangjie\nfunc example(a: Int64, b!: Int64, c!: Int64) {  // ✅ 先非命名，后命名\n    // ...\n}\n\nfunc example(a!: Int64, b: Int64) {              // ❌ 报错：命名参数后面不能再跟非命名参数\n    // ...\n}\n```\n\n### 参数的特性\n\n**1. 参数是不可变的**\n\n在函数内部不能给参数重新赋值：\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    a = a + b     // ❌ 报错：不能给不可变变量赋值\n    return a\n}\n```\n\n\u003e [!TIP]\n\u003e 参数默认就是不可变的（相当于 `let`），如果需要修改，可以先把参数赋值给一个 `var` 变量：\n\u003e ```Cangjie\n\u003e func add(a: Int64, b: Int64): Int64 {\n\u003e     var _a = a     // ✅ 拷贝一份到可变变量\n\u003e     _a = _a + b\n\u003e     return _a\n\u003e }\n\u003e ```\n\n**2. 参数的作用域**\n\n参数从函数开始到函数结束都有效：\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    var _a = a      // ✅ 可以用参数 a\n    var b = b       // ❌ 报错：参数 b 已经被定义了，不能重复声明\n    return a\n}\n```\n\n---\n\n## 4.1.4 函数返回值类型\n\n返回值类型就是函数\"加工完\"返回的数据类型。在仓颉中，返回值类型是**可选**的。\n\n### 方式一：显式指定返回值类型\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {   // : Int64 表示返回整数\n    return a + b\n}\n```\n\n\u003e [!CAUTION]\n\u003e 如果指定了返回值类型，函数体内所有 `return` 后面的表达式类型都必须匹配：\n\u003e ```Cangjie\n\u003e func add(a: Int64, b: Int64): Int64 {\n\u003e     return (a, b)     // ❌ 报错：返回的是元组，不是 Int64\n\u003e }\n\u003e ```\n\n### 方式二：省略返回值类型（编译器自动推导）\n\n```Cangjie\nfunc add(a: Int64, b: Int64) {   // 没写返回值类型\n    return a + b                 // 编译器自动推导出返回类型是 Int64\n}\n```\n\n编译器会根据 `return` 后面的表达式类型，自动推导出函数的返回值类型。\n\n\u003e [!WARNING]\n\u003e 并不是所有情况都能成功推导。如果推导失败，编译器会报错，此时需要显式指定返回值类型。\n\n### 特殊：返回类型为 Unit\n\n`Unit` 表示\"什么都不返回\"（类似其他语言的 `void`）。当指定返回类型为 `Unit` 时，编译器会在所有可能返回的地方自动插入 `return ()`：\n\n```Cangjie\nfunc foo(): Unit {\n    println(\"你好\")\n    // 不需要写 return，编译器自动处理\n}\n```\n\n---\n\n## 4.1.5 函数体\n\n函数体就是大括号 `{}` 里的内容，定义了函数被调用时具体执行的代码。\n\n### 函数体里可以写什么？\n\n- 变量定义\n- 表达式\n- 控制流（if、for、while 等）\n- 甚至可以**定义新的函数**（嵌套函数）\n\n```Cangjie\nfunc add(a: Int64, b: Int64) {\n    var r = 0          // 变量定义\n    r = a + b          // 表达式\n    return r           // 返回\n}\n```\n\n### return 语句\n\n函数体中用 `return` 来终止函数的执行并返回结果。有两种形式：\n\n| 形式 | 说明 | 适用场景 |\n|------|------|----------|\n| `return expr` | 返回表达式 expr 的值 | 函数有返回值 |\n| `return` | 相当于 `return ()` | 函数返回类型为 Unit |\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    return a + b        // ✅ 返回表达式结果\n}\n\nfunc foo(): Unit {\n    println(\"干活\")\n    return              // ✅ 什么都不返回，仅结束函数\n}\n```\n\n\u003e [!NOTE]\n\u003e `return` 表达式本身是一个特殊类型——`Nothing` 类型，并不是它后面跟着的表达式类型。\n\u003e `Nothing` 是一个特殊的类型，表示\"永远不会有值\"\n\n### 函数体的类型\n\n函数体本身也有\"类型\"——类型是函数体内**最后一项**的类型：\n\n| 最后一项 | 函数体类型 | 示例 |\n|---------|-----------|------|\n| 表达式 | 该表达式的类型 | `a + b` → Int64 |\n| 变量定义 | Unit | `let x = 1` → Unit |\n| 函数声明 | Unit | `func inner() {}` → Unit |\n| 空函数体 | Unit | `{}` → Unit |\n\n```Cangjie\nfunc add(a: Int64, b: Int64): Int64 {\n    a + b                     // 最后一项是表达式，类型 Int64\n}                             // 函数体类型 = Int64，匹配返回值类型\n\nfunc foo(): Unit {\n    let s = \"Hello\"          // 最后一项是变量定义，类型 Unit\n    print(s)                 // ✅ 最后一项是 println()，这是表达式\n}                            // 但 println() 返回 Unit，所以匹配\n```\n\n\u003e [!TIP]\n\u003e 这是Cangjie的一大特性\n\n\u003e在[if分支结构](../3_逻辑控制/1_if分支结构)中，我们介绍了\n```Cangjie \nlet bit = if (voltage \u003c 2.5) {\n    0\n} else {\n    1\n}\n```\n\u003e其本质也是此特性，借助此特性，我们在主函数返回Int64类型的时候也可以省略return 直接写0，返回Unit类型除了不写，也可以直接写`()`例如\n\n```Cangjie\nmain():Int64{\n    println('Hello World')\n    0\n}\n```\n\n```Cangjie\nmain(){\n    println('Hello World')\n    ()\n}\n```\n\n### 局部变量和作用域\n\n在函数体内定义的变量，作用域从定义处开始，到函数体结束：\n\n```Cangjie\nlet r = 0                     // 全局变量 r\n\nfunc add(a: Int64, b: Int64) {\n    var r = 0                 // 局部变量 r（遮盖了全局的 r）\n    r = a + b\n    return r                  // 这里用的是局部变量 r\n}\n```\n\n\u003e [!TIP]\n\u003e 局部变量可以\"遮盖\"外层的同名变量。在函数体内，同名的局部变量优先级更高。\n\n---\n\n## 4.1.6 动手试一试 ✏️\n\n新建一个仓颉项目，试着编写一个函数实现\"长方形面积计算\"：\n\n```Cangjie\nfunc area(width: Float64, height: Float64): Float64 {\n    return width * height\n}\n\nmain() {\n    let w = 5.0\n    let h = 3.0\n    println(\"面积 = ${area(w, h)}\")   // 输出：面积 = 15\n}\n```\n\n试着修改函数，让它支持**默认值**（宽和高都默认为 1.0），然后分别测试传参和不传参的效果。\n\n---\n\n## 4.1.7 总结\n\n| 知识点 | 说明 |\n|--------|------|\n| `func` 关键字 | 用于定义函数 |\n| 非命名参数 | 按位置传参，格式 `p: T` |\n| 命名参数 | 按名称传参，格式 `p!: T`，可设置默认值 |\n| 返回值类型 | 可选，编译器可自动推导 |\n| 函数体 | 用 `{}` 包裹，最后一项决定函数体类型 |\n| `return` | 终止函数执行并返回值 |\n| 局部变量 | 函数内定义，可遮盖外层同名变量 |\n\n\u003e [!TIP]\n\u003e 下一步 → 学习[调用函数](./2_调用函数/)，看看如何灵活地使用你定义好的函数！\n"])</script><script>self.__next_f.push([1,"1c:[\"$\",\"$L1d\",null,{\"content\":\"$1e\",\"collection\":\"Cangjie/4_函数\",\"rootColPath\":\"Cangjie\",\"allArticles\":[\"$16:props:children:props:children:2:props:articles:0\",\"$16:props:children:props:children:2:props:articles:1\",\"$16:props:children:props:children:2:props:articles:2\",\"$16:props:children:props:children:2:props:articles:3\",\"$16:props:children:props:children:2:props:articles:4\",\"$16:props:children:props:children:2:props:articles:5\",\"$16:props:children:props:children:2:props:articles:6\",{\"slug\":\"hello-seline-blog\",\"title\":\"Hello Seline Blog\",\"description\":\"欢迎来到 Seline Blog，一个开源的个人博客！\",\"date\":\"2024-01-15\",\"tags\":[\"Seline\",\"Next.js\",\"博客\"],\"collection\":\"$undefined\",\"sort\":1,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782915711810.465},\"$16:props:children:props:children:2:props:articles:7\",\"$16:props:children:props:children:2:props:articles:8\",\"$16:props:children:props:children:2:props:articles:9\",\"$16:props:children:props:children:2:props:articles:10\",\"$16:props:children:props:children:2:props:articles:11\",\"$16:props:children:props:children:2:props:articles:12\",\"$16:props:children:props:children:2:props:articles:13\",\"$16:props:children:props:children:2:props:articles:14\",\"$16:props:children:props:children:2:props:articles:15\",\"$16:props:children:props:children:2:props:articles:16\",\"$16:props:children:props:children:2:props:articles:17\",\"$16:props:children:props:children:2:props:articles:18\",\"$16:props:children:props:children:2:props:articles:19\",\"$16:props:children:props:children:2:props:articles:20\",\"$16:props:children:props:children:2:props:articles:21\",\"$16:props:children:props:children:2:props:articles:22\",\"$16:props:children:props:children:2:props:articles:23\",\"$16:props:children:props:children:2:props:articles:24\",\"$16:props:children:props:children:2:props:articles:25\",\"$16:props:children:props:children:2:props:articles:26\",\"$16:props:children:props:children:2:props:articles:27\",\"$16:props:children:props:children:2:props:articles:28\",\"$16:props:children:props:children:2:props:articles:29\",\"$16:props:children:props:children:2:props:articles:30\"],\"currentSlug\":\"Cangjie/4_函数/1_定义函数\"}]\n"])</script><script>self.__next_f.push([1,"f:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n"])</script><script>self.__next_f.push([1,"1f:I[27201,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"IconMark\"]\nc:null\n11:[[\"$\",\"title\",\"0\",{\"children\":\"定义函数 | Seline Blog\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"学会编写可复用的代码块\"}],[\"$\",\"link\",\"2\",{\"rel\":\"icon\",\"href\":\"/favicon.ico?favicon.2vob68tjqpejf.ico\",\"sizes\":\"256x256\",\"type\":\"image/x-icon\"}],[\"$\",\"link\",\"3\",{\"rel\":\"icon\",\"href\":\"/images/avatar.webp\"}],[\"$\",\"$L1f\",\"4\",{}]]\n"])</script></body></html>

@@ -1,0 +1,610 @@
+1:"$Sreact.fragment"
+2:I[23597,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"TocSidebar"]
+9:I[59537,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleNavSidebar"]
+a:I[22016,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],""]
+b:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleContent"]
+e:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
+f:"$Sreact.suspense"
+11:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"MobileArticlePanel"]
+3:T14c2,
+## 4.4.1 什么是 Lambda 表达式？
+
+**Lambda 表达式**是一种**匿名函数**——即没有函数名的函数。它的核心设计目的是在程序中快速定义简短的函数逻辑，无需显式声明函数名称。
+
+这一概念起源于数学中的 λ 演算（lambda calculus），后被引入多种编程语言（如 C++、Python、C# 等），用于简化代码并提升灵活性。仓颉编程语言中也引入了 Lambda 表达式。
+
+
+---
+
+## 4.4.2 Lambda 表达式的基本语法
+
+Lambda 表达式的语法如下：
+
+```Cangjie
+{ p1: T1, ..., pn: Tn => expressions | declarations }
+```
+
+- `=>` **之前**为参数列表，多个参数之间使用 `,` 分隔，每个参数名和参数类型之间使用 `:` 分隔
+- `=>` **之后**为 Lambda 表达式体，是一组表达式或声明序列
+
+```Cangjie
+let f1 = { a: Int64, b: Int64 => a + b }
+```
+
+这段代码定义了一个 Lambda 表达式：接收两个 `Int64` 参数 `a` 和 `b`，返回它们的和，然后赋值给变量 `f1`。
+
+Lambda 表达式也可以没有参数：
+
+```Cangjie
+var display = {
+    =>                  // 无参 lambda
+        println("Hello")
+        println("World")
+}
+```
+
+> [!IMPORTANT]
+> Lambda 表达式不管有没有参数，**都不可以省略 `=>`**，除非它作为尾随 lambda（[见下文](#446-尾随-lambda)）。
+
+```Cangjie
+var display = { => println("Hello") }     // ✅ 有 =>
+```
+
+---
+
+## 4.4.3 参数类型省略与推断
+
+Lambda 表达式中参数的类型标注可以**缺省**。编译器会尝试从上下文中推断参数类型，以下情形中推断可以成功：
+
+### 1. 赋值时根据变量类型推断
+
+```Cangjie
+var sum1: (Int64, Int64) -> Int64 = { a, b => a + b }    // a 和 b 的类型被推断为 Int64  
+var sum2: (Int64, Int64) -> Int64 = { a: Int64, b => a + b }  // 可以部分标注
+```
+
+### 2. 作为实参时根据形参类型推断
+
+```Cangjie
+func f(a1: (Int64) -> Int64): Int64 {
+    a1(1)
+}
+
+main(): Int64 {
+    // 参数 a2 的类型由函数 f 的形参推断为 Int64
+    f({ a2 => a2 + 10 })
+}
+```
+
+> [!WARNING]
+> 当编译器无法推断出参数类型时会编译报错。此时需要显式标注参数类型。
+
+---
+
+## 4.4.4 返回类型推断
+
+Lambda 表达式中**不支持显式声明返回类型**，其返回类型总是从上下文中推断出来。
+
+### 1. 赋值时根据变量类型推断
+
+```Cangjie
+let f: () -> Unit = { => println(10) }
+```
+
+### 2. 作为参数时根据形参类型推断
+
+```Cangjie
+func f(a1: (Int64) -> Int64): Int64 {
+    a1(1)
+}
+
+main(): Int64 {
+    f({ a2: Int64 => a2 + 10 })
+}
+```
+
+### 3. 作为返回值时根据函数返回类型推断
+
+```Cangjie
+func f(): (Int64) -> Int64 {
+    { a: Int64 => a }
+}
+```
+
+### 4. 从函数体自身推断
+
+若上下文中类型未明确，编译器会根据 Lambda 表达式体中所有 `return xxx` 中 `xxx` 的类型，以及 Lambda 表达式体的类型，来共同推导出返回类型。
+
+```Cangjie
+let sum1 = { a: Int64, b: Int64 => a + b }    // 返回类型为 Int64  仓颉的特性 不写return
+let f = { => }                                 // 右侧为空，返回类型为 Unit
+```
+
+> [!NOTE]
+> `=>` 右侧的内容与普通函数体的规则一致。`=>` 右侧为空时，返回类型为 `Unit`。
+
+---
+
+## 4.4.5 调用 Lambda 表达式
+
+### 立即调用
+
+Lambda 表达式支持定义后**立即调用**：
+
+```Cangjie
+let r1 = { a: Int64, b: Int64 => a + b }(1, 2)   // r1 = 3
+let r2 = { => 123 }()                              // r2 = 123
+```
+
+### 赋值后调用
+
+Lambda 表达式也可以赋值给变量，通过变量名调用：
+
+```Cangjie
+func f() {
+    var g = { x: Int64 => println("x = ${x}") }
+    g(2)      // 输出：x = 2
+}
+```
+
+---
+
+## 4.4.6 尾随 Lambda
+
+**尾随 lambda** 是一种特殊的语法，可以使函数的调用看起来像是语言内置的语法一样，增加代码的可读性。
+
+当函数**最后一个形参是函数类型**，并且函数调用对应的实参是 lambda 时，可以将 lambda **放在函数调用的尾部，圆括号外面**：
+
+```Cangjie
+func myIf(a: Bool, fn: () -> Int64) {
+    if (a) {
+        fn()
+    } else {
+        0
+    }
+}
+
+func test() {
+    myIf(true, { => 100 })   // ✅ 普通函数调用
+
+    myIf(true) {             // ✅ 尾随 lambda 调用
+        100
+    }
+}
+```
+
+如果函数调用**有且只有一个 lambda 实参**，还可以省略 `()`，只写 lambda：
+
+```Cangjie
+func f(fn: (Int64) -> Int64) {
+    fn(1)
+}
+
+func test() {
+    f { i => i * i }   // ✅ 省略 ()，只写 lambda
+}
+```
+
+> [!TIP]
+> 尾随 lambda 让代码更"自然"——`myIf(true) { 100 }` 读起来就像 `myIf` 是一个内置的关键字结构一样。这种语法在 Kotlin、Swift 等语言中也非常常见。
+> 在仓颉开发鸿蒙APP时，会大量用到
+
+---
+
+## 4.4.7 总结
+
+| 知识点 | 说明 |
+|--------|------|
+| 基本语法 | `{ p1: T1, ... => expressions }`，`=>` 不可省略 |
+| 参数类型推断 | 从变量类型、形参类型等上下文中自动推断 |
+| 返回类型推断 | 从上下文推断，不支持显式声明 |
+| 立即调用 | `{ ... }(args)` 定义后马上执行 |
+| 赋值后调用 | `let f = { ... }; f(args)` |
+| 尾随 lambda | 最后一个函数类型参数可放在括号外 |
+| 单 lambda 省略括号 | 只有 lambda 实参时可省略 `()` |
+
+
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],"$L4","$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"ZLeK0pn4ygJgGb8IJWxNx"}
+4:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L9",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782915711808.6968},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"published":true,"mtime":1782915711808.7678},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782915711808.7678},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"published":true,"mtime":1782915711809.9539},{"slug":"Cangjie/4_函数/1_定义函数","title":"定义函数","description":"学会编写可复用的代码块","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":1,"published":true,"mtime":1782915711810.1077},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782915711808.7678},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"published":true,"mtime":1782915711809.9539},{"slug":"Cangjie/4_函数/2_调用函数","title":"调用函数","description":"学会灵活调用仓颉函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":2,"published":true,"mtime":1782915711810.465},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782915711808.7678},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"published":true,"mtime":1782915711809.9539},{"slug":"Cangjie/4_函数/3_函数类型","title":"函数类型","description":"仓颉中函数也是一等公民","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":3,"published":true,"mtime":1782915711810.465},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782915711808.7678},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"published":true,"mtime":1782915711810.1077},{"slug":"Cangjie/4_函数/4_lambda表达式","title":"Lambda表达式","description":"快速创建匿名函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":4,"published":true,"mtime":1782915711810.465},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"published":true,"mtime":1782915711810.1077},{"slug":"Cangjie/4_函数/5_嵌套函数","title":"嵌套函数","description":"函数内部定义函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":5,"published":true,"mtime":1782915711810.465},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"published":true,"mtime":1782915711810.1077},{"slug":"Cangjie/4_函数/6_闭包","title":"闭包","description":"捕获变量的函数与lambda","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":6,"published":true,"mtime":1782915711810.465},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/2_基本数据类型/10_nothing类型","title":"Nothing类型","description":"仓颉的基本数据类型——Nothing类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/2_基本数据类型/11_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"published":true,"mtime":1782915711809.125},{"slug":"Cangjie/2_基本数据类型/12_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":12,"published":true,"mtime":1782915711809.125}],"currentSlug":"Cangjie/4_函数/4_lambda表达式"}]]}]}]
+c:T14c2,
+## 4.4.1 什么是 Lambda 表达式？
+
+**Lambda 表达式**是一种**匿名函数**——即没有函数名的函数。它的核心设计目的是在程序中快速定义简短的函数逻辑，无需显式声明函数名称。
+
+这一概念起源于数学中的 λ 演算（lambda calculus），后被引入多种编程语言（如 C++、Python、C# 等），用于简化代码并提升灵活性。仓颉编程语言中也引入了 Lambda 表达式。
+
+
+---
+
+## 4.4.2 Lambda 表达式的基本语法
+
+Lambda 表达式的语法如下：
+
+```Cangjie
+{ p1: T1, ..., pn: Tn => expressions | declarations }
+```
+
+- `=>` **之前**为参数列表，多个参数之间使用 `,` 分隔，每个参数名和参数类型之间使用 `:` 分隔
+- `=>` **之后**为 Lambda 表达式体，是一组表达式或声明序列
+
+```Cangjie
+let f1 = { a: Int64, b: Int64 => a + b }
+```
+
+这段代码定义了一个 Lambda 表达式：接收两个 `Int64` 参数 `a` 和 `b`，返回它们的和，然后赋值给变量 `f1`。
+
+Lambda 表达式也可以没有参数：
+
+```Cangjie
+var display = {
+    =>                  // 无参 lambda
+        println("Hello")
+        println("World")
+}
+```
+
+> [!IMPORTANT]
+> Lambda 表达式不管有没有参数，**都不可以省略 `=>`**，除非它作为尾随 lambda（[见下文](#446-尾随-lambda)）。
+
+```Cangjie
+var display = { => println("Hello") }     // ✅ 有 =>
+```
+
+---
+
+## 4.4.3 参数类型省略与推断
+
+Lambda 表达式中参数的类型标注可以**缺省**。编译器会尝试从上下文中推断参数类型，以下情形中推断可以成功：
+
+### 1. 赋值时根据变量类型推断
+
+```Cangjie
+var sum1: (Int64, Int64) -> Int64 = { a, b => a + b }    // a 和 b 的类型被推断为 Int64  
+var sum2: (Int64, Int64) -> Int64 = { a: Int64, b => a + b }  // 可以部分标注
+```
+
+### 2. 作为实参时根据形参类型推断
+
+```Cangjie
+func f(a1: (Int64) -> Int64): Int64 {
+    a1(1)
+}
+
+main(): Int64 {
+    // 参数 a2 的类型由函数 f 的形参推断为 Int64
+    f({ a2 => a2 + 10 })
+}
+```
+
+> [!WARNING]
+> 当编译器无法推断出参数类型时会编译报错。此时需要显式标注参数类型。
+
+---
+
+## 4.4.4 返回类型推断
+
+Lambda 表达式中**不支持显式声明返回类型**，其返回类型总是从上下文中推断出来。
+
+### 1. 赋值时根据变量类型推断
+
+```Cangjie
+let f: () -> Unit = { => println(10) }
+```
+
+### 2. 作为参数时根据形参类型推断
+
+```Cangjie
+func f(a1: (Int64) -> Int64): Int64 {
+    a1(1)
+}
+
+main(): Int64 {
+    f({ a2: Int64 => a2 + 10 })
+}
+```
+
+### 3. 作为返回值时根据函数返回类型推断
+
+```Cangjie
+func f(): (Int64) -> Int64 {
+    { a: Int64 => a }
+}
+```
+
+### 4. 从函数体自身推断
+
+若上下文中类型未明确，编译器会根据 Lambda 表达式体中所有 `return xxx` 中 `xxx` 的类型，以及 Lambda 表达式体的类型，来共同推导出返回类型。
+
+```Cangjie
+let sum1 = { a: Int64, b: Int64 => a + b }    // 返回类型为 Int64  仓颉的特性 不写return
+let f = { => }                                 // 右侧为空，返回类型为 Unit
+```
+
+> [!NOTE]
+> `=>` 右侧的内容与普通函数体的规则一致。`=>` 右侧为空时，返回类型为 `Unit`。
+
+---
+
+## 4.4.5 调用 Lambda 表达式
+
+### 立即调用
+
+Lambda 表达式支持定义后**立即调用**：
+
+```Cangjie
+let r1 = { a: Int64, b: Int64 => a + b }(1, 2)   // r1 = 3
+let r2 = { => 123 }()                              // r2 = 123
+```
+
+### 赋值后调用
+
+Lambda 表达式也可以赋值给变量，通过变量名调用：
+
+```Cangjie
+func f() {
+    var g = { x: Int64 => println("x = ${x}") }
+    g(2)      // 输出：x = 2
+}
+```
+
+---
+
+## 4.4.6 尾随 Lambda
+
+**尾随 lambda** 是一种特殊的语法，可以使函数的调用看起来像是语言内置的语法一样，增加代码的可读性。
+
+当函数**最后一个形参是函数类型**，并且函数调用对应的实参是 lambda 时，可以将 lambda **放在函数调用的尾部，圆括号外面**：
+
+```Cangjie
+func myIf(a: Bool, fn: () -> Int64) {
+    if (a) {
+        fn()
+    } else {
+        0
+    }
+}
+
+func test() {
+    myIf(true, { => 100 })   // ✅ 普通函数调用
+
+    myIf(true) {             // ✅ 尾随 lambda 调用
+        100
+    }
+}
+```
+
+如果函数调用**有且只有一个 lambda 实参**，还可以省略 `()`，只写 lambda：
+
+```Cangjie
+func f(fn: (Int64) -> Int64) {
+    fn(1)
+}
+
+func test() {
+    f { i => i * i }   // ✅ 省略 ()，只写 lambda
+}
+```
+
+> [!TIP]
+> 尾随 lambda 让代码更"自然"——`myIf(true) { 100 }` 读起来就像 `myIf` 是一个内置的关键字结构一样。这种语法在 Kotlin、Swift 等语言中也非常常见。
+> 在仓颉开发鸿蒙APP时，会大量用到
+
+---
+
+## 4.4.7 总结
+
+| 知识点 | 说明 |
+|--------|------|
+| 基本语法 | `{ p1: T1, ... => expressions }`，`=>` 不可省略 |
+| 参数类型推断 | 从变量类型、形参类型等上下文中自动推断 |
+| 返回类型推断 | 从上下文推断，不支持显式声明 |
+| 立即调用 | `{ ... }(args)` 定义后马上执行 |
+| 赋值后调用 | `let f = { ... }; f(args)` |
+| 尾随 lambda | 最后一个函数类型参数可放在括号外 |
+| 单 lambda 省略括号 | 只有 lambda 实参时可省略 `()` |
+
+
+5:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$La",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-07-01"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"Lambda表达式"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"快速创建匿名函数"}]]}],["$","$Lb",null,{"content":"$c"}],"$Ld"]}]}]
+6:["$","script","script-0",{"src":"/_next/static/chunks/0g4o6d4sifcpo.js","async":true}]
+7:["$","script","script-1",{"src":"/_next/static/chunks/1ssz3eabjrzaj.js","async":true}]
+8:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
+12:T14c2,
+## 4.4.1 什么是 Lambda 表达式？
+
+**Lambda 表达式**是一种**匿名函数**——即没有函数名的函数。它的核心设计目的是在程序中快速定义简短的函数逻辑，无需显式声明函数名称。
+
+这一概念起源于数学中的 λ 演算（lambda calculus），后被引入多种编程语言（如 C++、Python、C# 等），用于简化代码并提升灵活性。仓颉编程语言中也引入了 Lambda 表达式。
+
+
+---
+
+## 4.4.2 Lambda 表达式的基本语法
+
+Lambda 表达式的语法如下：
+
+```Cangjie
+{ p1: T1, ..., pn: Tn => expressions | declarations }
+```
+
+- `=>` **之前**为参数列表，多个参数之间使用 `,` 分隔，每个参数名和参数类型之间使用 `:` 分隔
+- `=>` **之后**为 Lambda 表达式体，是一组表达式或声明序列
+
+```Cangjie
+let f1 = { a: Int64, b: Int64 => a + b }
+```
+
+这段代码定义了一个 Lambda 表达式：接收两个 `Int64` 参数 `a` 和 `b`，返回它们的和，然后赋值给变量 `f1`。
+
+Lambda 表达式也可以没有参数：
+
+```Cangjie
+var display = {
+    =>                  // 无参 lambda
+        println("Hello")
+        println("World")
+}
+```
+
+> [!IMPORTANT]
+> Lambda 表达式不管有没有参数，**都不可以省略 `=>`**，除非它作为尾随 lambda（[见下文](#446-尾随-lambda)）。
+
+```Cangjie
+var display = { => println("Hello") }     // ✅ 有 =>
+```
+
+---
+
+## 4.4.3 参数类型省略与推断
+
+Lambda 表达式中参数的类型标注可以**缺省**。编译器会尝试从上下文中推断参数类型，以下情形中推断可以成功：
+
+### 1. 赋值时根据变量类型推断
+
+```Cangjie
+var sum1: (Int64, Int64) -> Int64 = { a, b => a + b }    // a 和 b 的类型被推断为 Int64  
+var sum2: (Int64, Int64) -> Int64 = { a: Int64, b => a + b }  // 可以部分标注
+```
+
+### 2. 作为实参时根据形参类型推断
+
+```Cangjie
+func f(a1: (Int64) -> Int64): Int64 {
+    a1(1)
+}
+
+main(): Int64 {
+    // 参数 a2 的类型由函数 f 的形参推断为 Int64
+    f({ a2 => a2 + 10 })
+}
+```
+
+> [!WARNING]
+> 当编译器无法推断出参数类型时会编译报错。此时需要显式标注参数类型。
+
+---
+
+## 4.4.4 返回类型推断
+
+Lambda 表达式中**不支持显式声明返回类型**，其返回类型总是从上下文中推断出来。
+
+### 1. 赋值时根据变量类型推断
+
+```Cangjie
+let f: () -> Unit = { => println(10) }
+```
+
+### 2. 作为参数时根据形参类型推断
+
+```Cangjie
+func f(a1: (Int64) -> Int64): Int64 {
+    a1(1)
+}
+
+main(): Int64 {
+    f({ a2: Int64 => a2 + 10 })
+}
+```
+
+### 3. 作为返回值时根据函数返回类型推断
+
+```Cangjie
+func f(): (Int64) -> Int64 {
+    { a: Int64 => a }
+}
+```
+
+### 4. 从函数体自身推断
+
+若上下文中类型未明确，编译器会根据 Lambda 表达式体中所有 `return xxx` 中 `xxx` 的类型，以及 Lambda 表达式体的类型，来共同推导出返回类型。
+
+```Cangjie
+let sum1 = { a: Int64, b: Int64 => a + b }    // 返回类型为 Int64  仓颉的特性 不写return
+let f = { => }                                 // 右侧为空，返回类型为 Unit
+```
+
+> [!NOTE]
+> `=>` 右侧的内容与普通函数体的规则一致。`=>` 右侧为空时，返回类型为 `Unit`。
+
+---
+
+## 4.4.5 调用 Lambda 表达式
+
+### 立即调用
+
+Lambda 表达式支持定义后**立即调用**：
+
+```Cangjie
+let r1 = { a: Int64, b: Int64 => a + b }(1, 2)   // r1 = 3
+let r2 = { => 123 }()                              // r2 = 123
+```
+
+### 赋值后调用
+
+Lambda 表达式也可以赋值给变量，通过变量名调用：
+
+```Cangjie
+func f() {
+    var g = { x: Int64 => println("x = ${x}") }
+    g(2)      // 输出：x = 2
+}
+```
+
+---
+
+## 4.4.6 尾随 Lambda
+
+**尾随 lambda** 是一种特殊的语法，可以使函数的调用看起来像是语言内置的语法一样，增加代码的可读性。
+
+当函数**最后一个形参是函数类型**，并且函数调用对应的实参是 lambda 时，可以将 lambda **放在函数调用的尾部，圆括号外面**：
+
+```Cangjie
+func myIf(a: Bool, fn: () -> Int64) {
+    if (a) {
+        fn()
+    } else {
+        0
+    }
+}
+
+func test() {
+    myIf(true, { => 100 })   // ✅ 普通函数调用
+
+    myIf(true) {             // ✅ 尾随 lambda 调用
+        100
+    }
+}
+```
+
+如果函数调用**有且只有一个 lambda 实参**，还可以省略 `()`，只写 lambda：
+
+```Cangjie
+func f(fn: (Int64) -> Int64) {
+    fn(1)
+}
+
+func test() {
+    f { i => i * i }   // ✅ 省略 ()，只写 lambda
+}
+```
+
+> [!TIP]
+> 尾随 lambda 让代码更"自然"——`myIf(true) { 100 }` 读起来就像 `myIf` 是一个内置的关键字结构一样。这种语法在 Kotlin、Swift 等语言中也非常常见。
+> 在仓颉开发鸿蒙APP时，会大量用到
+
+---
+
+## 4.4.7 总结
+
+| 知识点 | 说明 |
+|--------|------|
+| 基本语法 | `{ p1: T1, ... => expressions }`，`=>` 不可省略 |
+| 参数类型推断 | 从变量类型、形参类型等上下文中自动推断 |
+| 返回类型推断 | 从上下文推断，不支持显式声明 |
+| 立即调用 | `{ ... }(args)` 定义后马上执行 |
+| 赋值后调用 | `let f = { ... }; f(args)` |
+| 尾随 lambda | 最后一个函数类型参数可放在括号外 |
+| 单 lambda 省略括号 | 只有 lambda 实参时可省略 `()` |
+
+
+d:["$","$L11",null,{"content":"$12","collection":"Cangjie/4_函数","rootColPath":"Cangjie","allArticles":["$4:props:children:props:children:2:props:articles:0","$4:props:children:props:children:2:props:articles:1","$4:props:children:props:children:2:props:articles:2","$4:props:children:props:children:2:props:articles:3","$4:props:children:props:children:2:props:articles:4","$4:props:children:props:children:2:props:articles:5","$4:props:children:props:children:2:props:articles:6",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782915711810.465},"$4:props:children:props:children:2:props:articles:7","$4:props:children:props:children:2:props:articles:8","$4:props:children:props:children:2:props:articles:9","$4:props:children:props:children:2:props:articles:10","$4:props:children:props:children:2:props:articles:11","$4:props:children:props:children:2:props:articles:12","$4:props:children:props:children:2:props:articles:13","$4:props:children:props:children:2:props:articles:14","$4:props:children:props:children:2:props:articles:15","$4:props:children:props:children:2:props:articles:16","$4:props:children:props:children:2:props:articles:17","$4:props:children:props:children:2:props:articles:18","$4:props:children:props:children:2:props:articles:19","$4:props:children:props:children:2:props:articles:20","$4:props:children:props:children:2:props:articles:21","$4:props:children:props:children:2:props:articles:22","$4:props:children:props:children:2:props:articles:23","$4:props:children:props:children:2:props:articles:24","$4:props:children:props:children:2:props:articles:25","$4:props:children:props:children:2:props:articles:26","$4:props:children:props:children:2:props:articles:27","$4:props:children:props:children:2:props:articles:28","$4:props:children:props:children:2:props:articles:29","$4:props:children:props:children:2:props:articles:30"],"currentSlug":"Cangjie/4_函数/4_lambda表达式"}]
+10:null

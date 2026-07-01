@@ -1,0 +1,685 @@
+1:"$Sreact.fragment"
+2:I[59188,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"BackgroundProvider"]
+3:I[57715,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"BackgroundWrapper"]
+4:I[3374,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"Header"]
+5:I[39756,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"default"]
+6:I[37457,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"default"]
+7:I[58234,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"Footer"]
+8:I[46133,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"BackgroundToggle"]
+a:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
+b:"$Sreact.suspense"
+e:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"ViewportBoundary"]
+10:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"MetadataBoundary"]
+12:I[68027,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"default",1]
+:HL["/_next/static/chunks/2e9j017mspeav.css","style"]
+:HC["/",""]
+0:{"P":null,"c":["","articles","Cangjie","4_%E5%87%BD%E6%95%B0","3_%E5%87%BD%E6%95%B0%E7%B1%BB%E5%9E%8B"],"q":"","i":false,"f":[[["",{"children":["(public)",{"children":["articles",{"children":[["slug","Cangjie/4_%E5%87%BD%E6%95%B0/3_%E5%87%BD%E6%95%B0%E7%B1%BB%E5%9E%8B","c",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/2e9j017mspeav.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0o--8oop24u_f.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/3oax6b5zaxt_z.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/_next/static/chunks/0jubty45h__ir.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh-CN","suppressHydrationWarning":true,"children":["$","body",null,{"className":"min-h-screen flex flex-col text-gray-900 dark:text-gray-100 font-sans","children":["$","$L2",null,{"children":[["$","$L3",null,{}],["$","$L4",null,{}],["$","main",null,{"className":"flex-1","children":["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L7",null,{}],["$","$L8",null,{}]]}]}]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:style","children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:1:props:style","children":404}],["$","div",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:2:props:style","children":["$","h2",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:2:props:children:props:style","children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L9",[["$","script","script-0",{"src":"/_next/static/chunks/0g4o6d4sifcpo.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1ssz3eabjrzaj.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]]}],{},null,false,null]},null,false,"$@d"]},null,false,"$@d"]},null,false,"$@d"]},null,false,null],["$","$1","h",{"children":[null,["$","$Le",null,{"children":"$Lf"}],["$","div",null,{"hidden":true,"children":["$","$L10",null,{"children":["$","$b",null,{"name":"Next.Metadata","children":"$L11"}]}]}],null]}],false]],"m":"$undefined","G":["$12",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/2e9j017mspeav.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"ZLeK0pn4ygJgGb8IJWxNx"}
+13:[]
+d:"$W13"
+14:I[23597,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"TocSidebar"]
+15:T176f,
+## 4.3.1 什么是函数类型？
+
+在仓颉编程语言中，**函数是一等公民（first-class citizens）**，这意味着函数可以：
+
+- 作为函数的**参数**传递
+- 作为函数的**返回值**返回
+- **赋值给变量**
+
+正因为函数可以像普通数据一样被传递，函数本身也必须有类型——这就是**函数类型**。
+
+> [!TIP]
+> "一等公民"的意思是：函数拥有和整数、字符串等普通数据一样的"待遇"——能存到变量里，也能在函数间传来传去。
+
+函数类型由**参数类型**和**返回类型**组成，两者之间使用 `->` 连接：
+
+```Cangjie
+(参数类型列表) -> 返回类型
+```
+
+参数类型使用圆括号 `()` 括起来，可以有 0 个或多个参数；如果参数超过一个，参数类型之间使用逗号 `,` 分隔。
+
+---
+
+## 4.3.2 基本示例
+
+看几个例子，直观感受函数类型的写法：
+
+### 无参函数
+
+```Cangjie
+func hello(): Unit {
+    println("Hello!")
+}
+```
+
+函数 `hello` 的类型是 **`() -> Unit`**，表示该函数没有参数，返回类型为 `Unit`。
+
+### 一个参数的函数
+
+```Cangjie
+func display(a: Int64): Unit {
+    println(a)
+}
+```
+
+函数 `display` 的类型是 **`(Int64) -> Unit`**，表示该函数有一个 `Int64` 参数，返回类型为 `Unit`。
+
+### 两个参数的函数
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    a + b
+}
+```
+
+函数 `add` 的类型是 **`(Int64, Int64) -> Int64`**，表示该函数有两个 `Int64` 参数，返回类型为 `Int64`。
+
+### 返回元组的函数
+
+```Cangjie
+func returnTuple(a: Int64, b: Int64): (Int64, Int64) {
+    (a, b)
+}
+```
+
+函数 `returnTuple` 的类型是 **`(Int64, Int64) -> (Int64, Int64)`**，两个参数类型均为 `Int64`，返回类型为元组 `(Int64, Int64)`。
+
+> [!NOTE]
+> 函数类型的语法**只关心参数类型和返回类型**，不关心参数名。`(Int64, Int64) -> Int64` 就准确地描述了一类函数。
+
+---
+
+## 4.3.3 函数类型的类型参数名
+
+可以为函数类型的参数标记显式的**类型参数名**，这能让代码的意图更清晰：
+
+```Cangjie
+func showFruitPrice(name: String, price: Int64) {
+    println("fruit: ${name} price: ${price} yuan")
+}
+
+main() {
+    let fruitPriceHandler: (name: String, price: Int64) -> Unit
+    fruitPriceHandler = showFruitPrice
+    fruitPriceHandler("banana", 10)
+}
+```
+
+上例中，变量 `fruitPriceHandler` 的类型是 `(name: String, price: Int64) -> Unit`，参数名 `name` 和 `price` 清楚地说明了每个参数的用途。
+
+> [!CAUTION]
+> 在一个函数类型中，要么**统一写**类型参数名，要么**统一不写**，不能交替存在：
+>
+> ```Cangjie
+> let handler: (name: String, Int64) -> Int64   // Error
+> ```
+
+---
+
+## 4.3.4 函数类型作为参数类型
+
+函数类型最常见的用途之一，就是作为另一个函数的参数：
+
+```Cangjie
+func printAdd(add: (Int64, Int64) -> Int64, a: Int64, b: Int64): Unit {
+    println(add(a, b))
+}
+```
+
+函数 `printAdd` 的类型是 **`((Int64, Int64) -> Int64, Int64, Int64) -> Unit`**，它有三个参数：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| `add` | `(Int64, Int64) -> Int64` | 一个加法函数 |
+| `a` | `Int64` | 第一个加数 |
+| `b` | `Int64` | 第二个加数 |
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    a + b
+}
+
+main() {
+    printAdd(add, 3, 5)   // 输出：8
+}
+```
+
+> [!TIP]
+> 把函数作为参数传递，让调用者可以**自定义行为**。比如排序函数可以接收一个"比较函数"作为参数来决定排序规则。
+
+---
+
+## 4.3.5 函数类型作为返回类型
+
+函数类型也可以作为另一个函数的**返回类型**：
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    a + b
+}
+
+func returnAdd(): (Int64, Int64) -> Int64 {
+    add
+}
+
+main() {
+    var a = returnAdd()
+    println(a(1, 2))      // 输出：3
+}
+```
+
+上例中，`returnAdd` 的类型是 **`() -> (Int64, Int64) -> Int64`**，表示它无参数，返回一个 `(Int64, Int64) -> Int64` 类型的函数。
+
+> [!NOTE]
+> `->` 是**右结合**的，所以 `() -> (Int64, Int64) -> Int64` 等价于 `() -> ((Int64, Int64) -> Int64)`。
+
+---
+
+## 4.3.6 函数类型作为变量类型
+
+函数名本身也是表达式，它的类型就是对应的函数类型。因此你可以把函数赋值给变量：
+
+> [!CAUTION]
+> 直接使用`函数名`是表达式，类型为函数类型
+> 使用函数名`()`则是调用函数，类型为返回值的类型
+
+```Cangjie
+func add(p1: Int64, p2: Int64): Int64 {
+    p1 + p2
+}
+
+let f: (Int64, Int64) -> Int64 = add
+```
+
+上例中，函数名 `add` 的类型是 `(Int64, Int64) -> Int64`，变量 `f` 的类型与之相同，`add` 被用来初始化 `f`。之后 `f` 就可以像 `add` 一样被调用：
+
+```Cangjie
+main() {
+    println(f(3, 5))   // 输出：8
+}
+```
+
+### 函数重载时的歧义
+
+若一个函数在当前作用域中被**重载**（有多个同名版本），直接使用函数名作为表达式可能产生歧义：
+
+```Cangjie
+func add(i: Int64, j: Int64) {
+    i + j
+}
+
+func add(i: Float64, j: Float64) {
+    i + j
+}
+
+main() {
+    var f = add                   // Error, ambiguous function 'add'
+    var plus: (Int64, Int64) -> Int64 = add // OK，指定了类型，消除歧义
+}
+```
+
+> [!WARNING]
+> 当函数被重载时，直接赋值会因为"不知道该用哪个版本"而报错。解决方法是为变量**显式标注类型**，明确告诉编译器需要哪个版本。
+
+---
+
+## 4.3.7 总结
+
+| 知识点 | 说明 |
+|--------|------|
+| 函数类型语法 | `(参数类型列表) -> 返回类型` |
+| 一等公民 | 函数可作为参数、返回值、赋值给变量 |
+| 类型参数名 | 可为函数类型参数标注名称（需统一标注或不标注） |
+| 作为参数类型 | 传递函数以自定义行为 |
+| 作为返回类型 | 返回函数实现工厂模式等 |
+| 作为变量类型 | 将函数赋值给变量后通过变量调用 |
+| 重载歧义 | 重载函数需显式标注类型以消除歧义 |
+9:["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L14",null,{"content":"$15"}],"$L16","$L17"]}]
+18:I[59537,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleNavSidebar"]
+19:I[22016,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],""]
+1a:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleContent"]
+16:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L18",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"cover":"$undefined","published":true,"mtime":1782915711808.6968},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"cover":"$undefined","published":true,"mtime":1782915711808.7678},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"cover":"$undefined","published":true,"mtime":1782915711809.125},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"cover":"$undefined","published":true,"mtime":1782915711808.7678},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"cover":"$undefined","published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"cover":"$undefined","published":true,"mtime":1782915711809.9539},{"slug":"Cangjie/4_函数/1_定义函数","title":"定义函数","description":"学会编写可复用的代码块","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":1,"cover":"$undefined","published":true,"mtime":1782915711810.1077},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"cover":"$undefined","published":true,"mtime":1782915711808.7678},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"cover":"$undefined","published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"cover":"$undefined","published":true,"mtime":1782915711809.9539},{"slug":"Cangjie/4_函数/2_调用函数","title":"调用函数","description":"学会灵活调用仓颉函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":2,"cover":"$undefined","published":true,"mtime":1782915711810.465},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"cover":"$undefined","published":true,"mtime":1782915711808.7678},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"cover":"$undefined","published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"cover":"$undefined","published":true,"mtime":1782915711809.9539},{"slug":"Cangjie/4_函数/3_函数类型","title":"函数类型","description":"仓颉中函数也是一等公民","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":3,"cover":"$undefined","published":true,"mtime":1782915711810.465},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"cover":"$undefined","published":true,"mtime":1782915711808.7678},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"cover":"$undefined","published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"cover":"$undefined","published":true,"mtime":1782915711810.1077},{"slug":"Cangjie/4_函数/4_lambda表达式","title":"Lambda表达式","description":"快速创建匿名函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":4,"cover":"$undefined","published":true,"mtime":1782915711810.465},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"cover":"$undefined","published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"cover":"$undefined","published":true,"mtime":1782915711810.1077},{"slug":"Cangjie/4_函数/5_嵌套函数","title":"嵌套函数","description":"函数内部定义函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":5,"cover":"$undefined","published":true,"mtime":1782915711810.465},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"cover":"$undefined","published":true,"mtime":1782915711809.125},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"cover":"$undefined","published":true,"mtime":1782915711810.1077},{"slug":"Cangjie/4_函数/6_闭包","title":"闭包","description":"捕获变量的函数与lambda","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":6,"cover":"$undefined","published":true,"mtime":1782915711810.465},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"cover":"$undefined","published":true,"mtime":1782915711809.125},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"cover":"$undefined","published":true,"mtime":1782915711809.125},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"cover":"$undefined","published":true,"mtime":1782915711809.125},{"slug":"Cangjie/2_基本数据类型/10_nothing类型","title":"Nothing类型","description":"仓颉的基本数据类型——Nothing类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"cover":"$undefined","published":true,"mtime":1782915711809.125},{"slug":"Cangjie/2_基本数据类型/11_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"cover":"$undefined","published":true,"mtime":1782915711809.125},{"slug":"Cangjie/2_基本数据类型/12_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":12,"cover":"$undefined","published":true,"mtime":1782915711809.125}],"currentSlug":"Cangjie/4_函数/3_函数类型"}]]}]}]
+1b:T176f,
+## 4.3.1 什么是函数类型？
+
+在仓颉编程语言中，**函数是一等公民（first-class citizens）**，这意味着函数可以：
+
+- 作为函数的**参数**传递
+- 作为函数的**返回值**返回
+- **赋值给变量**
+
+正因为函数可以像普通数据一样被传递，函数本身也必须有类型——这就是**函数类型**。
+
+> [!TIP]
+> "一等公民"的意思是：函数拥有和整数、字符串等普通数据一样的"待遇"——能存到变量里，也能在函数间传来传去。
+
+函数类型由**参数类型**和**返回类型**组成，两者之间使用 `->` 连接：
+
+```Cangjie
+(参数类型列表) -> 返回类型
+```
+
+参数类型使用圆括号 `()` 括起来，可以有 0 个或多个参数；如果参数超过一个，参数类型之间使用逗号 `,` 分隔。
+
+---
+
+## 4.3.2 基本示例
+
+看几个例子，直观感受函数类型的写法：
+
+### 无参函数
+
+```Cangjie
+func hello(): Unit {
+    println("Hello!")
+}
+```
+
+函数 `hello` 的类型是 **`() -> Unit`**，表示该函数没有参数，返回类型为 `Unit`。
+
+### 一个参数的函数
+
+```Cangjie
+func display(a: Int64): Unit {
+    println(a)
+}
+```
+
+函数 `display` 的类型是 **`(Int64) -> Unit`**，表示该函数有一个 `Int64` 参数，返回类型为 `Unit`。
+
+### 两个参数的函数
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    a + b
+}
+```
+
+函数 `add` 的类型是 **`(Int64, Int64) -> Int64`**，表示该函数有两个 `Int64` 参数，返回类型为 `Int64`。
+
+### 返回元组的函数
+
+```Cangjie
+func returnTuple(a: Int64, b: Int64): (Int64, Int64) {
+    (a, b)
+}
+```
+
+函数 `returnTuple` 的类型是 **`(Int64, Int64) -> (Int64, Int64)`**，两个参数类型均为 `Int64`，返回类型为元组 `(Int64, Int64)`。
+
+> [!NOTE]
+> 函数类型的语法**只关心参数类型和返回类型**，不关心参数名。`(Int64, Int64) -> Int64` 就准确地描述了一类函数。
+
+---
+
+## 4.3.3 函数类型的类型参数名
+
+可以为函数类型的参数标记显式的**类型参数名**，这能让代码的意图更清晰：
+
+```Cangjie
+func showFruitPrice(name: String, price: Int64) {
+    println("fruit: ${name} price: ${price} yuan")
+}
+
+main() {
+    let fruitPriceHandler: (name: String, price: Int64) -> Unit
+    fruitPriceHandler = showFruitPrice
+    fruitPriceHandler("banana", 10)
+}
+```
+
+上例中，变量 `fruitPriceHandler` 的类型是 `(name: String, price: Int64) -> Unit`，参数名 `name` 和 `price` 清楚地说明了每个参数的用途。
+
+> [!CAUTION]
+> 在一个函数类型中，要么**统一写**类型参数名，要么**统一不写**，不能交替存在：
+>
+> ```Cangjie
+> let handler: (name: String, Int64) -> Int64   // Error
+> ```
+
+---
+
+## 4.3.4 函数类型作为参数类型
+
+函数类型最常见的用途之一，就是作为另一个函数的参数：
+
+```Cangjie
+func printAdd(add: (Int64, Int64) -> Int64, a: Int64, b: Int64): Unit {
+    println(add(a, b))
+}
+```
+
+函数 `printAdd` 的类型是 **`((Int64, Int64) -> Int64, Int64, Int64) -> Unit`**，它有三个参数：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| `add` | `(Int64, Int64) -> Int64` | 一个加法函数 |
+| `a` | `Int64` | 第一个加数 |
+| `b` | `Int64` | 第二个加数 |
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    a + b
+}
+
+main() {
+    printAdd(add, 3, 5)   // 输出：8
+}
+```
+
+> [!TIP]
+> 把函数作为参数传递，让调用者可以**自定义行为**。比如排序函数可以接收一个"比较函数"作为参数来决定排序规则。
+
+---
+
+## 4.3.5 函数类型作为返回类型
+
+函数类型也可以作为另一个函数的**返回类型**：
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    a + b
+}
+
+func returnAdd(): (Int64, Int64) -> Int64 {
+    add
+}
+
+main() {
+    var a = returnAdd()
+    println(a(1, 2))      // 输出：3
+}
+```
+
+上例中，`returnAdd` 的类型是 **`() -> (Int64, Int64) -> Int64`**，表示它无参数，返回一个 `(Int64, Int64) -> Int64` 类型的函数。
+
+> [!NOTE]
+> `->` 是**右结合**的，所以 `() -> (Int64, Int64) -> Int64` 等价于 `() -> ((Int64, Int64) -> Int64)`。
+
+---
+
+## 4.3.6 函数类型作为变量类型
+
+函数名本身也是表达式，它的类型就是对应的函数类型。因此你可以把函数赋值给变量：
+
+> [!CAUTION]
+> 直接使用`函数名`是表达式，类型为函数类型
+> 使用函数名`()`则是调用函数，类型为返回值的类型
+
+```Cangjie
+func add(p1: Int64, p2: Int64): Int64 {
+    p1 + p2
+}
+
+let f: (Int64, Int64) -> Int64 = add
+```
+
+上例中，函数名 `add` 的类型是 `(Int64, Int64) -> Int64`，变量 `f` 的类型与之相同，`add` 被用来初始化 `f`。之后 `f` 就可以像 `add` 一样被调用：
+
+```Cangjie
+main() {
+    println(f(3, 5))   // 输出：8
+}
+```
+
+### 函数重载时的歧义
+
+若一个函数在当前作用域中被**重载**（有多个同名版本），直接使用函数名作为表达式可能产生歧义：
+
+```Cangjie
+func add(i: Int64, j: Int64) {
+    i + j
+}
+
+func add(i: Float64, j: Float64) {
+    i + j
+}
+
+main() {
+    var f = add                   // Error, ambiguous function 'add'
+    var plus: (Int64, Int64) -> Int64 = add // OK，指定了类型，消除歧义
+}
+```
+
+> [!WARNING]
+> 当函数被重载时，直接赋值会因为"不知道该用哪个版本"而报错。解决方法是为变量**显式标注类型**，明确告诉编译器需要哪个版本。
+
+---
+
+## 4.3.7 总结
+
+| 知识点 | 说明 |
+|--------|------|
+| 函数类型语法 | `(参数类型列表) -> 返回类型` |
+| 一等公民 | 函数可作为参数、返回值、赋值给变量 |
+| 类型参数名 | 可为函数类型参数标注名称（需统一标注或不标注） |
+| 作为参数类型 | 传递函数以自定义行为 |
+| 作为返回类型 | 返回函数实现工厂模式等 |
+| 作为变量类型 | 将函数赋值给变量后通过变量调用 |
+| 重载歧义 | 重载函数需显式标注类型以消除歧义 |
+17:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$L19",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-07-01"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"函数类型"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"仓颉中函数也是一等公民"}]]}],["$","$L1a",null,{"content":"$1b"}],"$L1c"]}]}]
+1d:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"MobileArticlePanel"]
+1e:T176f,
+## 4.3.1 什么是函数类型？
+
+在仓颉编程语言中，**函数是一等公民（first-class citizens）**，这意味着函数可以：
+
+- 作为函数的**参数**传递
+- 作为函数的**返回值**返回
+- **赋值给变量**
+
+正因为函数可以像普通数据一样被传递，函数本身也必须有类型——这就是**函数类型**。
+
+> [!TIP]
+> "一等公民"的意思是：函数拥有和整数、字符串等普通数据一样的"待遇"——能存到变量里，也能在函数间传来传去。
+
+函数类型由**参数类型**和**返回类型**组成，两者之间使用 `->` 连接：
+
+```Cangjie
+(参数类型列表) -> 返回类型
+```
+
+参数类型使用圆括号 `()` 括起来，可以有 0 个或多个参数；如果参数超过一个，参数类型之间使用逗号 `,` 分隔。
+
+---
+
+## 4.3.2 基本示例
+
+看几个例子，直观感受函数类型的写法：
+
+### 无参函数
+
+```Cangjie
+func hello(): Unit {
+    println("Hello!")
+}
+```
+
+函数 `hello` 的类型是 **`() -> Unit`**，表示该函数没有参数，返回类型为 `Unit`。
+
+### 一个参数的函数
+
+```Cangjie
+func display(a: Int64): Unit {
+    println(a)
+}
+```
+
+函数 `display` 的类型是 **`(Int64) -> Unit`**，表示该函数有一个 `Int64` 参数，返回类型为 `Unit`。
+
+### 两个参数的函数
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    a + b
+}
+```
+
+函数 `add` 的类型是 **`(Int64, Int64) -> Int64`**，表示该函数有两个 `Int64` 参数，返回类型为 `Int64`。
+
+### 返回元组的函数
+
+```Cangjie
+func returnTuple(a: Int64, b: Int64): (Int64, Int64) {
+    (a, b)
+}
+```
+
+函数 `returnTuple` 的类型是 **`(Int64, Int64) -> (Int64, Int64)`**，两个参数类型均为 `Int64`，返回类型为元组 `(Int64, Int64)`。
+
+> [!NOTE]
+> 函数类型的语法**只关心参数类型和返回类型**，不关心参数名。`(Int64, Int64) -> Int64` 就准确地描述了一类函数。
+
+---
+
+## 4.3.3 函数类型的类型参数名
+
+可以为函数类型的参数标记显式的**类型参数名**，这能让代码的意图更清晰：
+
+```Cangjie
+func showFruitPrice(name: String, price: Int64) {
+    println("fruit: ${name} price: ${price} yuan")
+}
+
+main() {
+    let fruitPriceHandler: (name: String, price: Int64) -> Unit
+    fruitPriceHandler = showFruitPrice
+    fruitPriceHandler("banana", 10)
+}
+```
+
+上例中，变量 `fruitPriceHandler` 的类型是 `(name: String, price: Int64) -> Unit`，参数名 `name` 和 `price` 清楚地说明了每个参数的用途。
+
+> [!CAUTION]
+> 在一个函数类型中，要么**统一写**类型参数名，要么**统一不写**，不能交替存在：
+>
+> ```Cangjie
+> let handler: (name: String, Int64) -> Int64   // Error
+> ```
+
+---
+
+## 4.3.4 函数类型作为参数类型
+
+函数类型最常见的用途之一，就是作为另一个函数的参数：
+
+```Cangjie
+func printAdd(add: (Int64, Int64) -> Int64, a: Int64, b: Int64): Unit {
+    println(add(a, b))
+}
+```
+
+函数 `printAdd` 的类型是 **`((Int64, Int64) -> Int64, Int64, Int64) -> Unit`**，它有三个参数：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| `add` | `(Int64, Int64) -> Int64` | 一个加法函数 |
+| `a` | `Int64` | 第一个加数 |
+| `b` | `Int64` | 第二个加数 |
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    a + b
+}
+
+main() {
+    printAdd(add, 3, 5)   // 输出：8
+}
+```
+
+> [!TIP]
+> 把函数作为参数传递，让调用者可以**自定义行为**。比如排序函数可以接收一个"比较函数"作为参数来决定排序规则。
+
+---
+
+## 4.3.5 函数类型作为返回类型
+
+函数类型也可以作为另一个函数的**返回类型**：
+
+```Cangjie
+func add(a: Int64, b: Int64): Int64 {
+    a + b
+}
+
+func returnAdd(): (Int64, Int64) -> Int64 {
+    add
+}
+
+main() {
+    var a = returnAdd()
+    println(a(1, 2))      // 输出：3
+}
+```
+
+上例中，`returnAdd` 的类型是 **`() -> (Int64, Int64) -> Int64`**，表示它无参数，返回一个 `(Int64, Int64) -> Int64` 类型的函数。
+
+> [!NOTE]
+> `->` 是**右结合**的，所以 `() -> (Int64, Int64) -> Int64` 等价于 `() -> ((Int64, Int64) -> Int64)`。
+
+---
+
+## 4.3.6 函数类型作为变量类型
+
+函数名本身也是表达式，它的类型就是对应的函数类型。因此你可以把函数赋值给变量：
+
+> [!CAUTION]
+> 直接使用`函数名`是表达式，类型为函数类型
+> 使用函数名`()`则是调用函数，类型为返回值的类型
+
+```Cangjie
+func add(p1: Int64, p2: Int64): Int64 {
+    p1 + p2
+}
+
+let f: (Int64, Int64) -> Int64 = add
+```
+
+上例中，函数名 `add` 的类型是 `(Int64, Int64) -> Int64`，变量 `f` 的类型与之相同，`add` 被用来初始化 `f`。之后 `f` 就可以像 `add` 一样被调用：
+
+```Cangjie
+main() {
+    println(f(3, 5))   // 输出：8
+}
+```
+
+### 函数重载时的歧义
+
+若一个函数在当前作用域中被**重载**（有多个同名版本），直接使用函数名作为表达式可能产生歧义：
+
+```Cangjie
+func add(i: Int64, j: Int64) {
+    i + j
+}
+
+func add(i: Float64, j: Float64) {
+    i + j
+}
+
+main() {
+    var f = add                   // Error, ambiguous function 'add'
+    var plus: (Int64, Int64) -> Int64 = add // OK，指定了类型，消除歧义
+}
+```
+
+> [!WARNING]
+> 当函数被重载时，直接赋值会因为"不知道该用哪个版本"而报错。解决方法是为变量**显式标注类型**，明确告诉编译器需要哪个版本。
+
+---
+
+## 4.3.7 总结
+
+| 知识点 | 说明 |
+|--------|------|
+| 函数类型语法 | `(参数类型列表) -> 返回类型` |
+| 一等公民 | 函数可作为参数、返回值、赋值给变量 |
+| 类型参数名 | 可为函数类型参数标注名称（需统一标注或不标注） |
+| 作为参数类型 | 传递函数以自定义行为 |
+| 作为返回类型 | 返回函数实现工厂模式等 |
+| 作为变量类型 | 将函数赋值给变量后通过变量调用 |
+| 重载歧义 | 重载函数需显式标注类型以消除歧义 |
+1c:["$","$L1d",null,{"content":"$1e","collection":"Cangjie/4_函数","rootColPath":"Cangjie","allArticles":["$16:props:children:props:children:2:props:articles:0","$16:props:children:props:children:2:props:articles:1","$16:props:children:props:children:2:props:articles:2","$16:props:children:props:children:2:props:articles:3","$16:props:children:props:children:2:props:articles:4","$16:props:children:props:children:2:props:articles:5","$16:props:children:props:children:2:props:articles:6",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"collection":"$undefined","sort":1,"cover":"$undefined","published":true,"mtime":1782915711810.465},"$16:props:children:props:children:2:props:articles:7","$16:props:children:props:children:2:props:articles:8","$16:props:children:props:children:2:props:articles:9","$16:props:children:props:children:2:props:articles:10","$16:props:children:props:children:2:props:articles:11","$16:props:children:props:children:2:props:articles:12","$16:props:children:props:children:2:props:articles:13","$16:props:children:props:children:2:props:articles:14","$16:props:children:props:children:2:props:articles:15","$16:props:children:props:children:2:props:articles:16","$16:props:children:props:children:2:props:articles:17","$16:props:children:props:children:2:props:articles:18","$16:props:children:props:children:2:props:articles:19","$16:props:children:props:children:2:props:articles:20","$16:props:children:props:children:2:props:articles:21","$16:props:children:props:children:2:props:articles:22","$16:props:children:props:children:2:props:articles:23","$16:props:children:props:children:2:props:articles:24","$16:props:children:props:children:2:props:articles:25","$16:props:children:props:children:2:props:articles:26","$16:props:children:props:children:2:props:articles:27","$16:props:children:props:children:2:props:articles:28","$16:props:children:props:children:2:props:articles:29","$16:props:children:props:children:2:props:articles:30"],"currentSlug":"Cangjie/4_函数/3_函数类型"}]
+f:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+1f:I[27201,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"IconMark"]
+c:null
+11:[["$","title","0",{"children":"函数类型 | Seline Blog"}],["$","meta","1",{"name":"description","content":"仓颉中函数也是一等公民"}],["$","link","2",{"rel":"icon","href":"/favicon.ico?favicon.2vob68tjqpejf.ico","sizes":"256x256","type":"image/x-icon"}],["$","link","3",{"rel":"icon","href":"/images/avatar.webp"}],["$","$L1f","4",{}]]
