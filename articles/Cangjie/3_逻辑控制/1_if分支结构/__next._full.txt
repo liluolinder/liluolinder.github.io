@@ -13,18 +13,30 @@ e:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5
 12:I[68027,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"default",1]
 :HL["/_next/static/chunks/2e9j017mspeav.css","style"]
 :HC["/",""]
-0:{"P":null,"c":["","articles","Cangjie","3_%E9%80%BB%E8%BE%91%E6%8E%A7%E5%88%B6","1_if%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84"],"q":"","i":false,"f":[[["",{"children":["(public)",{"children":["articles",{"children":[["slug","Cangjie/3_%E9%80%BB%E8%BE%91%E6%8E%A7%E5%88%B6/1_if%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84","c",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/2e9j017mspeav.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0o--8oop24u_f.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/3oax6b5zaxt_z.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/_next/static/chunks/0jubty45h__ir.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh-CN","suppressHydrationWarning":true,"children":["$","body",null,{"className":"min-h-screen flex flex-col text-gray-900 dark:text-gray-100 font-sans","children":["$","$L2",null,{"children":[["$","$L3",null,{}],["$","$L4",null,{}],["$","main",null,{"className":"flex-1","children":["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L7",null,{}],["$","$L8",null,{}]]}]}]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:style","children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:1:props:style","children":404}],["$","div",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:2:props:style","children":["$","h2",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:2:props:children:props:style","children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L9",[["$","script","script-0",{"src":"/_next/static/chunks/0g4o6d4sifcpo.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1ssz3eabjrzaj.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]]}],{},null,false,null]},null,false,"$@d"]},null,false,"$@d"]},null,false,"$@d"]},null,false,null],["$","$1","h",{"children":[null,["$","$Le",null,{"children":"$Lf"}],["$","div",null,{"hidden":true,"children":["$","$L10",null,{"children":["$","$b",null,{"name":"Next.Metadata","children":"$L11"}]}]}],null]}],false]],"m":"$undefined","G":["$12",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/2e9j017mspeav.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"YYKzDL23MTXat2WTr6TSc"}
+0:{"P":null,"c":["","articles","Cangjie","3_%E9%80%BB%E8%BE%91%E6%8E%A7%E5%88%B6","1_if%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84"],"q":"","i":false,"f":[[["",{"children":["(public)",{"children":["articles",{"children":[["slug","Cangjie/3_%E9%80%BB%E8%BE%91%E6%8E%A7%E5%88%B6/1_if%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84","c",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/2e9j017mspeav.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0o--8oop24u_f.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/3oax6b5zaxt_z.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/_next/static/chunks/0jubty45h__ir.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh-CN","suppressHydrationWarning":true,"children":["$","body",null,{"className":"min-h-screen flex flex-col text-gray-900 dark:text-gray-100 font-sans","children":["$","$L2",null,{"children":[["$","$L3",null,{}],["$","$L4",null,{}],["$","main",null,{"className":"flex-1","children":["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L7",null,{}],["$","$L8",null,{}]]}]}]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:style","children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:1:props:style","children":404}],["$","div",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:2:props:style","children":["$","h2",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:2:props:children:props:style","children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L9",[["$","script","script-0",{"src":"/_next/static/chunks/0g4o6d4sifcpo.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1ssz3eabjrzaj.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]]}],{},null,false,null]},null,false,"$@d"]},null,false,"$@d"]},null,false,"$@d"]},null,false,null],["$","$1","h",{"children":[null,["$","$Le",null,{"children":"$Lf"}],["$","div",null,{"hidden":true,"children":["$","$L10",null,{"children":["$","$b",null,{"name":"Next.Metadata","children":"$L11"}]}]}],null]}],false]],"m":"$undefined","G":["$12",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/2e9j017mspeav.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"VtimUmeRWW8bLVu7SzSdl"}
 13:[]
 d:"$W13"
 14:I[23597,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"TocSidebar"]
-15:T19e4,
+15:T2726,
 ## 3.1.1 什么是分支结构？
 
 程序并不总是按顺序一路执行到底——很多时候，我们需要根据**不同的条件**执行**不同的代码**。就像生活中：
 
 > 如果今天下雨，就带伞；否则就不带。
+>
+> 如果分数及格，就说"通过了"；否则就说"继续加油"。
 
 在编程中，这种"如果……否则……"的逻辑就叫做**分支结构**，而 `if` 就是实现它的工具。
+
+### 你可以把 if 想象成一个"岔路口"
+
+```
+                ┌─ 条件成立 → 走这条路（if 分支）
+ 走到路口判断 ──┤
+                └─ 条件不成立 → 走那条路（else 分支）
+```
+
+每个条件判断都是一次"二选一"。
 
 ---
 
@@ -33,19 +45,16 @@ d:"$W13"
 `if` 表达式的结构很简单：
 
 ```Cangjie
-if (条件1) {
-    // 条件1成立时执行的代码
-} else if(条件2){
-    // 条件1不满足 条件2满足时候执行
-}else {
-    // 条件不成立时执行的代码
+if (条件) {
+    // 条件为 true 时执行的代码
+} else {
+    // 条件为 false 时执行的代码
 }
 ```
 
 > [!TIP]
 > 可以这样理解：
 > - `if` = "如果……"
-> - `else if` = "再如果"
 > - `else` = "否则……"
 > - 条件用圆括号 `()` 包裹
 > - 要执行的代码用花括号 `{}` 包裹
@@ -70,6 +79,13 @@ main() {
 及格了！
 ```
 
+**逐行执行过程**：
+
+1. `score = 85`
+2. 判断 `score >= 60` → `85 >= 60` → `true`
+3. 进入 `if` 分支 → 输出"及格了！"
+4. `else` 分支被跳过，不会执行
+
 ### else 可以省略
 
 如果只关心"条件成立时"做什么，`else` 可以不写：
@@ -84,6 +100,9 @@ main() {
     // 没下雨就什么都不做
 }
 ```
+
+> [!NOTE]
+> 没有 `else` 时，如果条件为 `false`，程序什么也不做，直接跳过 `if` 继续往下执行。
 
 ### 多级判断：else if
 
@@ -110,10 +129,40 @@ main() {
 
 > [!TIP]
 > 这样一层层判断，就像流水线筛选：
-> 1️⃣ 速度 > 16.7？→ 第三宇宙速度
-> 2️⃣ 否则，速度 > 11.2？→ 第二宇宙速度
-> 3️⃣ 否则，速度 > 7.9？→ 第一宇宙速度
-> 4️⃣ 否则 → 达不到宇宙速度
+> ```
+> 速度 > 16.7？ → 第三宇宙速度 ✅ 后面的分支跳过
+> 否则 → 速度 > 11.2？ → 第二宇宙速度 ✅ 后面的分支跳过
+> 否则 → 速度 > 7.9？ → 第一宇宙速度 ✅ 后面的分支跳过
+> 否则 → 脚踏实地
+> ```
+>
+> **关键点**：一旦某个分支匹配成功，后面的 `else if` 和 `else` 都不会再执行了。
+
+### else if 不是必须的——可以无限嵌套 if-else
+
+实际上 `else if` 只是"`else` 里面再写一个 `if`"的简写。但推荐用 `else if` 写法，更清晰：
+
+```Cangjie
+// ✅ 推荐：else if 写法
+if (a > 0) {
+    println("正数")
+} else if (a < 0) {
+    println("负数")
+} else {
+    println("零")
+}
+
+// ⚠️ 不推荐：else 里面再套 if（缩进越来越深）
+if (a > 0) {
+    println("正数")
+} else {
+    if (a < 0) {
+        println("负数")
+    } else {
+        println("零")
+    }
+}
+```
 
 ---
 
@@ -130,8 +179,12 @@ main() {
 }
 ```
 
-> [!NOTE]
-> 有些语言（如 C 语言）允许把 `0` 当作 `false`、非 `0` 当作 `true`，但仓颉**不允许**。你必须写出明确的布尔表达式，比如 `number != 0`。
+> [!CAUTION]
+> **这是新手最容易犯的错之一！**
+>
+> 有些语言（如 C 语言）允许把 `0` 当作 `false`、非 `0` 当作 `true`，比如 `if (1)` 是成立的。
+>
+> 但仓颉**不允许**这样写。你必须写出明确的布尔表达式：
 
 ```Cangjie
 main() {
@@ -142,13 +195,24 @@ main() {
 }
 ```
 
+### 常见的布尔判断写法
+
+| 你想表达的意思 | ✅ 正确写法 | ❌ 错误写法 |
+|--------------|-----------|-----------|
+| number 非零 | `number != 0` | `if (number)` |
+| 字符串非空 | `name.size > 0` | `if (name)` |
+| 布尔值为真 | `flag == true` 或直接 `flag` | — |
+
 ---
 
 ## 3.1.4 if 表达式的值与类型
 
 `if` 不仅仅是一个"判断语句"，它本身也是一个**表达式**——可以有值。这一点和很多其他语言不同，需要特别注意。
 
-### 情况一：if 作为表达式被使用
+> [!TIP]
+> 如果学过其他语言（如 Java、C++），它们的 `if` 是"语句"（statement），没有值。仓颉的 `if` 是"表达式"（expression），**可有值**。
+
+### 情况一：if 作为表达式被使用（有值）
 
 当你把 `if` 的结果赋值给变量时，`if` 就是**有值**的——它的值是所执行分支中**最后一行表达式**的值，类型也是那个表达式的类型：
 
@@ -164,14 +228,18 @@ main() {
 }
 ```
 
-这里的 `if` 表达式会返回一个值：条件成立时返回 `0`，不成立时返回 `1`。
+这里的 `if` 表达式会返回一个值：
+- `voltage < 2.5` 为 `true` → 返回 `0`
+- `voltage < 2.5` 为 `false` → 返回 `1`
 
-**类型推断规则：**
+因为 `voltage = 5.0`，所以条件不成立，走 `else` 分支，返回 `1`。
+
+**类型推断规则（重要！）：**
 
 | 场景 | 规则 | 示例 |
 |------|------|------|
 | 两个分支类型相同 | `if` 的类型就是该类型 | `{ 0 }` / `{ 1 }` → `Int64` |
-| 两个分支有公共父类型 | `if` 的类型取公共父类型 | 见下文 |
+| 两个分支有公共父类型 | `if` 的类型取公共父类型 | 后续章节讲继承时会涉及 |
 | 两个分支类型不兼容 | ❌ 编译报错 | `{ "a" }` / `{ 1 }` → 报错 |
 
 两个分支类型不兼容的情况：
@@ -187,7 +255,10 @@ main() {
 }
 ```
 
-### 情况二：if 没有被赋值
+> [!CAUTION]
+> 想让 `if` 作为表达式使用，**两个分支的类型必须兼容**。一个返回 `String`、一个返回 `Int64` 是不行的。
+
+### 情况二：if 没有被赋值（最常用）
 
 当 `if` 只是独立使用、没有被赋值时，它的类型是 `Unit`，值为 `()`：
 
@@ -211,29 +282,31 @@ main() {
 
 ```Cangjie
 main() {
-    let score = 85
-    let result = if (score >= 60) {   // ❌ 编译报错？其实不会
-        "及格"
+    let result = if (score >= 60) {
+        "及格"      // ❓ result 是什么类型？
     }
-    // 但 result 的类型是 Unit，值是 ()
+    // result 的类型是 Unit，值是 ()
+    // 因为 if 没有 else，编译器认为"条件不成立时没有值"
 }
 ```
 
 > [!WARNING]
-> 没有 `else` 的 `if` 类型固定为 `Unit`！如果你想把 `if` 的结果存到变量里，**必须**有 `else` 分支。
+> **这是新手最容易踩的坑！**
+>
+> 没有 `else` 的 `if` 类型固定为 `Unit`。如果你想把 `if` 的结果存到变量里，**必须**有 `else` 分支，且所有分支的类型要一致。
 
 ---
 
 ## 3.1.5 小结
 
-| 概念 | 要点 |
-|------|------|
-| 基本结构 | `if (条件) { ... } else { ... }` |
-| 条件类型 | 必须是 `Bool`（不能是数字） |
-| else 可省略 | 是，如果只关心"成立时" |
-| 多级判断 | `else if` 可以连续使用 |
-| if 作为表达式 | 有值，类型由分支共同决定 |
-| 没有 else 的 if | 类型固定为 `Unit` |
+| 概念 | 要点 | 一句话记住 |
+|------|------|-----------|
+| 基本结构 | `if (条件) { ... } else { ... }` | 如果……否则…… |
+| 条件类型 | 必须是 `Bool`（不能是数字） | 仓颉不要 `if(1)` |
+| else 可省略 | 是，如果只关心"成立时" | 不写 else 就是"不做" |
+| 多级判断 | `else if` 可以连续使用 | 像个漏斗，从上往下筛 |
+| if 作为表达式 | 有值，类型由分支共同决定 | 可以赋值给变量 |
+| 没有 else 的 if | 类型固定为 `Unit` | 不能赋值使用 |
 
 ---
 
@@ -253,9 +326,39 @@ if score >= 60 {      // ❌ 报错：缺少括号
 }
 ```
 
-### Q2：多级 `if` 嵌套太深怎么办？
+### Q2：多级 `if-else if` 嵌套太深怎么办？
 
-当 `if-else if` 层级太多时，代码会变得难以阅读。这种情况可以考虑后续章节会讲到的 `match` 表达式（类似其他语言的 `switch`）。
+当 `if-else if` 层级太多时，代码会变得难以阅读。一种常见的替代方案是用后续要讲的 `match` 表达式。
+
+如果实在要用 `if`，也可以用 **提前返回** 的技巧：
+
+```Cangjie
+// 每层缩进太深了
+func getType(value: Int64): String {
+    if (value > 100) {
+        return "大"
+    } else {
+        if (value > 50) {
+            return "中"
+        } else {
+            return "小"
+        }
+    }
+}
+
+// 用提前返回，减少缩进
+func getType(value: Int64): String {
+    if (value > 100) {
+        return "大"
+    }
+    if (value > 50) {
+        return "中"
+    }
+    return "小"
+}
+```
+
+第二种写法更清晰——**每层判断完就返回，不需要层层嵌套**。
 
 ### Q3：`if` 分支里可以有多个语句吗？
 
@@ -270,46 +373,61 @@ if (score >= 60) {
 }
 ```
 
-### Q4：`else if` 和 `else { if }` 有区别吗？
-
-**效果一样**，但 `else if` 写法更简洁。下面两种写法等价：
+但要注意：当 `if` 作为表达式使用时（赋值给变量），每个分支的**最后一行**决定返回值。
 
 ```Cangjie
-// 写法一：else if（推荐）
-if (a > 0) {
-    println("正数")
-} else if (a < 0) {
-    println("负数")
+let result = if (score >= 60) {
+    println("恭喜！")
+    score               // ← 最后一行，决定 if 的返回值
 } else {
-    println("零")
-}
-
-// 写法二：else 里面再套 if（不推荐）
-if (a > 0) {
-    println("正数")
-} else {
-    if (a < 0) {
-        println("负数")
-    } else {
-        println("零")
-    }
+    println("加油！")
+    0                   // ← 最后一行
 }
 ```
 
-推荐使用 `else if`，代码更清晰。
+### Q4：为什么仓颉的 `if` 是表达式而不是语句？
+
+这是仓颉的设计特点——让更多东西成为"表达式"，可以组合使用。比如：
+
+```Cangjie
+// 不用 if 表达式时：需要先声明变量，再 if 赋值
+var message = ""
+if (age >= 18) {
+    message = "成人"
+} else {
+    message = "未成年"
+}
+
+// 用 if 表达式时：一行搞定声明+赋值
+let message = if (age >= 18) { "成人" } else { "未成年" }
+```
+
+后者更简洁，而且 `message` 可以用 `let`（不可变），更安全。
 9:["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L14",null,{"content":"$15"}],"$L16","$L17"]}]
 18:I[59537,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleNavSidebar"]
 19:I[22016,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],""]
 1a:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleContent"]
-16:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L18",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"cover":"$undefined","published":true,"mtime":1782921487209.516},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"cover":"$undefined","published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"cover":"$undefined","published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"cover":"$undefined","published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"cover":"$undefined","published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"cover":"$undefined","published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/1_定义函数","title":"定义函数","description":"学会编写可复用的代码块","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":1,"cover":"$undefined","published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"cover":"$undefined","published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"cover":"$undefined","published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"cover":"$undefined","published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/2_调用函数","title":"调用函数","description":"学会灵活调用仓颉函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":2,"cover":"$undefined","published":true,"mtime":1782921487211.231},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"cover":"$undefined","published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"cover":"$undefined","published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"cover":"$undefined","published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/3_函数类型","title":"函数类型","description":"仓颉中函数也是一等公民","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":3,"cover":"$undefined","published":true,"mtime":1782921487211.231},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"cover":"$undefined","published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"cover":"$undefined","published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"cover":"$undefined","published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/4_lambda表达式","title":"Lambda表达式","description":"快速创建匿名函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":4,"cover":"$undefined","published":true,"mtime":1782921487211.231},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"cover":"$undefined","published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"cover":"$undefined","published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/5_嵌套函数","title":"嵌套函数","description":"函数内部定义函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":5,"cover":"$undefined","published":true,"mtime":1782921487211.231},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"cover":"$undefined","published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"cover":"$undefined","published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/6_闭包","title":"闭包","description":"捕获变量的函数与lambda","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":6,"cover":"$undefined","published":true,"mtime":1782921487211.231},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"cover":"$undefined","published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"cover":"$undefined","published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"cover":"$undefined","published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/10_nothing类型","title":"Nothing类型","description":"仓颉的基本数据类型——Nothing类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"cover":"$undefined","published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/11_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"cover":"$undefined","published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/12_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":12,"cover":"$undefined","published":true,"mtime":1782921487209.9858}],"currentSlug":"Cangjie/3_逻辑控制/1_if分支结构"}]]}]}]
-1b:T19e4,
+16:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L18",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"cover":"$undefined","published":true,"mtime":1782984101998.0315},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"cover":"$undefined","published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"cover":"$undefined","published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"cover":"$undefined","published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"cover":"$undefined","published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制——if分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"cover":"$undefined","published":true,"mtime":1782984101999.2908},{"slug":"Cangjie/4_函数/1_定义函数","title":"定义函数","description":"学会编写可复用的代码块","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":1,"cover":"$undefined","published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"cover":"$undefined","published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"cover":"$undefined","published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"cover":"$undefined","published":true,"mtime":1782984101999.2908},{"slug":"Cangjie/4_函数/2_调用函数","title":"调用函数","description":"学会灵活调用仓颉函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":2,"cover":"$undefined","published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"cover":"$undefined","published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"cover":"$undefined","published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"cover":"$undefined","published":true,"mtime":1782984101999.2908},{"slug":"Cangjie/4_函数/3_函数类型","title":"函数类型","description":"仓颉中函数也是一等公民","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":3,"cover":"$undefined","published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"cover":"$undefined","published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"cover":"$undefined","published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"cover":"$undefined","published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/4_函数/4_lambda表达式","title":"Lambda表达式","description":"快速创建匿名函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":4,"cover":"$undefined","published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"cover":"$undefined","published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"cover":"$undefined","published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/4_函数/5_嵌套函数","title":"嵌套函数","description":"函数内部定义函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":5,"cover":"$undefined","published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"cover":"$undefined","published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"cover":"$undefined","published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/4_函数/6_闭包","title":"闭包","description":"捕获变量的函数与lambda","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":6,"cover":"$undefined","published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"cover":"$undefined","published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"cover":"$undefined","published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"cover":"$undefined","published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/10_nothing类型","title":"Nothing类型","description":"仓颉的基本数据类型——Nothing类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"cover":"$undefined","published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/11_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"cover":"$undefined","published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/12_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":12,"cover":"$undefined","published":true,"mtime":1782984101998.4624}],"currentSlug":"Cangjie/3_逻辑控制/1_if分支结构"}]]}]}]
+1b:T2726,
 ## 3.1.1 什么是分支结构？
 
 程序并不总是按顺序一路执行到底——很多时候，我们需要根据**不同的条件**执行**不同的代码**。就像生活中：
 
 > 如果今天下雨，就带伞；否则就不带。
+>
+> 如果分数及格，就说"通过了"；否则就说"继续加油"。
 
 在编程中，这种"如果……否则……"的逻辑就叫做**分支结构**，而 `if` 就是实现它的工具。
+
+### 你可以把 if 想象成一个"岔路口"
+
+```
+                ┌─ 条件成立 → 走这条路（if 分支）
+ 走到路口判断 ──┤
+                └─ 条件不成立 → 走那条路（else 分支）
+```
+
+每个条件判断都是一次"二选一"。
 
 ---
 
@@ -318,19 +436,16 @@ if (a > 0) {
 `if` 表达式的结构很简单：
 
 ```Cangjie
-if (条件1) {
-    // 条件1成立时执行的代码
-} else if(条件2){
-    // 条件1不满足 条件2满足时候执行
-}else {
-    // 条件不成立时执行的代码
+if (条件) {
+    // 条件为 true 时执行的代码
+} else {
+    // 条件为 false 时执行的代码
 }
 ```
 
 > [!TIP]
 > 可以这样理解：
 > - `if` = "如果……"
-> - `else if` = "再如果"
 > - `else` = "否则……"
 > - 条件用圆括号 `()` 包裹
 > - 要执行的代码用花括号 `{}` 包裹
@@ -355,6 +470,13 @@ main() {
 及格了！
 ```
 
+**逐行执行过程**：
+
+1. `score = 85`
+2. 判断 `score >= 60` → `85 >= 60` → `true`
+3. 进入 `if` 分支 → 输出"及格了！"
+4. `else` 分支被跳过，不会执行
+
 ### else 可以省略
 
 如果只关心"条件成立时"做什么，`else` 可以不写：
@@ -369,6 +491,9 @@ main() {
     // 没下雨就什么都不做
 }
 ```
+
+> [!NOTE]
+> 没有 `else` 时，如果条件为 `false`，程序什么也不做，直接跳过 `if` 继续往下执行。
 
 ### 多级判断：else if
 
@@ -395,10 +520,40 @@ main() {
 
 > [!TIP]
 > 这样一层层判断，就像流水线筛选：
-> 1️⃣ 速度 > 16.7？→ 第三宇宙速度
-> 2️⃣ 否则，速度 > 11.2？→ 第二宇宙速度
-> 3️⃣ 否则，速度 > 7.9？→ 第一宇宙速度
-> 4️⃣ 否则 → 达不到宇宙速度
+> ```
+> 速度 > 16.7？ → 第三宇宙速度 ✅ 后面的分支跳过
+> 否则 → 速度 > 11.2？ → 第二宇宙速度 ✅ 后面的分支跳过
+> 否则 → 速度 > 7.9？ → 第一宇宙速度 ✅ 后面的分支跳过
+> 否则 → 脚踏实地
+> ```
+>
+> **关键点**：一旦某个分支匹配成功，后面的 `else if` 和 `else` 都不会再执行了。
+
+### else if 不是必须的——可以无限嵌套 if-else
+
+实际上 `else if` 只是"`else` 里面再写一个 `if`"的简写。但推荐用 `else if` 写法，更清晰：
+
+```Cangjie
+// ✅ 推荐：else if 写法
+if (a > 0) {
+    println("正数")
+} else if (a < 0) {
+    println("负数")
+} else {
+    println("零")
+}
+
+// ⚠️ 不推荐：else 里面再套 if（缩进越来越深）
+if (a > 0) {
+    println("正数")
+} else {
+    if (a < 0) {
+        println("负数")
+    } else {
+        println("零")
+    }
+}
+```
 
 ---
 
@@ -415,8 +570,12 @@ main() {
 }
 ```
 
-> [!NOTE]
-> 有些语言（如 C 语言）允许把 `0` 当作 `false`、非 `0` 当作 `true`，但仓颉**不允许**。你必须写出明确的布尔表达式，比如 `number != 0`。
+> [!CAUTION]
+> **这是新手最容易犯的错之一！**
+>
+> 有些语言（如 C 语言）允许把 `0` 当作 `false`、非 `0` 当作 `true`，比如 `if (1)` 是成立的。
+>
+> 但仓颉**不允许**这样写。你必须写出明确的布尔表达式：
 
 ```Cangjie
 main() {
@@ -427,13 +586,24 @@ main() {
 }
 ```
 
+### 常见的布尔判断写法
+
+| 你想表达的意思 | ✅ 正确写法 | ❌ 错误写法 |
+|--------------|-----------|-----------|
+| number 非零 | `number != 0` | `if (number)` |
+| 字符串非空 | `name.size > 0` | `if (name)` |
+| 布尔值为真 | `flag == true` 或直接 `flag` | — |
+
 ---
 
 ## 3.1.4 if 表达式的值与类型
 
 `if` 不仅仅是一个"判断语句"，它本身也是一个**表达式**——可以有值。这一点和很多其他语言不同，需要特别注意。
 
-### 情况一：if 作为表达式被使用
+> [!TIP]
+> 如果学过其他语言（如 Java、C++），它们的 `if` 是"语句"（statement），没有值。仓颉的 `if` 是"表达式"（expression），**可有值**。
+
+### 情况一：if 作为表达式被使用（有值）
 
 当你把 `if` 的结果赋值给变量时，`if` 就是**有值**的——它的值是所执行分支中**最后一行表达式**的值，类型也是那个表达式的类型：
 
@@ -449,14 +619,18 @@ main() {
 }
 ```
 
-这里的 `if` 表达式会返回一个值：条件成立时返回 `0`，不成立时返回 `1`。
+这里的 `if` 表达式会返回一个值：
+- `voltage < 2.5` 为 `true` → 返回 `0`
+- `voltage < 2.5` 为 `false` → 返回 `1`
 
-**类型推断规则：**
+因为 `voltage = 5.0`，所以条件不成立，走 `else` 分支，返回 `1`。
+
+**类型推断规则（重要！）：**
 
 | 场景 | 规则 | 示例 |
 |------|------|------|
 | 两个分支类型相同 | `if` 的类型就是该类型 | `{ 0 }` / `{ 1 }` → `Int64` |
-| 两个分支有公共父类型 | `if` 的类型取公共父类型 | 见下文 |
+| 两个分支有公共父类型 | `if` 的类型取公共父类型 | 后续章节讲继承时会涉及 |
 | 两个分支类型不兼容 | ❌ 编译报错 | `{ "a" }` / `{ 1 }` → 报错 |
 
 两个分支类型不兼容的情况：
@@ -472,7 +646,10 @@ main() {
 }
 ```
 
-### 情况二：if 没有被赋值
+> [!CAUTION]
+> 想让 `if` 作为表达式使用，**两个分支的类型必须兼容**。一个返回 `String`、一个返回 `Int64` 是不行的。
+
+### 情况二：if 没有被赋值（最常用）
 
 当 `if` 只是独立使用、没有被赋值时，它的类型是 `Unit`，值为 `()`：
 
@@ -496,29 +673,31 @@ main() {
 
 ```Cangjie
 main() {
-    let score = 85
-    let result = if (score >= 60) {   // ❌ 编译报错？其实不会
-        "及格"
+    let result = if (score >= 60) {
+        "及格"      // ❓ result 是什么类型？
     }
-    // 但 result 的类型是 Unit，值是 ()
+    // result 的类型是 Unit，值是 ()
+    // 因为 if 没有 else，编译器认为"条件不成立时没有值"
 }
 ```
 
 > [!WARNING]
-> 没有 `else` 的 `if` 类型固定为 `Unit`！如果你想把 `if` 的结果存到变量里，**必须**有 `else` 分支。
+> **这是新手最容易踩的坑！**
+>
+> 没有 `else` 的 `if` 类型固定为 `Unit`。如果你想把 `if` 的结果存到变量里，**必须**有 `else` 分支，且所有分支的类型要一致。
 
 ---
 
 ## 3.1.5 小结
 
-| 概念 | 要点 |
-|------|------|
-| 基本结构 | `if (条件) { ... } else { ... }` |
-| 条件类型 | 必须是 `Bool`（不能是数字） |
-| else 可省略 | 是，如果只关心"成立时" |
-| 多级判断 | `else if` 可以连续使用 |
-| if 作为表达式 | 有值，类型由分支共同决定 |
-| 没有 else 的 if | 类型固定为 `Unit` |
+| 概念 | 要点 | 一句话记住 |
+|------|------|-----------|
+| 基本结构 | `if (条件) { ... } else { ... }` | 如果……否则…… |
+| 条件类型 | 必须是 `Bool`（不能是数字） | 仓颉不要 `if(1)` |
+| else 可省略 | 是，如果只关心"成立时" | 不写 else 就是"不做" |
+| 多级判断 | `else if` 可以连续使用 | 像个漏斗，从上往下筛 |
+| if 作为表达式 | 有值，类型由分支共同决定 | 可以赋值给变量 |
+| 没有 else 的 if | 类型固定为 `Unit` | 不能赋值使用 |
 
 ---
 
@@ -538,9 +717,39 @@ if score >= 60 {      // ❌ 报错：缺少括号
 }
 ```
 
-### Q2：多级 `if` 嵌套太深怎么办？
+### Q2：多级 `if-else if` 嵌套太深怎么办？
 
-当 `if-else if` 层级太多时，代码会变得难以阅读。这种情况可以考虑后续章节会讲到的 `match` 表达式（类似其他语言的 `switch`）。
+当 `if-else if` 层级太多时，代码会变得难以阅读。一种常见的替代方案是用后续要讲的 `match` 表达式。
+
+如果实在要用 `if`，也可以用 **提前返回** 的技巧：
+
+```Cangjie
+// 每层缩进太深了
+func getType(value: Int64): String {
+    if (value > 100) {
+        return "大"
+    } else {
+        if (value > 50) {
+            return "中"
+        } else {
+            return "小"
+        }
+    }
+}
+
+// 用提前返回，减少缩进
+func getType(value: Int64): String {
+    if (value > 100) {
+        return "大"
+    }
+    if (value > 50) {
+        return "中"
+    }
+    return "小"
+}
+```
+
+第二种写法更清晰——**每层判断完就返回，不需要层层嵌套**。
 
 ### Q3：`if` 分支里可以有多个语句吗？
 
@@ -555,43 +764,58 @@ if (score >= 60) {
 }
 ```
 
-### Q4：`else if` 和 `else { if }` 有区别吗？
-
-**效果一样**，但 `else if` 写法更简洁。下面两种写法等价：
+但要注意：当 `if` 作为表达式使用时（赋值给变量），每个分支的**最后一行**决定返回值。
 
 ```Cangjie
-// 写法一：else if（推荐）
-if (a > 0) {
-    println("正数")
-} else if (a < 0) {
-    println("负数")
+let result = if (score >= 60) {
+    println("恭喜！")
+    score               // ← 最后一行，决定 if 的返回值
 } else {
-    println("零")
-}
-
-// 写法二：else 里面再套 if（不推荐）
-if (a > 0) {
-    println("正数")
-} else {
-    if (a < 0) {
-        println("负数")
-    } else {
-        println("零")
-    }
+    println("加油！")
+    0                   // ← 最后一行
 }
 ```
 
-推荐使用 `else if`，代码更清晰。
-17:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$L19",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-07-01"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"if分支结构"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"仓颉的逻辑控制"}]]}],["$","$L1a",null,{"content":"$1b"}],"$L1c"]}]}]
+### Q4：为什么仓颉的 `if` 是表达式而不是语句？
+
+这是仓颉的设计特点——让更多东西成为"表达式"，可以组合使用。比如：
+
+```Cangjie
+// 不用 if 表达式时：需要先声明变量，再 if 赋值
+var message = ""
+if (age >= 18) {
+    message = "成人"
+} else {
+    message = "未成年"
+}
+
+// 用 if 表达式时：一行搞定声明+赋值
+let message = if (age >= 18) { "成人" } else { "未成年" }
+```
+
+后者更简洁，而且 `message` 可以用 `let`（不可变），更安全。
+17:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$L19",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-07-01"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"if分支结构"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"仓颉的逻辑控制——if分支结构"}]]}],["$","$L1a",null,{"content":"$1b"}],"$L1c"]}]}]
 1d:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"MobileArticlePanel"]
-1e:T19e4,
+1e:T2726,
 ## 3.1.1 什么是分支结构？
 
 程序并不总是按顺序一路执行到底——很多时候，我们需要根据**不同的条件**执行**不同的代码**。就像生活中：
 
 > 如果今天下雨，就带伞；否则就不带。
+>
+> 如果分数及格，就说"通过了"；否则就说"继续加油"。
 
 在编程中，这种"如果……否则……"的逻辑就叫做**分支结构**，而 `if` 就是实现它的工具。
+
+### 你可以把 if 想象成一个"岔路口"
+
+```
+                ┌─ 条件成立 → 走这条路（if 分支）
+ 走到路口判断 ──┤
+                └─ 条件不成立 → 走那条路（else 分支）
+```
+
+每个条件判断都是一次"二选一"。
 
 ---
 
@@ -600,19 +824,16 @@ if (a > 0) {
 `if` 表达式的结构很简单：
 
 ```Cangjie
-if (条件1) {
-    // 条件1成立时执行的代码
-} else if(条件2){
-    // 条件1不满足 条件2满足时候执行
-}else {
-    // 条件不成立时执行的代码
+if (条件) {
+    // 条件为 true 时执行的代码
+} else {
+    // 条件为 false 时执行的代码
 }
 ```
 
 > [!TIP]
 > 可以这样理解：
 > - `if` = "如果……"
-> - `else if` = "再如果"
 > - `else` = "否则……"
 > - 条件用圆括号 `()` 包裹
 > - 要执行的代码用花括号 `{}` 包裹
@@ -637,6 +858,13 @@ main() {
 及格了！
 ```
 
+**逐行执行过程**：
+
+1. `score = 85`
+2. 判断 `score >= 60` → `85 >= 60` → `true`
+3. 进入 `if` 分支 → 输出"及格了！"
+4. `else` 分支被跳过，不会执行
+
 ### else 可以省略
 
 如果只关心"条件成立时"做什么，`else` 可以不写：
@@ -651,6 +879,9 @@ main() {
     // 没下雨就什么都不做
 }
 ```
+
+> [!NOTE]
+> 没有 `else` 时，如果条件为 `false`，程序什么也不做，直接跳过 `if` 继续往下执行。
 
 ### 多级判断：else if
 
@@ -677,10 +908,40 @@ main() {
 
 > [!TIP]
 > 这样一层层判断，就像流水线筛选：
-> 1️⃣ 速度 > 16.7？→ 第三宇宙速度
-> 2️⃣ 否则，速度 > 11.2？→ 第二宇宙速度
-> 3️⃣ 否则，速度 > 7.9？→ 第一宇宙速度
-> 4️⃣ 否则 → 达不到宇宙速度
+> ```
+> 速度 > 16.7？ → 第三宇宙速度 ✅ 后面的分支跳过
+> 否则 → 速度 > 11.2？ → 第二宇宙速度 ✅ 后面的分支跳过
+> 否则 → 速度 > 7.9？ → 第一宇宙速度 ✅ 后面的分支跳过
+> 否则 → 脚踏实地
+> ```
+>
+> **关键点**：一旦某个分支匹配成功，后面的 `else if` 和 `else` 都不会再执行了。
+
+### else if 不是必须的——可以无限嵌套 if-else
+
+实际上 `else if` 只是"`else` 里面再写一个 `if`"的简写。但推荐用 `else if` 写法，更清晰：
+
+```Cangjie
+// ✅ 推荐：else if 写法
+if (a > 0) {
+    println("正数")
+} else if (a < 0) {
+    println("负数")
+} else {
+    println("零")
+}
+
+// ⚠️ 不推荐：else 里面再套 if（缩进越来越深）
+if (a > 0) {
+    println("正数")
+} else {
+    if (a < 0) {
+        println("负数")
+    } else {
+        println("零")
+    }
+}
+```
 
 ---
 
@@ -697,8 +958,12 @@ main() {
 }
 ```
 
-> [!NOTE]
-> 有些语言（如 C 语言）允许把 `0` 当作 `false`、非 `0` 当作 `true`，但仓颉**不允许**。你必须写出明确的布尔表达式，比如 `number != 0`。
+> [!CAUTION]
+> **这是新手最容易犯的错之一！**
+>
+> 有些语言（如 C 语言）允许把 `0` 当作 `false`、非 `0` 当作 `true`，比如 `if (1)` 是成立的。
+>
+> 但仓颉**不允许**这样写。你必须写出明确的布尔表达式：
 
 ```Cangjie
 main() {
@@ -709,13 +974,24 @@ main() {
 }
 ```
 
+### 常见的布尔判断写法
+
+| 你想表达的意思 | ✅ 正确写法 | ❌ 错误写法 |
+|--------------|-----------|-----------|
+| number 非零 | `number != 0` | `if (number)` |
+| 字符串非空 | `name.size > 0` | `if (name)` |
+| 布尔值为真 | `flag == true` 或直接 `flag` | — |
+
 ---
 
 ## 3.1.4 if 表达式的值与类型
 
 `if` 不仅仅是一个"判断语句"，它本身也是一个**表达式**——可以有值。这一点和很多其他语言不同，需要特别注意。
 
-### 情况一：if 作为表达式被使用
+> [!TIP]
+> 如果学过其他语言（如 Java、C++），它们的 `if` 是"语句"（statement），没有值。仓颉的 `if` 是"表达式"（expression），**可有值**。
+
+### 情况一：if 作为表达式被使用（有值）
 
 当你把 `if` 的结果赋值给变量时，`if` 就是**有值**的——它的值是所执行分支中**最后一行表达式**的值，类型也是那个表达式的类型：
 
@@ -731,14 +1007,18 @@ main() {
 }
 ```
 
-这里的 `if` 表达式会返回一个值：条件成立时返回 `0`，不成立时返回 `1`。
+这里的 `if` 表达式会返回一个值：
+- `voltage < 2.5` 为 `true` → 返回 `0`
+- `voltage < 2.5` 为 `false` → 返回 `1`
 
-**类型推断规则：**
+因为 `voltage = 5.0`，所以条件不成立，走 `else` 分支，返回 `1`。
+
+**类型推断规则（重要！）：**
 
 | 场景 | 规则 | 示例 |
 |------|------|------|
 | 两个分支类型相同 | `if` 的类型就是该类型 | `{ 0 }` / `{ 1 }` → `Int64` |
-| 两个分支有公共父类型 | `if` 的类型取公共父类型 | 见下文 |
+| 两个分支有公共父类型 | `if` 的类型取公共父类型 | 后续章节讲继承时会涉及 |
 | 两个分支类型不兼容 | ❌ 编译报错 | `{ "a" }` / `{ 1 }` → 报错 |
 
 两个分支类型不兼容的情况：
@@ -754,7 +1034,10 @@ main() {
 }
 ```
 
-### 情况二：if 没有被赋值
+> [!CAUTION]
+> 想让 `if` 作为表达式使用，**两个分支的类型必须兼容**。一个返回 `String`、一个返回 `Int64` 是不行的。
+
+### 情况二：if 没有被赋值（最常用）
 
 当 `if` 只是独立使用、没有被赋值时，它的类型是 `Unit`，值为 `()`：
 
@@ -778,29 +1061,31 @@ main() {
 
 ```Cangjie
 main() {
-    let score = 85
-    let result = if (score >= 60) {   // ❌ 编译报错？其实不会
-        "及格"
+    let result = if (score >= 60) {
+        "及格"      // ❓ result 是什么类型？
     }
-    // 但 result 的类型是 Unit，值是 ()
+    // result 的类型是 Unit，值是 ()
+    // 因为 if 没有 else，编译器认为"条件不成立时没有值"
 }
 ```
 
 > [!WARNING]
-> 没有 `else` 的 `if` 类型固定为 `Unit`！如果你想把 `if` 的结果存到变量里，**必须**有 `else` 分支。
+> **这是新手最容易踩的坑！**
+>
+> 没有 `else` 的 `if` 类型固定为 `Unit`。如果你想把 `if` 的结果存到变量里，**必须**有 `else` 分支，且所有分支的类型要一致。
 
 ---
 
 ## 3.1.5 小结
 
-| 概念 | 要点 |
-|------|------|
-| 基本结构 | `if (条件) { ... } else { ... }` |
-| 条件类型 | 必须是 `Bool`（不能是数字） |
-| else 可省略 | 是，如果只关心"成立时" |
-| 多级判断 | `else if` 可以连续使用 |
-| if 作为表达式 | 有值，类型由分支共同决定 |
-| 没有 else 的 if | 类型固定为 `Unit` |
+| 概念 | 要点 | 一句话记住 |
+|------|------|-----------|
+| 基本结构 | `if (条件) { ... } else { ... }` | 如果……否则…… |
+| 条件类型 | 必须是 `Bool`（不能是数字） | 仓颉不要 `if(1)` |
+| else 可省略 | 是，如果只关心"成立时" | 不写 else 就是"不做" |
+| 多级判断 | `else if` 可以连续使用 | 像个漏斗，从上往下筛 |
+| if 作为表达式 | 有值，类型由分支共同决定 | 可以赋值给变量 |
+| 没有 else 的 if | 类型固定为 `Unit` | 不能赋值使用 |
 
 ---
 
@@ -820,9 +1105,39 @@ if score >= 60 {      // ❌ 报错：缺少括号
 }
 ```
 
-### Q2：多级 `if` 嵌套太深怎么办？
+### Q2：多级 `if-else if` 嵌套太深怎么办？
 
-当 `if-else if` 层级太多时，代码会变得难以阅读。这种情况可以考虑后续章节会讲到的 `match` 表达式（类似其他语言的 `switch`）。
+当 `if-else if` 层级太多时，代码会变得难以阅读。一种常见的替代方案是用后续要讲的 `match` 表达式。
+
+如果实在要用 `if`，也可以用 **提前返回** 的技巧：
+
+```Cangjie
+// 每层缩进太深了
+func getType(value: Int64): String {
+    if (value > 100) {
+        return "大"
+    } else {
+        if (value > 50) {
+            return "中"
+        } else {
+            return "小"
+        }
+    }
+}
+
+// 用提前返回，减少缩进
+func getType(value: Int64): String {
+    if (value > 100) {
+        return "大"
+    }
+    if (value > 50) {
+        return "中"
+    }
+    return "小"
+}
+```
+
+第二种写法更清晰——**每层判断完就返回，不需要层层嵌套**。
 
 ### Q3：`if` 分支里可以有多个语句吗？
 
@@ -837,35 +1152,38 @@ if (score >= 60) {
 }
 ```
 
-### Q4：`else if` 和 `else { if }` 有区别吗？
-
-**效果一样**，但 `else if` 写法更简洁。下面两种写法等价：
+但要注意：当 `if` 作为表达式使用时（赋值给变量），每个分支的**最后一行**决定返回值。
 
 ```Cangjie
-// 写法一：else if（推荐）
-if (a > 0) {
-    println("正数")
-} else if (a < 0) {
-    println("负数")
+let result = if (score >= 60) {
+    println("恭喜！")
+    score               // ← 最后一行，决定 if 的返回值
 } else {
-    println("零")
-}
-
-// 写法二：else 里面再套 if（不推荐）
-if (a > 0) {
-    println("正数")
-} else {
-    if (a < 0) {
-        println("负数")
-    } else {
-        println("零")
-    }
+    println("加油！")
+    0                   // ← 最后一行
 }
 ```
 
-推荐使用 `else if`，代码更清晰。
-1c:["$","$L1d",null,{"content":"$1e","collection":"Cangjie/3_逻辑控制","rootColPath":"Cangjie","allArticles":["$16:props:children:props:children:2:props:articles:0","$16:props:children:props:children:2:props:articles:1","$16:props:children:props:children:2:props:articles:2","$16:props:children:props:children:2:props:articles:3","$16:props:children:props:children:2:props:articles:4","$16:props:children:props:children:2:props:articles:5","$16:props:children:props:children:2:props:articles:6",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"collection":"$undefined","sort":1,"cover":"$undefined","published":true,"mtime":1782921487211.231},"$16:props:children:props:children:2:props:articles:7","$16:props:children:props:children:2:props:articles:8","$16:props:children:props:children:2:props:articles:9","$16:props:children:props:children:2:props:articles:10","$16:props:children:props:children:2:props:articles:11","$16:props:children:props:children:2:props:articles:12","$16:props:children:props:children:2:props:articles:13","$16:props:children:props:children:2:props:articles:14","$16:props:children:props:children:2:props:articles:15","$16:props:children:props:children:2:props:articles:16","$16:props:children:props:children:2:props:articles:17","$16:props:children:props:children:2:props:articles:18","$16:props:children:props:children:2:props:articles:19","$16:props:children:props:children:2:props:articles:20","$16:props:children:props:children:2:props:articles:21","$16:props:children:props:children:2:props:articles:22","$16:props:children:props:children:2:props:articles:23","$16:props:children:props:children:2:props:articles:24","$16:props:children:props:children:2:props:articles:25","$16:props:children:props:children:2:props:articles:26","$16:props:children:props:children:2:props:articles:27","$16:props:children:props:children:2:props:articles:28","$16:props:children:props:children:2:props:articles:29","$16:props:children:props:children:2:props:articles:30"],"currentSlug":"Cangjie/3_逻辑控制/1_if分支结构"}]
+### Q4：为什么仓颉的 `if` 是表达式而不是语句？
+
+这是仓颉的设计特点——让更多东西成为"表达式"，可以组合使用。比如：
+
+```Cangjie
+// 不用 if 表达式时：需要先声明变量，再 if 赋值
+var message = ""
+if (age >= 18) {
+    message = "成人"
+} else {
+    message = "未成年"
+}
+
+// 用 if 表达式时：一行搞定声明+赋值
+let message = if (age >= 18) { "成人" } else { "未成年" }
+```
+
+后者更简洁，而且 `message` 可以用 `let`（不可变），更安全。
+1c:["$","$L1d",null,{"content":"$1e","collection":"Cangjie/3_逻辑控制","rootColPath":"Cangjie","allArticles":["$16:props:children:props:children:2:props:articles:0","$16:props:children:props:children:2:props:articles:1","$16:props:children:props:children:2:props:articles:2","$16:props:children:props:children:2:props:articles:3","$16:props:children:props:children:2:props:articles:4","$16:props:children:props:children:2:props:articles:5","$16:props:children:props:children:2:props:articles:6",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"collection":"$undefined","sort":1,"cover":"$undefined","published":true,"mtime":1782984101999.9065},"$16:props:children:props:children:2:props:articles:7","$16:props:children:props:children:2:props:articles:8","$16:props:children:props:children:2:props:articles:9","$16:props:children:props:children:2:props:articles:10","$16:props:children:props:children:2:props:articles:11","$16:props:children:props:children:2:props:articles:12","$16:props:children:props:children:2:props:articles:13","$16:props:children:props:children:2:props:articles:14","$16:props:children:props:children:2:props:articles:15","$16:props:children:props:children:2:props:articles:16","$16:props:children:props:children:2:props:articles:17","$16:props:children:props:children:2:props:articles:18","$16:props:children:props:children:2:props:articles:19","$16:props:children:props:children:2:props:articles:20","$16:props:children:props:children:2:props:articles:21","$16:props:children:props:children:2:props:articles:22","$16:props:children:props:children:2:props:articles:23","$16:props:children:props:children:2:props:articles:24","$16:props:children:props:children:2:props:articles:25","$16:props:children:props:children:2:props:articles:26","$16:props:children:props:children:2:props:articles:27","$16:props:children:props:children:2:props:articles:28","$16:props:children:props:children:2:props:articles:29","$16:props:children:props:children:2:props:articles:30"],"currentSlug":"Cangjie/3_逻辑控制/1_if分支结构"}]
 f:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 1f:I[27201,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"IconMark"]
 c:null
-11:[["$","title","0",{"children":"if分支结构 | Seline Blog"}],["$","meta","1",{"name":"description","content":"仓颉的逻辑控制"}],["$","link","2",{"rel":"icon","href":"/favicon.ico?favicon.2vob68tjqpejf.ico","sizes":"256x256","type":"image/x-icon"}],["$","link","3",{"rel":"icon","href":"/images/avatar.webp"}],["$","$L1f","4",{}]]
+11:[["$","title","0",{"children":"if分支结构 | Seline Blog"}],["$","meta","1",{"name":"description","content":"仓颉的逻辑控制——if分支结构"}],["$","link","2",{"rel":"icon","href":"/favicon.ico?favicon.2vob68tjqpejf.ico","sizes":"256x256","type":"image/x-icon"}],["$","link","3",{"rel":"icon","href":"/images/avatar.webp"}],["$","$L1f","4",{}]]

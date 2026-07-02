@@ -6,13 +6,30 @@ b:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5
 e:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
 f:"$Sreact.suspense"
 11:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"MobileArticlePanel"]
-3:T1d5a,
+3:T26dd,
 ## 4.6.1 什么是闭包？
+
+### 从嵌套函数说起
+
+上一节我们学会了嵌套函数——函数内部定义函数。并且我们还发现，嵌套函数可以**访问外部函数的变量**。
+
+那如果我们**把这个嵌套函数返回出去**，在外部调用它，它还能访问到那些变量吗？
+
+**答案是：能！**——这就是闭包。
+
+### 正式定义
 
 一个函数或 lambda **从定义它的静态作用域中捕获了变量**，函数或 lambda 和捕获的变量一起被称为一个**闭包**。
 
 > [!TIP]
-> 可以把闭包想象成一个"背包"——函数出门时，把需要用到的外部变量装进背包里背着走。这样即使离开了变量定义的地方，函数也能正常使用它们。
+> 可以把闭包想象成一个"**背包**"：
+> - 函数就像一个人
+> - 它定义时周围的变量就像家里的物品
+> - 当这个函数要"出远门"（被返回到外部作用域）时，它会把需要用到的变量**装进背包里背着走**
+>
+> 这样即使离开了变量原本定义的地方，函数也能正常使用它们。
+
+### 最简单的闭包例子
 
 ```Cangjie
 func returnAddNum(): (Int64) -> Int64 {
@@ -21,7 +38,7 @@ func returnAddNum(): (Int64) -> Int64 {
     func add(a: Int64) {         // add 捕获了 num
         return a + num
     }
-    add                          // add 和 num 一起构成闭包
+    add                          // 返回 add（add + num 一起构成闭包）
 }
 
 main() {
@@ -36,8 +53,17 @@ main() {
 20
 ```
 
+**逐行解读**：
+
+1. 调用 `returnAddNum()` 进入函数
+2. 创建变量 `num = 10`
+3. 定义嵌套函数 `add`，它用到了外部的 `num`
+4. 返回 `add`——此时 `add` 和它捕获的 `num` 一起打包成了闭包
+5. `returnAddNum` 执行完毕——按理说 `num` 应该被销毁了
+6. 但 `f(10)` 仍然能正确输出 `20`——因为 `num` 被"装进了闭包的背包里"，没有被销毁
+
 > [!NOTE]
-> 上例中，`add` 函数捕获了外部变量 `num`。即使 `returnAddNum` 执行完毕，`num` 已经"离开了它的作用域"，但闭包 `add` 仍然可以正常访问 `num`——因为 `num` 被装进了闭包的"背包"里。
+> 上例中，`add` 函数捕获了外部变量 `num`。即使 `returnAddNum` 执行完毕，`num` 已经"离开了它的作用域"，但闭包 `add` 仍然可以正常访问 `num`。
 
 ---
 
@@ -45,35 +71,37 @@ main() {
 
 函数或 lambda 的定义中对以下几种变量的访问，称为**变量捕获**：
 
-1. 函数的参数缺省值中访问了本函数之外定义的**局部变量**
-2. 函数或 lambda 内访问了本函数或本 lambda 之外定义的**局部变量**
-3. `class` / `struct` 内定义的不是成员函数的函数或 lambda 访问了**实例成员变量**或 `this`
+| 情形 | 说明 | 示例 |
+|------|------|------|
+| 1. 参数默认值中的外部局部变量 | 函数的参数缺省值里用了外面的变量 | `func f(x: Int64 = count)` |
+| 2. 函数/lambda 内访问外部的局部变量 | 在函数里用了外面定义的变量 | `func g() { println(a) }` |
+| 3. 非成员函数中访问实例成员 | class/struct 内非成员函数访问了 `this` 或成员变量 | 后续章节会讲 |
 
 以下情形的变量访问**不是**变量捕获：
 
-| 情形 | 说明 |
-|------|------|
-| 本函数或本 lambda 内的局部变量 | 就是函数自己的变量 |
-| 本函数或本 lambda 的形参 | 参数本身就是函数的一部分 |
-| 全局变量和静态成员变量 | 全局/静态变量不属于"作用域捕获" |
-| 实例成员函数或属性中的实例成员变量 | 通过 `this` 参数访问，不是捕获 |
+| 情形 | 为什么不是？ | 类比 |
+|------|-------------|------|
+| 本函数或 lambda 内的局部变量 | 就是函数自己的东西，不需要"捕获" | 自己的书包，不算借 |
+| 本函数或 lambda 的形参 | 参数本身就是函数的一部分 | 买手机送的充电器 |
+| 全局变量和静态成员变量 | 全局变量一直都在，不需要"捕获" | 公共资源，人人可用 |
+| 实例成员函数中的实例成员变量 | 通过 `this` 参数访问的 | 用钥匙开自家门，不算偷 |
 
 ---
 
 ## 4.6.3 变量捕获的规则
 
-变量的捕获发生在闭包**定义时**，因此有以下规则：
+变量的捕获发生在闭包**定义时**（而不是调用时），因此有两条重要规则：
 
-### 规则一：被捕获的变量必须在闭包定义时可见
+### 规则一：被捕获的变量必须在闭包定义时**可见**
 
 ```Cangjie
 func f() {
     let x = 99
     func f1() {
-        println(x)          // ✅ x 在 f1 定义之前已声明
+        println(x)          // ✅ x 在 f1 定义之前已声明，可见
     }
     let f2 = {
-        => println(y)       // undeclared identifier 'y'
+        => println(y)       // ❌ Error: y 还没声明呢！
     }
     let y = 88
     f1()                    // 输出：99
@@ -82,27 +110,28 @@ func f() {
 ```
 
 > [!CAUTION]
-> 闭包只能捕获**定义时已经存在**的变量。上例中 `f2` 定义时 `y` 还没声明，因此编译报错。
+> 闭包只能捕获**定义时已经存在**的变量。`f2` 定义的时候 `y` 还没声明，就像你想看一本书，但这本书还没出版——自然看不到。
 
-### 规则二：被捕获的变量必须在闭包定义前完成初始化
+### 规则二：被捕获的变量必须在闭包定义前**完成初始化**
 
 ```Cangjie
 func f() {
-    let x: Int64
+    let x: Int64              // 声明了，但还没赋值
     func f1() {
-        println(x)          // cannot capture variable 'x' before initialization
+        println(x)            // ❌ Error: x 还没初始化，不能捕获
     }
-    x = 99
+    x = 99                    // 这里才赋值
     f1()
 }
 ```
 
 > [!CAUTION]
-> 即使变量已经声明（存在），但如果**尚未完成初始化**，闭包也不能捕获它。
+> 即使变量已经声明（名字存在了），但如果**还没完成初始化**（没有值），闭包也不能捕获它。
+> 就像一个空盒子，标签贴好了（声明了），但盒子里还没放东西（没初始化），你没法把它装进背包里。
 
 ---
 
-## 4.6.4 捕获引用类型变量
+## 4.6.4 捕获引用类型变量（可以修改内部成员）
 
 如果捕获的变量是**引用类型**（如 `class`），可以修改其**可变实例成员变量**的值：
 
@@ -112,7 +141,7 @@ class C {
 }
 
 func returnIncrementer(): () -> Unit {
-    let c: C = C()              // c 是引用类型
+    let c: C = C()              // c 是引用类型（class）
 
     func incrementer() {
         c.num++                 // ✅ 可以修改引用类型的可变成员
@@ -123,101 +152,106 @@ func returnIncrementer(): () -> Unit {
 
 main() {
     let f = returnIncrementer()
-    f()                         // c.num 增加 1
+    f()                         // c.num 从 0 增加到 1
 }
 ```
 
 > [!NOTE]
-> 这里 `c` 本身是 `let`（不可变），但 `c.num` 是 `var`（可变成员）。因为 `c` 是引用类型，`let` 只保证引用关系不变，不保证引用对象内部不可变。
+> 这里 `c` 本身用 `let` 声明（不可变引用），但 `c.num` 是 `var`（可变成员）。
+>
+> 因为 `c` 是引用类型（class），`let` 只保证"不能把 `c` 指向另一个对象"，但**不保证对象内部的成员不可变**。
+>
+> 类比：你借了一本书给朋友（`let` 引用），朋友不能把书换成另一本，但可以在书上做笔记（修改内部成员 `num`）。
 
 ---
 
-## 4.6.5 捕获 var 变量的限制
+## 4.6.5 捕获 var 变量的限制（"危险"的闭包）
 
-为了防止捕获了 `var` 声明变量的闭包**逃逸**（即在函数执行完毕后仍然可以在函数外部被调用），这类闭包的使用有严格限制：
+### 什么是"逃逸"？
 
-> 捕获了 `var` 变量的闭包**只能被调用**，不能作为一等公民使用。
+"逃逸"（escape）是指闭包在定义它的函数执行完毕后，仍然可以在函数外部被调用。上面的 `returnAddNum` 例子就是典型的逃逸。
 
-具体来说，不能：
+### 为什么捕获 `var` 有限制？
 
-- ❌ 赋值给变量
-- ❌ 作为实参传递
-- ❌ 作为返回值返回
-- ❌ 直接将闭包的名字作为表达式使用
+`let` 变量不可变——闭包捕获了它，只能读，不会出乱子。
+
+`var` 变量可变——如果闭包捕获了 `var`，还能逃逸出去，那多个地方同时修改就可能出问题。所以仓颉做了安全限制。
+
+**具体限制**：捕获了 `var` 变量的闭包**只能被调用**，不能作为一等公民使用。
+
+> [!TIP]
+> "不能作为一等公民"的意思是：不能把它赋值给变量、不能作为参数传递、不能作为返回值返回、不能把它当表达式用——你唯一能做的就是**直接调用它**。
 
 ```Cangjie
 func f() {
     var x = 1
-    let y = 2
 
     func g() {
-        println(x)          // ✅ 捕获了 var 变量 x
+        println(x)          // ✅ g 捕获了 var 变量 x
     }
-    let b = g               // Error, g 不能赋值给变量
+    let b = g               // ❌ Error：g 捕获了 var，不能赋值给变量
 
-    g                       // Error, g 不能作为表达式使用
-    g()                     // ✅ g 可以被调用
+    g                       // ❌ Error：不能作为表达式使用
+    g()                     // ✅ 唯一的允许操作：直接调用
 
-    g                       // Error, g 不能作为返回值
+    return g                // ❌ Error：不能作为返回值
 }
 ```
 
 > [!WARNING]
-> 捕获 `let` 变量的闭包是"安全的"，可以作为一等公民自由使用；但捕获 `var` 变量的闭包因为涉及可变状态，为了安全限制其逃逸。
+> 捕获 `let` 变量的闭包是"安全的"，可以作为一等公民自由使用；但捕获 `var` 变量的闭包因为涉及可变状态，为了安全限制了它的逃逸。
 
 ---
 
-## 4.6.6 捕获的传递性
+## 4.6.6 捕获的传递性（像"传染"一样）
 
-需要注意的是，捕获具有**传递性**。如果一个函数 `f` 调用了捕获 `var` 变量的函数 `g`，且 `g` 捕获的 `var` 变量**不在**函数 `f` 内定义，那么函数 `f` 同样捕获了 `var` 变量。
+如果一个函数 `f` 调用了捕获 `var` 变量的函数 `g`，且 `g` 捕获的 `var` 变量**不在**函数 `f` 内定义，那么函数 `f` 也相当于捕获了 `var` 变量。
 
-**示例 6.1：传递捕获**
+**这就像"传染"**：`g` 接触了 `var`，`f` 调用了 `g`，`f` 也被"传染"了。
 
-`g` 捕获了 `var` 声明的变量 `x`，`f` 调用了 `g`，且 `g` 捕获的 `x` 不在 `f` 内定义，`f` 同样不能作为一等公民使用：
+### 示例 1：被传染（不能逃逸）
 
 ```Cangjie
 func h() {
-    var x = 1
+    var x = 1                // x 定义在 h 内
 
     func g() {
-        x
-    }                       // g 捕获了 var 变量 x
+        x                    // g 捕获了 var 变量 x（x 不在 g 内定义）
+    }
 
     func f() {
-        g()                 // f 调用了 g
+        g()                  // f 调用了 g，而 g 捕获了外部的 var
     }
-    return f                // Error：传递捕获了 var 变量 x
+    return f                 // ❌ Error：f 被"传染"了，不能逃逸
 }
 ```
 
-**示例 6.2：非传递捕获**
-
-`g` 捕获了 `var` 声明的变量 `x`，`f` 调用了 `g`。但 `g` 捕获的 `x` **在 `f` 内定义**，`f` 没有捕获其他 `var` 声明的变量，因此 `f` 仍可作为一等公民使用：
+### 示例 2：没被传染（可以逃逸）
 
 ```Cangjie
 func h() {
     func f() {
-        var x = 1
+        var x = 1            // x 定义在 f 内
         func g() {
-            x
-        }                   // g 捕获了 var 变量 x（在 f 内定义）
+            x                // g 捕获了 var 变量 x，但 x 在 f 内定义
+        }
 
         g()
     }
-    return f                // ✅ OK：x 在 f 内定义，不构成传递捕获
+    return f                 // ✅ OK：x 是 f 自己的变量，不构成传染
 }
 ```
 
 > [!TIP]
-> 简单记忆：一个函数是否"被传染"了 var 捕获，取决于它调用的函数所捕获的 var 变量是否**定义在自身之外**。
+> **简单记忆**：一个函数是否"被传染"了 var 捕获，取决于它调用的函数所捕获的 var 变量是否**定义在自身之外**。
+> - 是 → 被传染，不能逃逸
+> - 否 → 没被传染，可以逃逸
 
 ---
 
-## 4.6.7 全局变量和静态成员变量
+## 4.6.7 全局变量和静态成员变量（不受捕获规则限制）
 
-对**全局变量**和**静态成员变量**的访问，**不属于变量捕获**。因此访问了 `var` 修饰的全局变量、静态成员变量的函数或 lambda 仍可作为一等公民使用：
-> [!NOTE]
-> 此处留作印象，后续学完class再回来学习
+对**全局变量**和**静态成员变量**的访问，**不属于变量捕获**。
 
 ```Cangjie
 class C {
@@ -243,31 +277,51 @@ func g() {
 ```
 
 > [!NOTE]
-> 全局变量和静态成员变量存在于程序的整个生命周期，不依赖某个特定的作用域，因此访问它们不构成"捕获"，也不受逃逸限制。
+> 为什么全局变量和静态成员变量没有限制？
+>
+> 因为全局变量和静态成员变量存在于程序的**整个生命周期**，不依赖某个特定的函数作用域。它们一直都在，所以访问它们不构成"捕获"，也不受逃逸限制。
+>
+> 类比：你在房间（函数）里用客厅的公共电视（全局变量），不算"把客厅电视搬进房间"——电视本来就在那里，谁都能看。
 
 ---
 
 ## 4.6.8 总结
 
-| 知识点 | 说明 |
-|--------|------|
-| 闭包定义 | 函数/lambda + 捕获的变量 |
-| 变量捕获 | 访问本函数外定义的局部变量、参数默认值中的外部变量、非成员函数中的实例成员 |
-| 捕获条件 | 变量在闭包定义时必须**可见**且**已初始化** |
-| 捕获 `let` 变量 | ✅ 可作为一等公民自由使用 |
-| 捕获 `var` 变量 | ❌ 只能调用，不能赋值/传递/返回（防止逃逸） |
-| 捕获传递性 | 调用捕获了 var 的函数，自身也可能受限 |
-| 全局/静态变量 | 不属于捕获，不受限制 |
-
-0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],"$L4","$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"YYKzDL23MTXat2WTr6TSc"}
-4:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L9",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782921487209.516},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/1_定义函数","title":"定义函数","description":"学会编写可复用的代码块","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":1,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/2_调用函数","title":"调用函数","description":"学会灵活调用仓颉函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":2,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/3_函数类型","title":"函数类型","description":"仓颉中函数也是一等公民","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":3,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/4_lambda表达式","title":"Lambda表达式","description":"快速创建匿名函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":4,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/5_嵌套函数","title":"嵌套函数","description":"函数内部定义函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":5,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/6_闭包","title":"闭包","description":"捕获变量的函数与lambda","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":6,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/10_nothing类型","title":"Nothing类型","description":"仓颉的基本数据类型——Nothing类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/11_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/12_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":12,"published":true,"mtime":1782921487209.9858}],"currentSlug":"Cangjie/4_函数/6_闭包"}]]}]}]
-c:T1d5a,
+| 知识点 | 说明 | 关键记忆 |
+|--------|------|---------|
+| 闭包定义 | 函数/lambda + 捕获的变量 | 像背着背包的人 |
+| 变量捕获 | 访问本函数外定义的局部变量 | "借"外面的东西用 |
+| 捕获条件 | 变量在闭包定义时必须**可见**且**已初始化** | 东西要存在且能用 |
+| 捕获 `let` 变量 | ✅ 可作为一等公民自由使用 | 安全，随便用 |
+| 捕获 `var` 变量 | ❌ 只能调用，不能赋值/传递/返回 | 危险，怕乱改 |
+| 捕获传递性 | 调用捕获了 var 的函数，自身也可能受限 | 像"传染"一样 |
+| 全局/静态变量 | 不属于捕获，不受限制 | 公共资源，随便用 |
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],"$L4","$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"VtimUmeRWW8bLVu7SzSdl"}
+4:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L9",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782984101998.0315},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制——if分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"published":true,"mtime":1782984101999.2908},{"slug":"Cangjie/4_函数/1_定义函数","title":"定义函数","description":"学会编写可复用的代码块","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":1,"published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"published":true,"mtime":1782984101999.2908},{"slug":"Cangjie/4_函数/2_调用函数","title":"调用函数","description":"学会灵活调用仓颉函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":2,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"published":true,"mtime":1782984101999.2908},{"slug":"Cangjie/4_函数/3_函数类型","title":"函数类型","description":"仓颉中函数也是一等公民","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":3,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/4_函数/4_lambda表达式","title":"Lambda表达式","description":"快速创建匿名函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":4,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/4_函数/5_嵌套函数","title":"嵌套函数","description":"函数内部定义函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":5,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/4_函数/6_闭包","title":"闭包","description":"捕获变量的函数与lambda","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":6,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/10_nothing类型","title":"Nothing类型","description":"仓颉的基本数据类型——Nothing类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/11_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/12_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":12,"published":true,"mtime":1782984101998.4624}],"currentSlug":"Cangjie/4_函数/6_闭包"}]]}]}]
+c:T26dd,
 ## 4.6.1 什么是闭包？
+
+### 从嵌套函数说起
+
+上一节我们学会了嵌套函数——函数内部定义函数。并且我们还发现，嵌套函数可以**访问外部函数的变量**。
+
+那如果我们**把这个嵌套函数返回出去**，在外部调用它，它还能访问到那些变量吗？
+
+**答案是：能！**——这就是闭包。
+
+### 正式定义
 
 一个函数或 lambda **从定义它的静态作用域中捕获了变量**，函数或 lambda 和捕获的变量一起被称为一个**闭包**。
 
 > [!TIP]
-> 可以把闭包想象成一个"背包"——函数出门时，把需要用到的外部变量装进背包里背着走。这样即使离开了变量定义的地方，函数也能正常使用它们。
+> 可以把闭包想象成一个"**背包**"：
+> - 函数就像一个人
+> - 它定义时周围的变量就像家里的物品
+> - 当这个函数要"出远门"（被返回到外部作用域）时，它会把需要用到的变量**装进背包里背着走**
+>
+> 这样即使离开了变量原本定义的地方，函数也能正常使用它们。
+
+### 最简单的闭包例子
 
 ```Cangjie
 func returnAddNum(): (Int64) -> Int64 {
@@ -276,7 +330,7 @@ func returnAddNum(): (Int64) -> Int64 {
     func add(a: Int64) {         // add 捕获了 num
         return a + num
     }
-    add                          // add 和 num 一起构成闭包
+    add                          // 返回 add（add + num 一起构成闭包）
 }
 
 main() {
@@ -291,8 +345,17 @@ main() {
 20
 ```
 
+**逐行解读**：
+
+1. 调用 `returnAddNum()` 进入函数
+2. 创建变量 `num = 10`
+3. 定义嵌套函数 `add`，它用到了外部的 `num`
+4. 返回 `add`——此时 `add` 和它捕获的 `num` 一起打包成了闭包
+5. `returnAddNum` 执行完毕——按理说 `num` 应该被销毁了
+6. 但 `f(10)` 仍然能正确输出 `20`——因为 `num` 被"装进了闭包的背包里"，没有被销毁
+
 > [!NOTE]
-> 上例中，`add` 函数捕获了外部变量 `num`。即使 `returnAddNum` 执行完毕，`num` 已经"离开了它的作用域"，但闭包 `add` 仍然可以正常访问 `num`——因为 `num` 被装进了闭包的"背包"里。
+> 上例中，`add` 函数捕获了外部变量 `num`。即使 `returnAddNum` 执行完毕，`num` 已经"离开了它的作用域"，但闭包 `add` 仍然可以正常访问 `num`。
 
 ---
 
@@ -300,35 +363,37 @@ main() {
 
 函数或 lambda 的定义中对以下几种变量的访问，称为**变量捕获**：
 
-1. 函数的参数缺省值中访问了本函数之外定义的**局部变量**
-2. 函数或 lambda 内访问了本函数或本 lambda 之外定义的**局部变量**
-3. `class` / `struct` 内定义的不是成员函数的函数或 lambda 访问了**实例成员变量**或 `this`
+| 情形 | 说明 | 示例 |
+|------|------|------|
+| 1. 参数默认值中的外部局部变量 | 函数的参数缺省值里用了外面的变量 | `func f(x: Int64 = count)` |
+| 2. 函数/lambda 内访问外部的局部变量 | 在函数里用了外面定义的变量 | `func g() { println(a) }` |
+| 3. 非成员函数中访问实例成员 | class/struct 内非成员函数访问了 `this` 或成员变量 | 后续章节会讲 |
 
 以下情形的变量访问**不是**变量捕获：
 
-| 情形 | 说明 |
-|------|------|
-| 本函数或本 lambda 内的局部变量 | 就是函数自己的变量 |
-| 本函数或本 lambda 的形参 | 参数本身就是函数的一部分 |
-| 全局变量和静态成员变量 | 全局/静态变量不属于"作用域捕获" |
-| 实例成员函数或属性中的实例成员变量 | 通过 `this` 参数访问，不是捕获 |
+| 情形 | 为什么不是？ | 类比 |
+|------|-------------|------|
+| 本函数或 lambda 内的局部变量 | 就是函数自己的东西，不需要"捕获" | 自己的书包，不算借 |
+| 本函数或 lambda 的形参 | 参数本身就是函数的一部分 | 买手机送的充电器 |
+| 全局变量和静态成员变量 | 全局变量一直都在，不需要"捕获" | 公共资源，人人可用 |
+| 实例成员函数中的实例成员变量 | 通过 `this` 参数访问的 | 用钥匙开自家门，不算偷 |
 
 ---
 
 ## 4.6.3 变量捕获的规则
 
-变量的捕获发生在闭包**定义时**，因此有以下规则：
+变量的捕获发生在闭包**定义时**（而不是调用时），因此有两条重要规则：
 
-### 规则一：被捕获的变量必须在闭包定义时可见
+### 规则一：被捕获的变量必须在闭包定义时**可见**
 
 ```Cangjie
 func f() {
     let x = 99
     func f1() {
-        println(x)          // ✅ x 在 f1 定义之前已声明
+        println(x)          // ✅ x 在 f1 定义之前已声明，可见
     }
     let f2 = {
-        => println(y)       // undeclared identifier 'y'
+        => println(y)       // ❌ Error: y 还没声明呢！
     }
     let y = 88
     f1()                    // 输出：99
@@ -337,27 +402,28 @@ func f() {
 ```
 
 > [!CAUTION]
-> 闭包只能捕获**定义时已经存在**的变量。上例中 `f2` 定义时 `y` 还没声明，因此编译报错。
+> 闭包只能捕获**定义时已经存在**的变量。`f2` 定义的时候 `y` 还没声明，就像你想看一本书，但这本书还没出版——自然看不到。
 
-### 规则二：被捕获的变量必须在闭包定义前完成初始化
+### 规则二：被捕获的变量必须在闭包定义前**完成初始化**
 
 ```Cangjie
 func f() {
-    let x: Int64
+    let x: Int64              // 声明了，但还没赋值
     func f1() {
-        println(x)          // cannot capture variable 'x' before initialization
+        println(x)            // ❌ Error: x 还没初始化，不能捕获
     }
-    x = 99
+    x = 99                    // 这里才赋值
     f1()
 }
 ```
 
 > [!CAUTION]
-> 即使变量已经声明（存在），但如果**尚未完成初始化**，闭包也不能捕获它。
+> 即使变量已经声明（名字存在了），但如果**还没完成初始化**（没有值），闭包也不能捕获它。
+> 就像一个空盒子，标签贴好了（声明了），但盒子里还没放东西（没初始化），你没法把它装进背包里。
 
 ---
 
-## 4.6.4 捕获引用类型变量
+## 4.6.4 捕获引用类型变量（可以修改内部成员）
 
 如果捕获的变量是**引用类型**（如 `class`），可以修改其**可变实例成员变量**的值：
 
@@ -367,7 +433,7 @@ class C {
 }
 
 func returnIncrementer(): () -> Unit {
-    let c: C = C()              // c 是引用类型
+    let c: C = C()              // c 是引用类型（class）
 
     func incrementer() {
         c.num++                 // ✅ 可以修改引用类型的可变成员
@@ -378,101 +444,106 @@ func returnIncrementer(): () -> Unit {
 
 main() {
     let f = returnIncrementer()
-    f()                         // c.num 增加 1
+    f()                         // c.num 从 0 增加到 1
 }
 ```
 
 > [!NOTE]
-> 这里 `c` 本身是 `let`（不可变），但 `c.num` 是 `var`（可变成员）。因为 `c` 是引用类型，`let` 只保证引用关系不变，不保证引用对象内部不可变。
+> 这里 `c` 本身用 `let` 声明（不可变引用），但 `c.num` 是 `var`（可变成员）。
+>
+> 因为 `c` 是引用类型（class），`let` 只保证"不能把 `c` 指向另一个对象"，但**不保证对象内部的成员不可变**。
+>
+> 类比：你借了一本书给朋友（`let` 引用），朋友不能把书换成另一本，但可以在书上做笔记（修改内部成员 `num`）。
 
 ---
 
-## 4.6.5 捕获 var 变量的限制
+## 4.6.5 捕获 var 变量的限制（"危险"的闭包）
 
-为了防止捕获了 `var` 声明变量的闭包**逃逸**（即在函数执行完毕后仍然可以在函数外部被调用），这类闭包的使用有严格限制：
+### 什么是"逃逸"？
 
-> 捕获了 `var` 变量的闭包**只能被调用**，不能作为一等公民使用。
+"逃逸"（escape）是指闭包在定义它的函数执行完毕后，仍然可以在函数外部被调用。上面的 `returnAddNum` 例子就是典型的逃逸。
 
-具体来说，不能：
+### 为什么捕获 `var` 有限制？
 
-- ❌ 赋值给变量
-- ❌ 作为实参传递
-- ❌ 作为返回值返回
-- ❌ 直接将闭包的名字作为表达式使用
+`let` 变量不可变——闭包捕获了它，只能读，不会出乱子。
+
+`var` 变量可变——如果闭包捕获了 `var`，还能逃逸出去，那多个地方同时修改就可能出问题。所以仓颉做了安全限制。
+
+**具体限制**：捕获了 `var` 变量的闭包**只能被调用**，不能作为一等公民使用。
+
+> [!TIP]
+> "不能作为一等公民"的意思是：不能把它赋值给变量、不能作为参数传递、不能作为返回值返回、不能把它当表达式用——你唯一能做的就是**直接调用它**。
 
 ```Cangjie
 func f() {
     var x = 1
-    let y = 2
 
     func g() {
-        println(x)          // ✅ 捕获了 var 变量 x
+        println(x)          // ✅ g 捕获了 var 变量 x
     }
-    let b = g               // Error, g 不能赋值给变量
+    let b = g               // ❌ Error：g 捕获了 var，不能赋值给变量
 
-    g                       // Error, g 不能作为表达式使用
-    g()                     // ✅ g 可以被调用
+    g                       // ❌ Error：不能作为表达式使用
+    g()                     // ✅ 唯一的允许操作：直接调用
 
-    g                       // Error, g 不能作为返回值
+    return g                // ❌ Error：不能作为返回值
 }
 ```
 
 > [!WARNING]
-> 捕获 `let` 变量的闭包是"安全的"，可以作为一等公民自由使用；但捕获 `var` 变量的闭包因为涉及可变状态，为了安全限制其逃逸。
+> 捕获 `let` 变量的闭包是"安全的"，可以作为一等公民自由使用；但捕获 `var` 变量的闭包因为涉及可变状态，为了安全限制了它的逃逸。
 
 ---
 
-## 4.6.6 捕获的传递性
+## 4.6.6 捕获的传递性（像"传染"一样）
 
-需要注意的是，捕获具有**传递性**。如果一个函数 `f` 调用了捕获 `var` 变量的函数 `g`，且 `g` 捕获的 `var` 变量**不在**函数 `f` 内定义，那么函数 `f` 同样捕获了 `var` 变量。
+如果一个函数 `f` 调用了捕获 `var` 变量的函数 `g`，且 `g` 捕获的 `var` 变量**不在**函数 `f` 内定义，那么函数 `f` 也相当于捕获了 `var` 变量。
 
-**示例 6.1：传递捕获**
+**这就像"传染"**：`g` 接触了 `var`，`f` 调用了 `g`，`f` 也被"传染"了。
 
-`g` 捕获了 `var` 声明的变量 `x`，`f` 调用了 `g`，且 `g` 捕获的 `x` 不在 `f` 内定义，`f` 同样不能作为一等公民使用：
+### 示例 1：被传染（不能逃逸）
 
 ```Cangjie
 func h() {
-    var x = 1
+    var x = 1                // x 定义在 h 内
 
     func g() {
-        x
-    }                       // g 捕获了 var 变量 x
+        x                    // g 捕获了 var 变量 x（x 不在 g 内定义）
+    }
 
     func f() {
-        g()                 // f 调用了 g
+        g()                  // f 调用了 g，而 g 捕获了外部的 var
     }
-    return f                // Error：传递捕获了 var 变量 x
+    return f                 // ❌ Error：f 被"传染"了，不能逃逸
 }
 ```
 
-**示例 6.2：非传递捕获**
-
-`g` 捕获了 `var` 声明的变量 `x`，`f` 调用了 `g`。但 `g` 捕获的 `x` **在 `f` 内定义**，`f` 没有捕获其他 `var` 声明的变量，因此 `f` 仍可作为一等公民使用：
+### 示例 2：没被传染（可以逃逸）
 
 ```Cangjie
 func h() {
     func f() {
-        var x = 1
+        var x = 1            // x 定义在 f 内
         func g() {
-            x
-        }                   // g 捕获了 var 变量 x（在 f 内定义）
+            x                // g 捕获了 var 变量 x，但 x 在 f 内定义
+        }
 
         g()
     }
-    return f                // ✅ OK：x 在 f 内定义，不构成传递捕获
+    return f                 // ✅ OK：x 是 f 自己的变量，不构成传染
 }
 ```
 
 > [!TIP]
-> 简单记忆：一个函数是否"被传染"了 var 捕获，取决于它调用的函数所捕获的 var 变量是否**定义在自身之外**。
+> **简单记忆**：一个函数是否"被传染"了 var 捕获，取决于它调用的函数所捕获的 var 变量是否**定义在自身之外**。
+> - 是 → 被传染，不能逃逸
+> - 否 → 没被传染，可以逃逸
 
 ---
 
-## 4.6.7 全局变量和静态成员变量
+## 4.6.7 全局变量和静态成员变量（不受捕获规则限制）
 
-对**全局变量**和**静态成员变量**的访问，**不属于变量捕获**。因此访问了 `var` 修饰的全局变量、静态成员变量的函数或 lambda 仍可作为一等公民使用：
-> [!NOTE]
-> 此处留作印象，后续学完class再回来学习
+对**全局变量**和**静态成员变量**的访问，**不属于变量捕获**。
 
 ```Cangjie
 class C {
@@ -498,33 +569,53 @@ func g() {
 ```
 
 > [!NOTE]
-> 全局变量和静态成员变量存在于程序的整个生命周期，不依赖某个特定的作用域，因此访问它们不构成"捕获"，也不受逃逸限制。
+> 为什么全局变量和静态成员变量没有限制？
+>
+> 因为全局变量和静态成员变量存在于程序的**整个生命周期**，不依赖某个特定的函数作用域。它们一直都在，所以访问它们不构成"捕获"，也不受逃逸限制。
+>
+> 类比：你在房间（函数）里用客厅的公共电视（全局变量），不算"把客厅电视搬进房间"——电视本来就在那里，谁都能看。
 
 ---
 
 ## 4.6.8 总结
 
-| 知识点 | 说明 |
-|--------|------|
-| 闭包定义 | 函数/lambda + 捕获的变量 |
-| 变量捕获 | 访问本函数外定义的局部变量、参数默认值中的外部变量、非成员函数中的实例成员 |
-| 捕获条件 | 变量在闭包定义时必须**可见**且**已初始化** |
-| 捕获 `let` 变量 | ✅ 可作为一等公民自由使用 |
-| 捕获 `var` 变量 | ❌ 只能调用，不能赋值/传递/返回（防止逃逸） |
-| 捕获传递性 | 调用捕获了 var 的函数，自身也可能受限 |
-| 全局/静态变量 | 不属于捕获，不受限制 |
-
+| 知识点 | 说明 | 关键记忆 |
+|--------|------|---------|
+| 闭包定义 | 函数/lambda + 捕获的变量 | 像背着背包的人 |
+| 变量捕获 | 访问本函数外定义的局部变量 | "借"外面的东西用 |
+| 捕获条件 | 变量在闭包定义时必须**可见**且**已初始化** | 东西要存在且能用 |
+| 捕获 `let` 变量 | ✅ 可作为一等公民自由使用 | 安全，随便用 |
+| 捕获 `var` 变量 | ❌ 只能调用，不能赋值/传递/返回 | 危险，怕乱改 |
+| 捕获传递性 | 调用捕获了 var 的函数，自身也可能受限 | 像"传染"一样 |
+| 全局/静态变量 | 不属于捕获，不受限制 | 公共资源，随便用 |
 5:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$La",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-07-01"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"闭包"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"捕获变量的函数与lambda"}]]}],["$","$Lb",null,{"content":"$c"}],"$Ld"]}]}]
 6:["$","script","script-0",{"src":"/_next/static/chunks/0g4o6d4sifcpo.js","async":true}]
 7:["$","script","script-1",{"src":"/_next/static/chunks/1ssz3eabjrzaj.js","async":true}]
 8:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
-12:T1d5a,
+12:T26dd,
 ## 4.6.1 什么是闭包？
+
+### 从嵌套函数说起
+
+上一节我们学会了嵌套函数——函数内部定义函数。并且我们还发现，嵌套函数可以**访问外部函数的变量**。
+
+那如果我们**把这个嵌套函数返回出去**，在外部调用它，它还能访问到那些变量吗？
+
+**答案是：能！**——这就是闭包。
+
+### 正式定义
 
 一个函数或 lambda **从定义它的静态作用域中捕获了变量**，函数或 lambda 和捕获的变量一起被称为一个**闭包**。
 
 > [!TIP]
-> 可以把闭包想象成一个"背包"——函数出门时，把需要用到的外部变量装进背包里背着走。这样即使离开了变量定义的地方，函数也能正常使用它们。
+> 可以把闭包想象成一个"**背包**"：
+> - 函数就像一个人
+> - 它定义时周围的变量就像家里的物品
+> - 当这个函数要"出远门"（被返回到外部作用域）时，它会把需要用到的变量**装进背包里背着走**
+>
+> 这样即使离开了变量原本定义的地方，函数也能正常使用它们。
+
+### 最简单的闭包例子
 
 ```Cangjie
 func returnAddNum(): (Int64) -> Int64 {
@@ -533,7 +624,7 @@ func returnAddNum(): (Int64) -> Int64 {
     func add(a: Int64) {         // add 捕获了 num
         return a + num
     }
-    add                          // add 和 num 一起构成闭包
+    add                          // 返回 add（add + num 一起构成闭包）
 }
 
 main() {
@@ -548,8 +639,17 @@ main() {
 20
 ```
 
+**逐行解读**：
+
+1. 调用 `returnAddNum()` 进入函数
+2. 创建变量 `num = 10`
+3. 定义嵌套函数 `add`，它用到了外部的 `num`
+4. 返回 `add`——此时 `add` 和它捕获的 `num` 一起打包成了闭包
+5. `returnAddNum` 执行完毕——按理说 `num` 应该被销毁了
+6. 但 `f(10)` 仍然能正确输出 `20`——因为 `num` 被"装进了闭包的背包里"，没有被销毁
+
 > [!NOTE]
-> 上例中，`add` 函数捕获了外部变量 `num`。即使 `returnAddNum` 执行完毕，`num` 已经"离开了它的作用域"，但闭包 `add` 仍然可以正常访问 `num`——因为 `num` 被装进了闭包的"背包"里。
+> 上例中，`add` 函数捕获了外部变量 `num`。即使 `returnAddNum` 执行完毕，`num` 已经"离开了它的作用域"，但闭包 `add` 仍然可以正常访问 `num`。
 
 ---
 
@@ -557,35 +657,37 @@ main() {
 
 函数或 lambda 的定义中对以下几种变量的访问，称为**变量捕获**：
 
-1. 函数的参数缺省值中访问了本函数之外定义的**局部变量**
-2. 函数或 lambda 内访问了本函数或本 lambda 之外定义的**局部变量**
-3. `class` / `struct` 内定义的不是成员函数的函数或 lambda 访问了**实例成员变量**或 `this`
+| 情形 | 说明 | 示例 |
+|------|------|------|
+| 1. 参数默认值中的外部局部变量 | 函数的参数缺省值里用了外面的变量 | `func f(x: Int64 = count)` |
+| 2. 函数/lambda 内访问外部的局部变量 | 在函数里用了外面定义的变量 | `func g() { println(a) }` |
+| 3. 非成员函数中访问实例成员 | class/struct 内非成员函数访问了 `this` 或成员变量 | 后续章节会讲 |
 
 以下情形的变量访问**不是**变量捕获：
 
-| 情形 | 说明 |
-|------|------|
-| 本函数或本 lambda 内的局部变量 | 就是函数自己的变量 |
-| 本函数或本 lambda 的形参 | 参数本身就是函数的一部分 |
-| 全局变量和静态成员变量 | 全局/静态变量不属于"作用域捕获" |
-| 实例成员函数或属性中的实例成员变量 | 通过 `this` 参数访问，不是捕获 |
+| 情形 | 为什么不是？ | 类比 |
+|------|-------------|------|
+| 本函数或 lambda 内的局部变量 | 就是函数自己的东西，不需要"捕获" | 自己的书包，不算借 |
+| 本函数或 lambda 的形参 | 参数本身就是函数的一部分 | 买手机送的充电器 |
+| 全局变量和静态成员变量 | 全局变量一直都在，不需要"捕获" | 公共资源，人人可用 |
+| 实例成员函数中的实例成员变量 | 通过 `this` 参数访问的 | 用钥匙开自家门，不算偷 |
 
 ---
 
 ## 4.6.3 变量捕获的规则
 
-变量的捕获发生在闭包**定义时**，因此有以下规则：
+变量的捕获发生在闭包**定义时**（而不是调用时），因此有两条重要规则：
 
-### 规则一：被捕获的变量必须在闭包定义时可见
+### 规则一：被捕获的变量必须在闭包定义时**可见**
 
 ```Cangjie
 func f() {
     let x = 99
     func f1() {
-        println(x)          // ✅ x 在 f1 定义之前已声明
+        println(x)          // ✅ x 在 f1 定义之前已声明，可见
     }
     let f2 = {
-        => println(y)       // undeclared identifier 'y'
+        => println(y)       // ❌ Error: y 还没声明呢！
     }
     let y = 88
     f1()                    // 输出：99
@@ -594,27 +696,28 @@ func f() {
 ```
 
 > [!CAUTION]
-> 闭包只能捕获**定义时已经存在**的变量。上例中 `f2` 定义时 `y` 还没声明，因此编译报错。
+> 闭包只能捕获**定义时已经存在**的变量。`f2` 定义的时候 `y` 还没声明，就像你想看一本书，但这本书还没出版——自然看不到。
 
-### 规则二：被捕获的变量必须在闭包定义前完成初始化
+### 规则二：被捕获的变量必须在闭包定义前**完成初始化**
 
 ```Cangjie
 func f() {
-    let x: Int64
+    let x: Int64              // 声明了，但还没赋值
     func f1() {
-        println(x)          // cannot capture variable 'x' before initialization
+        println(x)            // ❌ Error: x 还没初始化，不能捕获
     }
-    x = 99
+    x = 99                    // 这里才赋值
     f1()
 }
 ```
 
 > [!CAUTION]
-> 即使变量已经声明（存在），但如果**尚未完成初始化**，闭包也不能捕获它。
+> 即使变量已经声明（名字存在了），但如果**还没完成初始化**（没有值），闭包也不能捕获它。
+> 就像一个空盒子，标签贴好了（声明了），但盒子里还没放东西（没初始化），你没法把它装进背包里。
 
 ---
 
-## 4.6.4 捕获引用类型变量
+## 4.6.4 捕获引用类型变量（可以修改内部成员）
 
 如果捕获的变量是**引用类型**（如 `class`），可以修改其**可变实例成员变量**的值：
 
@@ -624,7 +727,7 @@ class C {
 }
 
 func returnIncrementer(): () -> Unit {
-    let c: C = C()              // c 是引用类型
+    let c: C = C()              // c 是引用类型（class）
 
     func incrementer() {
         c.num++                 // ✅ 可以修改引用类型的可变成员
@@ -635,101 +738,106 @@ func returnIncrementer(): () -> Unit {
 
 main() {
     let f = returnIncrementer()
-    f()                         // c.num 增加 1
+    f()                         // c.num 从 0 增加到 1
 }
 ```
 
 > [!NOTE]
-> 这里 `c` 本身是 `let`（不可变），但 `c.num` 是 `var`（可变成员）。因为 `c` 是引用类型，`let` 只保证引用关系不变，不保证引用对象内部不可变。
+> 这里 `c` 本身用 `let` 声明（不可变引用），但 `c.num` 是 `var`（可变成员）。
+>
+> 因为 `c` 是引用类型（class），`let` 只保证"不能把 `c` 指向另一个对象"，但**不保证对象内部的成员不可变**。
+>
+> 类比：你借了一本书给朋友（`let` 引用），朋友不能把书换成另一本，但可以在书上做笔记（修改内部成员 `num`）。
 
 ---
 
-## 4.6.5 捕获 var 变量的限制
+## 4.6.5 捕获 var 变量的限制（"危险"的闭包）
 
-为了防止捕获了 `var` 声明变量的闭包**逃逸**（即在函数执行完毕后仍然可以在函数外部被调用），这类闭包的使用有严格限制：
+### 什么是"逃逸"？
 
-> 捕获了 `var` 变量的闭包**只能被调用**，不能作为一等公民使用。
+"逃逸"（escape）是指闭包在定义它的函数执行完毕后，仍然可以在函数外部被调用。上面的 `returnAddNum` 例子就是典型的逃逸。
 
-具体来说，不能：
+### 为什么捕获 `var` 有限制？
 
-- ❌ 赋值给变量
-- ❌ 作为实参传递
-- ❌ 作为返回值返回
-- ❌ 直接将闭包的名字作为表达式使用
+`let` 变量不可变——闭包捕获了它，只能读，不会出乱子。
+
+`var` 变量可变——如果闭包捕获了 `var`，还能逃逸出去，那多个地方同时修改就可能出问题。所以仓颉做了安全限制。
+
+**具体限制**：捕获了 `var` 变量的闭包**只能被调用**，不能作为一等公民使用。
+
+> [!TIP]
+> "不能作为一等公民"的意思是：不能把它赋值给变量、不能作为参数传递、不能作为返回值返回、不能把它当表达式用——你唯一能做的就是**直接调用它**。
 
 ```Cangjie
 func f() {
     var x = 1
-    let y = 2
 
     func g() {
-        println(x)          // ✅ 捕获了 var 变量 x
+        println(x)          // ✅ g 捕获了 var 变量 x
     }
-    let b = g               // Error, g 不能赋值给变量
+    let b = g               // ❌ Error：g 捕获了 var，不能赋值给变量
 
-    g                       // Error, g 不能作为表达式使用
-    g()                     // ✅ g 可以被调用
+    g                       // ❌ Error：不能作为表达式使用
+    g()                     // ✅ 唯一的允许操作：直接调用
 
-    g                       // Error, g 不能作为返回值
+    return g                // ❌ Error：不能作为返回值
 }
 ```
 
 > [!WARNING]
-> 捕获 `let` 变量的闭包是"安全的"，可以作为一等公民自由使用；但捕获 `var` 变量的闭包因为涉及可变状态，为了安全限制其逃逸。
+> 捕获 `let` 变量的闭包是"安全的"，可以作为一等公民自由使用；但捕获 `var` 变量的闭包因为涉及可变状态，为了安全限制了它的逃逸。
 
 ---
 
-## 4.6.6 捕获的传递性
+## 4.6.6 捕获的传递性（像"传染"一样）
 
-需要注意的是，捕获具有**传递性**。如果一个函数 `f` 调用了捕获 `var` 变量的函数 `g`，且 `g` 捕获的 `var` 变量**不在**函数 `f` 内定义，那么函数 `f` 同样捕获了 `var` 变量。
+如果一个函数 `f` 调用了捕获 `var` 变量的函数 `g`，且 `g` 捕获的 `var` 变量**不在**函数 `f` 内定义，那么函数 `f` 也相当于捕获了 `var` 变量。
 
-**示例 6.1：传递捕获**
+**这就像"传染"**：`g` 接触了 `var`，`f` 调用了 `g`，`f` 也被"传染"了。
 
-`g` 捕获了 `var` 声明的变量 `x`，`f` 调用了 `g`，且 `g` 捕获的 `x` 不在 `f` 内定义，`f` 同样不能作为一等公民使用：
+### 示例 1：被传染（不能逃逸）
 
 ```Cangjie
 func h() {
-    var x = 1
+    var x = 1                // x 定义在 h 内
 
     func g() {
-        x
-    }                       // g 捕获了 var 变量 x
+        x                    // g 捕获了 var 变量 x（x 不在 g 内定义）
+    }
 
     func f() {
-        g()                 // f 调用了 g
+        g()                  // f 调用了 g，而 g 捕获了外部的 var
     }
-    return f                // Error：传递捕获了 var 变量 x
+    return f                 // ❌ Error：f 被"传染"了，不能逃逸
 }
 ```
 
-**示例 6.2：非传递捕获**
-
-`g` 捕获了 `var` 声明的变量 `x`，`f` 调用了 `g`。但 `g` 捕获的 `x` **在 `f` 内定义**，`f` 没有捕获其他 `var` 声明的变量，因此 `f` 仍可作为一等公民使用：
+### 示例 2：没被传染（可以逃逸）
 
 ```Cangjie
 func h() {
     func f() {
-        var x = 1
+        var x = 1            // x 定义在 f 内
         func g() {
-            x
-        }                   // g 捕获了 var 变量 x（在 f 内定义）
+            x                // g 捕获了 var 变量 x，但 x 在 f 内定义
+        }
 
         g()
     }
-    return f                // ✅ OK：x 在 f 内定义，不构成传递捕获
+    return f                 // ✅ OK：x 是 f 自己的变量，不构成传染
 }
 ```
 
 > [!TIP]
-> 简单记忆：一个函数是否"被传染"了 var 捕获，取决于它调用的函数所捕获的 var 变量是否**定义在自身之外**。
+> **简单记忆**：一个函数是否"被传染"了 var 捕获，取决于它调用的函数所捕获的 var 变量是否**定义在自身之外**。
+> - 是 → 被传染，不能逃逸
+> - 否 → 没被传染，可以逃逸
 
 ---
 
-## 4.6.7 全局变量和静态成员变量
+## 4.6.7 全局变量和静态成员变量（不受捕获规则限制）
 
-对**全局变量**和**静态成员变量**的访问，**不属于变量捕获**。因此访问了 `var` 修饰的全局变量、静态成员变量的函数或 lambda 仍可作为一等公民使用：
-> [!NOTE]
-> 此处留作印象，后续学完class再回来学习
+对**全局变量**和**静态成员变量**的访问，**不属于变量捕获**。
 
 ```Cangjie
 class C {
@@ -755,21 +863,24 @@ func g() {
 ```
 
 > [!NOTE]
-> 全局变量和静态成员变量存在于程序的整个生命周期，不依赖某个特定的作用域，因此访问它们不构成"捕获"，也不受逃逸限制。
+> 为什么全局变量和静态成员变量没有限制？
+>
+> 因为全局变量和静态成员变量存在于程序的**整个生命周期**，不依赖某个特定的函数作用域。它们一直都在，所以访问它们不构成"捕获"，也不受逃逸限制。
+>
+> 类比：你在房间（函数）里用客厅的公共电视（全局变量），不算"把客厅电视搬进房间"——电视本来就在那里，谁都能看。
 
 ---
 
 ## 4.6.8 总结
 
-| 知识点 | 说明 |
-|--------|------|
-| 闭包定义 | 函数/lambda + 捕获的变量 |
-| 变量捕获 | 访问本函数外定义的局部变量、参数默认值中的外部变量、非成员函数中的实例成员 |
-| 捕获条件 | 变量在闭包定义时必须**可见**且**已初始化** |
-| 捕获 `let` 变量 | ✅ 可作为一等公民自由使用 |
-| 捕获 `var` 变量 | ❌ 只能调用，不能赋值/传递/返回（防止逃逸） |
-| 捕获传递性 | 调用捕获了 var 的函数，自身也可能受限 |
-| 全局/静态变量 | 不属于捕获，不受限制 |
-
-d:["$","$L11",null,{"content":"$12","collection":"Cangjie/4_函数","rootColPath":"Cangjie","allArticles":["$4:props:children:props:children:2:props:articles:0","$4:props:children:props:children:2:props:articles:1","$4:props:children:props:children:2:props:articles:2","$4:props:children:props:children:2:props:articles:3","$4:props:children:props:children:2:props:articles:4","$4:props:children:props:children:2:props:articles:5","$4:props:children:props:children:2:props:articles:6",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782921487211.231},"$4:props:children:props:children:2:props:articles:7","$4:props:children:props:children:2:props:articles:8","$4:props:children:props:children:2:props:articles:9","$4:props:children:props:children:2:props:articles:10","$4:props:children:props:children:2:props:articles:11","$4:props:children:props:children:2:props:articles:12","$4:props:children:props:children:2:props:articles:13","$4:props:children:props:children:2:props:articles:14","$4:props:children:props:children:2:props:articles:15","$4:props:children:props:children:2:props:articles:16","$4:props:children:props:children:2:props:articles:17","$4:props:children:props:children:2:props:articles:18","$4:props:children:props:children:2:props:articles:19","$4:props:children:props:children:2:props:articles:20","$4:props:children:props:children:2:props:articles:21","$4:props:children:props:children:2:props:articles:22","$4:props:children:props:children:2:props:articles:23","$4:props:children:props:children:2:props:articles:24","$4:props:children:props:children:2:props:articles:25","$4:props:children:props:children:2:props:articles:26","$4:props:children:props:children:2:props:articles:27","$4:props:children:props:children:2:props:articles:28","$4:props:children:props:children:2:props:articles:29","$4:props:children:props:children:2:props:articles:30"],"currentSlug":"Cangjie/4_函数/6_闭包"}]
+| 知识点 | 说明 | 关键记忆 |
+|--------|------|---------|
+| 闭包定义 | 函数/lambda + 捕获的变量 | 像背着背包的人 |
+| 变量捕获 | 访问本函数外定义的局部变量 | "借"外面的东西用 |
+| 捕获条件 | 变量在闭包定义时必须**可见**且**已初始化** | 东西要存在且能用 |
+| 捕获 `let` 变量 | ✅ 可作为一等公民自由使用 | 安全，随便用 |
+| 捕获 `var` 变量 | ❌ 只能调用，不能赋值/传递/返回 | 危险，怕乱改 |
+| 捕获传递性 | 调用捕获了 var 的函数，自身也可能受限 | 像"传染"一样 |
+| 全局/静态变量 | 不属于捕获，不受限制 | 公共资源，随便用 |
+d:["$","$L11",null,{"content":"$12","collection":"Cangjie/4_函数","rootColPath":"Cangjie","allArticles":["$4:props:children:props:children:2:props:articles:0","$4:props:children:props:children:2:props:articles:1","$4:props:children:props:children:2:props:articles:2","$4:props:children:props:children:2:props:articles:3","$4:props:children:props:children:2:props:articles:4","$4:props:children:props:children:2:props:articles:5","$4:props:children:props:children:2:props:articles:6",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782984101999.9065},"$4:props:children:props:children:2:props:articles:7","$4:props:children:props:children:2:props:articles:8","$4:props:children:props:children:2:props:articles:9","$4:props:children:props:children:2:props:articles:10","$4:props:children:props:children:2:props:articles:11","$4:props:children:props:children:2:props:articles:12","$4:props:children:props:children:2:props:articles:13","$4:props:children:props:children:2:props:articles:14","$4:props:children:props:children:2:props:articles:15","$4:props:children:props:children:2:props:articles:16","$4:props:children:props:children:2:props:articles:17","$4:props:children:props:children:2:props:articles:18","$4:props:children:props:children:2:props:articles:19","$4:props:children:props:children:2:props:articles:20","$4:props:children:props:children:2:props:articles:21","$4:props:children:props:children:2:props:articles:22","$4:props:children:props:children:2:props:articles:23","$4:props:children:props:children:2:props:articles:24","$4:props:children:props:children:2:props:articles:25","$4:props:children:props:children:2:props:articles:26","$4:props:children:props:children:2:props:articles:27","$4:props:children:props:children:2:props:articles:28","$4:props:children:props:children:2:props:articles:29","$4:props:children:props:children:2:props:articles:30"],"currentSlug":"Cangjie/4_函数/6_闭包"}]
 10:null

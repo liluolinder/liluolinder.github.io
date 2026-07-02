@@ -1,12 +1,12 @@
 1:"$Sreact.fragment"
 2:I[23597,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"TocSidebar"]
-a:I[59537,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleNavSidebar"]
-b:I[22016,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],""]
-c:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleContent"]
-f:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
-10:"$Sreact.suspense"
-12:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"MobileArticlePanel"]
-3:T11c1,
+9:I[59537,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleNavSidebar"]
+a:I[22016,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],""]
+b:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleContent"]
+e:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
+f:"$Sreact.suspense"
+11:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"MobileArticlePanel"]
+3:T1fe6,
 ## 3.3.1 什么是循环？
 
 我们之前学的 `if` 和 `match` 都是"做一次判断，执行一次代码"。但有时候，我们需要**反复执行同一段代码**，直到某个条件不再满足为止。
@@ -16,6 +16,30 @@ f:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5
 > 你还没有吃饱 → 再吃一口 → 还没饱 → 再吃一口 → …… → 饱了 → 停止
 
 这种"反复执行"的机制就叫做**循环**，而 `while` 就是实现它的工具。
+
+### 生活中到处都是循环
+
+| 场景 | 代码逻辑 |
+|------|---------|
+| 还没吃饱 → 再吃一口 | `while (还没饱) { 吃一口 }` |
+| 还没跑完 5 圈 → 继续跑 | `while (跑完的圈数 < 5) { 跑一圈 }` |
+| 还有作业没做完 → 继续做 | `while (还有作业) { 做一题 }` |
+
+### while 的执行流程
+
+```
+           ┌─────────────────────┐
+           │                     │
+           ▼                     │
+    ┌─ 判断条件 ──→ 条件为真？──→ 执行循环体
+    │                              │
+    │  条件为假                     │
+    ▼                              │
+  退出循环 ←───────────────────────┘
+```
+
+> [!TIP]
+> `while` 就像"自动门"——你走到门前（判断条件），如果门开了（条件为真），就走进去（执行循环体）；如果门关着（条件为假），就不进去了（退出循环）。进去之后，再回头看门关了没有……
 
 ---
 
@@ -29,8 +53,7 @@ while (条件) {
 }
 ```
 
-执行流程就像一个"原地打转"的循环：
-
+执行流程：
 1. 检查条件 → 如果为 `true`，进入循环体
 2. 执行循环体中的代码
 3. 再次检查条件 → 如果还是 `true`，继续执行
@@ -43,7 +66,7 @@ main() {
     var count = 0
 
     while (count < 5) {
-        println("第 ${count} 次循环")  //这里是插值字符串哦 还记得吗 不记得到前面去看字符串类型哦
+        println("第 ${count} 次循环")
         count++
     }
 }
@@ -60,7 +83,14 @@ main() {
 ```
 
 > [!TIP]
-> `count++` 的意思是 `count = count + 1`，每循环一次让计数器加 1，最终 `count` 变成 5，条件 `count < 5` 为 `false`，循环结束。
+> `count++` 的意思是 `count = count + 1`，每循环一次让计数器加 1。
+>
+> **逐轮过程**：
+> - 第 1 轮：`count=0`，判断 `0 < 5` → true → 输出"第 0 次"，`count` 变为 1
+> - 第 2 轮：`count=1`，判断 `1 < 5` → true → 输出"第 1 次"，`count` 变为 2
+> - ……
+> - 第 5 轮：`count=4`，判断 `4 < 5` → true → 输出"第 4 次"，`count` 变为 5
+> - 第 6 轮：`count=5`，判断 `5 < 5` → false → 退出循环
 
 ### 实际例子：二分法求平方根
 
@@ -93,6 +123,9 @@ main() {
 
 这个程序用**二分法**不断逼近 2 的平方根——每次循环将范围缩小一半，直到误差足够小。
 
+> [!NOTE]
+> 这个例子需要一些数学基础，看不懂也没关系。关键是理解 `while` 的用法：**在条件满足时不断重复，条件不满足时结束**。
+
 ---
 
 ## 3.3.3 条件必须是布尔值
@@ -120,6 +153,9 @@ main() {
 }
 ```
 
+> [!CAUTION]
+> 这是和 `if` 一样的规则。仓颉不会帮你把数字自动转成布尔值——你必须自己写比较条件。
+
 ---
 
 ## 3.3.4 死循环与终止
@@ -135,9 +171,35 @@ main() {
 ```
 
 > [!WARNING]
-> 死循环通常是因为**忘记改变条件**导致的。比如上面那个 `count < 5` 的例子，如果忘记写 `count++`，`count` 永远为 0，循环永远不会结束。
+> **新手的噩梦：不小心写出死循环**
+>
+> 最常见的死循环原因：**忘记改变条件**。
+>
+> 比如上面那个 `count < 5` 的例子，如果忘记写 `count++`：
+> ```Cangjie
+> var count = 0
+> while (count < 5) {
+>     println("第 ${count} 次循环")
+>     // 忘记写 count++ 了！！！count 永远是 0
+> }
+> // count < 5 永远为 true → 无限循环
+> ```
 
-死循环不全是坏事——有些程序需要一直运行（比如服务器、游戏主循环），这时候 `while (true)` 就是有意为之。
+**死循环不全是坏事！** 有些程序需要一直运行（比如服务器、游戏主循环、实时监控），这时候 `while (true)` 就是有意为之：
+
+```Cangjie
+// 服务器主循环：一直运行，等待客户端请求
+while (true) {
+    let request = waitForRequest()
+    handleRequest(request)
+}
+```
+
+### 如何终止死循环？
+
+- 如果是在终端中运行的程序，按 `Ctrl+C` 强制终止
+- 如果是 IDE 中运行，点击"停止"按钮
+- 更好的方式：用 `while (true)` + `break` 组合，在循环内部判断退出条件
 
 ---
 
@@ -160,16 +222,42 @@ main() {
 
 ---
 
-## 3.3.6 小结
+## 3.3.6 while 与 for-in 怎么选？
 
-| 概念 | 要点 |
-|------|------|
-| 基本语法 | `while (条件) { 循环体 }` |
-| 条件类型 | 必须是 `Bool`（和 `if` 一样） |
-| 执行流程 | 判断 → 执行 → 再判断 → 再执行 → …… → 结束 |
-| 死循环 | 条件永远为 `true` 时产生 |
-| 退出循环 | 条件变为 `false` 时自动退出 |
-| while 的类型 | `Unit`（值没有实际意义） |
+刚开始学的时候容易混淆这两个。简单区分：
+
+| 场景 | 推荐 | 原因 |
+|------|------|------|
+| 不确定要循环多少次，依赖某个条件 | `while` | 条件判断更灵活 |
+| 遍历数组/区间中的每个元素 | `for-in` | 更简洁，自动取下一个 |
+| 需要计数器循环 | 两者都可以 | `while` 手动控制，`for-in` 自动控制 |
+
+```Cangjie
+// while：手动控制计数器
+var i = 0
+while (i < 5) {
+    println(i)
+    i++     // 手动增加
+}
+
+// for-in：自动控制计数器（后续章节学）
+for (i in 0..5) {
+    println(i)  // 自动取下一个 i
+}
+```
+
+---
+
+## 3.3.7 小结
+
+| 概念 | 要点 | 一句话记住 |
+|------|------|-----------|
+| 基本语法 | `while (条件) { 循环体 }` | 条件满足就一直做 |
+| 条件类型 | 必须是 `Bool`（和 `if` 一样） | 不要 `while(1)` |
+| 执行流程 | 判断 → 执行 → 再判断 → 再执行 → …… → 结束 | 先看再做 |
+| 死循环 | 条件永远为 `true` 时产生 | 忘记改变条件就会发生 |
+| 退出循环 | 条件变为 `false` 时自动退出 | 或者用 `break`（后面学） |
+| while 的类型 | `Unit`（值没有实际意义） | 一般不用赋值 |
 
 ---
 
@@ -214,10 +302,32 @@ main() {
 (1,0) (1,1) (1,2)
 (2,0) (2,1) (2,2)
 ```
-0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],"$L4","$L5"]}]}],"$L6"]}],["$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"YYKzDL23MTXat2WTr6TSc"}
-4:["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}]
-5:["$","$La",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782921487209.516},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/1_定义函数","title":"定义函数","description":"学会编写可复用的代码块","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":1,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/2_调用函数","title":"调用函数","description":"学会灵活调用仓颉函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":2,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/3_函数类型","title":"函数类型","description":"仓颉中函数也是一等公民","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":3,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/4_lambda表达式","title":"Lambda表达式","description":"快速创建匿名函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":4,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/5_嵌套函数","title":"嵌套函数","description":"函数内部定义函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":5,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/6_闭包","title":"闭包","description":"捕获变量的函数与lambda","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":6,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/10_nothing类型","title":"Nothing类型","description":"仓颉的基本数据类型——Nothing类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/11_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/12_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":12,"published":true,"mtime":1782921487209.9858}],"currentSlug":"Cangjie/3_逻辑控制/3_while循环结构"}]
-d:T11c1,
+
+> [!TIP]
+> 嵌套循环的思路：外层循环控制"行"，内层循环控制"列"，就像打印一个表格。
+
+### Q3：`while` 循环中 `i++` 写在前和写在后有区别吗？
+
+在单独一行时没区别，但如果和别的语句混用就有区别了：
+
+```Cangjie
+var i = 0
+while (i < 3) {
+    println(i)    // i++ 写在这后面 → 输出 0, 1, 2
+    i++
+}
+
+var i = 0
+while (i < 3) {
+    i++           // i++ 写在这前面 → 输出 1, 2, 3
+    println(i)
+}
+```
+
+两种都常见，但**建议统一风格**——惯用写法是把 `i++` 放在循环体的末尾。
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],"$L4","$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"VtimUmeRWW8bLVu7SzSdl"}
+4:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L9",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782984101998.0315},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制——if分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"published":true,"mtime":1782984101999.2908},{"slug":"Cangjie/4_函数/1_定义函数","title":"定义函数","description":"学会编写可复用的代码块","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":1,"published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"published":true,"mtime":1782984101999.2908},{"slug":"Cangjie/4_函数/2_调用函数","title":"调用函数","description":"学会灵活调用仓颉函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":2,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"published":true,"mtime":1782984101999.2908},{"slug":"Cangjie/4_函数/3_函数类型","title":"函数类型","description":"仓颉中函数也是一等公民","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":3,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/4_函数/4_lambda表达式","title":"Lambda表达式","description":"快速创建匿名函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":4,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/4_函数/5_嵌套函数","title":"嵌套函数","description":"函数内部定义函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":5,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/4_函数/6_闭包","title":"闭包","description":"捕获变量的函数与lambda","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":6,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/10_nothing类型","title":"Nothing类型","description":"仓颉的基本数据类型——Nothing类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/11_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/12_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":12,"published":true,"mtime":1782984101998.4624}],"currentSlug":"Cangjie/3_逻辑控制/3_while循环结构"}]]}]}]
+c:T1fe6,
 ## 3.3.1 什么是循环？
 
 我们之前学的 `if` 和 `match` 都是"做一次判断，执行一次代码"。但有时候，我们需要**反复执行同一段代码**，直到某个条件不再满足为止。
@@ -227,6 +337,30 @@ d:T11c1,
 > 你还没有吃饱 → 再吃一口 → 还没饱 → 再吃一口 → …… → 饱了 → 停止
 
 这种"反复执行"的机制就叫做**循环**，而 `while` 就是实现它的工具。
+
+### 生活中到处都是循环
+
+| 场景 | 代码逻辑 |
+|------|---------|
+| 还没吃饱 → 再吃一口 | `while (还没饱) { 吃一口 }` |
+| 还没跑完 5 圈 → 继续跑 | `while (跑完的圈数 < 5) { 跑一圈 }` |
+| 还有作业没做完 → 继续做 | `while (还有作业) { 做一题 }` |
+
+### while 的执行流程
+
+```
+           ┌─────────────────────┐
+           │                     │
+           ▼                     │
+    ┌─ 判断条件 ──→ 条件为真？──→ 执行循环体
+    │                              │
+    │  条件为假                     │
+    ▼                              │
+  退出循环 ←───────────────────────┘
+```
+
+> [!TIP]
+> `while` 就像"自动门"——你走到门前（判断条件），如果门开了（条件为真），就走进去（执行循环体）；如果门关着（条件为假），就不进去了（退出循环）。进去之后，再回头看门关了没有……
 
 ---
 
@@ -240,8 +374,7 @@ while (条件) {
 }
 ```
 
-执行流程就像一个"原地打转"的循环：
-
+执行流程：
 1. 检查条件 → 如果为 `true`，进入循环体
 2. 执行循环体中的代码
 3. 再次检查条件 → 如果还是 `true`，继续执行
@@ -254,7 +387,7 @@ main() {
     var count = 0
 
     while (count < 5) {
-        println("第 ${count} 次循环")  //这里是插值字符串哦 还记得吗 不记得到前面去看字符串类型哦
+        println("第 ${count} 次循环")
         count++
     }
 }
@@ -271,7 +404,14 @@ main() {
 ```
 
 > [!TIP]
-> `count++` 的意思是 `count = count + 1`，每循环一次让计数器加 1，最终 `count` 变成 5，条件 `count < 5` 为 `false`，循环结束。
+> `count++` 的意思是 `count = count + 1`，每循环一次让计数器加 1。
+>
+> **逐轮过程**：
+> - 第 1 轮：`count=0`，判断 `0 < 5` → true → 输出"第 0 次"，`count` 变为 1
+> - 第 2 轮：`count=1`，判断 `1 < 5` → true → 输出"第 1 次"，`count` 变为 2
+> - ……
+> - 第 5 轮：`count=4`，判断 `4 < 5` → true → 输出"第 4 次"，`count` 变为 5
+> - 第 6 轮：`count=5`，判断 `5 < 5` → false → 退出循环
 
 ### 实际例子：二分法求平方根
 
@@ -304,6 +444,9 @@ main() {
 
 这个程序用**二分法**不断逼近 2 的平方根——每次循环将范围缩小一半，直到误差足够小。
 
+> [!NOTE]
+> 这个例子需要一些数学基础，看不懂也没关系。关键是理解 `while` 的用法：**在条件满足时不断重复，条件不满足时结束**。
+
 ---
 
 ## 3.3.3 条件必须是布尔值
@@ -331,6 +474,9 @@ main() {
 }
 ```
 
+> [!CAUTION]
+> 这是和 `if` 一样的规则。仓颉不会帮你把数字自动转成布尔值——你必须自己写比较条件。
+
 ---
 
 ## 3.3.4 死循环与终止
@@ -346,9 +492,35 @@ main() {
 ```
 
 > [!WARNING]
-> 死循环通常是因为**忘记改变条件**导致的。比如上面那个 `count < 5` 的例子，如果忘记写 `count++`，`count` 永远为 0，循环永远不会结束。
+> **新手的噩梦：不小心写出死循环**
+>
+> 最常见的死循环原因：**忘记改变条件**。
+>
+> 比如上面那个 `count < 5` 的例子，如果忘记写 `count++`：
+> ```Cangjie
+> var count = 0
+> while (count < 5) {
+>     println("第 ${count} 次循环")
+>     // 忘记写 count++ 了！！！count 永远是 0
+> }
+> // count < 5 永远为 true → 无限循环
+> ```
 
-死循环不全是坏事——有些程序需要一直运行（比如服务器、游戏主循环），这时候 `while (true)` 就是有意为之。
+**死循环不全是坏事！** 有些程序需要一直运行（比如服务器、游戏主循环、实时监控），这时候 `while (true)` 就是有意为之：
+
+```Cangjie
+// 服务器主循环：一直运行，等待客户端请求
+while (true) {
+    let request = waitForRequest()
+    handleRequest(request)
+}
+```
+
+### 如何终止死循环？
+
+- 如果是在终端中运行的程序，按 `Ctrl+C` 强制终止
+- 如果是 IDE 中运行，点击"停止"按钮
+- 更好的方式：用 `while (true)` + `break` 组合，在循环内部判断退出条件
 
 ---
 
@@ -371,16 +543,42 @@ main() {
 
 ---
 
-## 3.3.6 小结
+## 3.3.6 while 与 for-in 怎么选？
 
-| 概念 | 要点 |
-|------|------|
-| 基本语法 | `while (条件) { 循环体 }` |
-| 条件类型 | 必须是 `Bool`（和 `if` 一样） |
-| 执行流程 | 判断 → 执行 → 再判断 → 再执行 → …… → 结束 |
-| 死循环 | 条件永远为 `true` 时产生 |
-| 退出循环 | 条件变为 `false` 时自动退出 |
-| while 的类型 | `Unit`（值没有实际意义） |
+刚开始学的时候容易混淆这两个。简单区分：
+
+| 场景 | 推荐 | 原因 |
+|------|------|------|
+| 不确定要循环多少次，依赖某个条件 | `while` | 条件判断更灵活 |
+| 遍历数组/区间中的每个元素 | `for-in` | 更简洁，自动取下一个 |
+| 需要计数器循环 | 两者都可以 | `while` 手动控制，`for-in` 自动控制 |
+
+```Cangjie
+// while：手动控制计数器
+var i = 0
+while (i < 5) {
+    println(i)
+    i++     // 手动增加
+}
+
+// for-in：自动控制计数器（后续章节学）
+for (i in 0..5) {
+    println(i)  // 自动取下一个 i
+}
+```
+
+---
+
+## 3.3.7 小结
+
+| 概念 | 要点 | 一句话记住 |
+|------|------|-----------|
+| 基本语法 | `while (条件) { 循环体 }` | 条件满足就一直做 |
+| 条件类型 | 必须是 `Bool`（和 `if` 一样） | 不要 `while(1)` |
+| 执行流程 | 判断 → 执行 → 再判断 → 再执行 → …… → 结束 | 先看再做 |
+| 死循环 | 条件永远为 `true` 时产生 | 忘记改变条件就会发生 |
+| 退出循环 | 条件变为 `false` 时自动退出 | 或者用 `break`（后面学） |
+| while 的类型 | `Unit`（值没有实际意义） | 一般不用赋值 |
 
 ---
 
@@ -425,11 +623,34 @@ main() {
 (1,0) (1,1) (1,2)
 (2,0) (2,1) (2,2)
 ```
-6:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$Lb",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-07-01"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"while循环结构"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"仓颉的逻辑控制——while循环结构"}]]}],["$","$Lc",null,{"content":"$d"}],"$Le"]}]}]
-7:["$","script","script-0",{"src":"/_next/static/chunks/0g4o6d4sifcpo.js","async":true}]
-8:["$","script","script-1",{"src":"/_next/static/chunks/1ssz3eabjrzaj.js","async":true}]
-9:["$","$Lf",null,{"children":["$","$10",null,{"name":"Next.MetadataOutlet","children":"$@11"}]}]
-13:T11c1,
+
+> [!TIP]
+> 嵌套循环的思路：外层循环控制"行"，内层循环控制"列"，就像打印一个表格。
+
+### Q3：`while` 循环中 `i++` 写在前和写在后有区别吗？
+
+在单独一行时没区别，但如果和别的语句混用就有区别了：
+
+```Cangjie
+var i = 0
+while (i < 3) {
+    println(i)    // i++ 写在这后面 → 输出 0, 1, 2
+    i++
+}
+
+var i = 0
+while (i < 3) {
+    i++           // i++ 写在这前面 → 输出 1, 2, 3
+    println(i)
+}
+```
+
+两种都常见，但**建议统一风格**——惯用写法是把 `i++` 放在循环体的末尾。
+5:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$La",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-07-01"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"while循环结构"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"仓颉的逻辑控制——while循环结构"}]]}],["$","$Lb",null,{"content":"$c"}],"$Ld"]}]}]
+6:["$","script","script-0",{"src":"/_next/static/chunks/0g4o6d4sifcpo.js","async":true}]
+7:["$","script","script-1",{"src":"/_next/static/chunks/1ssz3eabjrzaj.js","async":true}]
+8:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
+12:T1fe6,
 ## 3.3.1 什么是循环？
 
 我们之前学的 `if` 和 `match` 都是"做一次判断，执行一次代码"。但有时候，我们需要**反复执行同一段代码**，直到某个条件不再满足为止。
@@ -439,6 +660,30 @@ main() {
 > 你还没有吃饱 → 再吃一口 → 还没饱 → 再吃一口 → …… → 饱了 → 停止
 
 这种"反复执行"的机制就叫做**循环**，而 `while` 就是实现它的工具。
+
+### 生活中到处都是循环
+
+| 场景 | 代码逻辑 |
+|------|---------|
+| 还没吃饱 → 再吃一口 | `while (还没饱) { 吃一口 }` |
+| 还没跑完 5 圈 → 继续跑 | `while (跑完的圈数 < 5) { 跑一圈 }` |
+| 还有作业没做完 → 继续做 | `while (还有作业) { 做一题 }` |
+
+### while 的执行流程
+
+```
+           ┌─────────────────────┐
+           │                     │
+           ▼                     │
+    ┌─ 判断条件 ──→ 条件为真？──→ 执行循环体
+    │                              │
+    │  条件为假                     │
+    ▼                              │
+  退出循环 ←───────────────────────┘
+```
+
+> [!TIP]
+> `while` 就像"自动门"——你走到门前（判断条件），如果门开了（条件为真），就走进去（执行循环体）；如果门关着（条件为假），就不进去了（退出循环）。进去之后，再回头看门关了没有……
 
 ---
 
@@ -452,8 +697,7 @@ while (条件) {
 }
 ```
 
-执行流程就像一个"原地打转"的循环：
-
+执行流程：
 1. 检查条件 → 如果为 `true`，进入循环体
 2. 执行循环体中的代码
 3. 再次检查条件 → 如果还是 `true`，继续执行
@@ -466,7 +710,7 @@ main() {
     var count = 0
 
     while (count < 5) {
-        println("第 ${count} 次循环")  //这里是插值字符串哦 还记得吗 不记得到前面去看字符串类型哦
+        println("第 ${count} 次循环")
         count++
     }
 }
@@ -483,7 +727,14 @@ main() {
 ```
 
 > [!TIP]
-> `count++` 的意思是 `count = count + 1`，每循环一次让计数器加 1，最终 `count` 变成 5，条件 `count < 5` 为 `false`，循环结束。
+> `count++` 的意思是 `count = count + 1`，每循环一次让计数器加 1。
+>
+> **逐轮过程**：
+> - 第 1 轮：`count=0`，判断 `0 < 5` → true → 输出"第 0 次"，`count` 变为 1
+> - 第 2 轮：`count=1`，判断 `1 < 5` → true → 输出"第 1 次"，`count` 变为 2
+> - ……
+> - 第 5 轮：`count=4`，判断 `4 < 5` → true → 输出"第 4 次"，`count` 变为 5
+> - 第 6 轮：`count=5`，判断 `5 < 5` → false → 退出循环
 
 ### 实际例子：二分法求平方根
 
@@ -516,6 +767,9 @@ main() {
 
 这个程序用**二分法**不断逼近 2 的平方根——每次循环将范围缩小一半，直到误差足够小。
 
+> [!NOTE]
+> 这个例子需要一些数学基础，看不懂也没关系。关键是理解 `while` 的用法：**在条件满足时不断重复，条件不满足时结束**。
+
 ---
 
 ## 3.3.3 条件必须是布尔值
@@ -543,6 +797,9 @@ main() {
 }
 ```
 
+> [!CAUTION]
+> 这是和 `if` 一样的规则。仓颉不会帮你把数字自动转成布尔值——你必须自己写比较条件。
+
 ---
 
 ## 3.3.4 死循环与终止
@@ -558,9 +815,35 @@ main() {
 ```
 
 > [!WARNING]
-> 死循环通常是因为**忘记改变条件**导致的。比如上面那个 `count < 5` 的例子，如果忘记写 `count++`，`count` 永远为 0，循环永远不会结束。
+> **新手的噩梦：不小心写出死循环**
+>
+> 最常见的死循环原因：**忘记改变条件**。
+>
+> 比如上面那个 `count < 5` 的例子，如果忘记写 `count++`：
+> ```Cangjie
+> var count = 0
+> while (count < 5) {
+>     println("第 ${count} 次循环")
+>     // 忘记写 count++ 了！！！count 永远是 0
+> }
+> // count < 5 永远为 true → 无限循环
+> ```
 
-死循环不全是坏事——有些程序需要一直运行（比如服务器、游戏主循环），这时候 `while (true)` 就是有意为之。
+**死循环不全是坏事！** 有些程序需要一直运行（比如服务器、游戏主循环、实时监控），这时候 `while (true)` 就是有意为之：
+
+```Cangjie
+// 服务器主循环：一直运行，等待客户端请求
+while (true) {
+    let request = waitForRequest()
+    handleRequest(request)
+}
+```
+
+### 如何终止死循环？
+
+- 如果是在终端中运行的程序，按 `Ctrl+C` 强制终止
+- 如果是 IDE 中运行，点击"停止"按钮
+- 更好的方式：用 `while (true)` + `break` 组合，在循环内部判断退出条件
 
 ---
 
@@ -583,16 +866,42 @@ main() {
 
 ---
 
-## 3.3.6 小结
+## 3.3.6 while 与 for-in 怎么选？
 
-| 概念 | 要点 |
-|------|------|
-| 基本语法 | `while (条件) { 循环体 }` |
-| 条件类型 | 必须是 `Bool`（和 `if` 一样） |
-| 执行流程 | 判断 → 执行 → 再判断 → 再执行 → …… → 结束 |
-| 死循环 | 条件永远为 `true` 时产生 |
-| 退出循环 | 条件变为 `false` 时自动退出 |
-| while 的类型 | `Unit`（值没有实际意义） |
+刚开始学的时候容易混淆这两个。简单区分：
+
+| 场景 | 推荐 | 原因 |
+|------|------|------|
+| 不确定要循环多少次，依赖某个条件 | `while` | 条件判断更灵活 |
+| 遍历数组/区间中的每个元素 | `for-in` | 更简洁，自动取下一个 |
+| 需要计数器循环 | 两者都可以 | `while` 手动控制，`for-in` 自动控制 |
+
+```Cangjie
+// while：手动控制计数器
+var i = 0
+while (i < 5) {
+    println(i)
+    i++     // 手动增加
+}
+
+// for-in：自动控制计数器（后续章节学）
+for (i in 0..5) {
+    println(i)  // 自动取下一个 i
+}
+```
+
+---
+
+## 3.3.7 小结
+
+| 概念 | 要点 | 一句话记住 |
+|------|------|-----------|
+| 基本语法 | `while (条件) { 循环体 }` | 条件满足就一直做 |
+| 条件类型 | 必须是 `Bool`（和 `if` 一样） | 不要 `while(1)` |
+| 执行流程 | 判断 → 执行 → 再判断 → 再执行 → …… → 结束 | 先看再做 |
+| 死循环 | 条件永远为 `true` 时产生 | 忘记改变条件就会发生 |
+| 退出循环 | 条件变为 `false` 时自动退出 | 或者用 `break`（后面学） |
+| while 的类型 | `Unit`（值没有实际意义） | 一般不用赋值 |
 
 ---
 
@@ -637,5 +946,28 @@ main() {
 (1,0) (1,1) (1,2)
 (2,0) (2,1) (2,2)
 ```
-e:["$","$L12",null,{"content":"$13","collection":"Cangjie/3_逻辑控制","rootColPath":"Cangjie","allArticles":["$5:props:articles:0","$5:props:articles:1","$5:props:articles:2","$5:props:articles:3","$5:props:articles:4","$5:props:articles:5","$5:props:articles:6",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782921487211.231},"$5:props:articles:7","$5:props:articles:8","$5:props:articles:9","$5:props:articles:10","$5:props:articles:11","$5:props:articles:12","$5:props:articles:13","$5:props:articles:14","$5:props:articles:15","$5:props:articles:16","$5:props:articles:17","$5:props:articles:18","$5:props:articles:19","$5:props:articles:20","$5:props:articles:21","$5:props:articles:22","$5:props:articles:23","$5:props:articles:24","$5:props:articles:25","$5:props:articles:26","$5:props:articles:27","$5:props:articles:28","$5:props:articles:29","$5:props:articles:30"],"currentSlug":"Cangjie/3_逻辑控制/3_while循环结构"}]
-11:null
+
+> [!TIP]
+> 嵌套循环的思路：外层循环控制"行"，内层循环控制"列"，就像打印一个表格。
+
+### Q3：`while` 循环中 `i++` 写在前和写在后有区别吗？
+
+在单独一行时没区别，但如果和别的语句混用就有区别了：
+
+```Cangjie
+var i = 0
+while (i < 3) {
+    println(i)    // i++ 写在这后面 → 输出 0, 1, 2
+    i++
+}
+
+var i = 0
+while (i < 3) {
+    i++           // i++ 写在这前面 → 输出 1, 2, 3
+    println(i)
+}
+```
+
+两种都常见，但**建议统一风格**——惯用写法是把 `i++` 放在循环体的末尾。
+d:["$","$L11",null,{"content":"$12","collection":"Cangjie/3_逻辑控制","rootColPath":"Cangjie","allArticles":["$4:props:children:props:children:2:props:articles:0","$4:props:children:props:children:2:props:articles:1","$4:props:children:props:children:2:props:articles:2","$4:props:children:props:children:2:props:articles:3","$4:props:children:props:children:2:props:articles:4","$4:props:children:props:children:2:props:articles:5","$4:props:children:props:children:2:props:articles:6",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782984101999.9065},"$4:props:children:props:children:2:props:articles:7","$4:props:children:props:children:2:props:articles:8","$4:props:children:props:children:2:props:articles:9","$4:props:children:props:children:2:props:articles:10","$4:props:children:props:children:2:props:articles:11","$4:props:children:props:children:2:props:articles:12","$4:props:children:props:children:2:props:articles:13","$4:props:children:props:children:2:props:articles:14","$4:props:children:props:children:2:props:articles:15","$4:props:children:props:children:2:props:articles:16","$4:props:children:props:children:2:props:articles:17","$4:props:children:props:children:2:props:articles:18","$4:props:children:props:children:2:props:articles:19","$4:props:children:props:children:2:props:articles:20","$4:props:children:props:children:2:props:articles:21","$4:props:children:props:children:2:props:articles:22","$4:props:children:props:children:2:props:articles:23","$4:props:children:props:children:2:props:articles:24","$4:props:children:props:children:2:props:articles:25","$4:props:children:props:children:2:props:articles:26","$4:props:children:props:children:2:props:articles:27","$4:props:children:props:children:2:props:articles:28","$4:props:children:props:children:2:props:articles:29","$4:props:children:props:children:2:props:articles:30"],"currentSlug":"Cangjie/3_逻辑控制/3_while循环结构"}]
+10:null

@@ -6,7 +6,7 @@ b:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5
 e:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
 f:"$Sreact.suspense"
 11:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"MobileArticlePanel"]
-3:T17f0,
+3:T22c0,
 ## 3.5.1 什么是 for-in？
 
 前面我们学了 `while` 和 `do-while`，它们适合"在某个条件下反复执行"的场景。
@@ -20,9 +20,26 @@ f:"$Sreact.suspense"
 在编程中，这种"遍历"操作就是 `for-in` 的专长。
 
 > [!TIP]
-> 简单理解：
-> - `while` = "没吃饱就继续吃"（基于条件）
-> - `for-in` = "把篮子里的水果挨个看一遍"（基于集合）
+> 简单理解三种循环的区别：
+> - `while` = "没吃饱就继续吃"（基于条件，可能一次都不吃）
+> - `do-while` = "先吃一口，不够再吃"（至少吃一次）
+> - `for-in` = "把篮子里的水果挨个看一遍"（**基于集合**，有多少看多少）
+
+### for-in 的执行流程
+
+```
+         ┌──────────────────────────┐
+         │                           │
+         ▼                           │
+  从序列中取下一个元素 ←──────────────┘
+         │
+         ▼
+  还有元素吗？── true ──→ 执行循环体
+         │
+       false
+         ▼
+      退出循环
+```
 
 ---
 
@@ -54,32 +71,45 @@ main() {
 橘子
 ```
 
-每次循环，`fruit` 会依次绑定到数组中的每一个元素，从第一个到最后一个。
+**逐轮过程**：
 
-### 实际例子：农历干支
+```
+1. 从 fruits 中取第一个元素 "苹果" → fruit = "苹果" → 执行循环体 → 输出"苹果"
+2. 取下一个元素 "香蕉" → fruit = "香蕉" → 执行循环体 → 输出"香蕉"
+3. 取下一个元素 "橘子" → fruit = "橘子" → 执行循环体 → 输出"橘子"
+4. 没有下一个元素了 → 退出循环
+```
+
+> [!TIP]
+> 用 `for-in` 遍历数组，比用 `while` 手动控制索引要**简洁得多**：
+>
+> ```Cangjie
+> // for-in 方式（推荐）：不用管索引，也不用管取到什么时候停
+> for (fruit in fruits) {
+>     println(fruit)
+> }
+>
+> // while 方式（不推荐）：要手动控制索引和条件
+> var i = 0
+> while (i < fruits.size) {
+>     println(fruits[i])
+>     i++
+> }
+> ```
+
+### 例子：遍历数字数组求和
 
 ```Cangjie
 main() {
-    let metaArray = [r'甲', r'乙', r'丙', r'丁', r'戊', r'己', r'庚', r'辛', r'壬', r'癸']
-    let noumenonArray = [r'寅', r'卯', r'辰', r'巳', r'午', r'未', r'申', r'酉', r'戌', r'亥', r'子', r'丑']
-    let year = 2024
+    let numbers = [3, 7, 2, 9, 5]
+    var sum = 0
 
-    let metaOfYear = ((year % 10) + 10 - 4) % 10
-    var index = (2 * metaOfYear + 3) % 10 - 1
-
-    println("农历 2024 年各月干支：")
-    for (noumenon in noumenonArray) {
-        print("${metaArray[index]}${noumenon} ")
-        index = (index + 1) % 10
+    for (num in numbers) {
+        sum += num
     }
+
+    println("总和 = ${sum}")    // 输出：总和 = 26
 }
-```
-
-运行结果：
-
-```Bash
-农历 2024 年各月干支：
-丙寅 丁卯 戊辰 己巳 庚午 辛未 壬申 癸酉 甲戌 乙亥 丙子 丁丑
 ```
 
 ---
@@ -94,7 +124,7 @@ main() {
     for (i in 1..=100) {
         sum += i
     }
-    println(sum)
+    println(sum)      // 输出：5050
 }
 ```
 
@@ -105,7 +135,7 @@ main() {
 ```
 
 > [!NOTE]
-> `1..=100` 是一个闭区间，表示 1 到 100（包含 100）。关于区间的详细内容，请参考[区间类型](../2_基本数据类型/8_区间类型.md)。
+> `1..=100` 是一个闭区间，表示 1 到 100（包含 100）。如果有疑惑可以回顾[区间类型](../2_基本数据类型/8_区间类型.md)。
 
 区间类型有以下几种写法：
 
@@ -114,6 +144,24 @@ main() {
 | `1..=5` | 闭区间（包含终点） | 1, 2, 3, 4, 5 |
 | `1..5` | 开区间（不包含终点） | 1, 2, 3, 4 |
 | `0..10` | 从 0 到 9 | 常用于控制循环次数 |
+
+### 用 `for-in` 遍历区间 vs `while` 控制计数器
+
+```Cangjie
+// for-in 方式（推荐）：自动取下一个值
+for (i in 0..5) {
+    println(i)          // 输出 0, 1, 2, 3, 4
+}
+
+// while 方式（不推荐）：手动控制
+var i = 0
+while (i < 5) {
+    println(i)
+    i++
+}
+```
+
+`for-in` 方式更简洁，而且**不用担心忘记写 `i++` 导致死循环**。
 
 ---
 
@@ -139,7 +187,14 @@ main() {
 ```
 
 > [!TIP]
-> 如果不解构，你需要写成 `for (pair in array)`，然后手动 `pair[0]`、`pair[1]` 来访问。解构写法更直观。
+> 如果不解构，你需要这样写：
+> ```Cangjie
+> for (pair in array) {
+>     println("${pair[0]}, ${pair[1]}")   // 手动访问元组元素
+> }
+> ```
+>
+> 解构写法更直观——`(x, y)` 直接把元组中的两个值拆开，分别赋给 `x` 和 `y`。
 
 ---
 
@@ -157,12 +212,14 @@ main() {
 ```
 
 > [!NOTE]
-> 迭代变量默认是 `let`（不可变），就像你声明了 `let i = ...` 一样。如果想修改值，可以用一个额外的可变变量来接收：
+> 迭代变量默认是 `let`（不可变），就像你声明了 `let i = ...` 一样。这是为了防止你在循环体中意外修改它，导致循环行为混乱。
+>
+> 如果想修改值，可以用一个额外的可变变量来接收：
 
 ```Cangjie
 main() {
     for (i in 0..5) {
-        var x = i * 10    // ✅ 用新变量接收
+        var x = i * 10    // ✅ 用新变量接收修改后的值
         println(x)
     }
 }
@@ -180,18 +237,12 @@ main() {
     for (_ in 0..5) {
         number *= number
     }
-    println(number)
+    println(number)       // 输出：4294967296
 }
 ```
 
-运行结果：
-
-```Bash
-4294967296
-```
-
 > [!TIP]
-> 如果用了普通变量名（比如 `for (i in 0..5)`）但没使用 `i`，编译器会报"unused variable"警告。用 `_` 可以避免这个警告，同时也表明"我故意不用这个变量"。
+> 如果用了普通变量名（比如 `for (i in 0..5)`）但没使用 `i`，编译器会报**"unused variable"警告**。用 `_` 可以避免这个警告，同时也表明"我故意不用这个变量"。
 
 ---
 
@@ -218,20 +269,51 @@ main() {
 
 > [!NOTE]
 > 这里的 `where i % 2 == 1` 相当于在循环体开头写 `if (i % 2 != 1) { continue }`，但 `where` 写法更简洁、更直观。
-> continue表示跳过此次循环 进入下一次循环
+>
+> `continue` 表示跳过此次循环，进入下一次循环——下一节会详细讲。
+
+### where  vs if 对比
+
+```Cangjie
+// 用 where（推荐）——筛选条件一目了然
+for (i in 0..8 where i % 2 == 1) {
+    println(i)
+}
+
+// 等价于用 if——多了一层缩进
+for (i in 0..8) {
+    if (i % 2 != 1) { continue }
+    println(i)
+}
+```
+
+`where` 的优点是：**筛选条件直接写在遍历语句中，一眼就能看出循环在过滤什么**。
 
 ---
 
-## 3.5.8 小结
+## 3.5.8 for-in 与 while 的选择
 
-| 概念 | 要点 |
-|------|------|
-| 基本语法 | `for (变量 in 序列) { 循环体 }` |
-| 适用类型 | 数组、区间、以及实现了 `Iterable<T>` 的类型 |
-| 迭代变量 | 只读（`let`），不可修改 |
-| 解构 | 序列元素为元组时，可用 `for ((a, b) in ...)` |
-| 忽略变量 | 用 `_` 代替变量名 |
-| where 筛选 | `for (i in 序列 where 条件)` 只遍历符合条件的元素 |
+| 场景 | 推荐 | 原因 |
+|------|------|------|
+| 遍历数组中的所有元素 | `for-in` | 不用管索引，自动取完为止 |
+| 遍历 0..N 的整数序列 | `for-in` | 不需要手动维护计数器 |
+| 不确定循环次数，依赖某个条件 | `while` | 条件更灵活 |
+| 至少需要执行一次 | `do-while` | 先执行再判断 |
+| 只需要循环 N 次，不关心元素值 | `for (_ in 0..N)` | 简洁安全 |
+| 需要同时在循环中修改索引 | `while` | `for-in` 的迭代变量不可修改 |
+
+---
+
+## 3.5.9 小结
+
+| 概念 | 要点 | 一句话记住 |
+|------|------|-----------|
+| 基本语法 | `for (变量 in 序列) { 循环体 }` | 把篮子里的水果挨个看一遍 |
+| 适用类型 | 数组、区间、以及实现了 `Iterable<T>` 的类型 | 有多个元素的东西都可以遍历 |
+| 迭代变量 | 只读（`let`），不可修改 | 可以读不能写 |
+| 解构 | 序列元素为元组时，可用 `for ((a, b) in ...)` | 直接拆开用 |
+| 忽略变量 | 用 `_` 代替变量名 | 只要次数不管值 |
+| where 筛选 | `for (i in 序列 where 条件)` | 只遍历符合条件的元素 |
 
 ---
 
@@ -249,16 +331,16 @@ main() {
 }
 ```
 
-### Q2：`for-in` 和 `while` 怎么选？
+运行结果：
 
-| 场景 | 推荐 |
-|------|------|
-| 遍历数组/区间等集合 | `for-in` |
-| 不确定循环次数，依赖某个条件 | `while` |
-| 至少需要执行一次 | `do-while` |
-| 只需要循环 N 次，不关心元素值 | `for (_ in 0..N)` |
+```Bash
+你
+好
+世
+界
+```
 
-### Q3：`for-in` 能嵌套吗？
+### Q2：`for-in` 能嵌套吗？
 
 可以。两层 `for-in` 可以遍历二维数组：
 
@@ -274,27 +356,56 @@ main() {
 }
 ```
 
-### Q4：`where` 和 `if` 有什么不同？
+运行结果：
 
-功能上等价，但 `where` 更简洁：
+```Bash
+1 2 3
+4 5 6
+7 8 9
+```
+
+### Q3：`for-in` 遍历数组时，能修改数组中的元素吗？
+
+**不能直接修改。** 因为迭代变量是只读的：
 
 ```Cangjie
-// 用 where（推荐）
-for (i in 0..8 where i % 2 == 1) {
-    println(i)
-}
-
-// 等价于用 if
-for (i in 0..8) {
-    if (i % 2 != 1) { continue }
-    println(i)
+main() {
+    let arr = [1, 2, 3]
+    for (x in arr) {
+        x = x * 10      // ❌ 报错：迭代变量不可修改
+    }
 }
 ```
 
-`where` 的优点是：**筛选条件直接写在遍历语句中，一眼就能看出循环在过滤什么**。
-0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],"$L4","$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"YYKzDL23MTXat2WTr6TSc"}
-4:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L9",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782921487209.516},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/1_定义函数","title":"定义函数","description":"学会编写可复用的代码块","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":1,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/2_调用函数","title":"调用函数","description":"学会灵活调用仓颉函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":2,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/3_函数类型","title":"函数类型","description":"仓颉中函数也是一等公民","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":3,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/4_lambda表达式","title":"Lambda表达式","description":"快速创建匿名函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":4,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/5_嵌套函数","title":"嵌套函数","description":"函数内部定义函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":5,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/6_闭包","title":"闭包","description":"捕获变量的函数与lambda","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":6,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/10_nothing类型","title":"Nothing类型","description":"仓颉的基本数据类型——Nothing类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/11_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/12_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":12,"published":true,"mtime":1782921487209.9858}],"currentSlug":"Cangjie/3_逻辑控制/5_for-in循环结构"}]]}]}]
-c:T17f0,
+要修改数组元素，可以用 `while` 配合索引：
+
+```Cangjie
+main() {
+    var arr = [1, 2, 3]
+    var i = 0
+    while (i < arr.size) {
+        arr[i] = arr[i] * 10   // ✅ 通过索引修改
+        i++
+    }
+}
+```
+
+### Q4：如果序列是空的，`for-in` 会怎样？
+
+**一次都不执行，直接跳过。** 就像篮子没有水果，你就没什么可看的：
+
+```Cangjie
+main() {
+    let empty: Array<Int64> = []
+    for (x in empty) {
+        println("不会执行")
+    }
+    println("结束")           // 直接执行到这里
+}
+```
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],"$L4","$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"VtimUmeRWW8bLVu7SzSdl"}
+4:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L9",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782984101998.0315},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制——if分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"published":true,"mtime":1782984101999.2908},{"slug":"Cangjie/4_函数/1_定义函数","title":"定义函数","description":"学会编写可复用的代码块","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":1,"published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"published":true,"mtime":1782984101999.2908},{"slug":"Cangjie/4_函数/2_调用函数","title":"调用函数","description":"学会灵活调用仓颉函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":2,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"published":true,"mtime":1782984101999.2908},{"slug":"Cangjie/4_函数/3_函数类型","title":"函数类型","description":"仓颉中函数也是一等公民","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":3,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/4_函数/4_lambda表达式","title":"Lambda表达式","description":"快速创建匿名函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":4,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/4_函数/5_嵌套函数","title":"嵌套函数","description":"函数内部定义函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":5,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/4_函数/6_闭包","title":"闭包","description":"捕获变量的函数与lambda","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":6,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/10_nothing类型","title":"Nothing类型","description":"仓颉的基本数据类型——Nothing类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/11_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/12_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":12,"published":true,"mtime":1782984101998.4624}],"currentSlug":"Cangjie/3_逻辑控制/5_for-in循环结构"}]]}]}]
+c:T22c0,
 ## 3.5.1 什么是 for-in？
 
 前面我们学了 `while` 和 `do-while`，它们适合"在某个条件下反复执行"的场景。
@@ -308,9 +419,26 @@ c:T17f0,
 在编程中，这种"遍历"操作就是 `for-in` 的专长。
 
 > [!TIP]
-> 简单理解：
-> - `while` = "没吃饱就继续吃"（基于条件）
-> - `for-in` = "把篮子里的水果挨个看一遍"（基于集合）
+> 简单理解三种循环的区别：
+> - `while` = "没吃饱就继续吃"（基于条件，可能一次都不吃）
+> - `do-while` = "先吃一口，不够再吃"（至少吃一次）
+> - `for-in` = "把篮子里的水果挨个看一遍"（**基于集合**，有多少看多少）
+
+### for-in 的执行流程
+
+```
+         ┌──────────────────────────┐
+         │                           │
+         ▼                           │
+  从序列中取下一个元素 ←──────────────┘
+         │
+         ▼
+  还有元素吗？── true ──→ 执行循环体
+         │
+       false
+         ▼
+      退出循环
+```
 
 ---
 
@@ -342,32 +470,45 @@ main() {
 橘子
 ```
 
-每次循环，`fruit` 会依次绑定到数组中的每一个元素，从第一个到最后一个。
+**逐轮过程**：
 
-### 实际例子：农历干支
+```
+1. 从 fruits 中取第一个元素 "苹果" → fruit = "苹果" → 执行循环体 → 输出"苹果"
+2. 取下一个元素 "香蕉" → fruit = "香蕉" → 执行循环体 → 输出"香蕉"
+3. 取下一个元素 "橘子" → fruit = "橘子" → 执行循环体 → 输出"橘子"
+4. 没有下一个元素了 → 退出循环
+```
+
+> [!TIP]
+> 用 `for-in` 遍历数组，比用 `while` 手动控制索引要**简洁得多**：
+>
+> ```Cangjie
+> // for-in 方式（推荐）：不用管索引，也不用管取到什么时候停
+> for (fruit in fruits) {
+>     println(fruit)
+> }
+>
+> // while 方式（不推荐）：要手动控制索引和条件
+> var i = 0
+> while (i < fruits.size) {
+>     println(fruits[i])
+>     i++
+> }
+> ```
+
+### 例子：遍历数字数组求和
 
 ```Cangjie
 main() {
-    let metaArray = [r'甲', r'乙', r'丙', r'丁', r'戊', r'己', r'庚', r'辛', r'壬', r'癸']
-    let noumenonArray = [r'寅', r'卯', r'辰', r'巳', r'午', r'未', r'申', r'酉', r'戌', r'亥', r'子', r'丑']
-    let year = 2024
+    let numbers = [3, 7, 2, 9, 5]
+    var sum = 0
 
-    let metaOfYear = ((year % 10) + 10 - 4) % 10
-    var index = (2 * metaOfYear + 3) % 10 - 1
-
-    println("农历 2024 年各月干支：")
-    for (noumenon in noumenonArray) {
-        print("${metaArray[index]}${noumenon} ")
-        index = (index + 1) % 10
+    for (num in numbers) {
+        sum += num
     }
+
+    println("总和 = ${sum}")    // 输出：总和 = 26
 }
-```
-
-运行结果：
-
-```Bash
-农历 2024 年各月干支：
-丙寅 丁卯 戊辰 己巳 庚午 辛未 壬申 癸酉 甲戌 乙亥 丙子 丁丑
 ```
 
 ---
@@ -382,7 +523,7 @@ main() {
     for (i in 1..=100) {
         sum += i
     }
-    println(sum)
+    println(sum)      // 输出：5050
 }
 ```
 
@@ -393,7 +534,7 @@ main() {
 ```
 
 > [!NOTE]
-> `1..=100` 是一个闭区间，表示 1 到 100（包含 100）。关于区间的详细内容，请参考[区间类型](../2_基本数据类型/8_区间类型.md)。
+> `1..=100` 是一个闭区间，表示 1 到 100（包含 100）。如果有疑惑可以回顾[区间类型](../2_基本数据类型/8_区间类型.md)。
 
 区间类型有以下几种写法：
 
@@ -402,6 +543,24 @@ main() {
 | `1..=5` | 闭区间（包含终点） | 1, 2, 3, 4, 5 |
 | `1..5` | 开区间（不包含终点） | 1, 2, 3, 4 |
 | `0..10` | 从 0 到 9 | 常用于控制循环次数 |
+
+### 用 `for-in` 遍历区间 vs `while` 控制计数器
+
+```Cangjie
+// for-in 方式（推荐）：自动取下一个值
+for (i in 0..5) {
+    println(i)          // 输出 0, 1, 2, 3, 4
+}
+
+// while 方式（不推荐）：手动控制
+var i = 0
+while (i < 5) {
+    println(i)
+    i++
+}
+```
+
+`for-in` 方式更简洁，而且**不用担心忘记写 `i++` 导致死循环**。
 
 ---
 
@@ -427,7 +586,14 @@ main() {
 ```
 
 > [!TIP]
-> 如果不解构，你需要写成 `for (pair in array)`，然后手动 `pair[0]`、`pair[1]` 来访问。解构写法更直观。
+> 如果不解构，你需要这样写：
+> ```Cangjie
+> for (pair in array) {
+>     println("${pair[0]}, ${pair[1]}")   // 手动访问元组元素
+> }
+> ```
+>
+> 解构写法更直观——`(x, y)` 直接把元组中的两个值拆开，分别赋给 `x` 和 `y`。
 
 ---
 
@@ -445,12 +611,14 @@ main() {
 ```
 
 > [!NOTE]
-> 迭代变量默认是 `let`（不可变），就像你声明了 `let i = ...` 一样。如果想修改值，可以用一个额外的可变变量来接收：
+> 迭代变量默认是 `let`（不可变），就像你声明了 `let i = ...` 一样。这是为了防止你在循环体中意外修改它，导致循环行为混乱。
+>
+> 如果想修改值，可以用一个额外的可变变量来接收：
 
 ```Cangjie
 main() {
     for (i in 0..5) {
-        var x = i * 10    // ✅ 用新变量接收
+        var x = i * 10    // ✅ 用新变量接收修改后的值
         println(x)
     }
 }
@@ -468,18 +636,12 @@ main() {
     for (_ in 0..5) {
         number *= number
     }
-    println(number)
+    println(number)       // 输出：4294967296
 }
 ```
 
-运行结果：
-
-```Bash
-4294967296
-```
-
 > [!TIP]
-> 如果用了普通变量名（比如 `for (i in 0..5)`）但没使用 `i`，编译器会报"unused variable"警告。用 `_` 可以避免这个警告，同时也表明"我故意不用这个变量"。
+> 如果用了普通变量名（比如 `for (i in 0..5)`）但没使用 `i`，编译器会报**"unused variable"警告**。用 `_` 可以避免这个警告，同时也表明"我故意不用这个变量"。
 
 ---
 
@@ -506,20 +668,51 @@ main() {
 
 > [!NOTE]
 > 这里的 `where i % 2 == 1` 相当于在循环体开头写 `if (i % 2 != 1) { continue }`，但 `where` 写法更简洁、更直观。
-> continue表示跳过此次循环 进入下一次循环
+>
+> `continue` 表示跳过此次循环，进入下一次循环——下一节会详细讲。
+
+### where  vs if 对比
+
+```Cangjie
+// 用 where（推荐）——筛选条件一目了然
+for (i in 0..8 where i % 2 == 1) {
+    println(i)
+}
+
+// 等价于用 if——多了一层缩进
+for (i in 0..8) {
+    if (i % 2 != 1) { continue }
+    println(i)
+}
+```
+
+`where` 的优点是：**筛选条件直接写在遍历语句中，一眼就能看出循环在过滤什么**。
 
 ---
 
-## 3.5.8 小结
+## 3.5.8 for-in 与 while 的选择
 
-| 概念 | 要点 |
-|------|------|
-| 基本语法 | `for (变量 in 序列) { 循环体 }` |
-| 适用类型 | 数组、区间、以及实现了 `Iterable<T>` 的类型 |
-| 迭代变量 | 只读（`let`），不可修改 |
-| 解构 | 序列元素为元组时，可用 `for ((a, b) in ...)` |
-| 忽略变量 | 用 `_` 代替变量名 |
-| where 筛选 | `for (i in 序列 where 条件)` 只遍历符合条件的元素 |
+| 场景 | 推荐 | 原因 |
+|------|------|------|
+| 遍历数组中的所有元素 | `for-in` | 不用管索引，自动取完为止 |
+| 遍历 0..N 的整数序列 | `for-in` | 不需要手动维护计数器 |
+| 不确定循环次数，依赖某个条件 | `while` | 条件更灵活 |
+| 至少需要执行一次 | `do-while` | 先执行再判断 |
+| 只需要循环 N 次，不关心元素值 | `for (_ in 0..N)` | 简洁安全 |
+| 需要同时在循环中修改索引 | `while` | `for-in` 的迭代变量不可修改 |
+
+---
+
+## 3.5.9 小结
+
+| 概念 | 要点 | 一句话记住 |
+|------|------|-----------|
+| 基本语法 | `for (变量 in 序列) { 循环体 }` | 把篮子里的水果挨个看一遍 |
+| 适用类型 | 数组、区间、以及实现了 `Iterable<T>` 的类型 | 有多个元素的东西都可以遍历 |
+| 迭代变量 | 只读（`let`），不可修改 | 可以读不能写 |
+| 解构 | 序列元素为元组时，可用 `for ((a, b) in ...)` | 直接拆开用 |
+| 忽略变量 | 用 `_` 代替变量名 | 只要次数不管值 |
+| where 筛选 | `for (i in 序列 where 条件)` | 只遍历符合条件的元素 |
 
 ---
 
@@ -537,16 +730,16 @@ main() {
 }
 ```
 
-### Q2：`for-in` 和 `while` 怎么选？
+运行结果：
 
-| 场景 | 推荐 |
-|------|------|
-| 遍历数组/区间等集合 | `for-in` |
-| 不确定循环次数，依赖某个条件 | `while` |
-| 至少需要执行一次 | `do-while` |
-| 只需要循环 N 次，不关心元素值 | `for (_ in 0..N)` |
+```Bash
+你
+好
+世
+界
+```
 
-### Q3：`for-in` 能嵌套吗？
+### Q2：`for-in` 能嵌套吗？
 
 可以。两层 `for-in` 可以遍历二维数组：
 
@@ -562,29 +755,58 @@ main() {
 }
 ```
 
-### Q4：`where` 和 `if` 有什么不同？
+运行结果：
 
-功能上等价，但 `where` 更简洁：
+```Bash
+1 2 3
+4 5 6
+7 8 9
+```
+
+### Q3：`for-in` 遍历数组时，能修改数组中的元素吗？
+
+**不能直接修改。** 因为迭代变量是只读的：
 
 ```Cangjie
-// 用 where（推荐）
-for (i in 0..8 where i % 2 == 1) {
-    println(i)
-}
-
-// 等价于用 if
-for (i in 0..8) {
-    if (i % 2 != 1) { continue }
-    println(i)
+main() {
+    let arr = [1, 2, 3]
+    for (x in arr) {
+        x = x * 10      // ❌ 报错：迭代变量不可修改
+    }
 }
 ```
 
-`where` 的优点是：**筛选条件直接写在遍历语句中，一眼就能看出循环在过滤什么**。
+要修改数组元素，可以用 `while` 配合索引：
+
+```Cangjie
+main() {
+    var arr = [1, 2, 3]
+    var i = 0
+    while (i < arr.size) {
+        arr[i] = arr[i] * 10   // ✅ 通过索引修改
+        i++
+    }
+}
+```
+
+### Q4：如果序列是空的，`for-in` 会怎样？
+
+**一次都不执行，直接跳过。** 就像篮子没有水果，你就没什么可看的：
+
+```Cangjie
+main() {
+    let empty: Array<Int64> = []
+    for (x in empty) {
+        println("不会执行")
+    }
+    println("结束")           // 直接执行到这里
+}
+```
 5:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$La",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-07-01"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"for-in循环结构"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"仓颉的逻辑控制——for-in循环结构"}]]}],["$","$Lb",null,{"content":"$c"}],"$Ld"]}]}]
 6:["$","script","script-0",{"src":"/_next/static/chunks/0g4o6d4sifcpo.js","async":true}]
 7:["$","script","script-1",{"src":"/_next/static/chunks/1ssz3eabjrzaj.js","async":true}]
 8:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
-12:T17f0,
+12:T22c0,
 ## 3.5.1 什么是 for-in？
 
 前面我们学了 `while` 和 `do-while`，它们适合"在某个条件下反复执行"的场景。
@@ -598,9 +820,26 @@ for (i in 0..8) {
 在编程中，这种"遍历"操作就是 `for-in` 的专长。
 
 > [!TIP]
-> 简单理解：
-> - `while` = "没吃饱就继续吃"（基于条件）
-> - `for-in` = "把篮子里的水果挨个看一遍"（基于集合）
+> 简单理解三种循环的区别：
+> - `while` = "没吃饱就继续吃"（基于条件，可能一次都不吃）
+> - `do-while` = "先吃一口，不够再吃"（至少吃一次）
+> - `for-in` = "把篮子里的水果挨个看一遍"（**基于集合**，有多少看多少）
+
+### for-in 的执行流程
+
+```
+         ┌──────────────────────────┐
+         │                           │
+         ▼                           │
+  从序列中取下一个元素 ←──────────────┘
+         │
+         ▼
+  还有元素吗？── true ──→ 执行循环体
+         │
+       false
+         ▼
+      退出循环
+```
 
 ---
 
@@ -632,32 +871,45 @@ main() {
 橘子
 ```
 
-每次循环，`fruit` 会依次绑定到数组中的每一个元素，从第一个到最后一个。
+**逐轮过程**：
 
-### 实际例子：农历干支
+```
+1. 从 fruits 中取第一个元素 "苹果" → fruit = "苹果" → 执行循环体 → 输出"苹果"
+2. 取下一个元素 "香蕉" → fruit = "香蕉" → 执行循环体 → 输出"香蕉"
+3. 取下一个元素 "橘子" → fruit = "橘子" → 执行循环体 → 输出"橘子"
+4. 没有下一个元素了 → 退出循环
+```
+
+> [!TIP]
+> 用 `for-in` 遍历数组，比用 `while` 手动控制索引要**简洁得多**：
+>
+> ```Cangjie
+> // for-in 方式（推荐）：不用管索引，也不用管取到什么时候停
+> for (fruit in fruits) {
+>     println(fruit)
+> }
+>
+> // while 方式（不推荐）：要手动控制索引和条件
+> var i = 0
+> while (i < fruits.size) {
+>     println(fruits[i])
+>     i++
+> }
+> ```
+
+### 例子：遍历数字数组求和
 
 ```Cangjie
 main() {
-    let metaArray = [r'甲', r'乙', r'丙', r'丁', r'戊', r'己', r'庚', r'辛', r'壬', r'癸']
-    let noumenonArray = [r'寅', r'卯', r'辰', r'巳', r'午', r'未', r'申', r'酉', r'戌', r'亥', r'子', r'丑']
-    let year = 2024
+    let numbers = [3, 7, 2, 9, 5]
+    var sum = 0
 
-    let metaOfYear = ((year % 10) + 10 - 4) % 10
-    var index = (2 * metaOfYear + 3) % 10 - 1
-
-    println("农历 2024 年各月干支：")
-    for (noumenon in noumenonArray) {
-        print("${metaArray[index]}${noumenon} ")
-        index = (index + 1) % 10
+    for (num in numbers) {
+        sum += num
     }
+
+    println("总和 = ${sum}")    // 输出：总和 = 26
 }
-```
-
-运行结果：
-
-```Bash
-农历 2024 年各月干支：
-丙寅 丁卯 戊辰 己巳 庚午 辛未 壬申 癸酉 甲戌 乙亥 丙子 丁丑
 ```
 
 ---
@@ -672,7 +924,7 @@ main() {
     for (i in 1..=100) {
         sum += i
     }
-    println(sum)
+    println(sum)      // 输出：5050
 }
 ```
 
@@ -683,7 +935,7 @@ main() {
 ```
 
 > [!NOTE]
-> `1..=100` 是一个闭区间，表示 1 到 100（包含 100）。关于区间的详细内容，请参考[区间类型](../2_基本数据类型/8_区间类型.md)。
+> `1..=100` 是一个闭区间，表示 1 到 100（包含 100）。如果有疑惑可以回顾[区间类型](../2_基本数据类型/8_区间类型.md)。
 
 区间类型有以下几种写法：
 
@@ -692,6 +944,24 @@ main() {
 | `1..=5` | 闭区间（包含终点） | 1, 2, 3, 4, 5 |
 | `1..5` | 开区间（不包含终点） | 1, 2, 3, 4 |
 | `0..10` | 从 0 到 9 | 常用于控制循环次数 |
+
+### 用 `for-in` 遍历区间 vs `while` 控制计数器
+
+```Cangjie
+// for-in 方式（推荐）：自动取下一个值
+for (i in 0..5) {
+    println(i)          // 输出 0, 1, 2, 3, 4
+}
+
+// while 方式（不推荐）：手动控制
+var i = 0
+while (i < 5) {
+    println(i)
+    i++
+}
+```
+
+`for-in` 方式更简洁，而且**不用担心忘记写 `i++` 导致死循环**。
 
 ---
 
@@ -717,7 +987,14 @@ main() {
 ```
 
 > [!TIP]
-> 如果不解构，你需要写成 `for (pair in array)`，然后手动 `pair[0]`、`pair[1]` 来访问。解构写法更直观。
+> 如果不解构，你需要这样写：
+> ```Cangjie
+> for (pair in array) {
+>     println("${pair[0]}, ${pair[1]}")   // 手动访问元组元素
+> }
+> ```
+>
+> 解构写法更直观——`(x, y)` 直接把元组中的两个值拆开，分别赋给 `x` 和 `y`。
 
 ---
 
@@ -735,12 +1012,14 @@ main() {
 ```
 
 > [!NOTE]
-> 迭代变量默认是 `let`（不可变），就像你声明了 `let i = ...` 一样。如果想修改值，可以用一个额外的可变变量来接收：
+> 迭代变量默认是 `let`（不可变），就像你声明了 `let i = ...` 一样。这是为了防止你在循环体中意外修改它，导致循环行为混乱。
+>
+> 如果想修改值，可以用一个额外的可变变量来接收：
 
 ```Cangjie
 main() {
     for (i in 0..5) {
-        var x = i * 10    // ✅ 用新变量接收
+        var x = i * 10    // ✅ 用新变量接收修改后的值
         println(x)
     }
 }
@@ -758,18 +1037,12 @@ main() {
     for (_ in 0..5) {
         number *= number
     }
-    println(number)
+    println(number)       // 输出：4294967296
 }
 ```
 
-运行结果：
-
-```Bash
-4294967296
-```
-
 > [!TIP]
-> 如果用了普通变量名（比如 `for (i in 0..5)`）但没使用 `i`，编译器会报"unused variable"警告。用 `_` 可以避免这个警告，同时也表明"我故意不用这个变量"。
+> 如果用了普通变量名（比如 `for (i in 0..5)`）但没使用 `i`，编译器会报**"unused variable"警告**。用 `_` 可以避免这个警告，同时也表明"我故意不用这个变量"。
 
 ---
 
@@ -796,20 +1069,51 @@ main() {
 
 > [!NOTE]
 > 这里的 `where i % 2 == 1` 相当于在循环体开头写 `if (i % 2 != 1) { continue }`，但 `where` 写法更简洁、更直观。
-> continue表示跳过此次循环 进入下一次循环
+>
+> `continue` 表示跳过此次循环，进入下一次循环——下一节会详细讲。
+
+### where  vs if 对比
+
+```Cangjie
+// 用 where（推荐）——筛选条件一目了然
+for (i in 0..8 where i % 2 == 1) {
+    println(i)
+}
+
+// 等价于用 if——多了一层缩进
+for (i in 0..8) {
+    if (i % 2 != 1) { continue }
+    println(i)
+}
+```
+
+`where` 的优点是：**筛选条件直接写在遍历语句中，一眼就能看出循环在过滤什么**。
 
 ---
 
-## 3.5.8 小结
+## 3.5.8 for-in 与 while 的选择
 
-| 概念 | 要点 |
-|------|------|
-| 基本语法 | `for (变量 in 序列) { 循环体 }` |
-| 适用类型 | 数组、区间、以及实现了 `Iterable<T>` 的类型 |
-| 迭代变量 | 只读（`let`），不可修改 |
-| 解构 | 序列元素为元组时，可用 `for ((a, b) in ...)` |
-| 忽略变量 | 用 `_` 代替变量名 |
-| where 筛选 | `for (i in 序列 where 条件)` 只遍历符合条件的元素 |
+| 场景 | 推荐 | 原因 |
+|------|------|------|
+| 遍历数组中的所有元素 | `for-in` | 不用管索引，自动取完为止 |
+| 遍历 0..N 的整数序列 | `for-in` | 不需要手动维护计数器 |
+| 不确定循环次数，依赖某个条件 | `while` | 条件更灵活 |
+| 至少需要执行一次 | `do-while` | 先执行再判断 |
+| 只需要循环 N 次，不关心元素值 | `for (_ in 0..N)` | 简洁安全 |
+| 需要同时在循环中修改索引 | `while` | `for-in` 的迭代变量不可修改 |
+
+---
+
+## 3.5.9 小结
+
+| 概念 | 要点 | 一句话记住 |
+|------|------|-----------|
+| 基本语法 | `for (变量 in 序列) { 循环体 }` | 把篮子里的水果挨个看一遍 |
+| 适用类型 | 数组、区间、以及实现了 `Iterable<T>` 的类型 | 有多个元素的东西都可以遍历 |
+| 迭代变量 | 只读（`let`），不可修改 | 可以读不能写 |
+| 解构 | 序列元素为元组时，可用 `for ((a, b) in ...)` | 直接拆开用 |
+| 忽略变量 | 用 `_` 代替变量名 | 只要次数不管值 |
+| where 筛选 | `for (i in 序列 where 条件)` | 只遍历符合条件的元素 |
 
 ---
 
@@ -827,16 +1131,16 @@ main() {
 }
 ```
 
-### Q2：`for-in` 和 `while` 怎么选？
+运行结果：
 
-| 场景 | 推荐 |
-|------|------|
-| 遍历数组/区间等集合 | `for-in` |
-| 不确定循环次数，依赖某个条件 | `while` |
-| 至少需要执行一次 | `do-while` |
-| 只需要循环 N 次，不关心元素值 | `for (_ in 0..N)` |
+```Bash
+你
+好
+世
+界
+```
 
-### Q3：`for-in` 能嵌套吗？
+### Q2：`for-in` 能嵌套吗？
 
 可以。两层 `for-in` 可以遍历二维数组：
 
@@ -852,23 +1156,52 @@ main() {
 }
 ```
 
-### Q4：`where` 和 `if` 有什么不同？
+运行结果：
 
-功能上等价，但 `where` 更简洁：
+```Bash
+1 2 3
+4 5 6
+7 8 9
+```
+
+### Q3：`for-in` 遍历数组时，能修改数组中的元素吗？
+
+**不能直接修改。** 因为迭代变量是只读的：
 
 ```Cangjie
-// 用 where（推荐）
-for (i in 0..8 where i % 2 == 1) {
-    println(i)
-}
-
-// 等价于用 if
-for (i in 0..8) {
-    if (i % 2 != 1) { continue }
-    println(i)
+main() {
+    let arr = [1, 2, 3]
+    for (x in arr) {
+        x = x * 10      // ❌ 报错：迭代变量不可修改
+    }
 }
 ```
 
-`where` 的优点是：**筛选条件直接写在遍历语句中，一眼就能看出循环在过滤什么**。
-d:["$","$L11",null,{"content":"$12","collection":"Cangjie/3_逻辑控制","rootColPath":"Cangjie","allArticles":["$4:props:children:props:children:2:props:articles:0","$4:props:children:props:children:2:props:articles:1","$4:props:children:props:children:2:props:articles:2","$4:props:children:props:children:2:props:articles:3","$4:props:children:props:children:2:props:articles:4","$4:props:children:props:children:2:props:articles:5","$4:props:children:props:children:2:props:articles:6",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782921487211.231},"$4:props:children:props:children:2:props:articles:7","$4:props:children:props:children:2:props:articles:8","$4:props:children:props:children:2:props:articles:9","$4:props:children:props:children:2:props:articles:10","$4:props:children:props:children:2:props:articles:11","$4:props:children:props:children:2:props:articles:12","$4:props:children:props:children:2:props:articles:13","$4:props:children:props:children:2:props:articles:14","$4:props:children:props:children:2:props:articles:15","$4:props:children:props:children:2:props:articles:16","$4:props:children:props:children:2:props:articles:17","$4:props:children:props:children:2:props:articles:18","$4:props:children:props:children:2:props:articles:19","$4:props:children:props:children:2:props:articles:20","$4:props:children:props:children:2:props:articles:21","$4:props:children:props:children:2:props:articles:22","$4:props:children:props:children:2:props:articles:23","$4:props:children:props:children:2:props:articles:24","$4:props:children:props:children:2:props:articles:25","$4:props:children:props:children:2:props:articles:26","$4:props:children:props:children:2:props:articles:27","$4:props:children:props:children:2:props:articles:28","$4:props:children:props:children:2:props:articles:29","$4:props:children:props:children:2:props:articles:30"],"currentSlug":"Cangjie/3_逻辑控制/5_for-in循环结构"}]
+要修改数组元素，可以用 `while` 配合索引：
+
+```Cangjie
+main() {
+    var arr = [1, 2, 3]
+    var i = 0
+    while (i < arr.size) {
+        arr[i] = arr[i] * 10   // ✅ 通过索引修改
+        i++
+    }
+}
+```
+
+### Q4：如果序列是空的，`for-in` 会怎样？
+
+**一次都不执行，直接跳过。** 就像篮子没有水果，你就没什么可看的：
+
+```Cangjie
+main() {
+    let empty: Array<Int64> = []
+    for (x in empty) {
+        println("不会执行")
+    }
+    println("结束")           // 直接执行到这里
+}
+```
+d:["$","$L11",null,{"content":"$12","collection":"Cangjie/3_逻辑控制","rootColPath":"Cangjie","allArticles":["$4:props:children:props:children:2:props:articles:0","$4:props:children:props:children:2:props:articles:1","$4:props:children:props:children:2:props:articles:2","$4:props:children:props:children:2:props:articles:3","$4:props:children:props:children:2:props:articles:4","$4:props:children:props:children:2:props:articles:5","$4:props:children:props:children:2:props:articles:6",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782984101999.9065},"$4:props:children:props:children:2:props:articles:7","$4:props:children:props:children:2:props:articles:8","$4:props:children:props:children:2:props:articles:9","$4:props:children:props:children:2:props:articles:10","$4:props:children:props:children:2:props:articles:11","$4:props:children:props:children:2:props:articles:12","$4:props:children:props:children:2:props:articles:13","$4:props:children:props:children:2:props:articles:14","$4:props:children:props:children:2:props:articles:15","$4:props:children:props:children:2:props:articles:16","$4:props:children:props:children:2:props:articles:17","$4:props:children:props:children:2:props:articles:18","$4:props:children:props:children:2:props:articles:19","$4:props:children:props:children:2:props:articles:20","$4:props:children:props:children:2:props:articles:21","$4:props:children:props:children:2:props:articles:22","$4:props:children:props:children:2:props:articles:23","$4:props:children:props:children:2:props:articles:24","$4:props:children:props:children:2:props:articles:25","$4:props:children:props:children:2:props:articles:26","$4:props:children:props:children:2:props:articles:27","$4:props:children:props:children:2:props:articles:28","$4:props:children:props:children:2:props:articles:29","$4:props:children:props:children:2:props:articles:30"],"currentSlug":"Cangjie/3_逻辑控制/5_for-in循环结构"}]
 10:null

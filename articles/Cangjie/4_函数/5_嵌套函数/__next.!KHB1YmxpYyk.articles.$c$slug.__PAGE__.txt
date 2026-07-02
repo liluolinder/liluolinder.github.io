@@ -1,25 +1,57 @@
 1:"$Sreact.fragment"
 2:I[23597,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"TocSidebar"]
-4:I[59537,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleNavSidebar"]
-9:I[22016,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],""]
-a:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleContent"]
-c:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"MobileArticlePanel"]
+9:I[59537,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleNavSidebar"]
+a:I[22016,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],""]
+b:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleContent"]
 e:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
 f:"$Sreact.suspense"
-3:Tf0f,
+11:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"MobileArticlePanel"]
+3:T1ada,
 ## 4.5.1 什么是嵌套函数？
 
 定义在源文件**顶层**的函数被称为**全局函数**。定义在**函数体内**的函数被称为**嵌套函数**。
 
 > [!TIP]
-> 嵌套函数就像"函数中的函数"——你可以把它想象成在一个大车间里再搭一个小工位，这个小工位只在这个大车间里有效，外面的人看不到它。
+> 可以这样想象：
+> - **全局函数**：是建在"城市中心广场"的建筑，所有人都能进去
+> - **嵌套函数**：是建在"某栋大楼内部"的小房间，只有这栋楼里的人能进去
 
 ```Cangjie
 func outer() {           // 外层函数
-    func inner() {       // 嵌套函数
+    func inner() {       // 嵌套函数（定义在 outer 里面）
         println("我是嵌套函数")
     }
     inner()              // 在外层函数中调用嵌套函数
+}
+```
+
+### 为什么要用嵌套函数？
+
+嵌套函数的主要用途是**封装只在某个函数内部用到的辅助逻辑**。比如：
+
+- 一个函数比较复杂，你想把内部步骤拆成几个小函数
+- 但这些小函数只在当前函数内有用，不想暴露给外面
+
+就像你在家里做饭：切菜、洗菜、炒菜，这些步骤你只需要在厨房里完成，不需要让客厅的客人看到。
+
+```Cangjie
+func makeDinner() {
+    // 这些辅助步骤只在这个函数内有用
+    func washVegetables() {
+        println("洗菜中...")
+    }
+    func cutVegetables() {
+        println("切菜中...")
+    }
+    func cook() {
+        println("炒菜中...")
+    }
+
+    // 组合调用
+    washVegetables()
+    cutVegetables()
+    cook()
+    println("开饭！")
 }
 ```
 
@@ -27,9 +59,7 @@ func outer() {           // 外层函数
 
 ## 4.5.2 嵌套函数的使用范围
 
-嵌套函数有几个重要的特性：
-
-### 作用域
+### 作用域（嵌套函数对谁可见？）
 
 嵌套函数的作用域**仅限于其所在的外部函数**。外部函数之外无法访问嵌套函数。
 
@@ -46,6 +76,9 @@ main() {
 }
 ```
 
+> [!NOTE]
+> 就像"你房间里的东西只有你能拿"——嵌套函数是外部函数的"私人物品"。
+
 ### 访问外部变量
 
 嵌套函数可以**访问外部函数的变量和参数**：
@@ -56,26 +89,40 @@ func foo(x: Int64) {
     func nestAdd(a: Int64, b: Int64) {
         a + b + x + y    // ✅ 可以访问外部函数的参数 x 和变量 y
     }
-    println(nestAdd(1, 2))
+    println(nestAdd(1, 2))   // 1 + 2 + x + y
 }
 ```
 
-> [!NOTE]
+> [!CAUTION]
 > 反过来是不行的——**外部函数不能直接访问嵌套函数的内部变量**。
+>
+> ```Cangjie
+> func foo() {
+>     func nest() {
+>         let secret = 42   // 嵌套函数的内部变量
+>     }
+>     println(secret)       // ❌ 错误：外部无法访问嵌套函数的变量
+> }
+> ```
+>
+> 就像"外面的人看不到你的日记本，但你在房间里可以看到外面的景色"。
 
 ### 生命周期
 
 嵌套函数的生命周期与外部函数紧密相关：
 
-- 每次外部函数调用时，嵌套函数被"创建"
-- 外部函数执行完毕后，嵌套函数通常被销毁
-- **除非**嵌套函数通过返回值或闭包被外部引用，则可以继续存在
+| 阶段 | 嵌套函数的状态 |
+|------|---------------|
+| 外部函数被调用时 | 嵌套函数被"创建" |
+| 外部函数执行过程中 | 嵌套函数可以被调用 |
+| 外部函数执行完毕 | 嵌套函数通常被**销毁** |
+| 特殊情况 | 如果嵌套函数被返回（作为返回值），它可以**继续存活**（见下一节） |
 
 ---
 
-## 4.5.3 返回嵌套函数
+## 4.5.3 返回嵌套函数（让嵌套函数"活"出去）
 
-嵌套函数可以作为**返回值**返回，在外部函数之外被调用：
+嵌套函数可以作为**返回值**返回，这样在外部函数结束之后，嵌套函数仍然可以被调用：
 
 ```Cangjie
 func foo() {
@@ -83,14 +130,14 @@ func foo() {
         a + b + 3
     }
 
-    println(nestAdd(1, 2))   // 输出：6
+    println(nestAdd(1, 2))   // 在 foo 内部调用：1 + 2 + 3 = 6
 
-    return nestAdd
+    return nestAdd           // 返回嵌套函数本身
 }
 
 main() {
-    let f = foo()            // 拿到返回的嵌套函数
-    let x = f(1, 2)          // 在外部调用嵌套函数
+    let f = foo()            // 调用 foo，拿到返回的嵌套函数
+    let x = f(1, 2)          // 在外部调用嵌套函数：1 + 2 + 3 = 6
     println("result: ${x}")
 }
 ```
@@ -104,7 +151,8 @@ result: 6
 
 > [!IMPORTANT]
 > 当嵌套函数被返回时，它就变成了一个**闭包**——它"记住"了创建时的环境（包括外部函数的变量）。即使外部函数已经执行完毕，嵌套函数仍然可以访问那些变量。
-> 详细的闭包内容将在下节讲解
+>
+> 详细的闭包内容将在下一节讲解。
 
 ---
 
@@ -112,7 +160,22 @@ result: 6
 
 ### ✅ 仅在外部函数中使用
 
-嵌套函数的设计初衷是**只在外部函数中使用**。如果某个函数逻辑只在另一个函数内部有用，就可以考虑写成嵌套函数，避免"污染"全局命名空间。
+嵌套函数的设计初衷是**只在外部函数中使用**。如果某个函数逻辑只在另一个函数内部有用，就可以考虑写成嵌套函数，避免"污染"全局空间。
+
+```Cangjie
+// ✅ 好：辅助逻辑只在 validateUser 内有用
+func validateUser(name: String, age: Int64): Bool {
+    func isNotEmpty(s: String): Bool {
+        s.size > 0
+    }
+    func isAdult(a: Int64): Bool {
+        a >= 18
+    }
+    return isNotEmpty(name) && isAdult(age)
+}
+
+// ❌ 不好：如果 isNotEmpty 和 isAdult 在其他地方也要用，就应该提到外面去
+```
 
 ### ⚠️ 避免过度嵌套
 
@@ -124,6 +187,7 @@ func a() {
         func c() {
             func d() {
                 // 这样嵌套太多层，阅读起来很困难
+                // 像俄罗斯套娃，一层套一层
             }
         }
     }
@@ -131,40 +195,94 @@ func a() {
 ```
 
 > [!TIP]
-> 通常嵌套**1~2 层**就够了。如果需要更多层嵌套，说明代码可能需要重构。
+> 通常嵌套**1~2 层**就够了。如果发现嵌套了 3 层以上，说明代码可能需要重构。一个实用的判断标准：**你需要在脑子里不停地回想当前在第几层花括号里，就说明嵌套太深了**。
 
-### ⚠️ 注意闭包的使用
+### ⚠️ 注意闭包的内存管理
 
-如果嵌套函数被返回并作为闭包使用，需要注意闭包可能会**捕获外部函数的变量**，导致外部函数的变量在外部函数结束后仍然被占用，从而影响内存管理。
+如果嵌套函数被返回并作为闭包使用，需要注意闭包可能会**捕获外部函数的变量**，导致这些变量在外部函数结束后仍然被占用，从而影响内存管理。
+
+```Cangjie
+func createGreeter(greeting: String) {
+    func greet(name: String) {
+        println("${greeting}, ${name}！")  // 捕获了 outer 的 greeting
+    }
+    return greet
+}
+
+main() {
+    let sayHi = createGreeter("你好")
+    let sayHello = createGreeter("Hello")
+    
+    sayHi("小明")     // 输出：你好, 小明！
+    sayHello("Xiao")  // 输出：Hello, Xiao！
+    
+    // 即使 createGreeter 已经执行完毕，greeting 的值还被保留着
+}
+```
+
+每个闭包都"记住"了自己创建时的 `greeting`，即使 `createGreeter` 执行完毕也不会消失。这很强大，但如果滥用可能导致内存占用过多。
 
 ---
 
 ## 4.5.5 总结
 
-| 知识点 | 说明 |
-|--------|------|
-| 定义 | 定义在函数体内的函数 |
-| 作用域 | 仅限于外部函数内部 |
-| 访问权限 | 嵌套函数可访问外部函数的变量和参数（反向不行） |
-| 生命周期 | 通常随外部函数调用结束而销毁 |
-| 作为返回值 | 嵌套函数可被返回，形成闭包 |
-| 闭包捕获 | 返回的嵌套函数会"记住"外部变量，需注意内存管理 |
-| 嵌套深度 | 避免过度嵌套（建议 1~2 层） |
-0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L4",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782921487209.516},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/1_定义函数","title":"定义函数","description":"学会编写可复用的代码块","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":1,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/2_调用函数","title":"调用函数","description":"学会灵活调用仓颉函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":2,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/3_函数类型","title":"函数类型","description":"仓颉中函数也是一等公民","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":3,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782921487209.5894},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/4_lambda表达式","title":"Lambda表达式","description":"快速创建匿名函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":4,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/5_嵌套函数","title":"嵌套函数","description":"函数内部定义函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":5,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"published":true,"mtime":1782921487210.7688},{"slug":"Cangjie/4_函数/6_闭包","title":"闭包","description":"捕获变量的函数与lambda","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":6,"published":true,"mtime":1782921487211.231},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/10_nothing类型","title":"Nothing类型","description":"仓颉的基本数据类型——Nothing类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/11_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"published":true,"mtime":1782921487209.9858},{"slug":"Cangjie/2_基本数据类型/12_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":12,"published":true,"mtime":1782921487209.9858}],"currentSlug":"Cangjie/4_函数/5_嵌套函数"}]]}]}],"$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"YYKzDL23MTXat2WTr6TSc"}
-b:Tf0f,
+| 知识点 | 说明 | 记忆技巧 |
+|--------|------|---------|
+| 定义 | 定义在函数体内的函数 | "函数中函数" |
+| 作用域 | 仅限于外部函数内部 | 就像房间里的私人物品 |
+| 访问权限 | 嵌套函数可访问外部函数的变量和参数（反向不行） | 里面能看到外面，外面看不到里面 |
+| 生命周期 | 通常随外部函数调用结束而销毁 | 用完即走 |
+| 作为返回值 | 嵌套函数可被返回，形成闭包 | 把小工具带出厂 |
+| 闭包捕获 | 返回的嵌套函数会"记住"外部变量 | 像背包背着变量走 |
+| 嵌套深度 | 避免过度嵌套（建议 1~2 层） | 太深就像俄罗斯套娃 |
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],"$L4","$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"VtimUmeRWW8bLVu7SzSdl"}
+4:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L9",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782984101998.0315},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制——if分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"published":true,"mtime":1782984101999.2908},{"slug":"Cangjie/4_函数/1_定义函数","title":"定义函数","description":"学会编写可复用的代码块","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":1,"published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"published":true,"mtime":1782984101999.2908},{"slug":"Cangjie/4_函数/2_调用函数","title":"调用函数","description":"学会灵活调用仓颉函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":2,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"published":true,"mtime":1782984101999.2908},{"slug":"Cangjie/4_函数/3_函数类型","title":"函数类型","description":"仓颉中函数也是一等公民","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":3,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782984101998.1018},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/4_函数/4_lambda表达式","title":"Lambda表达式","description":"快速创建匿名函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":4,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/4_函数/5_嵌套函数","title":"嵌套函数","description":"函数内部定义函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":5,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"published":true,"mtime":1782984101999.3408},{"slug":"Cangjie/4_函数/6_闭包","title":"闭包","description":"捕获变量的函数与lambda","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":6,"published":true,"mtime":1782984101999.9065},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/10_nothing类型","title":"Nothing类型","description":"仓颉的基本数据类型——Nothing类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/11_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"published":true,"mtime":1782984101998.4624},{"slug":"Cangjie/2_基本数据类型/12_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":12,"published":true,"mtime":1782984101998.4624}],"currentSlug":"Cangjie/4_函数/5_嵌套函数"}]]}]}]
+c:T1ada,
 ## 4.5.1 什么是嵌套函数？
 
 定义在源文件**顶层**的函数被称为**全局函数**。定义在**函数体内**的函数被称为**嵌套函数**。
 
 > [!TIP]
-> 嵌套函数就像"函数中的函数"——你可以把它想象成在一个大车间里再搭一个小工位，这个小工位只在这个大车间里有效，外面的人看不到它。
+> 可以这样想象：
+> - **全局函数**：是建在"城市中心广场"的建筑，所有人都能进去
+> - **嵌套函数**：是建在"某栋大楼内部"的小房间，只有这栋楼里的人能进去
 
 ```Cangjie
 func outer() {           // 外层函数
-    func inner() {       // 嵌套函数
+    func inner() {       // 嵌套函数（定义在 outer 里面）
         println("我是嵌套函数")
     }
     inner()              // 在外层函数中调用嵌套函数
+}
+```
+
+### 为什么要用嵌套函数？
+
+嵌套函数的主要用途是**封装只在某个函数内部用到的辅助逻辑**。比如：
+
+- 一个函数比较复杂，你想把内部步骤拆成几个小函数
+- 但这些小函数只在当前函数内有用，不想暴露给外面
+
+就像你在家里做饭：切菜、洗菜、炒菜，这些步骤你只需要在厨房里完成，不需要让客厅的客人看到。
+
+```Cangjie
+func makeDinner() {
+    // 这些辅助步骤只在这个函数内有用
+    func washVegetables() {
+        println("洗菜中...")
+    }
+    func cutVegetables() {
+        println("切菜中...")
+    }
+    func cook() {
+        println("炒菜中...")
+    }
+
+    // 组合调用
+    washVegetables()
+    cutVegetables()
+    cook()
+    println("开饭！")
 }
 ```
 
@@ -172,9 +290,7 @@ func outer() {           // 外层函数
 
 ## 4.5.2 嵌套函数的使用范围
 
-嵌套函数有几个重要的特性：
-
-### 作用域
+### 作用域（嵌套函数对谁可见？）
 
 嵌套函数的作用域**仅限于其所在的外部函数**。外部函数之外无法访问嵌套函数。
 
@@ -191,6 +307,9 @@ main() {
 }
 ```
 
+> [!NOTE]
+> 就像"你房间里的东西只有你能拿"——嵌套函数是外部函数的"私人物品"。
+
 ### 访问外部变量
 
 嵌套函数可以**访问外部函数的变量和参数**：
@@ -201,26 +320,40 @@ func foo(x: Int64) {
     func nestAdd(a: Int64, b: Int64) {
         a + b + x + y    // ✅ 可以访问外部函数的参数 x 和变量 y
     }
-    println(nestAdd(1, 2))
+    println(nestAdd(1, 2))   // 1 + 2 + x + y
 }
 ```
 
-> [!NOTE]
+> [!CAUTION]
 > 反过来是不行的——**外部函数不能直接访问嵌套函数的内部变量**。
+>
+> ```Cangjie
+> func foo() {
+>     func nest() {
+>         let secret = 42   // 嵌套函数的内部变量
+>     }
+>     println(secret)       // ❌ 错误：外部无法访问嵌套函数的变量
+> }
+> ```
+>
+> 就像"外面的人看不到你的日记本，但你在房间里可以看到外面的景色"。
 
 ### 生命周期
 
 嵌套函数的生命周期与外部函数紧密相关：
 
-- 每次外部函数调用时，嵌套函数被"创建"
-- 外部函数执行完毕后，嵌套函数通常被销毁
-- **除非**嵌套函数通过返回值或闭包被外部引用，则可以继续存在
+| 阶段 | 嵌套函数的状态 |
+|------|---------------|
+| 外部函数被调用时 | 嵌套函数被"创建" |
+| 外部函数执行过程中 | 嵌套函数可以被调用 |
+| 外部函数执行完毕 | 嵌套函数通常被**销毁** |
+| 特殊情况 | 如果嵌套函数被返回（作为返回值），它可以**继续存活**（见下一节） |
 
 ---
 
-## 4.5.3 返回嵌套函数
+## 4.5.3 返回嵌套函数（让嵌套函数"活"出去）
 
-嵌套函数可以作为**返回值**返回，在外部函数之外被调用：
+嵌套函数可以作为**返回值**返回，这样在外部函数结束之后，嵌套函数仍然可以被调用：
 
 ```Cangjie
 func foo() {
@@ -228,14 +361,14 @@ func foo() {
         a + b + 3
     }
 
-    println(nestAdd(1, 2))   // 输出：6
+    println(nestAdd(1, 2))   // 在 foo 内部调用：1 + 2 + 3 = 6
 
-    return nestAdd
+    return nestAdd           // 返回嵌套函数本身
 }
 
 main() {
-    let f = foo()            // 拿到返回的嵌套函数
-    let x = f(1, 2)          // 在外部调用嵌套函数
+    let f = foo()            // 调用 foo，拿到返回的嵌套函数
+    let x = f(1, 2)          // 在外部调用嵌套函数：1 + 2 + 3 = 6
     println("result: ${x}")
 }
 ```
@@ -249,7 +382,8 @@ result: 6
 
 > [!IMPORTANT]
 > 当嵌套函数被返回时，它就变成了一个**闭包**——它"记住"了创建时的环境（包括外部函数的变量）。即使外部函数已经执行完毕，嵌套函数仍然可以访问那些变量。
-> 详细的闭包内容将在下节讲解
+>
+> 详细的闭包内容将在下一节讲解。
 
 ---
 
@@ -257,7 +391,22 @@ result: 6
 
 ### ✅ 仅在外部函数中使用
 
-嵌套函数的设计初衷是**只在外部函数中使用**。如果某个函数逻辑只在另一个函数内部有用，就可以考虑写成嵌套函数，避免"污染"全局命名空间。
+嵌套函数的设计初衷是**只在外部函数中使用**。如果某个函数逻辑只在另一个函数内部有用，就可以考虑写成嵌套函数，避免"污染"全局空间。
+
+```Cangjie
+// ✅ 好：辅助逻辑只在 validateUser 内有用
+func validateUser(name: String, age: Int64): Bool {
+    func isNotEmpty(s: String): Bool {
+        s.size > 0
+    }
+    func isAdult(a: Int64): Bool {
+        a >= 18
+    }
+    return isNotEmpty(name) && isAdult(age)
+}
+
+// ❌ 不好：如果 isNotEmpty 和 isAdult 在其他地方也要用，就应该提到外面去
+```
 
 ### ⚠️ 避免过度嵌套
 
@@ -269,6 +418,7 @@ func a() {
         func c() {
             func d() {
                 // 这样嵌套太多层，阅读起来很困难
+                // 像俄罗斯套娃，一层套一层
             }
         }
     }
@@ -276,171 +426,278 @@ func a() {
 ```
 
 > [!TIP]
-> 通常嵌套**1~2 层**就够了。如果需要更多层嵌套，说明代码可能需要重构。
+> 通常嵌套**1~2 层**就够了。如果发现嵌套了 3 层以上，说明代码可能需要重构。一个实用的判断标准：**你需要在脑子里不停地回想当前在第几层花括号里，就说明嵌套太深了**。
 
-### ⚠️ 注意闭包的使用
+### ⚠️ 注意闭包的内存管理
 
-如果嵌套函数被返回并作为闭包使用，需要注意闭包可能会**捕获外部函数的变量**，导致外部函数的变量在外部函数结束后仍然被占用，从而影响内存管理。
+如果嵌套函数被返回并作为闭包使用，需要注意闭包可能会**捕获外部函数的变量**，导致这些变量在外部函数结束后仍然被占用，从而影响内存管理。
+
+```Cangjie
+func createGreeter(greeting: String) {
+    func greet(name: String) {
+        println("${greeting}, ${name}！")  // 捕获了 outer 的 greeting
+    }
+    return greet
+}
+
+main() {
+    let sayHi = createGreeter("你好")
+    let sayHello = createGreeter("Hello")
+    
+    sayHi("小明")     // 输出：你好, 小明！
+    sayHello("Xiao")  // 输出：Hello, Xiao！
+    
+    // 即使 createGreeter 已经执行完毕，greeting 的值还被保留着
+}
+```
+
+每个闭包都"记住"了自己创建时的 `greeting`，即使 `createGreeter` 执行完毕也不会消失。这很强大，但如果滥用可能导致内存占用过多。
 
 ---
 
 ## 4.5.5 总结
 
-| 知识点 | 说明 |
-|--------|------|
-| 定义 | 定义在函数体内的函数 |
-| 作用域 | 仅限于外部函数内部 |
-| 访问权限 | 嵌套函数可访问外部函数的变量和参数（反向不行） |
-| 生命周期 | 通常随外部函数调用结束而销毁 |
-| 作为返回值 | 嵌套函数可被返回，形成闭包 |
-| 闭包捕获 | 返回的嵌套函数会"记住"外部变量，需注意内存管理 |
-| 嵌套深度 | 避免过度嵌套（建议 1~2 层） |
-d:Tf0f,
-## 4.5.1 什么是嵌套函数？
-
-定义在源文件**顶层**的函数被称为**全局函数**。定义在**函数体内**的函数被称为**嵌套函数**。
-
-> [!TIP]
-> 嵌套函数就像"函数中的函数"——你可以把它想象成在一个大车间里再搭一个小工位，这个小工位只在这个大车间里有效，外面的人看不到它。
-
-```Cangjie
-func outer() {           // 外层函数
-    func inner() {       // 嵌套函数
-        println("我是嵌套函数")
-    }
-    inner()              // 在外层函数中调用嵌套函数
-}
-```
-
----
-
-## 4.5.2 嵌套函数的使用范围
-
-嵌套函数有几个重要的特性：
-
-### 作用域
-
-嵌套函数的作用域**仅限于其所在的外部函数**。外部函数之外无法访问嵌套函数。
-
-```Cangjie
-func foo() {
-    func nest() {
-        println("我是嵌套函数")
-    }
-    nest()    // ✅ 可以在 foo 内调用
-}
-
-main() {
-    nest()  // ❌ 错误：在 foo 外部无法访问 nest
-}
-```
-
-### 访问外部变量
-
-嵌套函数可以**访问外部函数的变量和参数**：
-
-```Cangjie
-func foo(x: Int64) {
-    let y = 10
-    func nestAdd(a: Int64, b: Int64) {
-        a + b + x + y    // ✅ 可以访问外部函数的参数 x 和变量 y
-    }
-    println(nestAdd(1, 2))
-}
-```
-
-> [!NOTE]
-> 反过来是不行的——**外部函数不能直接访问嵌套函数的内部变量**。
-
-### 生命周期
-
-嵌套函数的生命周期与外部函数紧密相关：
-
-- 每次外部函数调用时，嵌套函数被"创建"
-- 外部函数执行完毕后，嵌套函数通常被销毁
-- **除非**嵌套函数通过返回值或闭包被外部引用，则可以继续存在
-
----
-
-## 4.5.3 返回嵌套函数
-
-嵌套函数可以作为**返回值**返回，在外部函数之外被调用：
-
-```Cangjie
-func foo() {
-    func nestAdd(a: Int64, b: Int64) {
-        a + b + 3
-    }
-
-    println(nestAdd(1, 2))   // 输出：6
-
-    return nestAdd
-}
-
-main() {
-    let f = foo()            // 拿到返回的嵌套函数
-    let x = f(1, 2)          // 在外部调用嵌套函数
-    println("result: ${x}")
-}
-```
-
-程序输出：
-
-```Bash
-6
-result: 6
-```
-
-> [!IMPORTANT]
-> 当嵌套函数被返回时，它就变成了一个**闭包**——它"记住"了创建时的环境（包括外部函数的变量）。即使外部函数已经执行完毕，嵌套函数仍然可以访问那些变量。
-> 详细的闭包内容将在下节讲解
-
----
-
-## 4.5.4 使用规则与注意事项
-
-### ✅ 仅在外部函数中使用
-
-嵌套函数的设计初衷是**只在外部函数中使用**。如果某个函数逻辑只在另一个函数内部有用，就可以考虑写成嵌套函数，避免"污染"全局命名空间。
-
-### ⚠️ 避免过度嵌套
-
-过度嵌套会使代码结构变得复杂，难以理解和维护：
-
-```Cangjie
-func a() {
-    func b() {
-        func c() {
-            func d() {
-                // 这样嵌套太多层，阅读起来很困难
-            }
-        }
-    }
-}
-```
-
-> [!TIP]
-> 通常嵌套**1~2 层**就够了。如果需要更多层嵌套，说明代码可能需要重构。
-
-### ⚠️ 注意闭包的使用
-
-如果嵌套函数被返回并作为闭包使用，需要注意闭包可能会**捕获外部函数的变量**，导致外部函数的变量在外部函数结束后仍然被占用，从而影响内存管理。
-
----
-
-## 4.5.5 总结
-
-| 知识点 | 说明 |
-|--------|------|
-| 定义 | 定义在函数体内的函数 |
-| 作用域 | 仅限于外部函数内部 |
-| 访问权限 | 嵌套函数可访问外部函数的变量和参数（反向不行） |
-| 生命周期 | 通常随外部函数调用结束而销毁 |
-| 作为返回值 | 嵌套函数可被返回，形成闭包 |
-| 闭包捕获 | 返回的嵌套函数会"记住"外部变量，需注意内存管理 |
-| 嵌套深度 | 避免过度嵌套（建议 1~2 层） |
-5:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$L9",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-07-01"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"嵌套函数"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"函数内部定义函数"}]]}],["$","$La",null,{"content":"$b"}],["$","$Lc",null,{"content":"$d","collection":"Cangjie/4_函数","rootColPath":"Cangjie","allArticles":["$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:0","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:1","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:2","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:3","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:4","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:5","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:6",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782921487211.231},"$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:7","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:8","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:9","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:10","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:11","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:12","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:13","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:14","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:15","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:16","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:17","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:18","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:19","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:20","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:21","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:22","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:23","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:24","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:25","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:26","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:27","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:28","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:29","$0:rsc:props:children:0:props:children:1:props:children:props:children:2:props:articles:30"],"currentSlug":"Cangjie/4_函数/5_嵌套函数"}]]}]}]
+| 知识点 | 说明 | 记忆技巧 |
+|--------|------|---------|
+| 定义 | 定义在函数体内的函数 | "函数中函数" |
+| 作用域 | 仅限于外部函数内部 | 就像房间里的私人物品 |
+| 访问权限 | 嵌套函数可访问外部函数的变量和参数（反向不行） | 里面能看到外面，外面看不到里面 |
+| 生命周期 | 通常随外部函数调用结束而销毁 | 用完即走 |
+| 作为返回值 | 嵌套函数可被返回，形成闭包 | 把小工具带出厂 |
+| 闭包捕获 | 返回的嵌套函数会"记住"外部变量 | 像背包背着变量走 |
+| 嵌套深度 | 避免过度嵌套（建议 1~2 层） | 太深就像俄罗斯套娃 |
+5:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$La",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-07-01"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"嵌套函数"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"函数内部定义函数"}]]}],["$","$Lb",null,{"content":"$c"}],"$Ld"]}]}]
 6:["$","script","script-0",{"src":"/_next/static/chunks/0g4o6d4sifcpo.js","async":true}]
 7:["$","script","script-1",{"src":"/_next/static/chunks/1ssz3eabjrzaj.js","async":true}]
 8:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
+12:T1ada,
+## 4.5.1 什么是嵌套函数？
+
+定义在源文件**顶层**的函数被称为**全局函数**。定义在**函数体内**的函数被称为**嵌套函数**。
+
+> [!TIP]
+> 可以这样想象：
+> - **全局函数**：是建在"城市中心广场"的建筑，所有人都能进去
+> - **嵌套函数**：是建在"某栋大楼内部"的小房间，只有这栋楼里的人能进去
+
+```Cangjie
+func outer() {           // 外层函数
+    func inner() {       // 嵌套函数（定义在 outer 里面）
+        println("我是嵌套函数")
+    }
+    inner()              // 在外层函数中调用嵌套函数
+}
+```
+
+### 为什么要用嵌套函数？
+
+嵌套函数的主要用途是**封装只在某个函数内部用到的辅助逻辑**。比如：
+
+- 一个函数比较复杂，你想把内部步骤拆成几个小函数
+- 但这些小函数只在当前函数内有用，不想暴露给外面
+
+就像你在家里做饭：切菜、洗菜、炒菜，这些步骤你只需要在厨房里完成，不需要让客厅的客人看到。
+
+```Cangjie
+func makeDinner() {
+    // 这些辅助步骤只在这个函数内有用
+    func washVegetables() {
+        println("洗菜中...")
+    }
+    func cutVegetables() {
+        println("切菜中...")
+    }
+    func cook() {
+        println("炒菜中...")
+    }
+
+    // 组合调用
+    washVegetables()
+    cutVegetables()
+    cook()
+    println("开饭！")
+}
+```
+
+---
+
+## 4.5.2 嵌套函数的使用范围
+
+### 作用域（嵌套函数对谁可见？）
+
+嵌套函数的作用域**仅限于其所在的外部函数**。外部函数之外无法访问嵌套函数。
+
+```Cangjie
+func foo() {
+    func nest() {
+        println("我是嵌套函数")
+    }
+    nest()    // ✅ 可以在 foo 内调用
+}
+
+main() {
+    nest()  // ❌ 错误：在 foo 外部无法访问 nest
+}
+```
+
+> [!NOTE]
+> 就像"你房间里的东西只有你能拿"——嵌套函数是外部函数的"私人物品"。
+
+### 访问外部变量
+
+嵌套函数可以**访问外部函数的变量和参数**：
+
+```Cangjie
+func foo(x: Int64) {
+    let y = 10
+    func nestAdd(a: Int64, b: Int64) {
+        a + b + x + y    // ✅ 可以访问外部函数的参数 x 和变量 y
+    }
+    println(nestAdd(1, 2))   // 1 + 2 + x + y
+}
+```
+
+> [!CAUTION]
+> 反过来是不行的——**外部函数不能直接访问嵌套函数的内部变量**。
+>
+> ```Cangjie
+> func foo() {
+>     func nest() {
+>         let secret = 42   // 嵌套函数的内部变量
+>     }
+>     println(secret)       // ❌ 错误：外部无法访问嵌套函数的变量
+> }
+> ```
+>
+> 就像"外面的人看不到你的日记本，但你在房间里可以看到外面的景色"。
+
+### 生命周期
+
+嵌套函数的生命周期与外部函数紧密相关：
+
+| 阶段 | 嵌套函数的状态 |
+|------|---------------|
+| 外部函数被调用时 | 嵌套函数被"创建" |
+| 外部函数执行过程中 | 嵌套函数可以被调用 |
+| 外部函数执行完毕 | 嵌套函数通常被**销毁** |
+| 特殊情况 | 如果嵌套函数被返回（作为返回值），它可以**继续存活**（见下一节） |
+
+---
+
+## 4.5.3 返回嵌套函数（让嵌套函数"活"出去）
+
+嵌套函数可以作为**返回值**返回，这样在外部函数结束之后，嵌套函数仍然可以被调用：
+
+```Cangjie
+func foo() {
+    func nestAdd(a: Int64, b: Int64) {
+        a + b + 3
+    }
+
+    println(nestAdd(1, 2))   // 在 foo 内部调用：1 + 2 + 3 = 6
+
+    return nestAdd           // 返回嵌套函数本身
+}
+
+main() {
+    let f = foo()            // 调用 foo，拿到返回的嵌套函数
+    let x = f(1, 2)          // 在外部调用嵌套函数：1 + 2 + 3 = 6
+    println("result: ${x}")
+}
+```
+
+程序输出：
+
+```Bash
+6
+result: 6
+```
+
+> [!IMPORTANT]
+> 当嵌套函数被返回时，它就变成了一个**闭包**——它"记住"了创建时的环境（包括外部函数的变量）。即使外部函数已经执行完毕，嵌套函数仍然可以访问那些变量。
+>
+> 详细的闭包内容将在下一节讲解。
+
+---
+
+## 4.5.4 使用规则与注意事项
+
+### ✅ 仅在外部函数中使用
+
+嵌套函数的设计初衷是**只在外部函数中使用**。如果某个函数逻辑只在另一个函数内部有用，就可以考虑写成嵌套函数，避免"污染"全局空间。
+
+```Cangjie
+// ✅ 好：辅助逻辑只在 validateUser 内有用
+func validateUser(name: String, age: Int64): Bool {
+    func isNotEmpty(s: String): Bool {
+        s.size > 0
+    }
+    func isAdult(a: Int64): Bool {
+        a >= 18
+    }
+    return isNotEmpty(name) && isAdult(age)
+}
+
+// ❌ 不好：如果 isNotEmpty 和 isAdult 在其他地方也要用，就应该提到外面去
+```
+
+### ⚠️ 避免过度嵌套
+
+过度嵌套会使代码结构变得复杂，难以理解和维护：
+
+```Cangjie
+func a() {
+    func b() {
+        func c() {
+            func d() {
+                // 这样嵌套太多层，阅读起来很困难
+                // 像俄罗斯套娃，一层套一层
+            }
+        }
+    }
+}
+```
+
+> [!TIP]
+> 通常嵌套**1~2 层**就够了。如果发现嵌套了 3 层以上，说明代码可能需要重构。一个实用的判断标准：**你需要在脑子里不停地回想当前在第几层花括号里，就说明嵌套太深了**。
+
+### ⚠️ 注意闭包的内存管理
+
+如果嵌套函数被返回并作为闭包使用，需要注意闭包可能会**捕获外部函数的变量**，导致这些变量在外部函数结束后仍然被占用，从而影响内存管理。
+
+```Cangjie
+func createGreeter(greeting: String) {
+    func greet(name: String) {
+        println("${greeting}, ${name}！")  // 捕获了 outer 的 greeting
+    }
+    return greet
+}
+
+main() {
+    let sayHi = createGreeter("你好")
+    let sayHello = createGreeter("Hello")
+    
+    sayHi("小明")     // 输出：你好, 小明！
+    sayHello("Xiao")  // 输出：Hello, Xiao！
+    
+    // 即使 createGreeter 已经执行完毕，greeting 的值还被保留着
+}
+```
+
+每个闭包都"记住"了自己创建时的 `greeting`，即使 `createGreeter` 执行完毕也不会消失。这很强大，但如果滥用可能导致内存占用过多。
+
+---
+
+## 4.5.5 总结
+
+| 知识点 | 说明 | 记忆技巧 |
+|--------|------|---------|
+| 定义 | 定义在函数体内的函数 | "函数中函数" |
+| 作用域 | 仅限于外部函数内部 | 就像房间里的私人物品 |
+| 访问权限 | 嵌套函数可访问外部函数的变量和参数（反向不行） | 里面能看到外面，外面看不到里面 |
+| 生命周期 | 通常随外部函数调用结束而销毁 | 用完即走 |
+| 作为返回值 | 嵌套函数可被返回，形成闭包 | 把小工具带出厂 |
+| 闭包捕获 | 返回的嵌套函数会"记住"外部变量 | 像背包背着变量走 |
+| 嵌套深度 | 避免过度嵌套（建议 1~2 层） | 太深就像俄罗斯套娃 |
+d:["$","$L11",null,{"content":"$12","collection":"Cangjie/4_函数","rootColPath":"Cangjie","allArticles":["$4:props:children:props:children:2:props:articles:0","$4:props:children:props:children:2:props:articles:1","$4:props:children:props:children:2:props:articles:2","$4:props:children:props:children:2:props:articles:3","$4:props:children:props:children:2:props:articles:4","$4:props:children:props:children:2:props:articles:5","$4:props:children:props:children:2:props:articles:6",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782984101999.9065},"$4:props:children:props:children:2:props:articles:7","$4:props:children:props:children:2:props:articles:8","$4:props:children:props:children:2:props:articles:9","$4:props:children:props:children:2:props:articles:10","$4:props:children:props:children:2:props:articles:11","$4:props:children:props:children:2:props:articles:12","$4:props:children:props:children:2:props:articles:13","$4:props:children:props:children:2:props:articles:14","$4:props:children:props:children:2:props:articles:15","$4:props:children:props:children:2:props:articles:16","$4:props:children:props:children:2:props:articles:17","$4:props:children:props:children:2:props:articles:18","$4:props:children:props:children:2:props:articles:19","$4:props:children:props:children:2:props:articles:20","$4:props:children:props:children:2:props:articles:21","$4:props:children:props:children:2:props:articles:22","$4:props:children:props:children:2:props:articles:23","$4:props:children:props:children:2:props:articles:24","$4:props:children:props:children:2:props:articles:25","$4:props:children:props:children:2:props:articles:26","$4:props:children:props:children:2:props:articles:27","$4:props:children:props:children:2:props:articles:28","$4:props:children:props:children:2:props:articles:29","$4:props:children:props:children:2:props:articles:30"],"currentSlug":"Cangjie/4_函数/5_嵌套函数"}]
 10:null
