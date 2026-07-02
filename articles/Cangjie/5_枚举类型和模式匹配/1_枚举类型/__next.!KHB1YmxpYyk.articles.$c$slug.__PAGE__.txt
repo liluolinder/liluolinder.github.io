@@ -1,0 +1,640 @@
+1:"$Sreact.fragment"
+2:I[23597,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"TocSidebar"]
+9:I[59537,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleNavSidebar"]
+a:I[22016,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],""]
+b:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleContent"]
+e:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
+f:"$Sreact.suspense"
+11:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"MobileArticlePanel"]
+3:T1a89,
+## 5.1.1 什么是枚举类型？
+
+**枚举类型（enum）** 是一种通过**列出所有可能的取值**来定义的类型。
+
+> [!TIP]
+> 生活中的类比：**星期几**就是一个天然的枚举：
+> - 星期一、星期二、星期三……星期日
+> - 一共就 7 种可能，不可能有"星期八"
+>
+> 用代码来定义就是：
+> ```Cangjie
+> enum Weekday {
+>     | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
+> }
+> ```
+
+在很多语言中都有 enum 类型，但不同语言中的 enum 表达力有所不同。仓颉中的 enum 可以理解为函数式编程语言中的**代数数据类型（Algebraic Data Types）**，比传统语言的枚举更强大——每个"选项"还可以携带自己的数据。
+
+---
+
+## 5.1.2 定义 enum
+
+定义 enum 时需要把它所有可能的取值一一列出，称这些值为 enum 的**构造器**（constructor）。
+
+### 基本语法
+
+```Cangjie
+enum 类型名 {
+    | 构造器1 | 构造器2 | 构造器3
+}
+```
+
+- 以关键字 `enum` 开头
+- 接着是 enum 的名字
+- 之后是定义在一对花括号中的 enum 体
+- enum 体中定义了若干**构造器**，多个构造器之间使用 `|` 分隔（第一个构造器之前的 `|` 是可选的）
+- 构造器可以**有名字**，也可以没有名字（`...`）
+
+### 每个 enum 至少有一个有名字的构造器
+
+有名字的构造器可以：
+- **无参数**：就像普通的枚举值
+- **有参数**：可以携带若干个参数
+
+### 示例：RGB 颜色
+
+如下示例代码定义了一个名为 `RGBColor` 的 enum 类型，它有 3 个构造器：`Red`、`Green` 和 `Blue`，分别表示 RGB 色彩模式中的红色、绿色和蓝色。每个构造器有一个 `UInt8` 类型的参数，用来表示每个颜色的亮度级别。
+
+```Cangjie
+enum RGBColor {
+    | Red(UInt8) | Green(UInt8) | Blue(UInt8)
+}
+```
+
+> [!TIP]
+> 枚举参数的获取参考后续的模式匹配
+
+### 支持同名构造器（参数不同即可）
+
+仓颉支持同一个 enum 中定义多个同名构造器，但是要求这些构造器的参数个数不同（认为没有参数的构造器的参数个数等于 0）：
+
+```Cangjie
+enum RGBColor {
+    | Red
+    | Green
+    | Blue
+    | Red(UInt8)
+    | Green(UInt8)
+    | Blue(UInt8)
+}
+```
+
+> [!NOTE]
+> 上例中 `Red` 有两个版本：一个无参 `Red`，一个有参 `Red(UInt8)`。编译器会根据使用时传入的参数来决定用的是哪个。
+
+### `...` 构造器（Non-exhaustive enum）
+
+每个 enum 中最多只有一个没有名字的 `...` 构造器，且 `...` **只能是最后一个构造器**。拥有 `...` 构造器的 enum 称为 **non-exhaustive enum**（非穷尽枚举）。
+
+由于没有名字，这个构造器不能被直接匹配，在解构时需要使用可匹配所有构造器的模式，如通配符模式 `_` 或绑定模式。
+
+```Cangjie
+enum T {
+    | Red | Green | Blue | ...
+}
+```
+
+> [!TIP]
+> `...` 表示"还有其他的可能，但这里没列全"。这在需要扩展的场景下很有用。
+
+### 递归定义 enum
+
+enum 支持递归定义。例如，下面的例子中使用 enum 定义了一种**表达式** `Expr`，此表达式只能有 3 种形式：
+- 单独的一个数字 `Num`（携带一个 `Int64` 类型的参数）
+- 加法表达式 `Add`（携带两个 `Expr` 类型的参数）
+- 减法表达式 `Sub`（携带两个 `Expr` 类型的参数）
+
+对于 `Add` 和 `Sub` 这两个构造器，其参数中递归地使用到了 `Expr` 自身。
+
+```Cangjie
+enum Expr {
+    | Num(Int64)
+    | Add(Expr, Expr)
+    | Sub(Expr, Expr)
+}
+```
+
+### 在 enum 中定义函数
+
+在 enum 体中还可以定义成员函数、操作符函数和成员属性，但是要求构造器、成员函数、成员属性之间**不能重名**。
+
+例如，下面的例子在 `RGBColor` 中定义了一个名为 `printType` 的函数：
+
+```Cangjie
+enum RGBColor {
+    | Red | Green | Blue
+
+    public static func printType() {
+        print("RGBColor")
+    }
+}
+```
+
+> [!NOTE]
+> 关于操作符重载和属性的内容，会在后续章节中介绍。
+
+### 定义位置限制
+
+> [!CAUTION]
+> enum **只能**定义在源文件的**顶层作用域**，不能定义在函数内部或类内部。
+
+---
+
+## 5.1.3 使用 enum
+
+定义了 enum 类型之后，就可以创建此类型的实例（即 enum 值）。enum 值**只能取 ** enum 类型定义中的某一个构造器。
+
+### 构造 enum 值
+
+enum **没有构造函数**，可以通过 `类型名.构造器`，或者直接使用构造器的方式来构造一个 enum 值（对于有参构造器，需要传实参）。
+
+```Cangjie
+enum RGBColor {
+    | Red | Green | Blue(UInt8)
+}
+
+main() {
+    let r = RGBColor.Red       // 使用类型名.构造器
+    let g = Green              // 直接使用构造器
+    let b = Blue(100)          // 有参构造器，传入参数
+}
+```
+
+### 名字冲突时的处理
+
+当省略类型名时，enum 构造器的名字可能和类型名、变量名、函数名发生冲突。此时**必须加上 enum 类型名**来使用 enum 构造器，否则只会选择同名的类型、变量、函数定义。
+
+```Cangjie
+let Red = 1                    // 变量 Red
+
+func Green(g: UInt8) {         // 函数 Green
+    return g
+}
+
+enum RGBColor {
+    | Red | Green(UInt8) | Blue(UInt8)
+}
+
+let r1 = Red                   // 选了变量 let Red
+let r2 = RGBColor.Red          // ✅ 加上类型名，才是 enum 构造器
+
+let g1 = Green(100)            // 选了函数 func Green
+let g2 = RGBColor.Green(100)   // ✅ 加上类型名，才是 enum 构造器
+
+let b = Blue(100)              // ✅ 没有冲突，可以唯一识别为 enum 构造器
+```
+
+```Cangjie
+class Blue {}
+
+enum RGBColor {
+    | Red | Green(UInt8) | Blue(UInt8)
+}
+
+let r = Red                    // ✅ 没有冲突，可以唯一识别
+
+let g = Green(100)             // ✅ 没有冲突
+
+let b = Blue(100)              // 选了 class Blue 的构造器，报错
+```
+
+> [!WARNING]
+> 如果 enum 构造器的名字和另一个类名相同，且都有参数，编译器会优先选择类的构造器，导致报错。这时必须使用 `RGBColor.Blue(100)` 来明确指定。
+
+---
+
+## 5.1.4 小结
+
+| 知识点 | 要点 | 一句话记住 |
+|--------|------|-----------|
+| 定义 | `enum 名 { \| 构造器1 \| 构造器2 }` | 列出所有可能的取值 |
+| 构造器 | 有名字的构造器可带参数 | 每个"选项"可以带数据 |
+| 同名构造器 | 参数个数不同即可共存 | 同名不同参 |
+| `...` 构造器 | 最多一个，只能是最后一个 | 表示"还有别的可能" |
+| 递归定义 | 构造器的参数可以引用自身 | 自己包含自己 |
+| 定义位置 | 只能定义在源文件顶层 | 不能在函数/类内部 |
+| 名字冲突 | 冲突时必须加类型名前缀 | 用 `类型名.构造器` |
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],"$L4","$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"cr6T9KQahRiE4c5A_XrIV"}
+4:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L9",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782987808711.1875},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"published":true,"mtime":1782987808711.2603},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/4_函数/0_前言","title":"前言","description":"仓颉的函数——从基础到进阶","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":0,"published":true,"mtime":1782987808712.508},{"slug":"Cangjie/5_枚举类型和模式匹配/0_前言","title":"前言","description":"仓颉的枚举类型和模式匹配","date":"2026-07-02","tags":["Cangjie","入门教程"],"collection":"Cangjie/5_枚举类型和模式匹配","sort":0,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782987808711.2603},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制——if分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"published":true,"mtime":1782987808712.4219},{"slug":"Cangjie/4_函数/1_定义函数","title":"定义函数","description":"学会编写可复用的代码块","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":1,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/5_枚举类型和模式匹配/1_枚举类型","title":"枚举类型","description":"列举一个类型的所有可能取值","date":"2026-07-02","tags":["Cangjie","入门教程"],"collection":"Cangjie/5_枚举类型和模式匹配","sort":1,"published":true,"mtime":1782987808713.5557},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782987808711.2603},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"published":true,"mtime":1782987808712.4219},{"slug":"Cangjie/4_函数/2_调用函数","title":"调用函数","description":"学会灵活调用仓颉函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":2,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/5_枚举类型和模式匹配/2_模式匹配","title":"模式匹配","description":"match 表达式中支持的各种模式","date":"2026-07-02","tags":["Cangjie","入门教程"],"collection":"Cangjie/5_枚举类型和模式匹配","sort":2,"published":true,"mtime":1782987808713.5557},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782987808711.2603},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"published":true,"mtime":1782987808712.4219},{"slug":"Cangjie/4_函数/3_函数类型","title":"函数类型","description":"仓颉中函数也是一等公民","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":3,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/5_枚举类型和模式匹配/3_额外的模式匹配","title":"额外的模式匹配","description":"在变量定义和for-in中使用模式","date":"2026-07-02","tags":["Cangjie","入门教程"],"collection":"Cangjie/5_枚举类型和模式匹配","sort":3,"published":true,"mtime":1782987808713.5557},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782987808711.2603},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"published":true,"mtime":1782987808712.4219},{"slug":"Cangjie/4_函数/4_lambda表达式","title":"Lambda表达式","description":"快速创建匿名函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":4,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"published":true,"mtime":1782987808712.508},{"slug":"Cangjie/4_函数/5_嵌套函数","title":"嵌套函数","description":"函数内部定义函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":5,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"published":true,"mtime":1782987808712.508},{"slug":"Cangjie/4_函数/6_闭包","title":"闭包","description":"捕获变量的函数与lambda","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":6,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/4_函数/7_函数重载","title":"函数重载","description":"同名函数的不同形态","date":"2026-07-02","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":7,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/2_基本数据类型/10_nothing类型","title":"Nothing类型","description":"仓颉的基本数据类型——Nothing类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/2_基本数据类型/11_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/2_基本数据类型/12_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":12,"published":true,"mtime":1782987808711.6108}],"currentSlug":"Cangjie/5_枚举类型和模式匹配/1_枚举类型"}]]}]}]
+c:T1a89,
+## 5.1.1 什么是枚举类型？
+
+**枚举类型（enum）** 是一种通过**列出所有可能的取值**来定义的类型。
+
+> [!TIP]
+> 生活中的类比：**星期几**就是一个天然的枚举：
+> - 星期一、星期二、星期三……星期日
+> - 一共就 7 种可能，不可能有"星期八"
+>
+> 用代码来定义就是：
+> ```Cangjie
+> enum Weekday {
+>     | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
+> }
+> ```
+
+在很多语言中都有 enum 类型，但不同语言中的 enum 表达力有所不同。仓颉中的 enum 可以理解为函数式编程语言中的**代数数据类型（Algebraic Data Types）**，比传统语言的枚举更强大——每个"选项"还可以携带自己的数据。
+
+---
+
+## 5.1.2 定义 enum
+
+定义 enum 时需要把它所有可能的取值一一列出，称这些值为 enum 的**构造器**（constructor）。
+
+### 基本语法
+
+```Cangjie
+enum 类型名 {
+    | 构造器1 | 构造器2 | 构造器3
+}
+```
+
+- 以关键字 `enum` 开头
+- 接着是 enum 的名字
+- 之后是定义在一对花括号中的 enum 体
+- enum 体中定义了若干**构造器**，多个构造器之间使用 `|` 分隔（第一个构造器之前的 `|` 是可选的）
+- 构造器可以**有名字**，也可以没有名字（`...`）
+
+### 每个 enum 至少有一个有名字的构造器
+
+有名字的构造器可以：
+- **无参数**：就像普通的枚举值
+- **有参数**：可以携带若干个参数
+
+### 示例：RGB 颜色
+
+如下示例代码定义了一个名为 `RGBColor` 的 enum 类型，它有 3 个构造器：`Red`、`Green` 和 `Blue`，分别表示 RGB 色彩模式中的红色、绿色和蓝色。每个构造器有一个 `UInt8` 类型的参数，用来表示每个颜色的亮度级别。
+
+```Cangjie
+enum RGBColor {
+    | Red(UInt8) | Green(UInt8) | Blue(UInt8)
+}
+```
+
+> [!TIP]
+> 枚举参数的获取参考后续的模式匹配
+
+### 支持同名构造器（参数不同即可）
+
+仓颉支持同一个 enum 中定义多个同名构造器，但是要求这些构造器的参数个数不同（认为没有参数的构造器的参数个数等于 0）：
+
+```Cangjie
+enum RGBColor {
+    | Red
+    | Green
+    | Blue
+    | Red(UInt8)
+    | Green(UInt8)
+    | Blue(UInt8)
+}
+```
+
+> [!NOTE]
+> 上例中 `Red` 有两个版本：一个无参 `Red`，一个有参 `Red(UInt8)`。编译器会根据使用时传入的参数来决定用的是哪个。
+
+### `...` 构造器（Non-exhaustive enum）
+
+每个 enum 中最多只有一个没有名字的 `...` 构造器，且 `...` **只能是最后一个构造器**。拥有 `...` 构造器的 enum 称为 **non-exhaustive enum**（非穷尽枚举）。
+
+由于没有名字，这个构造器不能被直接匹配，在解构时需要使用可匹配所有构造器的模式，如通配符模式 `_` 或绑定模式。
+
+```Cangjie
+enum T {
+    | Red | Green | Blue | ...
+}
+```
+
+> [!TIP]
+> `...` 表示"还有其他的可能，但这里没列全"。这在需要扩展的场景下很有用。
+
+### 递归定义 enum
+
+enum 支持递归定义。例如，下面的例子中使用 enum 定义了一种**表达式** `Expr`，此表达式只能有 3 种形式：
+- 单独的一个数字 `Num`（携带一个 `Int64` 类型的参数）
+- 加法表达式 `Add`（携带两个 `Expr` 类型的参数）
+- 减法表达式 `Sub`（携带两个 `Expr` 类型的参数）
+
+对于 `Add` 和 `Sub` 这两个构造器，其参数中递归地使用到了 `Expr` 自身。
+
+```Cangjie
+enum Expr {
+    | Num(Int64)
+    | Add(Expr, Expr)
+    | Sub(Expr, Expr)
+}
+```
+
+### 在 enum 中定义函数
+
+在 enum 体中还可以定义成员函数、操作符函数和成员属性，但是要求构造器、成员函数、成员属性之间**不能重名**。
+
+例如，下面的例子在 `RGBColor` 中定义了一个名为 `printType` 的函数：
+
+```Cangjie
+enum RGBColor {
+    | Red | Green | Blue
+
+    public static func printType() {
+        print("RGBColor")
+    }
+}
+```
+
+> [!NOTE]
+> 关于操作符重载和属性的内容，会在后续章节中介绍。
+
+### 定义位置限制
+
+> [!CAUTION]
+> enum **只能**定义在源文件的**顶层作用域**，不能定义在函数内部或类内部。
+
+---
+
+## 5.1.3 使用 enum
+
+定义了 enum 类型之后，就可以创建此类型的实例（即 enum 值）。enum 值**只能取 ** enum 类型定义中的某一个构造器。
+
+### 构造 enum 值
+
+enum **没有构造函数**，可以通过 `类型名.构造器`，或者直接使用构造器的方式来构造一个 enum 值（对于有参构造器，需要传实参）。
+
+```Cangjie
+enum RGBColor {
+    | Red | Green | Blue(UInt8)
+}
+
+main() {
+    let r = RGBColor.Red       // 使用类型名.构造器
+    let g = Green              // 直接使用构造器
+    let b = Blue(100)          // 有参构造器，传入参数
+}
+```
+
+### 名字冲突时的处理
+
+当省略类型名时，enum 构造器的名字可能和类型名、变量名、函数名发生冲突。此时**必须加上 enum 类型名**来使用 enum 构造器，否则只会选择同名的类型、变量、函数定义。
+
+```Cangjie
+let Red = 1                    // 变量 Red
+
+func Green(g: UInt8) {         // 函数 Green
+    return g
+}
+
+enum RGBColor {
+    | Red | Green(UInt8) | Blue(UInt8)
+}
+
+let r1 = Red                   // 选了变量 let Red
+let r2 = RGBColor.Red          // ✅ 加上类型名，才是 enum 构造器
+
+let g1 = Green(100)            // 选了函数 func Green
+let g2 = RGBColor.Green(100)   // ✅ 加上类型名，才是 enum 构造器
+
+let b = Blue(100)              // ✅ 没有冲突，可以唯一识别为 enum 构造器
+```
+
+```Cangjie
+class Blue {}
+
+enum RGBColor {
+    | Red | Green(UInt8) | Blue(UInt8)
+}
+
+let r = Red                    // ✅ 没有冲突，可以唯一识别
+
+let g = Green(100)             // ✅ 没有冲突
+
+let b = Blue(100)              // 选了 class Blue 的构造器，报错
+```
+
+> [!WARNING]
+> 如果 enum 构造器的名字和另一个类名相同，且都有参数，编译器会优先选择类的构造器，导致报错。这时必须使用 `RGBColor.Blue(100)` 来明确指定。
+
+---
+
+## 5.1.4 小结
+
+| 知识点 | 要点 | 一句话记住 |
+|--------|------|-----------|
+| 定义 | `enum 名 { \| 构造器1 \| 构造器2 }` | 列出所有可能的取值 |
+| 构造器 | 有名字的构造器可带参数 | 每个"选项"可以带数据 |
+| 同名构造器 | 参数个数不同即可共存 | 同名不同参 |
+| `...` 构造器 | 最多一个，只能是最后一个 | 表示"还有别的可能" |
+| 递归定义 | 构造器的参数可以引用自身 | 自己包含自己 |
+| 定义位置 | 只能定义在源文件顶层 | 不能在函数/类内部 |
+| 名字冲突 | 冲突时必须加类型名前缀 | 用 `类型名.构造器` |
+5:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$La",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-07-02"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"枚举类型"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"列举一个类型的所有可能取值"}]]}],["$","$Lb",null,{"content":"$c"}],"$Ld"]}]}]
+6:["$","script","script-0",{"src":"/_next/static/chunks/0g4o6d4sifcpo.js","async":true}]
+7:["$","script","script-1",{"src":"/_next/static/chunks/1ssz3eabjrzaj.js","async":true}]
+8:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
+12:T1a89,
+## 5.1.1 什么是枚举类型？
+
+**枚举类型（enum）** 是一种通过**列出所有可能的取值**来定义的类型。
+
+> [!TIP]
+> 生活中的类比：**星期几**就是一个天然的枚举：
+> - 星期一、星期二、星期三……星期日
+> - 一共就 7 种可能，不可能有"星期八"
+>
+> 用代码来定义就是：
+> ```Cangjie
+> enum Weekday {
+>     | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
+> }
+> ```
+
+在很多语言中都有 enum 类型，但不同语言中的 enum 表达力有所不同。仓颉中的 enum 可以理解为函数式编程语言中的**代数数据类型（Algebraic Data Types）**，比传统语言的枚举更强大——每个"选项"还可以携带自己的数据。
+
+---
+
+## 5.1.2 定义 enum
+
+定义 enum 时需要把它所有可能的取值一一列出，称这些值为 enum 的**构造器**（constructor）。
+
+### 基本语法
+
+```Cangjie
+enum 类型名 {
+    | 构造器1 | 构造器2 | 构造器3
+}
+```
+
+- 以关键字 `enum` 开头
+- 接着是 enum 的名字
+- 之后是定义在一对花括号中的 enum 体
+- enum 体中定义了若干**构造器**，多个构造器之间使用 `|` 分隔（第一个构造器之前的 `|` 是可选的）
+- 构造器可以**有名字**，也可以没有名字（`...`）
+
+### 每个 enum 至少有一个有名字的构造器
+
+有名字的构造器可以：
+- **无参数**：就像普通的枚举值
+- **有参数**：可以携带若干个参数
+
+### 示例：RGB 颜色
+
+如下示例代码定义了一个名为 `RGBColor` 的 enum 类型，它有 3 个构造器：`Red`、`Green` 和 `Blue`，分别表示 RGB 色彩模式中的红色、绿色和蓝色。每个构造器有一个 `UInt8` 类型的参数，用来表示每个颜色的亮度级别。
+
+```Cangjie
+enum RGBColor {
+    | Red(UInt8) | Green(UInt8) | Blue(UInt8)
+}
+```
+
+> [!TIP]
+> 枚举参数的获取参考后续的模式匹配
+
+### 支持同名构造器（参数不同即可）
+
+仓颉支持同一个 enum 中定义多个同名构造器，但是要求这些构造器的参数个数不同（认为没有参数的构造器的参数个数等于 0）：
+
+```Cangjie
+enum RGBColor {
+    | Red
+    | Green
+    | Blue
+    | Red(UInt8)
+    | Green(UInt8)
+    | Blue(UInt8)
+}
+```
+
+> [!NOTE]
+> 上例中 `Red` 有两个版本：一个无参 `Red`，一个有参 `Red(UInt8)`。编译器会根据使用时传入的参数来决定用的是哪个。
+
+### `...` 构造器（Non-exhaustive enum）
+
+每个 enum 中最多只有一个没有名字的 `...` 构造器，且 `...` **只能是最后一个构造器**。拥有 `...` 构造器的 enum 称为 **non-exhaustive enum**（非穷尽枚举）。
+
+由于没有名字，这个构造器不能被直接匹配，在解构时需要使用可匹配所有构造器的模式，如通配符模式 `_` 或绑定模式。
+
+```Cangjie
+enum T {
+    | Red | Green | Blue | ...
+}
+```
+
+> [!TIP]
+> `...` 表示"还有其他的可能，但这里没列全"。这在需要扩展的场景下很有用。
+
+### 递归定义 enum
+
+enum 支持递归定义。例如，下面的例子中使用 enum 定义了一种**表达式** `Expr`，此表达式只能有 3 种形式：
+- 单独的一个数字 `Num`（携带一个 `Int64` 类型的参数）
+- 加法表达式 `Add`（携带两个 `Expr` 类型的参数）
+- 减法表达式 `Sub`（携带两个 `Expr` 类型的参数）
+
+对于 `Add` 和 `Sub` 这两个构造器，其参数中递归地使用到了 `Expr` 自身。
+
+```Cangjie
+enum Expr {
+    | Num(Int64)
+    | Add(Expr, Expr)
+    | Sub(Expr, Expr)
+}
+```
+
+### 在 enum 中定义函数
+
+在 enum 体中还可以定义成员函数、操作符函数和成员属性，但是要求构造器、成员函数、成员属性之间**不能重名**。
+
+例如，下面的例子在 `RGBColor` 中定义了一个名为 `printType` 的函数：
+
+```Cangjie
+enum RGBColor {
+    | Red | Green | Blue
+
+    public static func printType() {
+        print("RGBColor")
+    }
+}
+```
+
+> [!NOTE]
+> 关于操作符重载和属性的内容，会在后续章节中介绍。
+
+### 定义位置限制
+
+> [!CAUTION]
+> enum **只能**定义在源文件的**顶层作用域**，不能定义在函数内部或类内部。
+
+---
+
+## 5.1.3 使用 enum
+
+定义了 enum 类型之后，就可以创建此类型的实例（即 enum 值）。enum 值**只能取 ** enum 类型定义中的某一个构造器。
+
+### 构造 enum 值
+
+enum **没有构造函数**，可以通过 `类型名.构造器`，或者直接使用构造器的方式来构造一个 enum 值（对于有参构造器，需要传实参）。
+
+```Cangjie
+enum RGBColor {
+    | Red | Green | Blue(UInt8)
+}
+
+main() {
+    let r = RGBColor.Red       // 使用类型名.构造器
+    let g = Green              // 直接使用构造器
+    let b = Blue(100)          // 有参构造器，传入参数
+}
+```
+
+### 名字冲突时的处理
+
+当省略类型名时，enum 构造器的名字可能和类型名、变量名、函数名发生冲突。此时**必须加上 enum 类型名**来使用 enum 构造器，否则只会选择同名的类型、变量、函数定义。
+
+```Cangjie
+let Red = 1                    // 变量 Red
+
+func Green(g: UInt8) {         // 函数 Green
+    return g
+}
+
+enum RGBColor {
+    | Red | Green(UInt8) | Blue(UInt8)
+}
+
+let r1 = Red                   // 选了变量 let Red
+let r2 = RGBColor.Red          // ✅ 加上类型名，才是 enum 构造器
+
+let g1 = Green(100)            // 选了函数 func Green
+let g2 = RGBColor.Green(100)   // ✅ 加上类型名，才是 enum 构造器
+
+let b = Blue(100)              // ✅ 没有冲突，可以唯一识别为 enum 构造器
+```
+
+```Cangjie
+class Blue {}
+
+enum RGBColor {
+    | Red | Green(UInt8) | Blue(UInt8)
+}
+
+let r = Red                    // ✅ 没有冲突，可以唯一识别
+
+let g = Green(100)             // ✅ 没有冲突
+
+let b = Blue(100)              // 选了 class Blue 的构造器，报错
+```
+
+> [!WARNING]
+> 如果 enum 构造器的名字和另一个类名相同，且都有参数，编译器会优先选择类的构造器，导致报错。这时必须使用 `RGBColor.Blue(100)` 来明确指定。
+
+---
+
+## 5.1.4 小结
+
+| 知识点 | 要点 | 一句话记住 |
+|--------|------|-----------|
+| 定义 | `enum 名 { \| 构造器1 \| 构造器2 }` | 列出所有可能的取值 |
+| 构造器 | 有名字的构造器可带参数 | 每个"选项"可以带数据 |
+| 同名构造器 | 参数个数不同即可共存 | 同名不同参 |
+| `...` 构造器 | 最多一个，只能是最后一个 | 表示"还有别的可能" |
+| 递归定义 | 构造器的参数可以引用自身 | 自己包含自己 |
+| 定义位置 | 只能定义在源文件顶层 | 不能在函数/类内部 |
+| 名字冲突 | 冲突时必须加类型名前缀 | 用 `类型名.构造器` |
+d:["$","$L11",null,{"content":"$12","collection":"Cangjie/5_枚举类型和模式匹配","rootColPath":"Cangjie","allArticles":["$4:props:children:props:children:2:props:articles:0","$4:props:children:props:children:2:props:articles:1","$4:props:children:props:children:2:props:articles:2","$4:props:children:props:children:2:props:articles:3","$4:props:children:props:children:2:props:articles:4","$4:props:children:props:children:2:props:articles:5","$4:props:children:props:children:2:props:articles:6","$4:props:children:props:children:2:props:articles:7","$4:props:children:props:children:2:props:articles:8","$4:props:children:props:children:2:props:articles:9",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782987808713.5557},"$4:props:children:props:children:2:props:articles:10","$4:props:children:props:children:2:props:articles:11","$4:props:children:props:children:2:props:articles:12","$4:props:children:props:children:2:props:articles:13","$4:props:children:props:children:2:props:articles:14","$4:props:children:props:children:2:props:articles:15","$4:props:children:props:children:2:props:articles:16","$4:props:children:props:children:2:props:articles:17","$4:props:children:props:children:2:props:articles:18","$4:props:children:props:children:2:props:articles:19","$4:props:children:props:children:2:props:articles:20","$4:props:children:props:children:2:props:articles:21","$4:props:children:props:children:2:props:articles:22","$4:props:children:props:children:2:props:articles:23","$4:props:children:props:children:2:props:articles:24","$4:props:children:props:children:2:props:articles:25","$4:props:children:props:children:2:props:articles:26","$4:props:children:props:children:2:props:articles:27","$4:props:children:props:children:2:props:articles:28","$4:props:children:props:children:2:props:articles:29","$4:props:children:props:children:2:props:articles:30","$4:props:children:props:children:2:props:articles:31","$4:props:children:props:children:2:props:articles:32","$4:props:children:props:children:2:props:articles:33","$4:props:children:props:children:2:props:articles:34","$4:props:children:props:children:2:props:articles:35","$4:props:children:props:children:2:props:articles:36"],"currentSlug":"Cangjie/5_枚举类型和模式匹配/1_枚举类型"}]
+10:null

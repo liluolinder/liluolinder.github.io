@@ -1,0 +1,1144 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><link rel="preconnect" href="/" crossorigin=""/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="/images/logo.webp" referrerPolicy="no-referrer"/><link rel="stylesheet" href="/_next/static/chunks/2e9j017mspeav.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/10qk6v6416kh8.js"/><script src="/_next/static/chunks/27jktro2p5rq9.js" async=""></script><script src="/_next/static/chunks/2nykiepra7i1k.js" async=""></script><script src="/_next/static/chunks/082obv3v03b-9.js" async=""></script><script src="/_next/static/chunks/turbopack-1srmeewbkltcr.js" async=""></script><script src="/_next/static/chunks/0o--8oop24u_f.js" async=""></script><script src="/_next/static/chunks/3oax6b5zaxt_z.js" async=""></script><script src="/_next/static/chunks/0jubty45h__ir.js" async=""></script><script src="/_next/static/chunks/0g4o6d4sifcpo.js" async=""></script><script src="/_next/static/chunks/1ssz3eabjrzaj.js" async=""></script><title>模式匹配 | Seline Blog</title><meta name="description" content="match 表达式中支持的各种模式"/><link rel="icon" href="/favicon.ico?favicon.2vob68tjqpejf.ico" sizes="256x256" type="image/x-icon"/><link rel="icon" href="/images/avatar.webp"/><script src="/_next/static/chunks/0cz1d0mv5g_q7.js" noModule=""></script></head><body class="min-h-screen flex flex-col text-gray-900 dark:text-gray-100 font-sans"><div hidden=""><!--$--><!--/$--></div><div class="fixed inset-0 -z-10 overflow-hidden"><div class="absolute inset-0 bg-cover bg-center" style="background-image:url(/images/bg1.webp);opacity:0"></div><div class="absolute inset-0 bg-gradient-to-br from-white/30 via-white/15 to-white/30 dark:from-gray-950/40 dark:via-gray-900/25 dark:to-slate-950/40"></div></div><header class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-5xl"><div class="liquid-glass-header h-14 flex items-center justify-between px-4 sm:px-6 rounded-2xl shadow-lg"><a class="flex items-center gap-2 group" href="/"><span class="w-auto h-9 rounded-lg overflow-hidden flex-shrink-0"><img src="/images/logo.webp" alt="琉离铟落的小窝" referrerPolicy="no-referrer" class="h-full w-auto object-contain"/></span><span class="text-base font-bold bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">琉离铟落的小窝</span></a><div class="flex items-center gap-2"><nav class="hidden md:flex items-center gap-1"><a class="relative px-3 py-1.5 text-sm font-medium rounded-lg transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" href="/">首页</a><a class="relative px-3 py-1.5 text-sm font-medium rounded-lg transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" href="/articles">文章</a><a class="relative px-3 py-1.5 text-sm font-medium rounded-lg transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" href="/archives">归档</a><a class="relative px-3 py-1.5 text-sm font-medium rounded-lg transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" href="/projects">项目</a><a class="relative px-3 py-1.5 text-sm font-medium rounded-lg transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" href="/friends">友链</a><a class="relative px-3 py-1.5 text-sm font-medium rounded-lg transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" href="/about">关于</a></nav><button class="md:hidden w-9 h-9 flex items-center justify-center rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"><span class="text-lg">☰</span></button></div></div></header><main class="flex-1"><div class="min-h-screen pb-16"><aside class="fixed right-6 top-1/2 -translate-y-1/2 w-[220px] hidden xl:block z-10"><div class="liquid-glass rounded-2xl p-5 max-h-[70vh] overflow-y-auto"><h3 class="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-wider mb-3">目录</h3><nav class="space-y-1"><a href="#521-什么是模式" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">5.2.1 什么是模式？</a><a href="#522-常量模式" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">5.2.2 常量模式</a><a href="#rune-类型的常量模式" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">Rune 类型的常量模式</a><a href="#byte-类型的常量模式" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">Byte 类型的常量模式</a><a href="#523-通配符模式" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">5.2.3 通配符模式</a><a href="#524-绑定模式" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">5.2.4 绑定模式</a><a href="#绑定模式的限制" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">绑定模式的限制</a><a href="#绑定模式-vs-enum-构造器" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">绑定模式 vs enum 构造器</a><a href="#525-tuple-模式" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">5.2.5 Tuple 模式</a><a href="#526-类型模式" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">5.2.6 类型模式</a><a href="#527-enum-模式" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">5.2.7 Enum 模式</a><a href="#多个-enum-模式用-连接" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">多个 enum 模式用 `|` 连接</a><a href="#穷尽性检查" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">穷尽性检查</a><a href="#528-模式守卫pattern-guard" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">5.2.8 模式守卫（pattern guard）</a><a href="#529-模式的嵌套组合" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">5.2.9 模式的嵌套组合</a><a href="#5210-模式的-refutability可反驳性" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">5.2.10 模式的 Refutability（可反驳性）</a><a href="#常量模式-refutable" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">常量模式 — refutable</a><a href="#通配符模式-irrefutable" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">通配符模式 — irrefutable</a><a href="#绑定模式-irrefutable" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">绑定模式 — irrefutable</a><a href="#tuple-模式-取决于内部模式" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">Tuple 模式 — 取决于内部模式</a><a href="#类型模式-refutable" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">类型模式 — refutable</a><a href="#enum-模式-取决于构造器个数" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-700 dark:text-gray-200 pl-7
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">Enum 模式 — 取决于构造器个数</a><a href="#5211-小结" class="
+                block text-xs leading-relaxed transition-colors rounded px-2 py-1
+                text-slate-800 dark:text-gray-100 pl-4
+                hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20
+              ">5.2.11 小结</a></nav></div><p class="text-[10px] text-gray-500 dark:text-gray-400 text-center mt-3">📖 文章目录</p></aside><aside class="fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10"><div class="liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto"><h3 class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">合集</h3><div class="w-full h-px bg-blue-100/50 dark:bg-blue-900/30"></div><nav class="space-y-0.5"><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg font-medium text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▼</span><span>Cangjie</span></span><span class="text-[10px] text-gray-400">37</span></button><div class="overflow-hidden" style="height:auto;opacity:1"><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▶</span><span>1_初识仓颉</span></span><span class="text-[10px] text-gray-400">5</span></button></div><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▶</span><span>2_基本数据类型</span></span><span class="text-[10px] text-gray-400">13</span></button></div><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▶</span><span>3_逻辑控制</span></span><span class="text-[10px] text-gray-400">7</span></button></div><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▶</span><span>4_函数</span></span><span class="text-[10px] text-gray-400">8</span></button></div><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▼</span><span>5_枚举类型和模式匹配</span></span><span class="text-[10px] text-gray-400">4</span></button><div class="overflow-hidden" style="height:auto;opacity:1"><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" style="padding-left:36px" href="/articles/Cangjie/5_枚举类型和模式匹配/0_前言"><span class="text-[10px] text-gray-400 mr-1.5">0<!-- -->.</span>前言</a><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" style="padding-left:36px" href="/articles/Cangjie/5_枚举类型和模式匹配/1_枚举类型"><span class="text-[10px] text-gray-400 mr-1.5">1<!-- -->.</span>枚举类型</a><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 font-medium" style="padding-left:36px" href="/articles/Cangjie/5_枚举类型和模式匹配/2_模式匹配"><span class="text-[10px] text-gray-400 mr-1.5">2<!-- -->.</span>模式匹配</a><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" style="padding-left:36px" href="/articles/Cangjie/5_枚举类型和模式匹配/3_额外的模式匹配"><span class="text-[10px] text-gray-400 mr-1.5">3<!-- -->.</span>额外的模式匹配</a></div></div></div></nav></div></aside><div class="xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4"><div class="max-w-4xl mx-auto"><a class="inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors" href="/articles">← 返回文章列表</a><div class="mb-8"><div class="flex items-center gap-3 mb-3"><span class="text-sm text-gray-600 dark:text-gray-400">2026-07-02</span><div class="flex gap-1.5"><span class="text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400">#<!-- -->Cangjie</span><span class="text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400">#<!-- -->入门教程</span></div></div><h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight">模式匹配</h1><p class="mt-3 text-gray-700 dark:text-gray-300 text-lg">match 表达式中支持的各种模式</p></div><div class="rounded-2xl p-6 liquid-glass-card  !p-8 md:!p-10"><article class="max-w-none"><div class="max-w-none markdown-body"><h2 id="521-什么是模式" style="scroll-margin-top:100px">5.2.1 什么是模式？</h2><p>对于包含匹配值的 <code>match</code> 表达式，<code>case</code> 之后支持哪些&quot;模式&quot;决定了 <code>match</code> 表达式的表达能力。</p><p><strong>模式</strong>就是&quot;你想匹配的值长什么样&quot;——它可以是一个具体的值、一个通配符、一个变量绑定，也可以是更复杂的组合。</p><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#f0fdf4;border-color:#22c55e"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#22c55e40"><span class="text-lg">💡</span><span class="text-sm font-bold" style="color:#16a34a">TIP</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p>模式就像是&quot;寻人启事&quot;上的描述：</p><ul>
+<li>常量模式：&quot;找一个叫张三的人&quot;——具体指定</li>
+<li>通配符模式：&quot;找一个人&quot;——谁都行</li>
+<li>绑定模式：&quot;找一个人，记下他的名字&quot;——匹配的同时把值存起来</li>
+</ul>
+<p>仓颉支持以下几种模式：<strong>常量模式、通配符模式、绑定模式、tuple 模式、类型模式、enum 模式</strong>，还可以嵌套组合使用。</p></div></div><hr>
+<h2 id="522-常量模式" style="scroll-margin-top:100px">5.2.2 常量模式</h2><p>常量模式可以是整数字面量、浮点数字面量、字符字面量、布尔字面量、字符串字面量（不支持字符串插值）、Unit 字面量。</p><p>在包含匹配值的 match 表达式中使用常量模式时，要求常量模式表示的值的类型与待匹配值的类型相同，匹配成功的条件是待匹配的值与常量模式表示的值相等。</p><p>下面的例子中，根据 <code>score</code> 的值（假设 score 只能取 0 到 100 间被 10 整除的值），输出考试成绩的等级：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="main()%20%7B%0A%20%20%20%20let%20score%20%3D%2090%0A%20%20%20%20let%20level%20%3D%20match%20(score)%20%7B%0A%20%20%20%20%20%20%20%20case%200%20%7C%2010%20%7C%2020%20%7C%2030%20%7C%2040%20%7C%2050%20%3D%3E%20%22D%22%0A%20%20%20%20%20%20%20%20case%2060%20%3D%3E%20%22C%22%0A%20%20%20%20%20%20%20%20case%2070%20%7C%2080%20%3D%3E%20%22B%22%0A%20%20%20%20%20%20%20%20case%2090%20%7C%20100%20%3D%3E%20%22A%22%20%2F%2F%20%E5%8C%B9%E9%85%8D%E6%88%90%E5%8A%9F%0A%20%20%20%20%20%20%20%20case%20_%20%3D%3E%20%22Not%20a%20valid%20score%22%0A%20%20%20%20%7D%0A%20%20%20%20println(level)%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">main() {
+    let score = 90
+    let level = match (score) {
+        case 0 | 10 | 20 | 30 | 40 | 50 =&gt; &quot;D&quot;
+        case 60 =&gt; &quot;C&quot;
+        case 70 | 80 =&gt; &quot;B&quot;
+        case 90 | 100 =&gt; &quot;A&quot; // 匹配成功
+        case _ =&gt; &quot;Not a valid score&quot;
+    }
+    println(level)
+}</code></pre>
+</div><p>编译执行上述代码，输出结果为：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Bash</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="A">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Bash">A</code></pre>
+</div><h3 id="rune-类型的常量模式" style="scroll-margin-top:100px">Rune 类型的常量模式</h3><p>在模式匹配的目标是静态类型为 <code>Rune</code> 的值时，<code>Rune</code> 字面量和单字符字符串字面量都可用于表示 <code>Rune</code> 类型字面量的常量模式。</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20translate(n%3A%20Rune)%20%7B%0A%20%20%20%20match%20(n)%20%7B%0A%20%20%20%20%20%20%20%20case%20%22A%22%20%3D%3E%201%0A%20%20%20%20%20%20%20%20case%20%22B%22%20%3D%3E%202%0A%20%20%20%20%20%20%20%20case%20%22C%22%20%3D%3E%203%0A%20%20%20%20%20%20%20%20case%20_%20%3D%3E%20-1%0A%20%20%20%20%7D%0A%7D%0A%0Amain()%20%7B%0A%20%20%20%20println(translate(r%22C%22))%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func translate(n: Rune) {
+    match (n) {
+        case &quot;A&quot; =&gt; 1
+        case &quot;B&quot; =&gt; 2
+        case &quot;C&quot; =&gt; 3
+        case _ =&gt; -1
+    }
+}
+
+main() {
+    println(translate(r&quot;C&quot;))
+}</code></pre>
+</div><p>编译执行上述代码，输出结果为：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Bash</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="3">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Bash">3</code></pre>
+</div><h3 id="byte-类型的常量模式" style="scroll-margin-top:100px">Byte 类型的常量模式</h3><p>在模式匹配的目标是静态类型为 <code>Byte</code> 的值时，一个表示 ASCII 字符的字符串字面量可用于表示 <code>Byte</code> 类型字面量的常量模式。</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20translate(n%3A%20Byte)%20%7B%0A%20%20%20%20match%20(n)%20%7B%0A%20%20%20%20%20%20%20%20case%20%221%22%20%3D%3E%201%0A%20%20%20%20%20%20%20%20case%20%222%22%20%3D%3E%202%0A%20%20%20%20%20%20%20%20case%20%223%22%20%3D%3E%203%0A%20%20%20%20%20%20%20%20case%20_%20%3D%3E%20-1%0A%20%20%20%20%7D%0A%7D%0A%0Amain()%20%7B%0A%20%20%20%20println(translate(51))%20%2F%2F%20UInt32(r'3')%20%3D%3D%2051%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func translate(n: Byte) {
+    match (n) {
+        case &quot;1&quot; =&gt; 1
+        case &quot;2&quot; =&gt; 2
+        case &quot;3&quot; =&gt; 3
+        case _ =&gt; -1
+    }
+}
+
+main() {
+    println(translate(51)) // UInt32(r'3') == 51
+}</code></pre>
+</div><p>编译执行上述代码，输出结果为：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Bash</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="3">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Bash">3</code></pre>
+</div><hr>
+<h2 id="523-通配符模式" style="scroll-margin-top:100px">5.2.3 通配符模式</h2><p>通配符模式使用下划线 <code>_</code> 表示，可以匹配<strong>任意值</strong>。</p><p>通配符模式通常作为最后一个 <code>case</code> 中的模式，用来匹配其他 <code>case</code> 未覆盖到的情况。就像上面的常量模式例子中，最后一个 <code>case</code> 使用 <code>_</code> 来匹配无效的 score 值。</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20wildcardPat(x%3A%20Int64)%20%7B%0A%20%20%20%20match%20(x)%20%7B%0A%20%20%20%20%20%20%20%20case%20_%20%3D%3E%20%22_%22%20%20%20%2F%2F%20%E4%B8%8D%E7%AE%A1%20x%20%E6%98%AF%E4%BB%80%E4%B9%88%E5%80%BC%EF%BC%8C%E9%83%BD%E8%83%BD%E5%8C%B9%E9%85%8D%0A%20%20%20%20%7D%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func wildcardPat(x: Int64) {
+    match (x) {
+        case _ =&gt; &quot;_&quot;   // 不管 x 是什么值，都能匹配
+    }
+}</code></pre>
+</div><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#f0fdf4;border-color:#22c55e"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#22c55e40"><span class="text-lg">💡</span><span class="text-sm font-bold" style="color:#16a34a">TIP</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p><code>_</code> 就像&quot;来者不拒&quot;——不管传进来什么值，我都要。</p></div></div><hr>
+<h2 id="524-绑定模式" style="scroll-margin-top:100px">5.2.4 绑定模式</h2><p>绑定模式使用 <code>id</code> 表示，<code>id</code> 是一个合法的标识符。与通配符模式相比，绑定模式同样可以匹配任意值，但绑定模式会将匹配到的值与 <code>id</code> 进行绑定，在 <code>=&gt;</code> 之后可以通过 <code>id</code> 访问其绑定的值。</p><p>下面的例子中，最后一个 <code>case</code> 中使用了绑定模式。其中，变量 <code>n</code> 属于 id 标识，用于绑定非 0 值：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="main()%20%7B%0A%20%20%20%20let%20x%20%3D%20-10%0A%20%20%20%20let%20y%20%3D%20match%20(x)%20%7B%0A%20%20%20%20%20%20%20%20case%200%20%3D%3E%20%22zero%22%0A%20%20%20%20%20%20%20%20case%20n%20%3D%3E%20%22x%20is%20not%20zero%20and%20x%20%3D%20%24%7Bn%7D%22%20%2F%2F%20%E5%8C%B9%E9%85%8D%E6%88%90%E5%8A%9F%0A%20%20%20%20%7D%0A%20%20%20%20println(y)%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">main() {
+    let x = -10
+    let y = match (x) {
+        case 0 =&gt; &quot;zero&quot;
+        case n =&gt; &quot;x is not zero and x = ${n}&quot; // 匹配成功
+    }
+    println(y)
+}</code></pre>
+</div><p>编译执行上述代码，输出结果为：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Bash</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="x%20is%20not%20zero%20and%20x%20%3D%20-10">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Bash">x is not zero and x = -10</code></pre>
+</div><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#eff6ff;border-color:#3b82f6"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#3b82f640"><span class="text-lg">ℹ️</span><span class="text-sm font-bold" style="color:#2563eb">NOTE</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p>绑定模式就像是&quot;抓住它并贴上标签&quot;——<code>case n =&gt;</code> 的意思是&quot;无论值是什么，把它叫作 <code>n</code>&quot;。</p></div></div><h3 id="绑定模式的限制" style="scroll-margin-top:100px">绑定模式的限制</h3><p>使用 <code>|</code> 连接多个模式时<strong>不能使用</strong>绑定模式，也不可嵌套出现在其他模式中，否则会报错：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="main()%20%7B%0A%20%20%20%20let%20opt%20%3D%20Some(0)%0A%20%20%20%20match%20(opt)%20%7B%0A%20%20%20%20%20%20%20%20case%20x%20%7C%20x%20%3D%3E%20%7B%7D%20%2F%2F%20Error%2C%20%E4%B8%8D%E8%83%BD%E5%9C%A8%20%7C%20%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%A8%A1%E5%BC%8F%E4%B8%AD%E5%BC%95%E5%85%A5%E5%8F%98%E9%87%8F%0A%20%20%20%20%20%20%20%20case%20Some(x)%20%7C%20Some(x)%20%3D%3E%20%7B%7D%20%2F%2F%20Error%2C%20%E4%B8%8D%E8%83%BD%E5%9C%A8%20%7C%20%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%A8%A1%E5%BC%8F%E4%B8%AD%E5%BC%95%E5%85%A5%E5%8F%98%E9%87%8F%0A%20%20%20%20%20%20%20%20case%20x%3A%20Int64%20%7C%20x%3A%20String%20%3D%3E%20%7B%7D%20%2F%2F%20Error%2C%20%E4%B8%8D%E8%83%BD%E5%9C%A8%20%7C%20%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%A8%A1%E5%BC%8F%E4%B8%AD%E5%BC%95%E5%85%A5%E5%8F%98%E9%87%8F%0A%20%20%20%20%7D%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">main() {
+    let opt = Some(0)
+    match (opt) {
+        case x | x =&gt; {} // Error, 不能在 | 连接的模式中引入变量
+        case Some(x) | Some(x) =&gt; {} // Error, 不能在 | 连接的模式中引入变量
+        case x: Int64 | x: String =&gt; {} // Error, 不能在 | 连接的模式中引入变量
+    }
+}</code></pre>
+</div><p>绑定模式 id 相当于新定义了一个名为 id 的<strong>不可变变量</strong>（其作用域从引入处开始到该 case 结尾处），因此在 <code>=&gt;</code> 之后无法对 id 进行修改：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="main()%20%7B%0A%20%20%20%20let%20x%20%3D%20-10%0A%20%20%20%20let%20y%20%3D%20match%20(x)%20%7B%0A%20%20%20%20%20%20%20%20case%200%20%3D%3E%20%22zero%22%0A%20%20%20%20%20%20%20%20case%20n%20%3D%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20n%20%3D%20n%20%2B%200%20%2F%2F%20Error%2C%20'n'%20%E4%B8%8D%E5%8F%AF%E4%BF%AE%E6%94%B9%0A%20%20%20%20%20%20%20%20%20%20%20%20%22x%20is%20not%20zero%22%0A%20%20%20%20%7D%0A%20%20%20%20println(y)%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">main() {
+    let x = -10
+    let y = match (x) {
+        case 0 =&gt; &quot;zero&quot;
+        case n =&gt;
+            n = n + 0 // Error, 'n' 不可修改
+            &quot;x is not zero&quot;
+    }
+    println(y)
+}</code></pre>
+</div><p>对于每个 case 分支，<code>=&gt;</code> 之后变量作用域级别与 case 后 <code>=&gt;</code> 前引入的变量作用域级别相同，在 <code>=&gt;</code> 之后再次引入相同名字会触发重定义错误：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="main()%20%7B%0A%20%20%20%20let%20x%20%3D%20-10%0A%20%20%20%20let%20y%20%3D%20match%20(x)%20%7B%0A%20%20%20%20%20%20%20%20case%200%20%3D%3E%20%22zero%22%0A%20%20%20%20%20%20%20%20case%20n%20%3D%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20let%20n%20%3D%200%20%2F%2F%20Error%2C%20%E9%87%8D%E5%A4%8D%E5%AE%9A%E4%B9%89%0A%20%20%20%20%20%20%20%20%20%20%20%20println(n)%0A%20%20%20%20%20%20%20%20%20%20%20%20%22x%20is%20not%20zero%22%0A%20%20%20%20%7D%0A%20%20%20%20println(y)%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">main() {
+    let x = -10
+    let y = match (x) {
+        case 0 =&gt; &quot;zero&quot;
+        case n =&gt;
+            let n = 0 // Error, 重复定义
+            println(n)
+            &quot;x is not zero&quot;
+    }
+    println(y)
+}</code></pre>
+</div><h3 id="绑定模式-vs-enum-构造器" style="scroll-margin-top:100px">绑定模式 vs enum 构造器</h3><p>当模式的 <code>identifier</code> 为 <strong>enum 构造器</strong>时，该模式会被当成 enum 模式进行匹配，而不是绑定模式：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="enum%20RGBColor%20%7B%0A%20%20%20%20%7C%20Red%20%7C%20Green%20%7C%20Blue%0A%7D%0A%0Amain()%20%7B%0A%20%20%20%20let%20x%20%3D%20Red%0A%20%20%20%20let%20y%20%3D%20match%20(x)%20%7B%0A%20%20%20%20%20%20%20%20case%20Red%20%3D%3E%20%22red%22%20%20%20%2F%2F%20%E8%BF%99%E9%87%8C%E7%9A%84%20Red%20%E6%98%AF%20enum%20%E6%A8%A1%E5%BC%8F%EF%BC%8C%E4%B8%8D%E6%98%AF%E7%BB%91%E5%AE%9A%E6%A8%A1%E5%BC%8F%0A%20%20%20%20%20%20%20%20case%20_%20%3D%3E%20%22not%20red%22%0A%20%20%20%20%7D%0A%20%20%20%20println(y)%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">enum RGBColor {
+    | Red | Green | Blue
+}
+
+main() {
+    let x = Red
+    let y = match (x) {
+        case Red =&gt; &quot;red&quot;   // 这里的 Red 是 enum 模式，不是绑定模式
+        case _ =&gt; &quot;not red&quot;
+    }
+    println(y)
+}</code></pre>
+</div><p>编译执行上述代码，输出结果为：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Bash</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="red">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Bash">red</code></pre>
+</div><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#fef2f2;border-color:#ef4444"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#ef444440"><span class="text-lg">🚨</span><span class="text-sm font-bold" style="color:#dc2626">CAUTION</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p>如果标识符同时也是 enum 的构造器名，编译器优先将其视为 enum 模式。</p></div></div><hr>
+<h2 id="525-tuple-模式" style="scroll-margin-top:100px">5.2.5 Tuple 模式</h2><p>Tuple 模式用于 <strong>tuple 值</strong>的匹配，它的定义和 tuple 字面量类似：<code>(p_1, p_2, ..., p_n)</code>，区别在于这里的 <code>p_1</code> 到 <code>p_n</code>（n 大于等于 2）是<strong>模式</strong>（可以是本章节中介绍的任何模式，多个模式间使用逗号分隔）而不是表达式。</p><p>例如：</p><ul>
+<li><code>(1, 2, 3)</code> 是一个包含三个常量模式的 tuple 模式</li>
+<li><code>(x, y, _)</code> 是一个包含两个绑定模式、一个通配符模式的 tuple 模式</li>
+</ul>
+<p>给定一个 tuple 值 <code>tv</code> 和一个 tuple 模式 <code>tp</code>，当且仅当 <code>tv</code> 每个位置处的值均能与 <code>tp</code> 中对应位置处的模式相匹配，才称 <code>tp</code> 能匹配 <code>tv</code>。</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="main()%20%7B%0A%20%20%20%20let%20tv%20%3D%20(%22Alice%22%2C%2024)%0A%20%20%20%20let%20s%20%3D%20match%20(tv)%20%7B%0A%20%20%20%20%20%20%20%20case%20(%22Bob%22%2C%20age)%20%3D%3E%20%22Bob%20is%20%24%7Bage%7D%20years%20old%22%0A%20%20%20%20%20%20%20%20case%20(%22Alice%22%2C%20age)%20%3D%3E%20%22Alice%20is%20%24%7Bage%7D%20years%20old%22%20%2F%2F%20%E5%8C%B9%E9%85%8D%E6%88%90%E5%8A%9F%EF%BC%8C%22Alice%22%20%E6%98%AF%E5%B8%B8%E9%87%8F%E6%A8%A1%E5%BC%8F%EF%BC%8C'age'%20%E6%98%AF%E7%BB%91%E5%AE%9A%E6%A8%A1%E5%BC%8F%0A%20%20%20%20%20%20%20%20case%20(name%2C%20100)%20%3D%3E%20%22%24%7Bname%7D%20is%20100%20years%20old%22%0A%20%20%20%20%20%20%20%20case%20(_%2C%20_)%20%3D%3E%20%22someone%22%0A%20%20%20%20%7D%0A%20%20%20%20println(s)%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">main() {
+    let tv = (&quot;Alice&quot;, 24)
+    let s = match (tv) {
+        case (&quot;Bob&quot;, age) =&gt; &quot;Bob is ${age} years old&quot;
+        case (&quot;Alice&quot;, age) =&gt; &quot;Alice is ${age} years old&quot; // 匹配成功，&quot;Alice&quot; 是常量模式，'age' 是绑定模式
+        case (name, 100) =&gt; &quot;${name} is 100 years old&quot;
+        case (_, _) =&gt; &quot;someone&quot;
+    }
+    println(s)
+}</code></pre>
+</div><p>编译执行上述代码，输出结果为：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Bash</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="Alice%20is%2024%20years%20old">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Bash">Alice is 24 years old</code></pre>
+</div><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#f0fdf4;border-color:#22c55e"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#22c55e40"><span class="text-lg">💡</span><span class="text-sm font-bold" style="color:#16a34a">TIP</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p>Tuple 模式让你可以<strong>同时匹配多个值</strong>，就像用筛子筛东西——每个位置都要对上。</p></div></div><p>同一个 tuple 模式中<strong>不允许</strong>引入多个名称相同的绑定模式：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="main()%20%7B%0A%20%20%20%20let%20tv%20%3D%20(%22Alice%22%2C%2024)%0A%20%20%20%20let%20s%20%3D%20match%20(tv)%20%7B%0A%20%20%20%20%20%20%20%20case%20(%22Bob%22%2C%20age)%20%3D%3E%20%22Bob%20is%20%24%7Bage%7D%20years%20old%22%0A%20%20%20%20%20%20%20%20case%20(%22Alice%22%2C%20age)%20%3D%3E%20%22Alice%20is%20%24%7Bage%7D%20years%20old%22%0A%20%20%20%20%20%20%20%20case%20(name%2C%20100)%20%3D%3E%20%22%24%7Bname%7D%20is%20100%20years%20old%22%0A%20%20%20%20%20%20%20%20case%20(x%2C%20x)%20%3D%3E%20%22someone%22%20%2F%2F%20Error%2C%20%E4%B8%8D%E8%83%BD%E5%BC%95%E5%85%A5%E5%90%8C%E5%90%8D%E7%9A%84%E7%BB%91%E5%AE%9A%E6%A8%A1%E5%BC%8F%0A%20%20%20%20%7D%0A%20%20%20%20println(s)%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">main() {
+    let tv = (&quot;Alice&quot;, 24)
+    let s = match (tv) {
+        case (&quot;Bob&quot;, age) =&gt; &quot;Bob is ${age} years old&quot;
+        case (&quot;Alice&quot;, age) =&gt; &quot;Alice is ${age} years old&quot;
+        case (name, 100) =&gt; &quot;${name} is 100 years old&quot;
+        case (x, x) =&gt; &quot;someone&quot; // Error, 不能引入同名的绑定模式
+    }
+    println(s)
+}</code></pre>
+</div><hr>
+<h2 id="526-类型模式" style="scroll-margin-top:100px">5.2.6 类型模式</h2><p>类型模式用于判断一个值的<strong>运行时类型</strong>是否是某个类型的子类型。类型模式有两种形式：</p><ul>
+<li><code>_: Type</code>（嵌套一个通配符模式 <code>_</code>）</li>
+<li><code>id: Type</code>（嵌套一个绑定模式 <code>id</code>）</li>
+</ul>
+<p>区别是后者会发生变量绑定，而前者不会。</p><p>对于待匹配值 <code>v</code> 和类型模式 <code>id: Type</code>（或 <code>_: Type</code>）：</p><ol>
+<li>首先判断 <code>v</code> 的运行时类型是否是 <code>Type</code> 的子类型</li>
+<li>若成立则视为匹配成功，否则视为匹配失败</li>
+<li>如匹配成功，则将 <code>v</code> 的类型转换为 <code>Type</code> 并与 <code>id</code> 进行绑定（对于 <code>_: Type</code>，不存在绑定这一操作）</li>
+</ol>
+<p>假设有如下两个类，<code>Base</code> 和 <code>Derived</code>，并且 <code>Derived</code> 是 <code>Base</code> 的子类：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="open%20class%20Base%20%7B%0A%20%20%20%20var%20a%3A%20Int64%0A%20%20%20%20public%20init()%20%7B%0A%20%20%20%20%20%20%20%20a%20%3D%2010%0A%20%20%20%20%7D%0A%7D%0A%0Aclass%20Derived%20%3C%3A%20Base%20%7B%0A%20%20%20%20public%20init()%20%7B%0A%20%20%20%20%20%20%20%20a%20%3D%2020%0A%20%20%20%20%7D%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">open class Base {
+    var a: Int64
+    public init() {
+        a = 10
+    }
+}
+
+class Derived &lt;: Base {
+    public init() {
+        a = 20
+    }
+}</code></pre>
+</div><p>下面的代码展示了使用类型模式并<strong>匹配成功</strong>的例子：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20test1()%20%7B%0A%20%20%20%20var%20d%20%3D%20Derived()%0A%20%20%20%20var%20r%20%3D%20match%20(d)%20%7B%0A%20%20%20%20%20%20%20%20case%20b%3A%20Base%20%3D%3E%20b.a%20%2F%2F%20%E5%8C%B9%E9%85%8D%E6%88%90%E5%8A%9F%EF%BC%9ADerived%20%E6%98%AF%20Base%20%E7%9A%84%E5%AD%90%E7%B1%BB%0A%20%20%20%20%20%20%20%20case%20_%20%3D%3E%200%0A%20%20%20%20%7D%0A%20%20%20%20println(%22r%20%3D%20%24%7Br%7D%22)%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func test1() {
+    var d = Derived()
+    var r = match (d) {
+        case b: Base =&gt; b.a // 匹配成功：Derived 是 Base 的子类
+        case _ =&gt; 0
+    }
+    println(&quot;r = ${r}&quot;)
+}</code></pre>
+</div><p>下面的代码展示了使用类型模式但<strong>匹配失败</strong>的例子：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20test2()%20%7B%0A%20%20%20%20var%20b%20%3D%20Base()%0A%20%20%20%20var%20r%20%3D%20match%20(b)%20%7B%0A%20%20%20%20%20%20%20%20case%20d%3A%20Derived%20%3D%3E%20d.a%20%2F%2F%20%E7%B1%BB%E5%9E%8B%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E5%A4%B1%E8%B4%A5%EF%BC%9ABase%20%E4%B8%8D%E6%98%AF%20Derived%20%E7%9A%84%E5%AD%90%E7%B1%BB%0A%20%20%20%20%20%20%20%20case%20_%20%3D%3E%200%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20%E5%8C%B9%E9%85%8D%E6%88%90%E5%8A%9F%0A%20%20%20%20%7D%0A%20%20%20%20println(%22r%20%3D%20%24%7Br%7D%22)%0A%7D%0A%0Amain()%20%7B%0A%20%20%20%20test1()%0A%20%20%20%20test2()%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func test2() {
+    var b = Base()
+    var r = match (b) {
+        case d: Derived =&gt; d.a // 类型模式匹配失败：Base 不是 Derived 的子类
+        case _ =&gt; 0            // 匹配成功
+    }
+    println(&quot;r = ${r}&quot;)
+}
+
+main() {
+    test1()
+    test2()
+}</code></pre>
+</div><p>编译执行上述代码，输出结果为：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Bash</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="r%20%3D%2020%0Ar%20%3D%200">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Bash">r = 20
+r = 0</code></pre>
+</div><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#f0fdf4;border-color:#22c55e"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#22c55e40"><span class="text-lg">💡</span><span class="text-sm font-bold" style="color:#16a34a">TIP</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p>类型模式就像&quot;检查身份证&quot;——看看这个人的实际身份是不是你期待的那样。<code>b: Base</code> 表示&quot;如果 b 实际上是 Base 类型（或其子类），就把它当作 Base 来用&quot;。</p></div></div><hr>
+<h2 id="527-enum-模式" style="scroll-margin-top:100px">5.2.7 Enum 模式</h2><p>Enum 模式用于匹配 <strong>enum 类型</strong>的实例，它的定义和 enum 的构造器类似：</p><ul>
+<li>无参构造器：<code>C</code></li>
+<li>有参构造器：<code>C(p_1, p_2, ..., p_n)</code></li>
+</ul>
+<p>构造器的<strong>类型前缀可以省略</strong>。</p><p>例如：</p><ul>
+<li><code>Some(1)</code> 是一个包含一个常量模式的 enum 模式</li>
+<li><code>Some(x)</code> 是一个包含一个绑定模式的 enum 模式</li>
+</ul>
+<p>给定一个 enum 实例 <code>ev</code> 和一个 enum 模式 <code>ep</code>，当且仅当 <code>ev</code> 的构造器名字和 <code>ep</code> 的构造器名字相同，且 <code>ev</code> 参数列表中每个位置处的值均能与 <code>ep</code> 中对应位置处的模式相匹配，才称 <code>ep</code> 能匹配 <code>ev</code>。</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="enum%20TimeUnit%20%7B%0A%20%20%20%20%7C%20Year(UInt64)%0A%20%20%20%20%7C%20Month(UInt64)%0A%7D%0A%0Amain()%20%7B%0A%20%20%20%20let%20x%20%3D%20Year(2)%0A%20%20%20%20let%20s%20%3D%20match%20(x)%20%7B%0A%20%20%20%20%20%20%20%20case%20Year(n)%20%3D%3E%20%22x%20has%20%24%7Bn%20*%2012%7D%20months%22%20%2F%2F%20%E5%8C%B9%E9%85%8D%E6%88%90%E5%8A%9F%0A%20%20%20%20%20%20%20%20case%20TimeUnit.Month(n)%20%3D%3E%20%22x%20has%20%24%7Bn%7D%20months%22%0A%20%20%20%20%7D%0A%20%20%20%20println(s)%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">enum TimeUnit {
+    | Year(UInt64)
+    | Month(UInt64)
+}
+
+main() {
+    let x = Year(2)
+    let s = match (x) {
+        case Year(n) =&gt; &quot;x has ${n * 12} months&quot; // 匹配成功
+        case TimeUnit.Month(n) =&gt; &quot;x has ${n} months&quot;
+    }
+    println(s)
+}</code></pre>
+</div><p>编译执行上述代码，输出结果为：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Bash</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="x%20has%2024%20months">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Bash">x has 24 months</code></pre>
+</div><h3 id="多个-enum-模式用-连接" style="scroll-margin-top:100px">多个 enum 模式用 `|` 连接</h3><p>当使用 <code>|</code> 连接多个 enum 模式时，每个模式必须独立且<strong>不能引入新的变量</strong>。这是因为 <code>|</code> 表示&quot;或&quot;的关系，而变量的引入需要明确的上下文，不能在多个模式之间共享。</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="enum%20TimeUnit%20%7B%0A%20%20%20%20%7C%20Year(UInt64)%0A%20%20%20%20%7C%20Month(UInt64)%0A%7D%0A%0Amain()%20%7B%0A%20%20%20%20let%20x%20%3D%20Year(2)%0A%20%20%20%20let%20s%20%3D%20match%20(x)%20%7B%0A%20%20%20%20%20%20%20%20case%20Year(5)%20%3D%3E%20%221%3AOK%22%0A%20%20%20%20%20%20%20%20case%20Month(m)%20%3D%3E%20%222%3AOK%22%0A%20%20%20%20%20%20%20%20case%20Year(0)%20%7C%20Year(1)%20%7C%20Month(_)%20%3D%3E%20%223%3AOK%22%0A%20%20%20%20%20%20%20%20case%20Year(_)%20%3D%3E%20%224%3AOK%22%0A%20%20%20%20%20%20%20%20case%20Year(2)%20%7C%20Month(m)%20%3D%3E%20%225%3Ainvalid%22%20%2F%2F%20Error%2C%20%7C%20%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%A8%A1%E5%BC%8F%E4%B8%AD%E4%B8%8D%E8%83%BD%E5%BC%95%E5%85%A5%E5%8F%98%E9%87%8F%0A%20%20%20%20%20%20%20%20case%20Year(n%3A%20UInt64)%20%7C%20Month(n%3A%20UInt64)%20%3D%3E%20%226%3Ainvalid%22%20%2F%2F%20Error%2C%20%7C%20%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%A8%A1%E5%BC%8F%E4%B8%AD%E4%B8%8D%E8%83%BD%E5%BC%95%E5%85%A5%E5%8F%98%E9%87%8F%0A%20%20%20%20%7D%0A%20%20%20%20println(s)%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">enum TimeUnit {
+    | Year(UInt64)
+    | Month(UInt64)
+}
+
+main() {
+    let x = Year(2)
+    let s = match (x) {
+        case Year(5) =&gt; &quot;1:OK&quot;
+        case Month(m) =&gt; &quot;2:OK&quot;
+        case Year(0) | Year(1) | Month(_) =&gt; &quot;3:OK&quot;
+        case Year(_) =&gt; &quot;4:OK&quot;
+        case Year(2) | Month(m) =&gt; &quot;5:invalid&quot; // Error, | 连接的模式中不能引入变量
+        case Year(n: UInt64) | Month(n: UInt64) =&gt; &quot;6:invalid&quot; // Error, | 连接的模式中不能引入变量
+    }
+    println(s)
+}</code></pre>
+</div><p>上述示例中，第二个 case 引入了一个新变量 <code>m</code>，但没有使用 <code>|</code> 连接其他模式，故合法。</p><h3 id="穷尽性检查" style="scroll-margin-top:100px">穷尽性检查</h3><p>使用 match 表达式匹配 enum 值时，要求 case 之后的模式要覆盖待匹配 enum 类型中的<strong>所有构造器</strong>，如果未做到完全覆盖，编译器将报错：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="enum%20RGBColor%20%7B%0A%20%20%20%20%7C%20Red%20%7C%20Green%20%7C%20Blue%0A%7D%0A%0Amain()%20%7B%0A%20%20%20%20let%20c%20%3D%20Green%0A%20%20%20%20let%20cs%20%3D%20match%20(c)%20%7B%20%2F%2F%20Error%2C%20%E6%B2%A1%E6%9C%89%E8%A6%86%E7%9B%96%20RGBColor%20%E7%9A%84%E6%89%80%E6%9C%89%E6%9E%84%E9%80%A0%E5%99%A8%0A%20%20%20%20%20%20%20%20case%20Red%20%3D%3E%20%22Red%22%0A%20%20%20%20%20%20%20%20case%20Green%20%3D%3E%20%22Green%22%0A%20%20%20%20%7D%0A%20%20%20%20println(cs)%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">enum RGBColor {
+    | Red | Green | Blue
+}
+
+main() {
+    let c = Green
+    let cs = match (c) { // Error, 没有覆盖 RGBColor 的所有构造器
+        case Red =&gt; &quot;Red&quot;
+        case Green =&gt; &quot;Green&quot;
+    }
+    println(cs)
+}</code></pre>
+</div><p>可以通过加上 <code>case Blue</code> 来实现完全覆盖，也可以在 match 表达式的最后通过使用 <code>case _</code> 来覆盖其他 case 未覆盖的情况：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="enum%20RGBColor%20%7B%0A%20%20%20%20%7C%20Red%20%7C%20Green%20%7C%20Blue%0A%7D%0A%0Amain()%20%7B%0A%20%20%20%20let%20c%20%3D%20Blue%0A%20%20%20%20let%20cs%20%3D%20match%20(c)%20%7B%0A%20%20%20%20%20%20%20%20case%20Red%20%3D%3E%20%22Red%22%0A%20%20%20%20%20%20%20%20case%20Green%20%3D%3E%20%22Green%22%0A%20%20%20%20%20%20%20%20case%20_%20%3D%3E%20%22Other%22%20%2F%2F%20%E5%8C%B9%E9%85%8D%E6%88%90%E5%8A%9F%0A%20%20%20%20%7D%0A%20%20%20%20println(cs)%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">enum RGBColor {
+    | Red | Green | Blue
+}
+
+main() {
+    let c = Blue
+    let cs = match (c) {
+        case Red =&gt; &quot;Red&quot;
+        case Green =&gt; &quot;Green&quot;
+        case _ =&gt; &quot;Other&quot; // 匹配成功
+    }
+    println(cs)
+}</code></pre>
+</div><p>上述代码的执行结果为：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Bash</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="Other">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Bash">Other</code></pre>
+</div><hr>
+<h2 id="528-模式守卫pattern-guard" style="scroll-margin-top:100px">5.2.8 模式守卫（pattern guard）</h2><p>在 <code>case</code> 分支的模式之后，可以使用 <strong>pattern guard（模式守卫）</strong> 进一步对匹配出来的结果进行判断，此为可选内容。</p><p>pattern guard 表示本条 case 匹配成功后额外需要满足的条件，其使用 <code>where cond</code>（语法格式）表示，要求表达式 <code>cond</code> 的类型为 <code>Bool</code>。</p><p>match 表达式执行时，会依次将 match 之后的表达式与每个 case 中的模式进行匹配。如果有 pattern guard，需要 <code>where</code> 之后的表达式的值为 <code>true</code>；如果 case 中有多个由 <code>|</code> 连接的模式，只要待匹配值和其中一个模式匹配则认为匹配成功。一旦匹配成功，将执行 <code>=&gt;</code> 之后的代码，然后退出 match 表达式的执行，这意味着不会再去匹配它之后的 case。如果匹配不成功，会继续与它之后的 case 中的模式进行匹配，直到匹配成功。match 表达式可以保证一定存在匹配的 case 分支。</p><p>在下面的例子中，使用到了 enum 模式。当 <code>RGBColor</code> 的构造器的参数值大于等于 0 时，输出它们的值；当参数值小于 0 时，即满足第一个 case 的 <code>where cond</code>，则认为它们的值等于 0：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="enum%20RGBColor%20%7B%0A%20%20%20%20%7C%20Red(Int16)%20%7C%20Green(Int16)%20%7C%20Blue(Int16)%0A%7D%0A%0Amain()%20%7B%0A%20%20%20%20let%20c%20%3D%20RGBColor.Green(-100)%0A%20%20%20%20let%20cs%20%3D%20match%20(c)%20%7B%0A%20%20%20%20%20%20%20%20case%20Red(r)%20where%20r%20%3C%200%20%3D%3E%20%22Red%20%3D%200%22%0A%20%20%20%20%20%20%20%20case%20Red(r)%20%3D%3E%20%22Red%20%3D%20%24%7Br%7D%22%0A%20%20%20%20%20%20%20%20case%20Green(g)%20where%20g%20%3C%200%20%3D%3E%20%22Green%20%3D%200%22%20%2F%2F%20%E5%8C%B9%E9%85%8D%E6%88%90%E5%8A%9F%0A%20%20%20%20%20%20%20%20case%20Green(g)%20%3D%3E%20%22Green%20%3D%20%24%7Bg%7D%22%0A%20%20%20%20%20%20%20%20case%20Blue(b)%20where%20b%20%3C%200%20%3D%3E%20%22Blue%20%3D%200%22%0A%20%20%20%20%20%20%20%20case%20Blue(b)%20%3D%3E%20%22Blue%20%3D%20%24%7Bb%7D%22%0A%20%20%20%20%7D%0A%20%20%20%20print(cs)%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">enum RGBColor {
+    | Red(Int16) | Green(Int16) | Blue(Int16)
+}
+
+main() {
+    let c = RGBColor.Green(-100)
+    let cs = match (c) {
+        case Red(r) where r &lt; 0 =&gt; &quot;Red = 0&quot;
+        case Red(r) =&gt; &quot;Red = ${r}&quot;
+        case Green(g) where g &lt; 0 =&gt; &quot;Green = 0&quot; // 匹配成功
+        case Green(g) =&gt; &quot;Green = ${g}&quot;
+        case Blue(b) where b &lt; 0 =&gt; &quot;Blue = 0&quot;
+        case Blue(b) =&gt; &quot;Blue = ${b}&quot;
+    }
+    print(cs)
+}</code></pre>
+</div><p>编译执行上述代码，输出结果为：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Bash</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="Green%20%3D%200">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Bash">Green = 0</code></pre>
+</div><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#eff6ff;border-color:#3b82f6"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#3b82f640"><span class="text-lg">ℹ️</span><span class="text-sm font-bold" style="color:#2563eb">NOTE</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p><code>where</code> 就像是&quot;在匹配成功的基础上再加一道检查&quot;——先匹配构造器（比如 <code>Red(r)</code>），再检查条件（比如 <code>where r &lt; 0</code>），双重筛选。</p></div></div><h2 id="529-模式的嵌套组合" style="scroll-margin-top:100px">5.2.9 模式的嵌套组合</h2><p>Tuple 模式和 enum 模式可以<strong>嵌套</strong>任意模式。下面的代码展示了不同模式嵌套组合使用：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="enum%20TimeUnit%20%7B%0A%20%20%20%20%7C%20Year(UInt64)%0A%20%20%20%20%7C%20Month(UInt64)%0A%7D%0A%0Aenum%20Command%20%7B%0A%20%20%20%20%7C%20SetTimeUnit(TimeUnit)%0A%20%20%20%20%7C%20GetTimeUnit%0A%20%20%20%20%7C%20Quit%0A%7D%0A%0Amain()%20%7B%0A%20%20%20%20let%20command%20%3D%20(SetTimeUnit(Year(2022))%2C%20SetTimeUnit(Year(2024)))%0A%20%20%20%20match%20(command)%20%7B%0A%20%20%20%20%20%20%20%20case%20(SetTimeUnit(Year(year))%2C%20_)%20%3D%3E%20println(%22Set%20year%20%24%7Byear%7D%22)%20%20%20%2F%2F%20%E5%8C%B9%E9%85%8D%E6%88%90%E5%8A%9F%0A%20%20%20%20%20%20%20%20case%20(_%2C%20SetTimeUnit(Month(month)))%20%3D%3E%20println(%22Set%20month%20%24%7Bmonth%7D%22)%0A%20%20%20%20%20%20%20%20case%20_%20%3D%3E%20()%0A%20%20%20%20%7D%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">enum TimeUnit {
+    | Year(UInt64)
+    | Month(UInt64)
+}
+
+enum Command {
+    | SetTimeUnit(TimeUnit)
+    | GetTimeUnit
+    | Quit
+}
+
+main() {
+    let command = (SetTimeUnit(Year(2022)), SetTimeUnit(Year(2024)))
+    match (command) {
+        case (SetTimeUnit(Year(year)), _) =&gt; println(&quot;Set year ${year}&quot;)   // 匹配成功
+        case (_, SetTimeUnit(Month(month))) =&gt; println(&quot;Set month ${month}&quot;)
+        case _ =&gt; ()
+    }
+}</code></pre>
+</div><p>编译并执行上述代码，输出结果为：</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Bash</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="Set%20year%202022">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Bash">Set year 2022</code></pre>
+</div><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#f0fdf4;border-color:#22c55e"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#22c55e40"><span class="text-lg">💡</span><span class="text-sm font-bold" style="color:#16a34a">TIP</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p>嵌套组合就像一个&quot;俄罗斯套娃&quot;——大模式里面套小模式，层层递进匹配。上面的 <code>(SetTimeUnit(Year(year)), _)</code> 就是一个两层嵌套：先匹配 tuple，再匹配 enum，再匹配常量。</p></div></div><hr>
+<h2 id="5210-模式的-refutability可反驳性" style="scroll-margin-top:100px">5.2.10 模式的 Refutability（可反驳性）</h2><p>模式可以分为两类：</p><div class="table-scroll-wrapper">
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>含义</th>
+<th>类比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>refutable 模式</strong></td>
+<td>有可能和待匹配值<strong>不匹配</strong></td>
+<td>&quot;这个人是穿红衣服的吗？&quot;——不一定</td>
+</tr>
+<tr>
+<td><strong>irrefutable 模式</strong></td>
+<td><strong>总是</strong>可以和待匹配值匹配</td>
+<td>&quot;这里有个人吗？&quot;——肯定有</td>
+</tr>
+</tbody>
+</table>
+</div><h3 id="常量模式-refutable" style="scroll-margin-top:100px">常量模式 — refutable</h3><p>常量模式是 <strong>refutable</strong> 模式。例如，下例中第一个 case 中的 <code>1</code> 和第二个 case 中的 <code>2</code> 都有可能和 <code>x</code> 的值不相等。</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20constPat(x%3A%20Int64)%20%7B%0A%20%20%20%20match%20(x)%20%7B%0A%20%20%20%20%20%20%20%20case%201%20%3D%3E%20%22one%22%0A%20%20%20%20%20%20%20%20case%202%20%3D%3E%20%22two%22%0A%20%20%20%20%20%20%20%20case%20_%20%3D%3E%20%22_%22%0A%20%20%20%20%7D%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func constPat(x: Int64) {
+    match (x) {
+        case 1 =&gt; &quot;one&quot;
+        case 2 =&gt; &quot;two&quot;
+        case _ =&gt; &quot;_&quot;
+    }
+}</code></pre>
+</div><h3 id="通配符模式-irrefutable" style="scroll-margin-top:100px">通配符模式 — irrefutable</h3><p>通配符模式是 <strong>irrefutable</strong> 模式。例如，下例中无论 <code>x</code> 的值是多少，<code>_</code> 总能和其匹配。</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20wildcardPat(x%3A%20Int64)%20%7B%0A%20%20%20%20match%20(x)%20%7B%0A%20%20%20%20%20%20%20%20case%20_%20%3D%3E%20%22_%22%0A%20%20%20%20%7D%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func wildcardPat(x: Int64) {
+    match (x) {
+        case _ =&gt; &quot;_&quot;
+    }
+}</code></pre>
+</div><h3 id="绑定模式-irrefutable" style="scroll-margin-top:100px">绑定模式 — irrefutable</h3><p>绑定模式是 <strong>irrefutable</strong> 模式。例如，下例中无论 <code>x</code> 的值是多少，绑定模式 <code>a</code> 总能和其匹配。</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20varPat(x%3A%20Int64)%20%7B%0A%20%20%20%20match%20(x)%20%7B%0A%20%20%20%20%20%20%20%20case%20a%20%3D%3E%20%22x%20%3D%20%24%7Ba%7D%22%0A%20%20%20%20%7D%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func varPat(x: Int64) {
+    match (x) {
+        case a =&gt; &quot;x = ${a}&quot;
+    }
+}</code></pre>
+</div><h3 id="tuple-模式-取决于内部模式" style="scroll-margin-top:100px">Tuple 模式 — 取决于内部模式</h3><p>Tuple 模式是 <strong>irrefutable</strong> 模式，当且仅当其包含的每个模式都是 irrefutable 模式。</p><p>例如，下例中 <code>(1, 2)</code> 和 <code>(a, 2)</code> 都有可能和 <code>x</code> 的值不匹配，所以它们是 <strong>refutable</strong> 模式；而 <code>(a, b)</code> 可以匹配任何 <code>x</code> 的值，所以它是 <strong>irrefutable</strong> 模式。</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="func%20tuplePat(x%3A%20(Int64%2C%20Int64))%20%7B%0A%20%20%20%20match%20(x)%20%7B%0A%20%20%20%20%20%20%20%20case%20(1%2C%202)%20%3D%3E%20%22(1%2C%202)%22%0A%20%20%20%20%20%20%20%20case%20(a%2C%202)%20%3D%3E%20%22(%24%7Ba%7D%2C%202)%22%0A%20%20%20%20%20%20%20%20case%20(a%2C%20b)%20%3D%3E%20%22(%24%7Ba%7D%2C%20%24%7Bb%7D)%22%0A%20%20%20%20%7D%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">func tuplePat(x: (Int64, Int64)) {
+    match (x) {
+        case (1, 2) =&gt; &quot;(1, 2)&quot;
+        case (a, 2) =&gt; &quot;(${a}, 2)&quot;
+        case (a, b) =&gt; &quot;(${a}, ${b})&quot;
+    }
+}</code></pre>
+</div><h3 id="类型模式-refutable" style="scroll-margin-top:100px">类型模式 — refutable</h3><p>类型模式是 <strong>refutable</strong> 模式。例如，下例中（假设 Base 是 Derived 的父类，并且 Base 实现了接口 I），<code>x</code> 的运行时类型有可能既不是 Base 也不是 Derived，所以 <code>a: Derived</code> 和 <code>b: Base</code> 均是 refutable 模式。</p><div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="interface%20I%20%7B%7D%0A%0Aopen%20class%20Base%20%3C%3A%20I%20%7B%7D%0A%0Aclass%20Derived%20%3C%3A%20Base%20%7B%7D%0A%0Afunc%20typePat(x%3A%20I)%20%7B%0A%20%20%20%20match%20(x)%20%7B%0A%20%20%20%20%20%20%20%20case%20a%3A%20Derived%20%3D%3E%20%22Derived%22%0A%20%20%20%20%20%20%20%20case%20b%3A%20Base%20%3D%3E%20%22Base%22%0A%20%20%20%20%20%20%20%20case%20_%20%3D%3E%20%22Other%22%0A%20%20%20%20%7D%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">interface I {}
+
+open class Base &lt;: I {}
+
+class Derived &lt;: Base {}
+
+func typePat(x: I) {
+    match (x) {
+        case a: Derived =&gt; &quot;Derived&quot;
+        case b: Base =&gt; &quot;Base&quot;
+        case _ =&gt; &quot;Other&quot;
+    }
+}</code></pre>
+</div><h3 id="enum-模式-取决于构造器个数" style="scroll-margin-top:100px">Enum 模式 — 取决于构造器个数</h3><p>Enum 模式是 <strong>irrefutable</strong> 模式，当且仅当它对应的 enum 类型中<strong>只有一个有参构造器</strong>，且 enum 模式中包含的其他模式也是 irrefutable 模式。</p><p>例如，对于下例中的 <code>E1</code> 和 <code>E2</code> 定义：</p><ul>
+<li>函数 <code>enumPat1</code> 中的 <code>A(1)</code> 是 refutable 模式，<code>A(a)</code> 是 irrefutable 模式（因为 E1 只有一个构造器 A）</li>
+<li>函数 <code>enumPat2</code> 中的 <code>B(b)</code> 和 <code>C(c)</code> 均是 refutable 模式（因为 E2 有两个构造器）</li>
+</ul>
+<div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
+  <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-red-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-yellow-500 shadow-sm"></span>
+      <span class="w-3 h-3 rounded-full bg-green-500 shadow-sm"></span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-[11px] text-gray-400 font-mono">Cangjie</span>
+      <button class="code-copy-btn flex items-center gap-1 px-2 py-1 text-[11px] text-gray-400 hover:text-white bg-gray-700/50 hover:bg-gray-600/50 rounded-md transition-colors" data-code="enum%20E1%20%7B%0A%20%20%20%20A(Int64)%0A%7D%0A%0Aenum%20E2%20%7B%0A%20%20%20%20B(Int64)%20%7C%20C(Int64)%0A%7D%0A%0Afunc%20enumPat1(x%3A%20E1)%20%7B%0A%20%20%20%20match%20(x)%20%7B%0A%20%20%20%20%20%20%20%20case%20A(1)%20%3D%3E%20%22A(1)%22%0A%20%20%20%20%20%20%20%20case%20A(a)%20%3D%3E%20%22A(%24%7Ba%7D)%22%0A%20%20%20%20%7D%0A%7D%0A%0Afunc%20enumPat2(x%3A%20E2)%20%7B%0A%20%20%20%20match%20(x)%20%7B%0A%20%20%20%20%20%20%20%20case%20B(b)%20%3D%3E%20%22B(%24%7Bb%7D)%22%0A%20%20%20%20%20%20%20%20case%20C(c)%20%3D%3E%20%22C(%24%7Bc%7D)%22%0A%20%20%20%20%7D%0A%7D">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+        </svg>
+        复制
+      </button>
+    </div>
+  </div>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code class="hljs language-Cangjie">enum E1 {
+    A(Int64)
+}
+
+enum E2 {
+    B(Int64) | C(Int64)
+}
+
+func enumPat1(x: E1) {
+    match (x) {
+        case A(1) =&gt; &quot;A(1)&quot;
+        case A(a) =&gt; &quot;A(${a})&quot;
+    }
+}
+
+func enumPat2(x: E2) {
+    match (x) {
+        case B(b) =&gt; &quot;B(${b})&quot;
+        case C(c) =&gt; &quot;C(${c})&quot;
+    }
+}</code></pre>
+</div><div class="alert-box my-4 rounded-xl p-4 border-l-4 shadow-sm" style="background:#eff6ff;border-color:#3b82f6"><div class="flex items-center gap-2 mb-2 pb-2 border-b" style="border-color:#3b82f640"><span class="text-lg">ℹ️</span><span class="text-sm font-bold" style="color:#2563eb">NOTE</span></div><div class="text-sm leading-relaxed" style="color:#334155"><p>refutable（可反驳）和 irrefutable（不可反驳）这两个概念，简单理解就是：这个模式<strong>有没有可能匹配不上</strong>。</p><ul>
+<li><code>_</code> 永远能匹配上 → irrefutable</li>
+<li><code>42</code> 不一定能匹配上 → refutable（因为 x 可能是 43）</li>
+</ul>
+<p>理解这个概念对于写出正确的 match 表达式很有帮助。</p></div></div><hr>
+<h2 id="5211-小结" style="scroll-margin-top:100px">5.2.11 小结</h2><div class="table-scroll-wrapper">
+<table>
+<thead>
+<tr>
+<th>模式类型</th>
+<th>语法</th>
+<th>说明</th>
+<th>可反驳性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>常量模式</td>
+<td><code>42</code>、<code>&quot;hello&quot;</code>、<code>true</code></td>
+<td>匹配具体值</td>
+<td>refutable</td>
+</tr>
+<tr>
+<td>通配符模式</td>
+<td><code>_</code></td>
+<td>匹配任意值</td>
+<td>irrefutable</td>
+</tr>
+<tr>
+<td>绑定模式</td>
+<td><code>id</code></td>
+<td>匹配并将值绑定到变量</td>
+<td>irrefutable</td>
+</tr>
+<tr>
+<td>Tuple 模式</td>
+<td><code>(p1, p2)</code></td>
+<td>匹配 tuple 的每个元素</td>
+<td>取决于内部模式</td>
+</tr>
+<tr>
+<td>类型模式</td>
+<td><code>id: Type</code> 或 <code>_: Type</code></td>
+<td>匹配运行时类型</td>
+<td>refutable</td>
+</tr>
+<tr>
+<td>Enum 模式</td>
+<td><code>C(p1, p2)</code></td>
+<td>匹配 enum 的构造器</td>
+<td>取决于构造器个数</td>
+</tr>
+<tr>
+<td>嵌套组合</td>
+<td>上述模式的任意组合</td>
+<td>层层递进匹配</td>
+<td>取决于最内层模式</td>
+</tr>
+</tbody>
+</table>
+</div></div></article></div><div class="xl:hidden"><button class="fixed top-20 right-4 z-50 w-8 h-8 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border border-blue-100/50 dark:border-gray-700/50 shadow-lg flex items-center justify-center text-blue-500 dark:text-blue-400 text-xs cursor-pointer" title="目录" tabindex="0">📖</button><div class="mt-12 mb-8"><div class="liquid-glass rounded-2xl p-5 space-y-3 max-h-[50vh] overflow-y-auto"><h3 class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">合集</h3><div class="w-full h-px bg-blue-100/50 dark:bg-blue-900/30"></div><nav class="space-y-0.5"><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg font-medium text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▼</span><span>Cangjie</span></span><span class="text-[10px] text-gray-400">37</span></button><div class="overflow-hidden" style="height:auto;opacity:1"><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▶</span><span>1_初识仓颉</span></span><span class="text-[10px] text-gray-400">5</span></button></div><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▶</span><span>2_基本数据类型</span></span><span class="text-[10px] text-gray-400">13</span></button></div><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▶</span><span>3_逻辑控制</span></span><span class="text-[10px] text-gray-400">7</span></button></div><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▶</span><span>4_函数</span></span><span class="text-[10px] text-gray-400">8</span></button></div><div><button class="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors" style="padding-left:24px"><span class="flex items-center gap-1"><span class="text-[10px] w-3">▼</span><span>5_枚举类型和模式匹配</span></span><span class="text-[10px] text-gray-400">4</span></button><div class="overflow-hidden" style="height:0px;opacity:0"><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" style="padding-left:36px" href="/articles/Cangjie/5_枚举类型和模式匹配/0_前言"><span class="text-[10px] text-gray-400 mr-1.5">0<!-- -->.</span>前言</a><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" style="padding-left:36px" href="/articles/Cangjie/5_枚举类型和模式匹配/1_枚举类型"><span class="text-[10px] text-gray-400 mr-1.5">1<!-- -->.</span>枚举类型</a><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 font-medium" style="padding-left:36px" href="/articles/Cangjie/5_枚举类型和模式匹配/2_模式匹配"><span class="text-[10px] text-gray-400 mr-1.5">2<!-- -->.</span>模式匹配</a><a class="block px-3 py-1 text-xs rounded-lg transition-colors truncate text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20" style="padding-left:36px" href="/articles/Cangjie/5_枚举类型和模式匹配/3_额外的模式匹配"><span class="text-[10px] text-gray-400 mr-1.5">3<!-- -->.</span>额外的模式匹配</a></div></div></div></nav></div></div></div></div></div></div><!--$--><!--/$--></main><footer class="border-t border-blue-100/50 dark:border-blue-900/30 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm"><div class="max-w-5xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4"><div class="text-sm text-gray-500 dark:text-gray-400">© <!-- -->2026<!-- --> <!-- -->琉离铟落的小窝<!-- -->. Built with 💙 &amp; Next.js</div><div class="flex items-center gap-4"><a href="https://github.com/liluolinder" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-500 transition-colors text-sm"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg></a><a href="https://gitcode.com/liluolinder" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-500 transition-colors text-sm"><span>GitCode</span></a><a href="mailto:liluolinder@qq.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-blue-500 transition-colors text-sm"><span>Email</span></a></div></div></footer><div class="fixed inset-0 pointer-events-none z-40"></div><div class="fixed bottom-6 left-6 z-50 flex items-center gap-1 px-2 py-1.5 rounded-full bg-white/40 dark:bg-gray-800/50 backdrop-blur-xl border border-white/50 dark:border-gray-700/40 shadow-lg cursor-grab active:cursor-grabbing select-none" draggable="false" style="-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:none"><button class="w-8 h-8 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-white/40 dark:hover:bg-white/10 transition-colors" title="背景设置"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></button></div><script src="/_next/static/chunks/10qk6v6416kh8.js" id="_R_" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:I[59188,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"BackgroundProvider\"]\n3:I[57715,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"BackgroundWrapper\"]\n4:I[3374,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"Header\"]\n5:I[39756,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"default\"]\n6:I[37457,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"default\"]\n7:I[58234,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"Footer\"]\n8:I[46133,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"BackgroundToggle\"]\na:I[97367,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"OutletBoundary\"]\nb:\"$Sreact.suspense\"\ne:I[97367,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"ViewportBoundary\"]\n10:I[97367,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"MetadataBoundary\"]\n12:I[68027,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"default\",1]\n:HL[\"/_next/static/chunks/2e9j017mspeav.css\",\"style\"]\n:HC[\"/\",\"\"]\n"])</script><script>self.__next_f.push([1,"0:{\"P\":null,\"c\":[\"\",\"articles\",\"Cangjie\",\"5_%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E5%92%8C%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D\",\"2_%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D\"],\"q\":\"\",\"i\":false,\"f\":[[[\"\",{\"children\":[\"(public)\",{\"children\":[\"articles\",{\"children\":[[\"slug\",\"Cangjie/5_%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E5%92%8C%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/2_%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D\",\"c\",null],{\"children\":[\"__PAGE__\",{}]}]}]}]},\"$undefined\",\"$undefined\",16],[[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/2e9j017mspeav.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/0o--8oop24u_f.js\",\"async\":true,\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-1\",{\"src\":\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"async\":true,\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-2\",{\"src\":\"/_next/static/chunks/0jubty45h__ir.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"zh-CN\",\"suppressHydrationWarning\":true,\"children\":[\"$\",\"body\",null,{\"className\":\"min-h-screen flex flex-col text-gray-900 dark:text-gray-100 font-sans\",\"children\":[\"$\",\"$L2\",null,{\"children\":[[\"$\",\"$L3\",null,{}],[\"$\",\"$L4\",null,{}],[\"$\",\"main\",null,{\"className\":\"flex-1\",\"children\":[\"$\",\"$L5\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L6\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":404}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]}],[\"$\",\"$L7\",null,{}],[\"$\",\"$L8\",null,{}]]}]}]}]]}],{\"children\":[[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L5\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L6\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":\"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:style\",\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":\"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:1:props:style\",\"children\":404}],[\"$\",\"div\",null,{\"style\":\"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:2:props:style\",\"children\":[\"$\",\"h2\",null,{\"style\":\"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:2:props:children:props:style\",\"children\":\"This page could not be found.\"}]}]]}]}]],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],{\"children\":[[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L5\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L6\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],{\"children\":[[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L5\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L6\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],{\"children\":[[\"$\",\"$1\",\"c\",{\"children\":[\"$L9\",[[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/0g4o6d4sifcpo.js\",\"async\":true,\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-1\",{\"src\":\"/_next/static/chunks/1ssz3eabjrzaj.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"$La\",null,{\"children\":[\"$\",\"$b\",null,{\"name\":\"Next.MetadataOutlet\",\"children\":\"$@c\"}]}]]}],{},null,false,null]},null,false,\"$@d\"]},null,false,\"$@d\"]},null,false,\"$@d\"]},null,false,null],[\"$\",\"$1\",\"h\",{\"children\":[null,[\"$\",\"$Le\",null,{\"children\":\"$Lf\"}],[\"$\",\"div\",null,{\"hidden\":true,\"children\":[\"$\",\"$L10\",null,{\"children\":[\"$\",\"$b\",null,{\"name\":\"Next.Metadata\",\"children\":\"$L11\"}]}]}],null]}],false]],\"m\":\"$undefined\",\"G\":[\"$12\",[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/2e9j017mspeav.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]]],\"S\":true,\"h\":null,\"s\":\"$undefined\",\"l\":\"$undefined\",\"p\":\"$undefined\",\"d\":\"$undefined\",\"b\":\"cr6T9KQahRiE4c5A_XrIV\"}\n"])</script><script>self.__next_f.push([1,"13:[]\nd:\"$W13\"\n"])</script><script>self.__next_f.push([1,"14:I[23597,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\",\"/_next/static/chunks/0g4o6d4sifcpo.js\",\"/_next/static/chunks/1ssz3eabjrzaj.js\"],\"TocSidebar\"]\n15:T49c5,"])</script><script>self.__next_f.push([1,"\n## 5.2.1 什么是模式？\n\n对于包含匹配值的 `match` 表达式，`case` 之后支持哪些\"模式\"决定了 `match` 表达式的表达能力。\n\n**模式**就是\"你想匹配的值长什么样\"——它可以是一个具体的值、一个通配符、一个变量绑定，也可以是更复杂的组合。\n\n\u003e [!TIP]\n\u003e 模式就像是\"寻人启事\"上的描述：\n\u003e - 常量模式：\"找一个叫张三的人\"——具体指定\n\u003e - 通配符模式：\"找一个人\"——谁都行\n\u003e - 绑定模式：\"找一个人，记下他的名字\"——匹配的同时把值存起来\n\u003e\n\u003e 仓颉支持以下几种模式：**常量模式、通配符模式、绑定模式、tuple 模式、类型模式、enum 模式**，还可以嵌套组合使用。\n\n---\n\n## 5.2.2 常量模式\n\n常量模式可以是整数字面量、浮点数字面量、字符字面量、布尔字面量、字符串字面量（不支持字符串插值）、Unit 字面量。\n\n在包含匹配值的 match 表达式中使用常量模式时，要求常量模式表示的值的类型与待匹配值的类型相同，匹配成功的条件是待匹配的值与常量模式表示的值相等。\n\n下面的例子中，根据 `score` 的值（假设 score 只能取 0 到 100 间被 10 整除的值），输出考试成绩的等级：\n\n```Cangjie\nmain() {\n    let score = 90\n    let level = match (score) {\n        case 0 | 10 | 20 | 30 | 40 | 50 =\u003e \"D\"\n        case 60 =\u003e \"C\"\n        case 70 | 80 =\u003e \"B\"\n        case 90 | 100 =\u003e \"A\" // 匹配成功\n        case _ =\u003e \"Not a valid score\"\n    }\n    println(level)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nA\n```\n\n### Rune 类型的常量模式\n\n在模式匹配的目标是静态类型为 `Rune` 的值时，`Rune` 字面量和单字符字符串字面量都可用于表示 `Rune` 类型字面量的常量模式。\n\n```Cangjie\nfunc translate(n: Rune) {\n    match (n) {\n        case \"A\" =\u003e 1\n        case \"B\" =\u003e 2\n        case \"C\" =\u003e 3\n        case _ =\u003e -1\n    }\n}\n\nmain() {\n    println(translate(r\"C\"))\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\n3\n```\n\n### Byte 类型的常量模式\n\n在模式匹配的目标是静态类型为 `Byte` 的值时，一个表示 ASCII 字符的字符串字面量可用于表示 `Byte` 类型字面量的常量模式。\n\n```Cangjie\nfunc translate(n: Byte) {\n    match (n) {\n        case \"1\" =\u003e 1\n        case \"2\" =\u003e 2\n        case \"3\" =\u003e 3\n        case _ =\u003e -1\n    }\n}\n\nmain() {\n    println(translate(51)) // UInt32(r'3') == 51\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\n3\n```\n\n---\n\n## 5.2.3 通配符模式\n\n通配符模式使用下划线 `_` 表示，可以匹配**任意值**。\n\n通配符模式通常作为最后一个 `case` 中的模式，用来匹配其他 `case` 未覆盖到的情况。就像上面的常量模式例子中，最后一个 `case` 使用 `_` 来匹配无效的 score 值。\n\n```Cangjie\nfunc wildcardPat(x: Int64) {\n    match (x) {\n        case _ =\u003e \"_\"   // 不管 x 是什么值，都能匹配\n    }\n}\n```\n\n\u003e [!TIP]\n\u003e `_` 就像\"来者不拒\"——不管传进来什么值，我都要。\n\n---\n\n## 5.2.4 绑定模式\n\n绑定模式使用 `id` 表示，`id` 是一个合法的标识符。与通配符模式相比，绑定模式同样可以匹配任意值，但绑定模式会将匹配到的值与 `id` 进行绑定，在 `=\u003e` 之后可以通过 `id` 访问其绑定的值。\n\n下面的例子中，最后一个 `case` 中使用了绑定模式。其中，变量 `n` 属于 id 标识，用于绑定非 0 值：\n\n```Cangjie\nmain() {\n    let x = -10\n    let y = match (x) {\n        case 0 =\u003e \"zero\"\n        case n =\u003e \"x is not zero and x = ${n}\" // 匹配成功\n    }\n    println(y)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nx is not zero and x = -10\n```\n\n\u003e [!NOTE]\n\u003e 绑定模式就像是\"抓住它并贴上标签\"——`case n =\u003e` 的意思是\"无论值是什么，把它叫作 `n`\"。\n\n### 绑定模式的限制\n\n使用 `|` 连接多个模式时**不能使用**绑定模式，也不可嵌套出现在其他模式中，否则会报错：\n\n```Cangjie\nmain() {\n    let opt = Some(0)\n    match (opt) {\n        case x | x =\u003e {} // Error, 不能在 | 连接的模式中引入变量\n        case Some(x) | Some(x) =\u003e {} // Error, 不能在 | 连接的模式中引入变量\n        case x: Int64 | x: String =\u003e {} // Error, 不能在 | 连接的模式中引入变量\n    }\n}\n```\n\n绑定模式 id 相当于新定义了一个名为 id 的**不可变变量**（其作用域从引入处开始到该 case 结尾处），因此在 `=\u003e` 之后无法对 id 进行修改：\n\n```Cangjie\nmain() {\n    let x = -10\n    let y = match (x) {\n        case 0 =\u003e \"zero\"\n        case n =\u003e\n            n = n + 0 // Error, 'n' 不可修改\n            \"x is not zero\"\n    }\n    println(y)\n}\n```\n\n对于每个 case 分支，`=\u003e` 之后变量作用域级别与 case 后 `=\u003e` 前引入的变量作用域级别相同，在 `=\u003e` 之后再次引入相同名字会触发重定义错误：\n\n```Cangjie\nmain() {\n    let x = -10\n    let y = match (x) {\n        case 0 =\u003e \"zero\"\n        case n =\u003e\n            let n = 0 // Error, 重复定义\n            println(n)\n            \"x is not zero\"\n    }\n    println(y)\n}\n```\n\n### 绑定模式 vs enum 构造器\n\n当模式的 `identifier` 为 **enum 构造器**时，该模式会被当成 enum 模式进行匹配，而不是绑定模式：\n\n```Cangjie\nenum RGBColor {\n    | Red | Green | Blue\n}\n\nmain() {\n    let x = Red\n    let y = match (x) {\n        case Red =\u003e \"red\"   // 这里的 Red 是 enum 模式，不是绑定模式\n        case _ =\u003e \"not red\"\n    }\n    println(y)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nred\n```\n\n\u003e [!CAUTION]\n\u003e 如果标识符同时也是 enum 的构造器名，编译器优先将其视为 enum 模式。\n\n---\n\n## 5.2.5 Tuple 模式\n\nTuple 模式用于 **tuple 值**的匹配，它的定义和 tuple 字面量类似：`(p_1, p_2, ..., p_n)`，区别在于这里的 `p_1` 到 `p_n`（n 大于等于 2）是**模式**（可以是本章节中介绍的任何模式，多个模式间使用逗号分隔）而不是表达式。\n\n例如：\n- `(1, 2, 3)` 是一个包含三个常量模式的 tuple 模式\n- `(x, y, _)` 是一个包含两个绑定模式、一个通配符模式的 tuple 模式\n\n给定一个 tuple 值 `tv` 和一个 tuple 模式 `tp`，当且仅当 `tv` 每个位置处的值均能与 `tp` 中对应位置处的模式相匹配，才称 `tp` 能匹配 `tv`。\n\n```Cangjie\nmain() {\n    let tv = (\"Alice\", 24)\n    let s = match (tv) {\n        case (\"Bob\", age) =\u003e \"Bob is ${age} years old\"\n        case (\"Alice\", age) =\u003e \"Alice is ${age} years old\" // 匹配成功，\"Alice\" 是常量模式，'age' 是绑定模式\n        case (name, 100) =\u003e \"${name} is 100 years old\"\n        case (_, _) =\u003e \"someone\"\n    }\n    println(s)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nAlice is 24 years old\n```\n\n\u003e [!TIP]\n\u003e Tuple 模式让你可以**同时匹配多个值**，就像用筛子筛东西——每个位置都要对上。\n\n同一个 tuple 模式中**不允许**引入多个名称相同的绑定模式：\n\n```Cangjie\nmain() {\n    let tv = (\"Alice\", 24)\n    let s = match (tv) {\n        case (\"Bob\", age) =\u003e \"Bob is ${age} years old\"\n        case (\"Alice\", age) =\u003e \"Alice is ${age} years old\"\n        case (name, 100) =\u003e \"${name} is 100 years old\"\n        case (x, x) =\u003e \"someone\" // Error, 不能引入同名的绑定模式\n    }\n    println(s)\n}\n```\n\n---\n\n## 5.2.6 类型模式\n\n类型模式用于判断一个值的**运行时类型**是否是某个类型的子类型。类型模式有两种形式：\n- `_: Type`（嵌套一个通配符模式 `_`）\n- `id: Type`（嵌套一个绑定模式 `id`）\n\n区别是后者会发生变量绑定，而前者不会。\n\n对于待匹配值 `v` 和类型模式 `id: Type`（或 `_: Type`）：\n1. 首先判断 `v` 的运行时类型是否是 `Type` 的子类型\n2. 若成立则视为匹配成功，否则视为匹配失败\n3. 如匹配成功，则将 `v` 的类型转换为 `Type` 并与 `id` 进行绑定（对于 `_: Type`，不存在绑定这一操作）\n\n假设有如下两个类，`Base` 和 `Derived`，并且 `Derived` 是 `Base` 的子类：\n\n```Cangjie\nopen class Base {\n    var a: Int64\n    public init() {\n        a = 10\n    }\n}\n\nclass Derived \u003c: Base {\n    public init() {\n        a = 20\n    }\n}\n```\n\n下面的代码展示了使用类型模式并**匹配成功**的例子：\n\n```Cangjie\nfunc test1() {\n    var d = Derived()\n    var r = match (d) {\n        case b: Base =\u003e b.a // 匹配成功：Derived 是 Base 的子类\n        case _ =\u003e 0\n    }\n    println(\"r = ${r}\")\n}\n```\n\n下面的代码展示了使用类型模式但**匹配失败**的例子：\n\n```Cangjie\nfunc test2() {\n    var b = Base()\n    var r = match (b) {\n        case d: Derived =\u003e d.a // 类型模式匹配失败：Base 不是 Derived 的子类\n        case _ =\u003e 0            // 匹配成功\n    }\n    println(\"r = ${r}\")\n}\n\nmain() {\n    test1()\n    test2()\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nr = 20\nr = 0\n```\n\n\u003e [!TIP]\n\u003e 类型模式就像\"检查身份证\"——看看这个人的实际身份是不是你期待的那样。`b: Base` 表示\"如果 b 实际上是 Base 类型（或其子类），就把它当作 Base 来用\"。\n\n---\n\n## 5.2.7 Enum 模式\n\nEnum 模式用于匹配 **enum 类型**的实例，它的定义和 enum 的构造器类似：\n- 无参构造器：`C`\n- 有参构造器：`C(p_1, p_2, ..., p_n)`\n\n构造器的**类型前缀可以省略**。\n\n例如：\n- `Some(1)` 是一个包含一个常量模式的 enum 模式\n- `Some(x)` 是一个包含一个绑定模式的 enum 模式\n\n给定一个 enum 实例 `ev` 和一个 enum 模式 `ep`，当且仅当 `ev` 的构造器名字和 `ep` 的构造器名字相同，且 `ev` 参数列表中每个位置处的值均能与 `ep` 中对应位置处的模式相匹配，才称 `ep` 能匹配 `ev`。\n\n```Cangjie\nenum TimeUnit {\n    | Year(UInt64)\n    | Month(UInt64)\n}\n\nmain() {\n    let x = Year(2)\n    let s = match (x) {\n        case Year(n) =\u003e \"x has ${n * 12} months\" // 匹配成功\n        case TimeUnit.Month(n) =\u003e \"x has ${n} months\"\n    }\n    println(s)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nx has 24 months\n```\n\n### 多个 enum 模式用 `|` 连接\n\n当使用 `|` 连接多个 enum 模式时，每个模式必须独立且**不能引入新的变量**。这是因为 `|` 表示\"或\"的关系，而变量的引入需要明确的上下文，不能在多个模式之间共享。\n\n```Cangjie\nenum TimeUnit {\n    | Year(UInt64)\n    | Month(UInt64)\n}\n\nmain() {\n    let x = Year(2)\n    let s = match (x) {\n        case Year(5) =\u003e \"1:OK\"\n        case Month(m) =\u003e \"2:OK\"\n        case Year(0) | Year(1) | Month(_) =\u003e \"3:OK\"\n        case Year(_) =\u003e \"4:OK\"\n        case Year(2) | Month(m) =\u003e \"5:invalid\" // Error, | 连接的模式中不能引入变量\n        case Year(n: UInt64) | Month(n: UInt64) =\u003e \"6:invalid\" // Error, | 连接的模式中不能引入变量\n    }\n    println(s)\n}\n```\n\n上述示例中，第二个 case 引入了一个新变量 `m`，但没有使用 `|` 连接其他模式，故合法。\n\n### 穷尽性检查\n\n使用 match 表达式匹配 enum 值时，要求 case 之后的模式要覆盖待匹配 enum 类型中的**所有构造器**，如果未做到完全覆盖，编译器将报错：\n\n```Cangjie\nenum RGBColor {\n    | Red | Green | Blue\n}\n\nmain() {\n    let c = Green\n    let cs = match (c) { // Error, 没有覆盖 RGBColor 的所有构造器\n        case Red =\u003e \"Red\"\n        case Green =\u003e \"Green\"\n    }\n    println(cs)\n}\n```\n\n可以通过加上 `case Blue` 来实现完全覆盖，也可以在 match 表达式的最后通过使用 `case _` 来覆盖其他 case 未覆盖的情况：\n\n```Cangjie\nenum RGBColor {\n    | Red | Green | Blue\n}\n\nmain() {\n    let c = Blue\n    let cs = match (c) {\n        case Red =\u003e \"Red\"\n        case Green =\u003e \"Green\"\n        case _ =\u003e \"Other\" // 匹配成功\n    }\n    println(cs)\n}\n```\n\n上述代码的执行结果为：\n\n```Bash\nOther\n```\n\n---\n\n## 5.2.8 模式守卫（pattern guard）\n\n在 `case` 分支的模式之后，可以使用 **pattern guard（模式守卫）** 进一步对匹配出来的结果进行判断，此为可选内容。\n\npattern guard 表示本条 case 匹配成功后额外需要满足的条件，其使用 `where cond`（语法格式）表示，要求表达式 `cond` 的类型为 `Bool`。\n\nmatch 表达式执行时，会依次将 match 之后的表达式与每个 case 中的模式进行匹配。如果有 pattern guard，需要 `where` 之后的表达式的值为 `true`；如果 case 中有多个由 `|` 连接的模式，只要待匹配值和其中一个模式匹配则认为匹配成功。一旦匹配成功，将执行 `=\u003e` 之后的代码，然后退出 match 表达式的执行，这意味着不会再去匹配它之后的 case。如果匹配不成功，会继续与它之后的 case 中的模式进行匹配，直到匹配成功。match 表达式可以保证一定存在匹配的 case 分支。\n\n在下面的例子中，使用到了 enum 模式。当 `RGBColor` 的构造器的参数值大于等于 0 时，输出它们的值；当参数值小于 0 时，即满足第一个 case 的 `where cond`，则认为它们的值等于 0：\n\n```Cangjie\nenum RGBColor {\n    | Red(Int16) | Green(Int16) | Blue(Int16)\n}\n\nmain() {\n    let c = RGBColor.Green(-100)\n    let cs = match (c) {\n        case Red(r) where r \u003c 0 =\u003e \"Red = 0\"\n        case Red(r) =\u003e \"Red = ${r}\"\n        case Green(g) where g \u003c 0 =\u003e \"Green = 0\" // 匹配成功\n        case Green(g) =\u003e \"Green = ${g}\"\n        case Blue(b) where b \u003c 0 =\u003e \"Blue = 0\"\n        case Blue(b) =\u003e \"Blue = ${b}\"\n    }\n    print(cs)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nGreen = 0\n```\n\n\u003e [!NOTE]\n\u003e `where` 就像是\"在匹配成功的基础上再加一道检查\"——先匹配构造器（比如 `Red(r)`），再检查条件（比如 `where r \u003c 0`），双重筛选。\n\n## 5.2.9 模式的嵌套组合\n\nTuple 模式和 enum 模式可以**嵌套**任意模式。下面的代码展示了不同模式嵌套组合使用：\n\n```Cangjie\nenum TimeUnit {\n    | Year(UInt64)\n    | Month(UInt64)\n}\n\nenum Command {\n    | SetTimeUnit(TimeUnit)\n    | GetTimeUnit\n    | Quit\n}\n\nmain() {\n    let command = (SetTimeUnit(Year(2022)), SetTimeUnit(Year(2024)))\n    match (command) {\n        case (SetTimeUnit(Year(year)), _) =\u003e println(\"Set year ${year}\")   // 匹配成功\n        case (_, SetTimeUnit(Month(month))) =\u003e println(\"Set month ${month}\")\n        case _ =\u003e ()\n    }\n}\n```\n\n编译并执行上述代码，输出结果为：\n\n```Bash\nSet year 2022\n```\n\n\u003e [!TIP]\n\u003e 嵌套组合就像一个\"俄罗斯套娃\"——大模式里面套小模式，层层递进匹配。上面的 `(SetTimeUnit(Year(year)), _)` 就是一个两层嵌套：先匹配 tuple，再匹配 enum，再匹配常量。\n\n---\n\n## 5.2.10 模式的 Refutability（可反驳性）\n\n模式可以分为两类：\n\n| 类型 | 含义 | 类比 |\n|------|------|------|\n| **refutable 模式** | 有可能和待匹配值**不匹配** | \"这个人是穿红衣服的吗？\"——不一定 |\n| **irrefutable 模式** | **总是**可以和待匹配值匹配 | \"这里有个人吗？\"——肯定有 |\n\n### 常量模式 — refutable\n\n常量模式是 **refutable** 模式。例如，下例中第一个 case 中的 `1` 和第二个 case 中的 `2` 都有可能和 `x` 的值不相等。\n\n```Cangjie\nfunc constPat(x: Int64) {\n    match (x) {\n        case 1 =\u003e \"one\"\n        case 2 =\u003e \"two\"\n        case _ =\u003e \"_\"\n    }\n}\n```\n\n### 通配符模式 — irrefutable\n\n通配符模式是 **irrefutable** 模式。例如，下例中无论 `x` 的值是多少，`_` 总能和其匹配。\n\n```Cangjie\nfunc wildcardPat(x: Int64) {\n    match (x) {\n        case _ =\u003e \"_\"\n    }\n}\n```\n\n### 绑定模式 — irrefutable\n\n绑定模式是 **irrefutable** 模式。例如，下例中无论 `x` 的值是多少，绑定模式 `a` 总能和其匹配。\n\n```Cangjie\nfunc varPat(x: Int64) {\n    match (x) {\n        case a =\u003e \"x = ${a}\"\n    }\n}\n```\n\n### Tuple 模式 — 取决于内部模式\n\nTuple 模式是 **irrefutable** 模式，当且仅当其包含的每个模式都是 irrefutable 模式。\n\n例如，下例中 `(1, 2)` 和 `(a, 2)` 都有可能和 `x` 的值不匹配，所以它们是 **refutable** 模式；而 `(a, b)` 可以匹配任何 `x` 的值，所以它是 **irrefutable** 模式。\n\n```Cangjie\nfunc tuplePat(x: (Int64, Int64)) {\n    match (x) {\n        case (1, 2) =\u003e \"(1, 2)\"\n        case (a, 2) =\u003e \"(${a}, 2)\"\n        case (a, b) =\u003e \"(${a}, ${b})\"\n    }\n}\n```\n\n### 类型模式 — refutable\n\n类型模式是 **refutable** 模式。例如，下例中（假设 Base 是 Derived 的父类，并且 Base 实现了接口 I），`x` 的运行时类型有可能既不是 Base 也不是 Derived，所以 `a: Derived` 和 `b: Base` 均是 refutable 模式。\n\n```Cangjie\ninterface I {}\n\nopen class Base \u003c: I {}\n\nclass Derived \u003c: Base {}\n\nfunc typePat(x: I) {\n    match (x) {\n        case a: Derived =\u003e \"Derived\"\n        case b: Base =\u003e \"Base\"\n        case _ =\u003e \"Other\"\n    }\n}\n```\n\n### Enum 模式 — 取决于构造器个数\n\nEnum 模式是 **irrefutable** 模式，当且仅当它对应的 enum 类型中**只有一个有参构造器**，且 enum 模式中包含的其他模式也是 irrefutable 模式。\n\n例如，对于下例中的 `E1` 和 `E2` 定义：\n- 函数 `enumPat1` 中的 `A(1)` 是 refutable 模式，`A(a)` 是 irrefutable 模式（因为 E1 只有一个构造器 A）\n- 函数 `enumPat2` 中的 `B(b)` 和 `C(c)` 均是 refutable 模式（因为 E2 有两个构造器）\n\n```Cangjie\nenum E1 {\n    A(Int64)\n}\n\nenum E2 {\n    B(Int64) | C(Int64)\n}\n\nfunc enumPat1(x: E1) {\n    match (x) {\n        case A(1) =\u003e \"A(1)\"\n        case A(a) =\u003e \"A(${a})\"\n    }\n}\n\nfunc enumPat2(x: E2) {\n    match (x) {\n        case B(b) =\u003e \"B(${b})\"\n        case C(c) =\u003e \"C(${c})\"\n    }\n}\n```\n\n\u003e [!NOTE]\n\u003e refutable（可反驳）和 irrefutable（不可反驳）这两个概念，简单理解就是：这个模式**有没有可能匹配不上**。\n\u003e\n\u003e - `_` 永远能匹配上 → irrefutable\n\u003e - `42` 不一定能匹配上 → refutable（因为 x 可能是 43）\n\u003e\n\u003e 理解这个概念对于写出正确的 match 表达式很有帮助。\n\n---\n\n## 5.2.11 小结\n\n| 模式类型 | 语法 | 说明 | 可反驳性 |\n|---------|------|------|---------|\n| 常量模式 | `42`、`\"hello\"`、`true` | 匹配具体值 | refutable |\n| 通配符模式 | `_` | 匹配任意值 | irrefutable |\n| 绑定模式 | `id` | 匹配并将值绑定到变量 | irrefutable |\n| Tuple 模式 | `(p1, p2)` | 匹配 tuple 的每个元素 | 取决于内部模式 |\n| 类型模式 | `id: Type` 或 `_: Type` | 匹配运行时类型 | refutable |\n| Enum 模式 | `C(p1, p2)` | 匹配 enum 的构造器 | 取决于构造器个数 |\n| 嵌套组合 | 上述模式的任意组合 | 层层递进匹配 | 取决于最内层模式 |\n"])</script><script>self.__next_f.push([1,"9:[\"$\",\"div\",null,{\"className\":\"min-h-screen pb-16\",\"children\":[[\"$\",\"$L14\",null,{\"content\":\"$15\"}],\"$L16\",\"$L17\"]}]\n"])</script><script>self.__next_f.push([1,"18:I[59537,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\",\"/_next/static/chunks/0g4o6d4sifcpo.js\",\"/_next/static/chunks/1ssz3eabjrzaj.js\"],\"ArticleNavSidebar\"]\n19:I[22016,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\",\"/_next/static/chunks/0g4o6d4sifcpo.js\",\"/_next/static/chunks/1ssz3eabjrzaj.js\"],\"\"]\n1a:I[96438,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\",\"/_next/static/chunks/0g4o6d4sifcpo.js\",\"/_next/static/chunks/1ssz3eabjrzaj.js\"],\"ArticleContent\"]\n"])</script><script>self.__next_f.push([1,"16:[\"$\",\"aside\",null,{\"className\":\"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10\",\"children\":[\"$\",\"div\",null,{\"className\":\"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto\",\"children\":[[\"$\",\"h3\",null,{\"className\":\"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider\",\"children\":\"合集\"}],[\"$\",\"div\",null,{\"className\":\"w-full h-px bg-blue-100/50 dark:bg-blue-900/30\"}],[\"$\",\"$L18\",null,{\"rootPath\":\"Cangjie\",\"rootName\":\"Cangjie\",\"articles\":[{\"slug\":\"Cangjie/1_初识仓颉/0_前言\",\"title\":\"初识仓颉\",\"description\":\"从零开始，走进仓颉的世界\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/1_初识仓颉\",\"sort\":0,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.1875},{\"slug\":\"Cangjie/2_基本数据类型/0_前言\",\"title\":\"前言\",\"description\":\"仓颉的基本数据类型详解\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":0,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.2603},{\"slug\":\"Cangjie/3_逻辑控制/0_前言\",\"title\":\"逻辑控制\",\"description\":\"仓颉的逻辑控制——分支与循环\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/3_逻辑控制\",\"sort\":0,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.6108},{\"slug\":\"Cangjie/4_函数/0_前言\",\"title\":\"前言\",\"description\":\"仓颉的函数——从基础到进阶\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/4_函数\",\"sort\":0,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808712.508},{\"slug\":\"Cangjie/5_枚举类型和模式匹配/0_前言\",\"title\":\"前言\",\"description\":\"仓颉的枚举类型和模式匹配\",\"date\":\"2026-07-02\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/5_枚举类型和模式匹配\",\"sort\":0,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808712.971},{\"slug\":\"Cangjie/1_初识仓颉/1_第一个仓颉程序\",\"title\":\"第一个仓颉程序\",\"description\":\"步入Cangjie的世界，从零运行起你的第一个程序\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/1_初识仓颉\",\"sort\":1,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.2603},{\"slug\":\"Cangjie/2_基本数据类型/1_整数类型\",\"title\":\"整数类型\",\"description\":\"仓颉的基本数据类型\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":1,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.6108},{\"slug\":\"Cangjie/3_逻辑控制/1_if分支结构\",\"title\":\"if分支结构\",\"description\":\"仓颉的逻辑控制——if分支结构\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/3_逻辑控制\",\"sort\":1,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808712.4219},{\"slug\":\"Cangjie/4_函数/1_定义函数\",\"title\":\"定义函数\",\"description\":\"学会编写可复用的代码块\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/4_函数\",\"sort\":1,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808712.971},{\"slug\":\"Cangjie/5_枚举类型和模式匹配/1_枚举类型\",\"title\":\"枚举类型\",\"description\":\"列举一个类型的所有可能取值\",\"date\":\"2026-07-02\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/5_枚举类型和模式匹配\",\"sort\":1,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808713.5557},{\"slug\":\"Cangjie/1_初识仓颉/2_仓颉的注释\",\"title\":\"仓颉的注释\",\"description\":\"为程序解释含义\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/1_初识仓颉\",\"sort\":2,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.2603},{\"slug\":\"Cangjie/2_基本数据类型/2_浮点类型\",\"title\":\"浮点类型\",\"description\":\"仓颉的基本数据类型\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":2,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.6108},{\"slug\":\"Cangjie/3_逻辑控制/2_match分支结构\",\"title\":\"match分支结构\",\"description\":\"仓颉的逻辑控制——match分支结构\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/3_逻辑控制\",\"sort\":2,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808712.4219},{\"slug\":\"Cangjie/4_函数/2_调用函数\",\"title\":\"调用函数\",\"description\":\"学会灵活调用仓颉函数\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/4_函数\",\"sort\":2,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808712.971},{\"slug\":\"Cangjie/5_枚举类型和模式匹配/2_模式匹配\",\"title\":\"模式匹配\",\"description\":\"match 表达式中支持的各种模式\",\"date\":\"2026-07-02\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/5_枚举类型和模式匹配\",\"sort\":2,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808713.5557},{\"slug\":\"Cangjie/1_初识仓颉/3_仓颉的标识符\",\"title\":\"仓颉的标识符\",\"description\":\"为程序元素命名\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/1_初识仓颉\",\"sort\":3,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.2603},{\"slug\":\"Cangjie/2_基本数据类型/3_字符型\",\"title\":\"字符型\",\"description\":\"仓颉的基本数据类型\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":3,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.6108},{\"slug\":\"Cangjie/3_逻辑控制/3_while循环结构\",\"title\":\"while循环结构\",\"description\":\"仓颉的逻辑控制——while循环结构\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/3_逻辑控制\",\"sort\":3,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808712.4219},{\"slug\":\"Cangjie/4_函数/3_函数类型\",\"title\":\"函数类型\",\"description\":\"仓颉中函数也是一等公民\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/4_函数\",\"sort\":3,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808712.971},{\"slug\":\"Cangjie/5_枚举类型和模式匹配/3_额外的模式匹配\",\"title\":\"额外的模式匹配\",\"description\":\"在变量定义和for-in中使用模式\",\"date\":\"2026-07-02\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/5_枚举类型和模式匹配\",\"sort\":3,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808713.5557},{\"slug\":\"Cangjie/1_初识仓颉/4_仓颉的变量\",\"title\":\"仓颉的变量\",\"description\":\"更方便的管理数据\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/1_初识仓颉\",\"sort\":4,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.2603},{\"slug\":\"Cangjie/2_基本数据类型/4_字符串型\",\"title\":\"字符串型\",\"description\":\"仓颉的基本数据类型\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":4,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.6108},{\"slug\":\"Cangjie/3_逻辑控制/4_do-while循环结构\",\"title\":\"do-while循环结构\",\"description\":\"仓颉的逻辑控制——do-while循环结构\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/3_逻辑控制\",\"sort\":4,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808712.4219},{\"slug\":\"Cangjie/4_函数/4_lambda表达式\",\"title\":\"Lambda表达式\",\"description\":\"快速创建匿名函数\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/4_函数\",\"sort\":4,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808712.971},{\"slug\":\"Cangjie/2_基本数据类型/5_布尔类型\",\"title\":\"布尔类型\",\"description\":\"仓颉的基本数据类型\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":5,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.6108},{\"slug\":\"Cangjie/3_逻辑控制/5_for-in循环结构\",\"title\":\"for-in循环结构\",\"description\":\"仓颉的逻辑控制——for-in循环结构\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/3_逻辑控制\",\"sort\":5,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808712.508},{\"slug\":\"Cangjie/4_函数/5_嵌套函数\",\"title\":\"嵌套函数\",\"description\":\"函数内部定义函数\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/4_函数\",\"sort\":5,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808712.971},{\"slug\":\"Cangjie/2_基本数据类型/6_元组类型\",\"title\":\"元组类型\",\"description\":\"仓颉的基本数据类型\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":6,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.6108},{\"slug\":\"Cangjie/3_逻辑控制/6_循环控制\",\"title\":\"循环控制\",\"description\":\"仓颉的逻辑控制——break 与 continue\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/3_逻辑控制\",\"sort\":6,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808712.508},{\"slug\":\"Cangjie/4_函数/6_闭包\",\"title\":\"闭包\",\"description\":\"捕获变量的函数与lambda\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/4_函数\",\"sort\":6,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808712.971},{\"slug\":\"Cangjie/2_基本数据类型/7_数组类型\",\"title\":\"数组类型\",\"description\":\"仓颉的基本数据类型\",\"date\":\"2026-06-25\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":7,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.6108},{\"slug\":\"Cangjie/4_函数/7_函数重载\",\"title\":\"函数重载\",\"description\":\"同名函数的不同形态\",\"date\":\"2026-07-02\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/4_函数\",\"sort\":7,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808712.971},{\"slug\":\"Cangjie/2_基本数据类型/8_区间类型\",\"title\":\"区间类型\",\"description\":\"仓颉的基本数据类型——区间类型\",\"date\":\"2026-06-25\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":8,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.6108},{\"slug\":\"Cangjie/2_基本数据类型/9_Unit类型\",\"title\":\"Unit类型\",\"description\":\"仓颉的基本数据类型——Unit类型\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":9,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.6108},{\"slug\":\"Cangjie/2_基本数据类型/10_nothing类型\",\"title\":\"Nothing类型\",\"description\":\"仓颉的基本数据类型——Nothing类型\",\"date\":\"2026-07-01\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":10,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.6108},{\"slug\":\"Cangjie/2_基本数据类型/11_运算符\",\"title\":\"运算符\",\"description\":\"仓颉的基本运算操作符\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":11,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.6108},{\"slug\":\"Cangjie/2_基本数据类型/12_类型转换\",\"title\":\"类型转换\",\"description\":\"仓颉的基本数据类型——数值类型转换\",\"date\":\"2026-06-24\",\"tags\":[\"Cangjie\",\"入门教程\"],\"collection\":\"Cangjie/2_基本数据类型\",\"sort\":12,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808711.6108}],\"currentSlug\":\"Cangjie/5_枚举类型和模式匹配/2_模式匹配\"}]]}]}]\n"])</script><script>self.__next_f.push([1,"1b:T49c5,"])</script><script>self.__next_f.push([1,"\n## 5.2.1 什么是模式？\n\n对于包含匹配值的 `match` 表达式，`case` 之后支持哪些\"模式\"决定了 `match` 表达式的表达能力。\n\n**模式**就是\"你想匹配的值长什么样\"——它可以是一个具体的值、一个通配符、一个变量绑定，也可以是更复杂的组合。\n\n\u003e [!TIP]\n\u003e 模式就像是\"寻人启事\"上的描述：\n\u003e - 常量模式：\"找一个叫张三的人\"——具体指定\n\u003e - 通配符模式：\"找一个人\"——谁都行\n\u003e - 绑定模式：\"找一个人，记下他的名字\"——匹配的同时把值存起来\n\u003e\n\u003e 仓颉支持以下几种模式：**常量模式、通配符模式、绑定模式、tuple 模式、类型模式、enum 模式**，还可以嵌套组合使用。\n\n---\n\n## 5.2.2 常量模式\n\n常量模式可以是整数字面量、浮点数字面量、字符字面量、布尔字面量、字符串字面量（不支持字符串插值）、Unit 字面量。\n\n在包含匹配值的 match 表达式中使用常量模式时，要求常量模式表示的值的类型与待匹配值的类型相同，匹配成功的条件是待匹配的值与常量模式表示的值相等。\n\n下面的例子中，根据 `score` 的值（假设 score 只能取 0 到 100 间被 10 整除的值），输出考试成绩的等级：\n\n```Cangjie\nmain() {\n    let score = 90\n    let level = match (score) {\n        case 0 | 10 | 20 | 30 | 40 | 50 =\u003e \"D\"\n        case 60 =\u003e \"C\"\n        case 70 | 80 =\u003e \"B\"\n        case 90 | 100 =\u003e \"A\" // 匹配成功\n        case _ =\u003e \"Not a valid score\"\n    }\n    println(level)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nA\n```\n\n### Rune 类型的常量模式\n\n在模式匹配的目标是静态类型为 `Rune` 的值时，`Rune` 字面量和单字符字符串字面量都可用于表示 `Rune` 类型字面量的常量模式。\n\n```Cangjie\nfunc translate(n: Rune) {\n    match (n) {\n        case \"A\" =\u003e 1\n        case \"B\" =\u003e 2\n        case \"C\" =\u003e 3\n        case _ =\u003e -1\n    }\n}\n\nmain() {\n    println(translate(r\"C\"))\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\n3\n```\n\n### Byte 类型的常量模式\n\n在模式匹配的目标是静态类型为 `Byte` 的值时，一个表示 ASCII 字符的字符串字面量可用于表示 `Byte` 类型字面量的常量模式。\n\n```Cangjie\nfunc translate(n: Byte) {\n    match (n) {\n        case \"1\" =\u003e 1\n        case \"2\" =\u003e 2\n        case \"3\" =\u003e 3\n        case _ =\u003e -1\n    }\n}\n\nmain() {\n    println(translate(51)) // UInt32(r'3') == 51\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\n3\n```\n\n---\n\n## 5.2.3 通配符模式\n\n通配符模式使用下划线 `_` 表示，可以匹配**任意值**。\n\n通配符模式通常作为最后一个 `case` 中的模式，用来匹配其他 `case` 未覆盖到的情况。就像上面的常量模式例子中，最后一个 `case` 使用 `_` 来匹配无效的 score 值。\n\n```Cangjie\nfunc wildcardPat(x: Int64) {\n    match (x) {\n        case _ =\u003e \"_\"   // 不管 x 是什么值，都能匹配\n    }\n}\n```\n\n\u003e [!TIP]\n\u003e `_` 就像\"来者不拒\"——不管传进来什么值，我都要。\n\n---\n\n## 5.2.4 绑定模式\n\n绑定模式使用 `id` 表示，`id` 是一个合法的标识符。与通配符模式相比，绑定模式同样可以匹配任意值，但绑定模式会将匹配到的值与 `id` 进行绑定，在 `=\u003e` 之后可以通过 `id` 访问其绑定的值。\n\n下面的例子中，最后一个 `case` 中使用了绑定模式。其中，变量 `n` 属于 id 标识，用于绑定非 0 值：\n\n```Cangjie\nmain() {\n    let x = -10\n    let y = match (x) {\n        case 0 =\u003e \"zero\"\n        case n =\u003e \"x is not zero and x = ${n}\" // 匹配成功\n    }\n    println(y)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nx is not zero and x = -10\n```\n\n\u003e [!NOTE]\n\u003e 绑定模式就像是\"抓住它并贴上标签\"——`case n =\u003e` 的意思是\"无论值是什么，把它叫作 `n`\"。\n\n### 绑定模式的限制\n\n使用 `|` 连接多个模式时**不能使用**绑定模式，也不可嵌套出现在其他模式中，否则会报错：\n\n```Cangjie\nmain() {\n    let opt = Some(0)\n    match (opt) {\n        case x | x =\u003e {} // Error, 不能在 | 连接的模式中引入变量\n        case Some(x) | Some(x) =\u003e {} // Error, 不能在 | 连接的模式中引入变量\n        case x: Int64 | x: String =\u003e {} // Error, 不能在 | 连接的模式中引入变量\n    }\n}\n```\n\n绑定模式 id 相当于新定义了一个名为 id 的**不可变变量**（其作用域从引入处开始到该 case 结尾处），因此在 `=\u003e` 之后无法对 id 进行修改：\n\n```Cangjie\nmain() {\n    let x = -10\n    let y = match (x) {\n        case 0 =\u003e \"zero\"\n        case n =\u003e\n            n = n + 0 // Error, 'n' 不可修改\n            \"x is not zero\"\n    }\n    println(y)\n}\n```\n\n对于每个 case 分支，`=\u003e` 之后变量作用域级别与 case 后 `=\u003e` 前引入的变量作用域级别相同，在 `=\u003e` 之后再次引入相同名字会触发重定义错误：\n\n```Cangjie\nmain() {\n    let x = -10\n    let y = match (x) {\n        case 0 =\u003e \"zero\"\n        case n =\u003e\n            let n = 0 // Error, 重复定义\n            println(n)\n            \"x is not zero\"\n    }\n    println(y)\n}\n```\n\n### 绑定模式 vs enum 构造器\n\n当模式的 `identifier` 为 **enum 构造器**时，该模式会被当成 enum 模式进行匹配，而不是绑定模式：\n\n```Cangjie\nenum RGBColor {\n    | Red | Green | Blue\n}\n\nmain() {\n    let x = Red\n    let y = match (x) {\n        case Red =\u003e \"red\"   // 这里的 Red 是 enum 模式，不是绑定模式\n        case _ =\u003e \"not red\"\n    }\n    println(y)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nred\n```\n\n\u003e [!CAUTION]\n\u003e 如果标识符同时也是 enum 的构造器名，编译器优先将其视为 enum 模式。\n\n---\n\n## 5.2.5 Tuple 模式\n\nTuple 模式用于 **tuple 值**的匹配，它的定义和 tuple 字面量类似：`(p_1, p_2, ..., p_n)`，区别在于这里的 `p_1` 到 `p_n`（n 大于等于 2）是**模式**（可以是本章节中介绍的任何模式，多个模式间使用逗号分隔）而不是表达式。\n\n例如：\n- `(1, 2, 3)` 是一个包含三个常量模式的 tuple 模式\n- `(x, y, _)` 是一个包含两个绑定模式、一个通配符模式的 tuple 模式\n\n给定一个 tuple 值 `tv` 和一个 tuple 模式 `tp`，当且仅当 `tv` 每个位置处的值均能与 `tp` 中对应位置处的模式相匹配，才称 `tp` 能匹配 `tv`。\n\n```Cangjie\nmain() {\n    let tv = (\"Alice\", 24)\n    let s = match (tv) {\n        case (\"Bob\", age) =\u003e \"Bob is ${age} years old\"\n        case (\"Alice\", age) =\u003e \"Alice is ${age} years old\" // 匹配成功，\"Alice\" 是常量模式，'age' 是绑定模式\n        case (name, 100) =\u003e \"${name} is 100 years old\"\n        case (_, _) =\u003e \"someone\"\n    }\n    println(s)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nAlice is 24 years old\n```\n\n\u003e [!TIP]\n\u003e Tuple 模式让你可以**同时匹配多个值**，就像用筛子筛东西——每个位置都要对上。\n\n同一个 tuple 模式中**不允许**引入多个名称相同的绑定模式：\n\n```Cangjie\nmain() {\n    let tv = (\"Alice\", 24)\n    let s = match (tv) {\n        case (\"Bob\", age) =\u003e \"Bob is ${age} years old\"\n        case (\"Alice\", age) =\u003e \"Alice is ${age} years old\"\n        case (name, 100) =\u003e \"${name} is 100 years old\"\n        case (x, x) =\u003e \"someone\" // Error, 不能引入同名的绑定模式\n    }\n    println(s)\n}\n```\n\n---\n\n## 5.2.6 类型模式\n\n类型模式用于判断一个值的**运行时类型**是否是某个类型的子类型。类型模式有两种形式：\n- `_: Type`（嵌套一个通配符模式 `_`）\n- `id: Type`（嵌套一个绑定模式 `id`）\n\n区别是后者会发生变量绑定，而前者不会。\n\n对于待匹配值 `v` 和类型模式 `id: Type`（或 `_: Type`）：\n1. 首先判断 `v` 的运行时类型是否是 `Type` 的子类型\n2. 若成立则视为匹配成功，否则视为匹配失败\n3. 如匹配成功，则将 `v` 的类型转换为 `Type` 并与 `id` 进行绑定（对于 `_: Type`，不存在绑定这一操作）\n\n假设有如下两个类，`Base` 和 `Derived`，并且 `Derived` 是 `Base` 的子类：\n\n```Cangjie\nopen class Base {\n    var a: Int64\n    public init() {\n        a = 10\n    }\n}\n\nclass Derived \u003c: Base {\n    public init() {\n        a = 20\n    }\n}\n```\n\n下面的代码展示了使用类型模式并**匹配成功**的例子：\n\n```Cangjie\nfunc test1() {\n    var d = Derived()\n    var r = match (d) {\n        case b: Base =\u003e b.a // 匹配成功：Derived 是 Base 的子类\n        case _ =\u003e 0\n    }\n    println(\"r = ${r}\")\n}\n```\n\n下面的代码展示了使用类型模式但**匹配失败**的例子：\n\n```Cangjie\nfunc test2() {\n    var b = Base()\n    var r = match (b) {\n        case d: Derived =\u003e d.a // 类型模式匹配失败：Base 不是 Derived 的子类\n        case _ =\u003e 0            // 匹配成功\n    }\n    println(\"r = ${r}\")\n}\n\nmain() {\n    test1()\n    test2()\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nr = 20\nr = 0\n```\n\n\u003e [!TIP]\n\u003e 类型模式就像\"检查身份证\"——看看这个人的实际身份是不是你期待的那样。`b: Base` 表示\"如果 b 实际上是 Base 类型（或其子类），就把它当作 Base 来用\"。\n\n---\n\n## 5.2.7 Enum 模式\n\nEnum 模式用于匹配 **enum 类型**的实例，它的定义和 enum 的构造器类似：\n- 无参构造器：`C`\n- 有参构造器：`C(p_1, p_2, ..., p_n)`\n\n构造器的**类型前缀可以省略**。\n\n例如：\n- `Some(1)` 是一个包含一个常量模式的 enum 模式\n- `Some(x)` 是一个包含一个绑定模式的 enum 模式\n\n给定一个 enum 实例 `ev` 和一个 enum 模式 `ep`，当且仅当 `ev` 的构造器名字和 `ep` 的构造器名字相同，且 `ev` 参数列表中每个位置处的值均能与 `ep` 中对应位置处的模式相匹配，才称 `ep` 能匹配 `ev`。\n\n```Cangjie\nenum TimeUnit {\n    | Year(UInt64)\n    | Month(UInt64)\n}\n\nmain() {\n    let x = Year(2)\n    let s = match (x) {\n        case Year(n) =\u003e \"x has ${n * 12} months\" // 匹配成功\n        case TimeUnit.Month(n) =\u003e \"x has ${n} months\"\n    }\n    println(s)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nx has 24 months\n```\n\n### 多个 enum 模式用 `|` 连接\n\n当使用 `|` 连接多个 enum 模式时，每个模式必须独立且**不能引入新的变量**。这是因为 `|` 表示\"或\"的关系，而变量的引入需要明确的上下文，不能在多个模式之间共享。\n\n```Cangjie\nenum TimeUnit {\n    | Year(UInt64)\n    | Month(UInt64)\n}\n\nmain() {\n    let x = Year(2)\n    let s = match (x) {\n        case Year(5) =\u003e \"1:OK\"\n        case Month(m) =\u003e \"2:OK\"\n        case Year(0) | Year(1) | Month(_) =\u003e \"3:OK\"\n        case Year(_) =\u003e \"4:OK\"\n        case Year(2) | Month(m) =\u003e \"5:invalid\" // Error, | 连接的模式中不能引入变量\n        case Year(n: UInt64) | Month(n: UInt64) =\u003e \"6:invalid\" // Error, | 连接的模式中不能引入变量\n    }\n    println(s)\n}\n```\n\n上述示例中，第二个 case 引入了一个新变量 `m`，但没有使用 `|` 连接其他模式，故合法。\n\n### 穷尽性检查\n\n使用 match 表达式匹配 enum 值时，要求 case 之后的模式要覆盖待匹配 enum 类型中的**所有构造器**，如果未做到完全覆盖，编译器将报错：\n\n```Cangjie\nenum RGBColor {\n    | Red | Green | Blue\n}\n\nmain() {\n    let c = Green\n    let cs = match (c) { // Error, 没有覆盖 RGBColor 的所有构造器\n        case Red =\u003e \"Red\"\n        case Green =\u003e \"Green\"\n    }\n    println(cs)\n}\n```\n\n可以通过加上 `case Blue` 来实现完全覆盖，也可以在 match 表达式的最后通过使用 `case _` 来覆盖其他 case 未覆盖的情况：\n\n```Cangjie\nenum RGBColor {\n    | Red | Green | Blue\n}\n\nmain() {\n    let c = Blue\n    let cs = match (c) {\n        case Red =\u003e \"Red\"\n        case Green =\u003e \"Green\"\n        case _ =\u003e \"Other\" // 匹配成功\n    }\n    println(cs)\n}\n```\n\n上述代码的执行结果为：\n\n```Bash\nOther\n```\n\n---\n\n## 5.2.8 模式守卫（pattern guard）\n\n在 `case` 分支的模式之后，可以使用 **pattern guard（模式守卫）** 进一步对匹配出来的结果进行判断，此为可选内容。\n\npattern guard 表示本条 case 匹配成功后额外需要满足的条件，其使用 `where cond`（语法格式）表示，要求表达式 `cond` 的类型为 `Bool`。\n\nmatch 表达式执行时，会依次将 match 之后的表达式与每个 case 中的模式进行匹配。如果有 pattern guard，需要 `where` 之后的表达式的值为 `true`；如果 case 中有多个由 `|` 连接的模式，只要待匹配值和其中一个模式匹配则认为匹配成功。一旦匹配成功，将执行 `=\u003e` 之后的代码，然后退出 match 表达式的执行，这意味着不会再去匹配它之后的 case。如果匹配不成功，会继续与它之后的 case 中的模式进行匹配，直到匹配成功。match 表达式可以保证一定存在匹配的 case 分支。\n\n在下面的例子中，使用到了 enum 模式。当 `RGBColor` 的构造器的参数值大于等于 0 时，输出它们的值；当参数值小于 0 时，即满足第一个 case 的 `where cond`，则认为它们的值等于 0：\n\n```Cangjie\nenum RGBColor {\n    | Red(Int16) | Green(Int16) | Blue(Int16)\n}\n\nmain() {\n    let c = RGBColor.Green(-100)\n    let cs = match (c) {\n        case Red(r) where r \u003c 0 =\u003e \"Red = 0\"\n        case Red(r) =\u003e \"Red = ${r}\"\n        case Green(g) where g \u003c 0 =\u003e \"Green = 0\" // 匹配成功\n        case Green(g) =\u003e \"Green = ${g}\"\n        case Blue(b) where b \u003c 0 =\u003e \"Blue = 0\"\n        case Blue(b) =\u003e \"Blue = ${b}\"\n    }\n    print(cs)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nGreen = 0\n```\n\n\u003e [!NOTE]\n\u003e `where` 就像是\"在匹配成功的基础上再加一道检查\"——先匹配构造器（比如 `Red(r)`），再检查条件（比如 `where r \u003c 0`），双重筛选。\n\n## 5.2.9 模式的嵌套组合\n\nTuple 模式和 enum 模式可以**嵌套**任意模式。下面的代码展示了不同模式嵌套组合使用：\n\n```Cangjie\nenum TimeUnit {\n    | Year(UInt64)\n    | Month(UInt64)\n}\n\nenum Command {\n    | SetTimeUnit(TimeUnit)\n    | GetTimeUnit\n    | Quit\n}\n\nmain() {\n    let command = (SetTimeUnit(Year(2022)), SetTimeUnit(Year(2024)))\n    match (command) {\n        case (SetTimeUnit(Year(year)), _) =\u003e println(\"Set year ${year}\")   // 匹配成功\n        case (_, SetTimeUnit(Month(month))) =\u003e println(\"Set month ${month}\")\n        case _ =\u003e ()\n    }\n}\n```\n\n编译并执行上述代码，输出结果为：\n\n```Bash\nSet year 2022\n```\n\n\u003e [!TIP]\n\u003e 嵌套组合就像一个\"俄罗斯套娃\"——大模式里面套小模式，层层递进匹配。上面的 `(SetTimeUnit(Year(year)), _)` 就是一个两层嵌套：先匹配 tuple，再匹配 enum，再匹配常量。\n\n---\n\n## 5.2.10 模式的 Refutability（可反驳性）\n\n模式可以分为两类：\n\n| 类型 | 含义 | 类比 |\n|------|------|------|\n| **refutable 模式** | 有可能和待匹配值**不匹配** | \"这个人是穿红衣服的吗？\"——不一定 |\n| **irrefutable 模式** | **总是**可以和待匹配值匹配 | \"这里有个人吗？\"——肯定有 |\n\n### 常量模式 — refutable\n\n常量模式是 **refutable** 模式。例如，下例中第一个 case 中的 `1` 和第二个 case 中的 `2` 都有可能和 `x` 的值不相等。\n\n```Cangjie\nfunc constPat(x: Int64) {\n    match (x) {\n        case 1 =\u003e \"one\"\n        case 2 =\u003e \"two\"\n        case _ =\u003e \"_\"\n    }\n}\n```\n\n### 通配符模式 — irrefutable\n\n通配符模式是 **irrefutable** 模式。例如，下例中无论 `x` 的值是多少，`_` 总能和其匹配。\n\n```Cangjie\nfunc wildcardPat(x: Int64) {\n    match (x) {\n        case _ =\u003e \"_\"\n    }\n}\n```\n\n### 绑定模式 — irrefutable\n\n绑定模式是 **irrefutable** 模式。例如，下例中无论 `x` 的值是多少，绑定模式 `a` 总能和其匹配。\n\n```Cangjie\nfunc varPat(x: Int64) {\n    match (x) {\n        case a =\u003e \"x = ${a}\"\n    }\n}\n```\n\n### Tuple 模式 — 取决于内部模式\n\nTuple 模式是 **irrefutable** 模式，当且仅当其包含的每个模式都是 irrefutable 模式。\n\n例如，下例中 `(1, 2)` 和 `(a, 2)` 都有可能和 `x` 的值不匹配，所以它们是 **refutable** 模式；而 `(a, b)` 可以匹配任何 `x` 的值，所以它是 **irrefutable** 模式。\n\n```Cangjie\nfunc tuplePat(x: (Int64, Int64)) {\n    match (x) {\n        case (1, 2) =\u003e \"(1, 2)\"\n        case (a, 2) =\u003e \"(${a}, 2)\"\n        case (a, b) =\u003e \"(${a}, ${b})\"\n    }\n}\n```\n\n### 类型模式 — refutable\n\n类型模式是 **refutable** 模式。例如，下例中（假设 Base 是 Derived 的父类，并且 Base 实现了接口 I），`x` 的运行时类型有可能既不是 Base 也不是 Derived，所以 `a: Derived` 和 `b: Base` 均是 refutable 模式。\n\n```Cangjie\ninterface I {}\n\nopen class Base \u003c: I {}\n\nclass Derived \u003c: Base {}\n\nfunc typePat(x: I) {\n    match (x) {\n        case a: Derived =\u003e \"Derived\"\n        case b: Base =\u003e \"Base\"\n        case _ =\u003e \"Other\"\n    }\n}\n```\n\n### Enum 模式 — 取决于构造器个数\n\nEnum 模式是 **irrefutable** 模式，当且仅当它对应的 enum 类型中**只有一个有参构造器**，且 enum 模式中包含的其他模式也是 irrefutable 模式。\n\n例如，对于下例中的 `E1` 和 `E2` 定义：\n- 函数 `enumPat1` 中的 `A(1)` 是 refutable 模式，`A(a)` 是 irrefutable 模式（因为 E1 只有一个构造器 A）\n- 函数 `enumPat2` 中的 `B(b)` 和 `C(c)` 均是 refutable 模式（因为 E2 有两个构造器）\n\n```Cangjie\nenum E1 {\n    A(Int64)\n}\n\nenum E2 {\n    B(Int64) | C(Int64)\n}\n\nfunc enumPat1(x: E1) {\n    match (x) {\n        case A(1) =\u003e \"A(1)\"\n        case A(a) =\u003e \"A(${a})\"\n    }\n}\n\nfunc enumPat2(x: E2) {\n    match (x) {\n        case B(b) =\u003e \"B(${b})\"\n        case C(c) =\u003e \"C(${c})\"\n    }\n}\n```\n\n\u003e [!NOTE]\n\u003e refutable（可反驳）和 irrefutable（不可反驳）这两个概念，简单理解就是：这个模式**有没有可能匹配不上**。\n\u003e\n\u003e - `_` 永远能匹配上 → irrefutable\n\u003e - `42` 不一定能匹配上 → refutable（因为 x 可能是 43）\n\u003e\n\u003e 理解这个概念对于写出正确的 match 表达式很有帮助。\n\n---\n\n## 5.2.11 小结\n\n| 模式类型 | 语法 | 说明 | 可反驳性 |\n|---------|------|------|---------|\n| 常量模式 | `42`、`\"hello\"`、`true` | 匹配具体值 | refutable |\n| 通配符模式 | `_` | 匹配任意值 | irrefutable |\n| 绑定模式 | `id` | 匹配并将值绑定到变量 | irrefutable |\n| Tuple 模式 | `(p1, p2)` | 匹配 tuple 的每个元素 | 取决于内部模式 |\n| 类型模式 | `id: Type` 或 `_: Type` | 匹配运行时类型 | refutable |\n| Enum 模式 | `C(p1, p2)` | 匹配 enum 的构造器 | 取决于构造器个数 |\n| 嵌套组合 | 上述模式的任意组合 | 层层递进匹配 | 取决于最内层模式 |\n"])</script><script>self.__next_f.push([1,"17:[\"$\",\"div\",null,{\"className\":\"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4\",\"children\":[\"$\",\"div\",null,{\"className\":\"max-w-4xl mx-auto\",\"children\":[[\"$\",\"$L19\",null,{\"href\":\"/articles\",\"className\":\"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors\",\"children\":\"← 返回文章列表\"}],[\"$\",\"div\",null,{\"className\":\"mb-8\",\"children\":[[\"$\",\"div\",null,{\"className\":\"flex items-center gap-3 mb-3\",\"children\":[[\"$\",\"span\",null,{\"className\":\"text-sm text-gray-600 dark:text-gray-400\",\"children\":\"2026-07-02\"}],[\"$\",\"div\",null,{\"className\":\"flex gap-1.5\",\"children\":[[\"$\",\"span\",\"Cangjie\",{\"className\":\"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400\",\"children\":[\"#\",\"Cangjie\"]}],[\"$\",\"span\",\"入门教程\",{\"className\":\"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400\",\"children\":[\"#\",\"入门教程\"]}]]}]]}],[\"$\",\"h1\",null,{\"className\":\"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight\",\"children\":\"模式匹配\"}],[\"$\",\"p\",null,{\"className\":\"mt-3 text-gray-700 dark:text-gray-300 text-lg\",\"children\":\"match 表达式中支持的各种模式\"}]]}],[\"$\",\"$L1a\",null,{\"content\":\"$1b\"}],\"$L1c\"]}]}]\n"])</script><script>self.__next_f.push([1,"1d:I[28093,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\",\"/_next/static/chunks/0g4o6d4sifcpo.js\",\"/_next/static/chunks/1ssz3eabjrzaj.js\"],\"MobileArticlePanel\"]\n1e:T49c5,"])</script><script>self.__next_f.push([1,"\n## 5.2.1 什么是模式？\n\n对于包含匹配值的 `match` 表达式，`case` 之后支持哪些\"模式\"决定了 `match` 表达式的表达能力。\n\n**模式**就是\"你想匹配的值长什么样\"——它可以是一个具体的值、一个通配符、一个变量绑定，也可以是更复杂的组合。\n\n\u003e [!TIP]\n\u003e 模式就像是\"寻人启事\"上的描述：\n\u003e - 常量模式：\"找一个叫张三的人\"——具体指定\n\u003e - 通配符模式：\"找一个人\"——谁都行\n\u003e - 绑定模式：\"找一个人，记下他的名字\"——匹配的同时把值存起来\n\u003e\n\u003e 仓颉支持以下几种模式：**常量模式、通配符模式、绑定模式、tuple 模式、类型模式、enum 模式**，还可以嵌套组合使用。\n\n---\n\n## 5.2.2 常量模式\n\n常量模式可以是整数字面量、浮点数字面量、字符字面量、布尔字面量、字符串字面量（不支持字符串插值）、Unit 字面量。\n\n在包含匹配值的 match 表达式中使用常量模式时，要求常量模式表示的值的类型与待匹配值的类型相同，匹配成功的条件是待匹配的值与常量模式表示的值相等。\n\n下面的例子中，根据 `score` 的值（假设 score 只能取 0 到 100 间被 10 整除的值），输出考试成绩的等级：\n\n```Cangjie\nmain() {\n    let score = 90\n    let level = match (score) {\n        case 0 | 10 | 20 | 30 | 40 | 50 =\u003e \"D\"\n        case 60 =\u003e \"C\"\n        case 70 | 80 =\u003e \"B\"\n        case 90 | 100 =\u003e \"A\" // 匹配成功\n        case _ =\u003e \"Not a valid score\"\n    }\n    println(level)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nA\n```\n\n### Rune 类型的常量模式\n\n在模式匹配的目标是静态类型为 `Rune` 的值时，`Rune` 字面量和单字符字符串字面量都可用于表示 `Rune` 类型字面量的常量模式。\n\n```Cangjie\nfunc translate(n: Rune) {\n    match (n) {\n        case \"A\" =\u003e 1\n        case \"B\" =\u003e 2\n        case \"C\" =\u003e 3\n        case _ =\u003e -1\n    }\n}\n\nmain() {\n    println(translate(r\"C\"))\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\n3\n```\n\n### Byte 类型的常量模式\n\n在模式匹配的目标是静态类型为 `Byte` 的值时，一个表示 ASCII 字符的字符串字面量可用于表示 `Byte` 类型字面量的常量模式。\n\n```Cangjie\nfunc translate(n: Byte) {\n    match (n) {\n        case \"1\" =\u003e 1\n        case \"2\" =\u003e 2\n        case \"3\" =\u003e 3\n        case _ =\u003e -1\n    }\n}\n\nmain() {\n    println(translate(51)) // UInt32(r'3') == 51\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\n3\n```\n\n---\n\n## 5.2.3 通配符模式\n\n通配符模式使用下划线 `_` 表示，可以匹配**任意值**。\n\n通配符模式通常作为最后一个 `case` 中的模式，用来匹配其他 `case` 未覆盖到的情况。就像上面的常量模式例子中，最后一个 `case` 使用 `_` 来匹配无效的 score 值。\n\n```Cangjie\nfunc wildcardPat(x: Int64) {\n    match (x) {\n        case _ =\u003e \"_\"   // 不管 x 是什么值，都能匹配\n    }\n}\n```\n\n\u003e [!TIP]\n\u003e `_` 就像\"来者不拒\"——不管传进来什么值，我都要。\n\n---\n\n## 5.2.4 绑定模式\n\n绑定模式使用 `id` 表示，`id` 是一个合法的标识符。与通配符模式相比，绑定模式同样可以匹配任意值，但绑定模式会将匹配到的值与 `id` 进行绑定，在 `=\u003e` 之后可以通过 `id` 访问其绑定的值。\n\n下面的例子中，最后一个 `case` 中使用了绑定模式。其中，变量 `n` 属于 id 标识，用于绑定非 0 值：\n\n```Cangjie\nmain() {\n    let x = -10\n    let y = match (x) {\n        case 0 =\u003e \"zero\"\n        case n =\u003e \"x is not zero and x = ${n}\" // 匹配成功\n    }\n    println(y)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nx is not zero and x = -10\n```\n\n\u003e [!NOTE]\n\u003e 绑定模式就像是\"抓住它并贴上标签\"——`case n =\u003e` 的意思是\"无论值是什么，把它叫作 `n`\"。\n\n### 绑定模式的限制\n\n使用 `|` 连接多个模式时**不能使用**绑定模式，也不可嵌套出现在其他模式中，否则会报错：\n\n```Cangjie\nmain() {\n    let opt = Some(0)\n    match (opt) {\n        case x | x =\u003e {} // Error, 不能在 | 连接的模式中引入变量\n        case Some(x) | Some(x) =\u003e {} // Error, 不能在 | 连接的模式中引入变量\n        case x: Int64 | x: String =\u003e {} // Error, 不能在 | 连接的模式中引入变量\n    }\n}\n```\n\n绑定模式 id 相当于新定义了一个名为 id 的**不可变变量**（其作用域从引入处开始到该 case 结尾处），因此在 `=\u003e` 之后无法对 id 进行修改：\n\n```Cangjie\nmain() {\n    let x = -10\n    let y = match (x) {\n        case 0 =\u003e \"zero\"\n        case n =\u003e\n            n = n + 0 // Error, 'n' 不可修改\n            \"x is not zero\"\n    }\n    println(y)\n}\n```\n\n对于每个 case 分支，`=\u003e` 之后变量作用域级别与 case 后 `=\u003e` 前引入的变量作用域级别相同，在 `=\u003e` 之后再次引入相同名字会触发重定义错误：\n\n```Cangjie\nmain() {\n    let x = -10\n    let y = match (x) {\n        case 0 =\u003e \"zero\"\n        case n =\u003e\n            let n = 0 // Error, 重复定义\n            println(n)\n            \"x is not zero\"\n    }\n    println(y)\n}\n```\n\n### 绑定模式 vs enum 构造器\n\n当模式的 `identifier` 为 **enum 构造器**时，该模式会被当成 enum 模式进行匹配，而不是绑定模式：\n\n```Cangjie\nenum RGBColor {\n    | Red | Green | Blue\n}\n\nmain() {\n    let x = Red\n    let y = match (x) {\n        case Red =\u003e \"red\"   // 这里的 Red 是 enum 模式，不是绑定模式\n        case _ =\u003e \"not red\"\n    }\n    println(y)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nred\n```\n\n\u003e [!CAUTION]\n\u003e 如果标识符同时也是 enum 的构造器名，编译器优先将其视为 enum 模式。\n\n---\n\n## 5.2.5 Tuple 模式\n\nTuple 模式用于 **tuple 值**的匹配，它的定义和 tuple 字面量类似：`(p_1, p_2, ..., p_n)`，区别在于这里的 `p_1` 到 `p_n`（n 大于等于 2）是**模式**（可以是本章节中介绍的任何模式，多个模式间使用逗号分隔）而不是表达式。\n\n例如：\n- `(1, 2, 3)` 是一个包含三个常量模式的 tuple 模式\n- `(x, y, _)` 是一个包含两个绑定模式、一个通配符模式的 tuple 模式\n\n给定一个 tuple 值 `tv` 和一个 tuple 模式 `tp`，当且仅当 `tv` 每个位置处的值均能与 `tp` 中对应位置处的模式相匹配，才称 `tp` 能匹配 `tv`。\n\n```Cangjie\nmain() {\n    let tv = (\"Alice\", 24)\n    let s = match (tv) {\n        case (\"Bob\", age) =\u003e \"Bob is ${age} years old\"\n        case (\"Alice\", age) =\u003e \"Alice is ${age} years old\" // 匹配成功，\"Alice\" 是常量模式，'age' 是绑定模式\n        case (name, 100) =\u003e \"${name} is 100 years old\"\n        case (_, _) =\u003e \"someone\"\n    }\n    println(s)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nAlice is 24 years old\n```\n\n\u003e [!TIP]\n\u003e Tuple 模式让你可以**同时匹配多个值**，就像用筛子筛东西——每个位置都要对上。\n\n同一个 tuple 模式中**不允许**引入多个名称相同的绑定模式：\n\n```Cangjie\nmain() {\n    let tv = (\"Alice\", 24)\n    let s = match (tv) {\n        case (\"Bob\", age) =\u003e \"Bob is ${age} years old\"\n        case (\"Alice\", age) =\u003e \"Alice is ${age} years old\"\n        case (name, 100) =\u003e \"${name} is 100 years old\"\n        case (x, x) =\u003e \"someone\" // Error, 不能引入同名的绑定模式\n    }\n    println(s)\n}\n```\n\n---\n\n## 5.2.6 类型模式\n\n类型模式用于判断一个值的**运行时类型**是否是某个类型的子类型。类型模式有两种形式：\n- `_: Type`（嵌套一个通配符模式 `_`）\n- `id: Type`（嵌套一个绑定模式 `id`）\n\n区别是后者会发生变量绑定，而前者不会。\n\n对于待匹配值 `v` 和类型模式 `id: Type`（或 `_: Type`）：\n1. 首先判断 `v` 的运行时类型是否是 `Type` 的子类型\n2. 若成立则视为匹配成功，否则视为匹配失败\n3. 如匹配成功，则将 `v` 的类型转换为 `Type` 并与 `id` 进行绑定（对于 `_: Type`，不存在绑定这一操作）\n\n假设有如下两个类，`Base` 和 `Derived`，并且 `Derived` 是 `Base` 的子类：\n\n```Cangjie\nopen class Base {\n    var a: Int64\n    public init() {\n        a = 10\n    }\n}\n\nclass Derived \u003c: Base {\n    public init() {\n        a = 20\n    }\n}\n```\n\n下面的代码展示了使用类型模式并**匹配成功**的例子：\n\n```Cangjie\nfunc test1() {\n    var d = Derived()\n    var r = match (d) {\n        case b: Base =\u003e b.a // 匹配成功：Derived 是 Base 的子类\n        case _ =\u003e 0\n    }\n    println(\"r = ${r}\")\n}\n```\n\n下面的代码展示了使用类型模式但**匹配失败**的例子：\n\n```Cangjie\nfunc test2() {\n    var b = Base()\n    var r = match (b) {\n        case d: Derived =\u003e d.a // 类型模式匹配失败：Base 不是 Derived 的子类\n        case _ =\u003e 0            // 匹配成功\n    }\n    println(\"r = ${r}\")\n}\n\nmain() {\n    test1()\n    test2()\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nr = 20\nr = 0\n```\n\n\u003e [!TIP]\n\u003e 类型模式就像\"检查身份证\"——看看这个人的实际身份是不是你期待的那样。`b: Base` 表示\"如果 b 实际上是 Base 类型（或其子类），就把它当作 Base 来用\"。\n\n---\n\n## 5.2.7 Enum 模式\n\nEnum 模式用于匹配 **enum 类型**的实例，它的定义和 enum 的构造器类似：\n- 无参构造器：`C`\n- 有参构造器：`C(p_1, p_2, ..., p_n)`\n\n构造器的**类型前缀可以省略**。\n\n例如：\n- `Some(1)` 是一个包含一个常量模式的 enum 模式\n- `Some(x)` 是一个包含一个绑定模式的 enum 模式\n\n给定一个 enum 实例 `ev` 和一个 enum 模式 `ep`，当且仅当 `ev` 的构造器名字和 `ep` 的构造器名字相同，且 `ev` 参数列表中每个位置处的值均能与 `ep` 中对应位置处的模式相匹配，才称 `ep` 能匹配 `ev`。\n\n```Cangjie\nenum TimeUnit {\n    | Year(UInt64)\n    | Month(UInt64)\n}\n\nmain() {\n    let x = Year(2)\n    let s = match (x) {\n        case Year(n) =\u003e \"x has ${n * 12} months\" // 匹配成功\n        case TimeUnit.Month(n) =\u003e \"x has ${n} months\"\n    }\n    println(s)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nx has 24 months\n```\n\n### 多个 enum 模式用 `|` 连接\n\n当使用 `|` 连接多个 enum 模式时，每个模式必须独立且**不能引入新的变量**。这是因为 `|` 表示\"或\"的关系，而变量的引入需要明确的上下文，不能在多个模式之间共享。\n\n```Cangjie\nenum TimeUnit {\n    | Year(UInt64)\n    | Month(UInt64)\n}\n\nmain() {\n    let x = Year(2)\n    let s = match (x) {\n        case Year(5) =\u003e \"1:OK\"\n        case Month(m) =\u003e \"2:OK\"\n        case Year(0) | Year(1) | Month(_) =\u003e \"3:OK\"\n        case Year(_) =\u003e \"4:OK\"\n        case Year(2) | Month(m) =\u003e \"5:invalid\" // Error, | 连接的模式中不能引入变量\n        case Year(n: UInt64) | Month(n: UInt64) =\u003e \"6:invalid\" // Error, | 连接的模式中不能引入变量\n    }\n    println(s)\n}\n```\n\n上述示例中，第二个 case 引入了一个新变量 `m`，但没有使用 `|` 连接其他模式，故合法。\n\n### 穷尽性检查\n\n使用 match 表达式匹配 enum 值时，要求 case 之后的模式要覆盖待匹配 enum 类型中的**所有构造器**，如果未做到完全覆盖，编译器将报错：\n\n```Cangjie\nenum RGBColor {\n    | Red | Green | Blue\n}\n\nmain() {\n    let c = Green\n    let cs = match (c) { // Error, 没有覆盖 RGBColor 的所有构造器\n        case Red =\u003e \"Red\"\n        case Green =\u003e \"Green\"\n    }\n    println(cs)\n}\n```\n\n可以通过加上 `case Blue` 来实现完全覆盖，也可以在 match 表达式的最后通过使用 `case _` 来覆盖其他 case 未覆盖的情况：\n\n```Cangjie\nenum RGBColor {\n    | Red | Green | Blue\n}\n\nmain() {\n    let c = Blue\n    let cs = match (c) {\n        case Red =\u003e \"Red\"\n        case Green =\u003e \"Green\"\n        case _ =\u003e \"Other\" // 匹配成功\n    }\n    println(cs)\n}\n```\n\n上述代码的执行结果为：\n\n```Bash\nOther\n```\n\n---\n\n## 5.2.8 模式守卫（pattern guard）\n\n在 `case` 分支的模式之后，可以使用 **pattern guard（模式守卫）** 进一步对匹配出来的结果进行判断，此为可选内容。\n\npattern guard 表示本条 case 匹配成功后额外需要满足的条件，其使用 `where cond`（语法格式）表示，要求表达式 `cond` 的类型为 `Bool`。\n\nmatch 表达式执行时，会依次将 match 之后的表达式与每个 case 中的模式进行匹配。如果有 pattern guard，需要 `where` 之后的表达式的值为 `true`；如果 case 中有多个由 `|` 连接的模式，只要待匹配值和其中一个模式匹配则认为匹配成功。一旦匹配成功，将执行 `=\u003e` 之后的代码，然后退出 match 表达式的执行，这意味着不会再去匹配它之后的 case。如果匹配不成功，会继续与它之后的 case 中的模式进行匹配，直到匹配成功。match 表达式可以保证一定存在匹配的 case 分支。\n\n在下面的例子中，使用到了 enum 模式。当 `RGBColor` 的构造器的参数值大于等于 0 时，输出它们的值；当参数值小于 0 时，即满足第一个 case 的 `where cond`，则认为它们的值等于 0：\n\n```Cangjie\nenum RGBColor {\n    | Red(Int16) | Green(Int16) | Blue(Int16)\n}\n\nmain() {\n    let c = RGBColor.Green(-100)\n    let cs = match (c) {\n        case Red(r) where r \u003c 0 =\u003e \"Red = 0\"\n        case Red(r) =\u003e \"Red = ${r}\"\n        case Green(g) where g \u003c 0 =\u003e \"Green = 0\" // 匹配成功\n        case Green(g) =\u003e \"Green = ${g}\"\n        case Blue(b) where b \u003c 0 =\u003e \"Blue = 0\"\n        case Blue(b) =\u003e \"Blue = ${b}\"\n    }\n    print(cs)\n}\n```\n\n编译执行上述代码，输出结果为：\n\n```Bash\nGreen = 0\n```\n\n\u003e [!NOTE]\n\u003e `where` 就像是\"在匹配成功的基础上再加一道检查\"——先匹配构造器（比如 `Red(r)`），再检查条件（比如 `where r \u003c 0`），双重筛选。\n\n## 5.2.9 模式的嵌套组合\n\nTuple 模式和 enum 模式可以**嵌套**任意模式。下面的代码展示了不同模式嵌套组合使用：\n\n```Cangjie\nenum TimeUnit {\n    | Year(UInt64)\n    | Month(UInt64)\n}\n\nenum Command {\n    | SetTimeUnit(TimeUnit)\n    | GetTimeUnit\n    | Quit\n}\n\nmain() {\n    let command = (SetTimeUnit(Year(2022)), SetTimeUnit(Year(2024)))\n    match (command) {\n        case (SetTimeUnit(Year(year)), _) =\u003e println(\"Set year ${year}\")   // 匹配成功\n        case (_, SetTimeUnit(Month(month))) =\u003e println(\"Set month ${month}\")\n        case _ =\u003e ()\n    }\n}\n```\n\n编译并执行上述代码，输出结果为：\n\n```Bash\nSet year 2022\n```\n\n\u003e [!TIP]\n\u003e 嵌套组合就像一个\"俄罗斯套娃\"——大模式里面套小模式，层层递进匹配。上面的 `(SetTimeUnit(Year(year)), _)` 就是一个两层嵌套：先匹配 tuple，再匹配 enum，再匹配常量。\n\n---\n\n## 5.2.10 模式的 Refutability（可反驳性）\n\n模式可以分为两类：\n\n| 类型 | 含义 | 类比 |\n|------|------|------|\n| **refutable 模式** | 有可能和待匹配值**不匹配** | \"这个人是穿红衣服的吗？\"——不一定 |\n| **irrefutable 模式** | **总是**可以和待匹配值匹配 | \"这里有个人吗？\"——肯定有 |\n\n### 常量模式 — refutable\n\n常量模式是 **refutable** 模式。例如，下例中第一个 case 中的 `1` 和第二个 case 中的 `2` 都有可能和 `x` 的值不相等。\n\n```Cangjie\nfunc constPat(x: Int64) {\n    match (x) {\n        case 1 =\u003e \"one\"\n        case 2 =\u003e \"two\"\n        case _ =\u003e \"_\"\n    }\n}\n```\n\n### 通配符模式 — irrefutable\n\n通配符模式是 **irrefutable** 模式。例如，下例中无论 `x` 的值是多少，`_` 总能和其匹配。\n\n```Cangjie\nfunc wildcardPat(x: Int64) {\n    match (x) {\n        case _ =\u003e \"_\"\n    }\n}\n```\n\n### 绑定模式 — irrefutable\n\n绑定模式是 **irrefutable** 模式。例如，下例中无论 `x` 的值是多少，绑定模式 `a` 总能和其匹配。\n\n```Cangjie\nfunc varPat(x: Int64) {\n    match (x) {\n        case a =\u003e \"x = ${a}\"\n    }\n}\n```\n\n### Tuple 模式 — 取决于内部模式\n\nTuple 模式是 **irrefutable** 模式，当且仅当其包含的每个模式都是 irrefutable 模式。\n\n例如，下例中 `(1, 2)` 和 `(a, 2)` 都有可能和 `x` 的值不匹配，所以它们是 **refutable** 模式；而 `(a, b)` 可以匹配任何 `x` 的值，所以它是 **irrefutable** 模式。\n\n```Cangjie\nfunc tuplePat(x: (Int64, Int64)) {\n    match (x) {\n        case (1, 2) =\u003e \"(1, 2)\"\n        case (a, 2) =\u003e \"(${a}, 2)\"\n        case (a, b) =\u003e \"(${a}, ${b})\"\n    }\n}\n```\n\n### 类型模式 — refutable\n\n类型模式是 **refutable** 模式。例如，下例中（假设 Base 是 Derived 的父类，并且 Base 实现了接口 I），`x` 的运行时类型有可能既不是 Base 也不是 Derived，所以 `a: Derived` 和 `b: Base` 均是 refutable 模式。\n\n```Cangjie\ninterface I {}\n\nopen class Base \u003c: I {}\n\nclass Derived \u003c: Base {}\n\nfunc typePat(x: I) {\n    match (x) {\n        case a: Derived =\u003e \"Derived\"\n        case b: Base =\u003e \"Base\"\n        case _ =\u003e \"Other\"\n    }\n}\n```\n\n### Enum 模式 — 取决于构造器个数\n\nEnum 模式是 **irrefutable** 模式，当且仅当它对应的 enum 类型中**只有一个有参构造器**，且 enum 模式中包含的其他模式也是 irrefutable 模式。\n\n例如，对于下例中的 `E1` 和 `E2` 定义：\n- 函数 `enumPat1` 中的 `A(1)` 是 refutable 模式，`A(a)` 是 irrefutable 模式（因为 E1 只有一个构造器 A）\n- 函数 `enumPat2` 中的 `B(b)` 和 `C(c)` 均是 refutable 模式（因为 E2 有两个构造器）\n\n```Cangjie\nenum E1 {\n    A(Int64)\n}\n\nenum E2 {\n    B(Int64) | C(Int64)\n}\n\nfunc enumPat1(x: E1) {\n    match (x) {\n        case A(1) =\u003e \"A(1)\"\n        case A(a) =\u003e \"A(${a})\"\n    }\n}\n\nfunc enumPat2(x: E2) {\n    match (x) {\n        case B(b) =\u003e \"B(${b})\"\n        case C(c) =\u003e \"C(${c})\"\n    }\n}\n```\n\n\u003e [!NOTE]\n\u003e refutable（可反驳）和 irrefutable（不可反驳）这两个概念，简单理解就是：这个模式**有没有可能匹配不上**。\n\u003e\n\u003e - `_` 永远能匹配上 → irrefutable\n\u003e - `42` 不一定能匹配上 → refutable（因为 x 可能是 43）\n\u003e\n\u003e 理解这个概念对于写出正确的 match 表达式很有帮助。\n\n---\n\n## 5.2.11 小结\n\n| 模式类型 | 语法 | 说明 | 可反驳性 |\n|---------|------|------|---------|\n| 常量模式 | `42`、`\"hello\"`、`true` | 匹配具体值 | refutable |\n| 通配符模式 | `_` | 匹配任意值 | irrefutable |\n| 绑定模式 | `id` | 匹配并将值绑定到变量 | irrefutable |\n| Tuple 模式 | `(p1, p2)` | 匹配 tuple 的每个元素 | 取决于内部模式 |\n| 类型模式 | `id: Type` 或 `_: Type` | 匹配运行时类型 | refutable |\n| Enum 模式 | `C(p1, p2)` | 匹配 enum 的构造器 | 取决于构造器个数 |\n| 嵌套组合 | 上述模式的任意组合 | 层层递进匹配 | 取决于最内层模式 |\n"])</script><script>self.__next_f.push([1,"1c:[\"$\",\"$L1d\",null,{\"content\":\"$1e\",\"collection\":\"Cangjie/5_枚举类型和模式匹配\",\"rootColPath\":\"Cangjie\",\"allArticles\":[\"$16:props:children:props:children:2:props:articles:0\",\"$16:props:children:props:children:2:props:articles:1\",\"$16:props:children:props:children:2:props:articles:2\",\"$16:props:children:props:children:2:props:articles:3\",\"$16:props:children:props:children:2:props:articles:4\",\"$16:props:children:props:children:2:props:articles:5\",\"$16:props:children:props:children:2:props:articles:6\",\"$16:props:children:props:children:2:props:articles:7\",\"$16:props:children:props:children:2:props:articles:8\",\"$16:props:children:props:children:2:props:articles:9\",{\"slug\":\"hello-seline-blog\",\"title\":\"Hello Seline Blog\",\"description\":\"欢迎来到 Seline Blog，一个开源的个人博客！\",\"date\":\"2024-01-15\",\"tags\":[\"Seline\",\"Next.js\",\"博客\"],\"collection\":\"$undefined\",\"sort\":1,\"cover\":\"$undefined\",\"published\":true,\"mtime\":1782987808713.5557},\"$16:props:children:props:children:2:props:articles:10\",\"$16:props:children:props:children:2:props:articles:11\",\"$16:props:children:props:children:2:props:articles:12\",\"$16:props:children:props:children:2:props:articles:13\",\"$16:props:children:props:children:2:props:articles:14\",\"$16:props:children:props:children:2:props:articles:15\",\"$16:props:children:props:children:2:props:articles:16\",\"$16:props:children:props:children:2:props:articles:17\",\"$16:props:children:props:children:2:props:articles:18\",\"$16:props:children:props:children:2:props:articles:19\",\"$16:props:children:props:children:2:props:articles:20\",\"$16:props:children:props:children:2:props:articles:21\",\"$16:props:children:props:children:2:props:articles:22\",\"$16:props:children:props:children:2:props:articles:23\",\"$16:props:children:props:children:2:props:articles:24\",\"$16:props:children:props:children:2:props:articles:25\",\"$16:props:children:props:children:2:props:articles:26\",\"$16:props:children:props:children:2:props:articles:27\",\"$16:props:children:props:children:2:props:articles:28\",\"$16:props:children:props:children:2:props:articles:29\",\"$16:props:children:props:children:2:props:articles:30\",\"$16:props:children:props:children:2:props:articles:31\",\"$16:props:children:props:children:2:props:articles:32\",\"$16:props:children:props:children:2:props:articles:33\",\"$16:props:children:props:children:2:props:articles:34\",\"$16:props:children:props:children:2:props:articles:35\",\"$16:props:children:props:children:2:props:articles:36\"],\"currentSlug\":\"Cangjie/5_枚举类型和模式匹配/2_模式匹配\"}]\n"])</script><script>self.__next_f.push([1,"f:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n"])</script><script>self.__next_f.push([1,"1f:I[27201,[\"/_next/static/chunks/0o--8oop24u_f.js\",\"/_next/static/chunks/3oax6b5zaxt_z.js\",\"/_next/static/chunks/0jubty45h__ir.js\"],\"IconMark\"]\nc:null\n11:[[\"$\",\"title\",\"0\",{\"children\":\"模式匹配 | Seline Blog\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"match 表达式中支持的各种模式\"}],[\"$\",\"link\",\"2\",{\"rel\":\"icon\",\"href\":\"/favicon.ico?favicon.2vob68tjqpejf.ico\",\"sizes\":\"256x256\",\"type\":\"image/x-icon\"}],[\"$\",\"link\",\"3\",{\"rel\":\"icon\",\"href\":\"/images/avatar.webp\"}],[\"$\",\"$L1f\",\"4\",{}]]\n"])</script></body></html>

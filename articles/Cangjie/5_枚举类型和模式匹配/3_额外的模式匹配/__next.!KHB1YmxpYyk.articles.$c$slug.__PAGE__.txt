@@ -1,0 +1,1015 @@
+1:"$Sreact.fragment"
+2:I[23597,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"TocSidebar"]
+9:I[59537,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleNavSidebar"]
+a:I[22016,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],""]
+b:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleContent"]
+e:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
+f:"$Sreact.suspense"
+11:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"MobileArticlePanel"]
+3:T2243,
+## 5.3.1 模式不只是 match 的专利
+
+之前我们学的模式都是在 `match` 表达式中使用的。但仓颉中，模式还可以用在更多地方：
+
+- **变量定义**：等号左侧可以用模式
+- **`for-in` 表达式**：`for` 和 `in` 之间可以用模式
+- **`if` 和 `while` 的条件**：也可以使用模式
+
+> [!TIP]
+> 模式可以理解为"**解构数据**"的工具——不管数据包装得多复杂，模式都能把它拆开，取出你需要的那部分。
+
+### 只能使用 irrefutable 模式
+
+但是，并不是所有的模式都能用在变量定义和 `for-in` 中——只有 **irrefutable（不可反驳）** 的模式才能在这两处被使用。
+
+| 允许的模式 | 说明 |
+|-----------|------|
+| 通配符模式 `_` | 匹配任意值 |
+| 绑定模式 `id` | 匹配并绑定到变量 |
+| irrefutable tuple 模式 | 所有子模式都是 irrefutable 的 tuple |
+| irrefutable enum 模式 | 只有一个构造器的 enum |
+
+> [!NOTE]
+> 为什么只能 irrefutable？因为变量定义和 `for-in` **必须确保匹配成功**——如果模式可能匹配失败（refutable），那变量就没法确定了。
+
+---
+
+## 5.3.2 通配符模式的额外使用
+
+### 变量定义中使用 `_`
+
+通配符模式在变量定义中表示"定义了一个没有名字的变量"，之后无法访问它：
+
+```Cangjie
+main() {
+    let _ = 100           // 定义了一个"无名变量"
+    // println(_)         // ❌ 无法访问 _
+}
+```
+
+### for-in 中使用 `_`
+
+在 `for-in` 中使用通配符模式，表示"不关心元素的值，只是循环 N 次"：
+
+```Cangjie
+main() {
+    for (_ in 1..5) {
+        println("0")
+    }
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+0
+0
+0
+0
+```
+
+> [!TIP]
+> `for (_ in 1..5)` 的意思是"循环 5 次，每次都不管当前是第几个"。
+
+---
+
+## 5.3.3 绑定模式的额外使用
+
+### 变量定义
+
+变量定义本身就是绑定模式最常见的形式：
+
+```Cangjie
+main() {
+    let x = 100                    // 绑定模式：把 100 绑定到 x
+    println("x = ${x}")
+}
+```
+
+### for-in 中的绑定模式
+
+```Cangjie
+main() {
+    for (i in 1..5) {              // 绑定模式：依次把元素绑定到 i
+        println(i)
+    }
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+x = 100
+1
+2
+3
+4
+```
+
+> [!NOTE]
+> 你之前一直在用的 `let x = ...` 和 `for (i in ...)`，其实都是"模式匹配"！只是它们是最简单的绑定模式，所以你一直没意识到。
+
+---
+
+## 5.3.4 Tuple 模式的额外使用
+
+### 变量定义中解构 tuple
+
+变量定义时使用 tuple 模式，表示对右侧的 tuple 值进行**解构**，效果相当于一次性定义多个变量：
+
+```Cangjie
+main() {
+    let (x, y) = (100, 200)        // 解构：x=100, y=200
+    println("x = ${x}")
+    println("y = ${y}")
+}
+```
+
+### for-in 中解构 tuple
+
+```Cangjie
+main() {
+    for ((i, j) in [(1, 2), (3, 4), (5, 6)]) {
+        println("Sum = ${i + j}")
+    }
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+x = 100
+y = 200
+Sum = 3
+Sum = 7
+Sum = 11
+```
+
+> [!TIP]
+> 元组解构的本质就是模式匹配。`(x, y) = (100, 200)` 中，左侧的 `(x, y)` 是一个 tuple 模式，它匹配右侧的 `(100, 200)`，然后把 `100` 绑定到 `x`，`200` 绑定到 `y`。
+>
+> 在 `for-in` 中，`(i, j)` 依次匹配 `[(1,2), (3,4), (5,6)]` 中的每个元素，逐个解构。
+
+---
+
+## 5.3.5 Enum 模式的额外使用
+
+对于**只有一个构造器**的 enum（irrefutable enum），也可以在变量定义和 `for-in` 中使用。
+
+```Cangjie
+enum RedColor {
+    Red(Int64)                     // 只有一个构造器
+}
+
+main() {
+    // 变量定义中使用 enum 模式
+    let Red(red) = Red(0)          // 解构：提取出 0 绑定到 red
+    println("red = ${red}")
+
+    // for-in 中使用 enum 模式
+    for (Red(r) in [Red(10), Red(20), Red(30)]) {
+        println("r = ${r}")
+    }
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+red = 0
+r = 10
+r = 20
+r = 30
+```
+
+> [!CAUTION]
+> enum 模式在变量定义和 `for-in` 中使用时，要求 enum **只能有一个构造器**（irrefutable）。如果 enum 有多个构造器（如 `Red \| Green \| Blue`），就不能这样用，因为编译器无法确定一定能匹配到正确的构造器。
+>
+> 对多个构造器的 enum 进行解构，必须使用 `match` 表达式。
+
+---
+
+## 5.3.6 let pattern（模式匹配）
+
+一个 `let pattern` 的构成为 `let pattern <- expression`，其中各字段含义为：
+
+- `pattern`：模式，用于匹配 expression 的值类型和内容
+- `<-`：模式匹配操作符
+- `expression`：表达式，该表达式求值后，再和模式进行匹配
+
+```Cangjie
+enum MyOption {
+    | MySome(Int64) | MyNone
+}
+
+main() {
+    let a = MySome(3)
+    let c = if (let MySome(b) <- a) {
+        1 // 模式匹配成功，c = 1
+    } else {
+        2
+    }
+    println(c)
+}
+```
+
+### 条件中使用 let pattern
+
+`let pattern` 可以和 `if` 配合，在条件中进行模式匹配。多个条件之间可以用 `&&`（逻辑与）或 `||`（逻辑或）组合，也可以和普通 Bool 表达式混合使用。
+
+```Cangjie
+enum MyOption {
+    | MySome(Int64) | MyNone
+}
+
+main() {
+    let a = MySome(3)
+    let d = MySome(1)
+
+    // 两个 let pattern 用 && 连接：两种模式都匹配，条件的值为真
+    if (let MySome(e) <- a && let MySome(f) <- d) {
+        println("${e} ${f}") // 输出 3 1
+    }
+
+    // let pattern 与普通表达式用 && 连接：模式匹配后继续检查条件
+    if (let MySome(f) <- d && f > 3) {
+        println("${f}")
+    } else {
+        println("d is MyNone or value of d is less or equal to 3") // 打印该行
+    }
+
+    // 两个 let pattern 用 || 连接：至少一个匹配成功即可
+    if (let MySome(_) <- a || let MySome(_) <- d) {
+        println("at least one of a and d is MySome") // 打印该行
+    } else {
+        println("both a and d are MyNone")
+    }
+
+    // let pattern 与普通表达式用 || 连接
+    let g = 3
+    if (let MySome(_) <- a || g > 1) {
+        println("this") // 打印该行
+    } else {
+        println("that")
+    }
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+3 1
+d is MyNone or value of d is less or equal to 3
+at least one of a and d is MySome
+this
+```
+
+### 表达式的优先级
+
+`let pattern` 中表达式部分运算符优先级**不能低于 `..` 运算符**，如果用了优先级更低的运算符（如 `as`），需要用 `()` 包裹。
+
+```Cangjie
+enum MyOption {
+    | MySome(Int64) | MyNone
+}
+
+func fun(): Object {
+    MySome(3)
+}
+
+main() {
+    // if (let MySome(a) <- fun() as MyOption) {}  // ❌ 解析错误，as 优先级低于 ..
+    if (let MySome(a) <- (fun() as MyOption)) {}    // ✅ 正确，用括号提升优先级
+    if (let m <- 0..5) {                           // ✅ 正确，.. 优先级满足要求
+        println("m = ${m}")
+    }
+}
+```
+
+### 常见错误示例
+
+以下是一些错误的写法，需要注意避免：
+
+```Cangjie
+enum MyOption {
+    | MySome(Int64) | MyNone
+}
+
+main() {
+    let b = MySome(3)
+
+    // ❌ || 连接的条件中不能使用会绑定变量的 enum 模式
+    // if (let MySome(a) <- b || a > 1) {}
+
+    // ❌ && 右侧既不是 let pattern，也不是 Bool 类型的普通表达式
+    // if (let MySome(a) <- b && a + 1) {}
+
+    // ❌ a 在绑定它的 pattern 左侧使用（a 还没绑定）
+    // if (a > 3 && let MySome(a) <- b) {}
+
+    // ❌ a 只能在 if 分支使用，不能在 else 分支使用
+    if (let MySome(a) <- b && a > 3) {
+        println("${a} > 3")
+    } else {
+        // println("${a} < 3") // ❌ a 在 else 中不可见
+    }
+
+    // ❌ 使用 && 表示条件检查，而不是 where
+    // if (let MySome(a) <- b where a > 3) {}
+    
+    println("done")
+}
+```
+
+> [!CAUTION]
+> `let pattern` 有一些使用限制，需要特别注意：
+> 1. `||` **不能**连接带变量绑定的 enum 模式
+> 2. `&&` 右侧必须是 `let pattern` 或 `Bool` 表达式
+> 3. 绑定的变量不能在它本身所在的 pattern **左侧**使用
+> 4. `let pattern` 中绑定的变量只在 `if` 分支中可见，**不能在 `else` 分支中使用**
+> 5. 条件检查用 `&&`，**不能用 `where`**
+
+## 5.3.7 小结
+
+| 使用场景 | 允许的模式 | 示例 |
+|---------|-----------|------|
+| 变量定义 `let` | irrefutable 模式 | `let x = 100`、`let (a, b) = (1, 2)`、`let Red(r) = Red(0)` |
+| `for-in` | irrefutable 模式 | `for (i in 1..5)`、`for ((a,b) in pairs)`、`for (Red(r) in list)` |
+| 不可使用的 | refutable 模式 | 常量模式、类型模式等不能在变量定义中使用 |
+
+> [!TIP]
+> 简单记忆：**能保证 100% 匹配成功的模式**，才能在变量定义和 `for-in` 中使用。否则就用 `match`。
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],"$L4","$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"cr6T9KQahRiE4c5A_XrIV"}
+4:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L9",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782987808711.1875},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"published":true,"mtime":1782987808711.2603},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/4_函数/0_前言","title":"前言","description":"仓颉的函数——从基础到进阶","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":0,"published":true,"mtime":1782987808712.508},{"slug":"Cangjie/5_枚举类型和模式匹配/0_前言","title":"前言","description":"仓颉的枚举类型和模式匹配","date":"2026-07-02","tags":["Cangjie","入门教程"],"collection":"Cangjie/5_枚举类型和模式匹配","sort":0,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782987808711.2603},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制——if分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"published":true,"mtime":1782987808712.4219},{"slug":"Cangjie/4_函数/1_定义函数","title":"定义函数","description":"学会编写可复用的代码块","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":1,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/5_枚举类型和模式匹配/1_枚举类型","title":"枚举类型","description":"列举一个类型的所有可能取值","date":"2026-07-02","tags":["Cangjie","入门教程"],"collection":"Cangjie/5_枚举类型和模式匹配","sort":1,"published":true,"mtime":1782987808713.5557},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782987808711.2603},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"published":true,"mtime":1782987808712.4219},{"slug":"Cangjie/4_函数/2_调用函数","title":"调用函数","description":"学会灵活调用仓颉函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":2,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/5_枚举类型和模式匹配/2_模式匹配","title":"模式匹配","description":"match 表达式中支持的各种模式","date":"2026-07-02","tags":["Cangjie","入门教程"],"collection":"Cangjie/5_枚举类型和模式匹配","sort":2,"published":true,"mtime":1782987808713.5557},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782987808711.2603},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"published":true,"mtime":1782987808712.4219},{"slug":"Cangjie/4_函数/3_函数类型","title":"函数类型","description":"仓颉中函数也是一等公民","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":3,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/5_枚举类型和模式匹配/3_额外的模式匹配","title":"额外的模式匹配","description":"在变量定义和for-in中使用模式","date":"2026-07-02","tags":["Cangjie","入门教程"],"collection":"Cangjie/5_枚举类型和模式匹配","sort":3,"published":true,"mtime":1782987808713.5557},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782987808711.2603},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"published":true,"mtime":1782987808712.4219},{"slug":"Cangjie/4_函数/4_lambda表达式","title":"Lambda表达式","description":"快速创建匿名函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":4,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"published":true,"mtime":1782987808712.508},{"slug":"Cangjie/4_函数/5_嵌套函数","title":"嵌套函数","description":"函数内部定义函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":5,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"published":true,"mtime":1782987808712.508},{"slug":"Cangjie/4_函数/6_闭包","title":"闭包","description":"捕获变量的函数与lambda","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":6,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/4_函数/7_函数重载","title":"函数重载","description":"同名函数的不同形态","date":"2026-07-02","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":7,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/2_基本数据类型/10_nothing类型","title":"Nothing类型","description":"仓颉的基本数据类型——Nothing类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/2_基本数据类型/11_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/2_基本数据类型/12_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":12,"published":true,"mtime":1782987808711.6108}],"currentSlug":"Cangjie/5_枚举类型和模式匹配/3_额外的模式匹配"}]]}]}]
+c:T2243,
+## 5.3.1 模式不只是 match 的专利
+
+之前我们学的模式都是在 `match` 表达式中使用的。但仓颉中，模式还可以用在更多地方：
+
+- **变量定义**：等号左侧可以用模式
+- **`for-in` 表达式**：`for` 和 `in` 之间可以用模式
+- **`if` 和 `while` 的条件**：也可以使用模式
+
+> [!TIP]
+> 模式可以理解为"**解构数据**"的工具——不管数据包装得多复杂，模式都能把它拆开，取出你需要的那部分。
+
+### 只能使用 irrefutable 模式
+
+但是，并不是所有的模式都能用在变量定义和 `for-in` 中——只有 **irrefutable（不可反驳）** 的模式才能在这两处被使用。
+
+| 允许的模式 | 说明 |
+|-----------|------|
+| 通配符模式 `_` | 匹配任意值 |
+| 绑定模式 `id` | 匹配并绑定到变量 |
+| irrefutable tuple 模式 | 所有子模式都是 irrefutable 的 tuple |
+| irrefutable enum 模式 | 只有一个构造器的 enum |
+
+> [!NOTE]
+> 为什么只能 irrefutable？因为变量定义和 `for-in` **必须确保匹配成功**——如果模式可能匹配失败（refutable），那变量就没法确定了。
+
+---
+
+## 5.3.2 通配符模式的额外使用
+
+### 变量定义中使用 `_`
+
+通配符模式在变量定义中表示"定义了一个没有名字的变量"，之后无法访问它：
+
+```Cangjie
+main() {
+    let _ = 100           // 定义了一个"无名变量"
+    // println(_)         // ❌ 无法访问 _
+}
+```
+
+### for-in 中使用 `_`
+
+在 `for-in` 中使用通配符模式，表示"不关心元素的值，只是循环 N 次"：
+
+```Cangjie
+main() {
+    for (_ in 1..5) {
+        println("0")
+    }
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+0
+0
+0
+0
+```
+
+> [!TIP]
+> `for (_ in 1..5)` 的意思是"循环 5 次，每次都不管当前是第几个"。
+
+---
+
+## 5.3.3 绑定模式的额外使用
+
+### 变量定义
+
+变量定义本身就是绑定模式最常见的形式：
+
+```Cangjie
+main() {
+    let x = 100                    // 绑定模式：把 100 绑定到 x
+    println("x = ${x}")
+}
+```
+
+### for-in 中的绑定模式
+
+```Cangjie
+main() {
+    for (i in 1..5) {              // 绑定模式：依次把元素绑定到 i
+        println(i)
+    }
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+x = 100
+1
+2
+3
+4
+```
+
+> [!NOTE]
+> 你之前一直在用的 `let x = ...` 和 `for (i in ...)`，其实都是"模式匹配"！只是它们是最简单的绑定模式，所以你一直没意识到。
+
+---
+
+## 5.3.4 Tuple 模式的额外使用
+
+### 变量定义中解构 tuple
+
+变量定义时使用 tuple 模式，表示对右侧的 tuple 值进行**解构**，效果相当于一次性定义多个变量：
+
+```Cangjie
+main() {
+    let (x, y) = (100, 200)        // 解构：x=100, y=200
+    println("x = ${x}")
+    println("y = ${y}")
+}
+```
+
+### for-in 中解构 tuple
+
+```Cangjie
+main() {
+    for ((i, j) in [(1, 2), (3, 4), (5, 6)]) {
+        println("Sum = ${i + j}")
+    }
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+x = 100
+y = 200
+Sum = 3
+Sum = 7
+Sum = 11
+```
+
+> [!TIP]
+> 元组解构的本质就是模式匹配。`(x, y) = (100, 200)` 中，左侧的 `(x, y)` 是一个 tuple 模式，它匹配右侧的 `(100, 200)`，然后把 `100` 绑定到 `x`，`200` 绑定到 `y`。
+>
+> 在 `for-in` 中，`(i, j)` 依次匹配 `[(1,2), (3,4), (5,6)]` 中的每个元素，逐个解构。
+
+---
+
+## 5.3.5 Enum 模式的额外使用
+
+对于**只有一个构造器**的 enum（irrefutable enum），也可以在变量定义和 `for-in` 中使用。
+
+```Cangjie
+enum RedColor {
+    Red(Int64)                     // 只有一个构造器
+}
+
+main() {
+    // 变量定义中使用 enum 模式
+    let Red(red) = Red(0)          // 解构：提取出 0 绑定到 red
+    println("red = ${red}")
+
+    // for-in 中使用 enum 模式
+    for (Red(r) in [Red(10), Red(20), Red(30)]) {
+        println("r = ${r}")
+    }
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+red = 0
+r = 10
+r = 20
+r = 30
+```
+
+> [!CAUTION]
+> enum 模式在变量定义和 `for-in` 中使用时，要求 enum **只能有一个构造器**（irrefutable）。如果 enum 有多个构造器（如 `Red \| Green \| Blue`），就不能这样用，因为编译器无法确定一定能匹配到正确的构造器。
+>
+> 对多个构造器的 enum 进行解构，必须使用 `match` 表达式。
+
+---
+
+## 5.3.6 let pattern（模式匹配）
+
+一个 `let pattern` 的构成为 `let pattern <- expression`，其中各字段含义为：
+
+- `pattern`：模式，用于匹配 expression 的值类型和内容
+- `<-`：模式匹配操作符
+- `expression`：表达式，该表达式求值后，再和模式进行匹配
+
+```Cangjie
+enum MyOption {
+    | MySome(Int64) | MyNone
+}
+
+main() {
+    let a = MySome(3)
+    let c = if (let MySome(b) <- a) {
+        1 // 模式匹配成功，c = 1
+    } else {
+        2
+    }
+    println(c)
+}
+```
+
+### 条件中使用 let pattern
+
+`let pattern` 可以和 `if` 配合，在条件中进行模式匹配。多个条件之间可以用 `&&`（逻辑与）或 `||`（逻辑或）组合，也可以和普通 Bool 表达式混合使用。
+
+```Cangjie
+enum MyOption {
+    | MySome(Int64) | MyNone
+}
+
+main() {
+    let a = MySome(3)
+    let d = MySome(1)
+
+    // 两个 let pattern 用 && 连接：两种模式都匹配，条件的值为真
+    if (let MySome(e) <- a && let MySome(f) <- d) {
+        println("${e} ${f}") // 输出 3 1
+    }
+
+    // let pattern 与普通表达式用 && 连接：模式匹配后继续检查条件
+    if (let MySome(f) <- d && f > 3) {
+        println("${f}")
+    } else {
+        println("d is MyNone or value of d is less or equal to 3") // 打印该行
+    }
+
+    // 两个 let pattern 用 || 连接：至少一个匹配成功即可
+    if (let MySome(_) <- a || let MySome(_) <- d) {
+        println("at least one of a and d is MySome") // 打印该行
+    } else {
+        println("both a and d are MyNone")
+    }
+
+    // let pattern 与普通表达式用 || 连接
+    let g = 3
+    if (let MySome(_) <- a || g > 1) {
+        println("this") // 打印该行
+    } else {
+        println("that")
+    }
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+3 1
+d is MyNone or value of d is less or equal to 3
+at least one of a and d is MySome
+this
+```
+
+### 表达式的优先级
+
+`let pattern` 中表达式部分运算符优先级**不能低于 `..` 运算符**，如果用了优先级更低的运算符（如 `as`），需要用 `()` 包裹。
+
+```Cangjie
+enum MyOption {
+    | MySome(Int64) | MyNone
+}
+
+func fun(): Object {
+    MySome(3)
+}
+
+main() {
+    // if (let MySome(a) <- fun() as MyOption) {}  // ❌ 解析错误，as 优先级低于 ..
+    if (let MySome(a) <- (fun() as MyOption)) {}    // ✅ 正确，用括号提升优先级
+    if (let m <- 0..5) {                           // ✅ 正确，.. 优先级满足要求
+        println("m = ${m}")
+    }
+}
+```
+
+### 常见错误示例
+
+以下是一些错误的写法，需要注意避免：
+
+```Cangjie
+enum MyOption {
+    | MySome(Int64) | MyNone
+}
+
+main() {
+    let b = MySome(3)
+
+    // ❌ || 连接的条件中不能使用会绑定变量的 enum 模式
+    // if (let MySome(a) <- b || a > 1) {}
+
+    // ❌ && 右侧既不是 let pattern，也不是 Bool 类型的普通表达式
+    // if (let MySome(a) <- b && a + 1) {}
+
+    // ❌ a 在绑定它的 pattern 左侧使用（a 还没绑定）
+    // if (a > 3 && let MySome(a) <- b) {}
+
+    // ❌ a 只能在 if 分支使用，不能在 else 分支使用
+    if (let MySome(a) <- b && a > 3) {
+        println("${a} > 3")
+    } else {
+        // println("${a} < 3") // ❌ a 在 else 中不可见
+    }
+
+    // ❌ 使用 && 表示条件检查，而不是 where
+    // if (let MySome(a) <- b where a > 3) {}
+    
+    println("done")
+}
+```
+
+> [!CAUTION]
+> `let pattern` 有一些使用限制，需要特别注意：
+> 1. `||` **不能**连接带变量绑定的 enum 模式
+> 2. `&&` 右侧必须是 `let pattern` 或 `Bool` 表达式
+> 3. 绑定的变量不能在它本身所在的 pattern **左侧**使用
+> 4. `let pattern` 中绑定的变量只在 `if` 分支中可见，**不能在 `else` 分支中使用**
+> 5. 条件检查用 `&&`，**不能用 `where`**
+
+## 5.3.7 小结
+
+| 使用场景 | 允许的模式 | 示例 |
+|---------|-----------|------|
+| 变量定义 `let` | irrefutable 模式 | `let x = 100`、`let (a, b) = (1, 2)`、`let Red(r) = Red(0)` |
+| `for-in` | irrefutable 模式 | `for (i in 1..5)`、`for ((a,b) in pairs)`、`for (Red(r) in list)` |
+| 不可使用的 | refutable 模式 | 常量模式、类型模式等不能在变量定义中使用 |
+
+> [!TIP]
+> 简单记忆：**能保证 100% 匹配成功的模式**，才能在变量定义和 `for-in` 中使用。否则就用 `match`。
+5:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$La",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-07-02"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"额外的模式匹配"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"在变量定义和for-in中使用模式"}]]}],["$","$Lb",null,{"content":"$c"}],"$Ld"]}]}]
+6:["$","script","script-0",{"src":"/_next/static/chunks/0g4o6d4sifcpo.js","async":true}]
+7:["$","script","script-1",{"src":"/_next/static/chunks/1ssz3eabjrzaj.js","async":true}]
+8:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
+12:T2243,
+## 5.3.1 模式不只是 match 的专利
+
+之前我们学的模式都是在 `match` 表达式中使用的。但仓颉中，模式还可以用在更多地方：
+
+- **变量定义**：等号左侧可以用模式
+- **`for-in` 表达式**：`for` 和 `in` 之间可以用模式
+- **`if` 和 `while` 的条件**：也可以使用模式
+
+> [!TIP]
+> 模式可以理解为"**解构数据**"的工具——不管数据包装得多复杂，模式都能把它拆开，取出你需要的那部分。
+
+### 只能使用 irrefutable 模式
+
+但是，并不是所有的模式都能用在变量定义和 `for-in` 中——只有 **irrefutable（不可反驳）** 的模式才能在这两处被使用。
+
+| 允许的模式 | 说明 |
+|-----------|------|
+| 通配符模式 `_` | 匹配任意值 |
+| 绑定模式 `id` | 匹配并绑定到变量 |
+| irrefutable tuple 模式 | 所有子模式都是 irrefutable 的 tuple |
+| irrefutable enum 模式 | 只有一个构造器的 enum |
+
+> [!NOTE]
+> 为什么只能 irrefutable？因为变量定义和 `for-in` **必须确保匹配成功**——如果模式可能匹配失败（refutable），那变量就没法确定了。
+
+---
+
+## 5.3.2 通配符模式的额外使用
+
+### 变量定义中使用 `_`
+
+通配符模式在变量定义中表示"定义了一个没有名字的变量"，之后无法访问它：
+
+```Cangjie
+main() {
+    let _ = 100           // 定义了一个"无名变量"
+    // println(_)         // ❌ 无法访问 _
+}
+```
+
+### for-in 中使用 `_`
+
+在 `for-in` 中使用通配符模式，表示"不关心元素的值，只是循环 N 次"：
+
+```Cangjie
+main() {
+    for (_ in 1..5) {
+        println("0")
+    }
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+0
+0
+0
+0
+```
+
+> [!TIP]
+> `for (_ in 1..5)` 的意思是"循环 5 次，每次都不管当前是第几个"。
+
+---
+
+## 5.3.3 绑定模式的额外使用
+
+### 变量定义
+
+变量定义本身就是绑定模式最常见的形式：
+
+```Cangjie
+main() {
+    let x = 100                    // 绑定模式：把 100 绑定到 x
+    println("x = ${x}")
+}
+```
+
+### for-in 中的绑定模式
+
+```Cangjie
+main() {
+    for (i in 1..5) {              // 绑定模式：依次把元素绑定到 i
+        println(i)
+    }
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+x = 100
+1
+2
+3
+4
+```
+
+> [!NOTE]
+> 你之前一直在用的 `let x = ...` 和 `for (i in ...)`，其实都是"模式匹配"！只是它们是最简单的绑定模式，所以你一直没意识到。
+
+---
+
+## 5.3.4 Tuple 模式的额外使用
+
+### 变量定义中解构 tuple
+
+变量定义时使用 tuple 模式，表示对右侧的 tuple 值进行**解构**，效果相当于一次性定义多个变量：
+
+```Cangjie
+main() {
+    let (x, y) = (100, 200)        // 解构：x=100, y=200
+    println("x = ${x}")
+    println("y = ${y}")
+}
+```
+
+### for-in 中解构 tuple
+
+```Cangjie
+main() {
+    for ((i, j) in [(1, 2), (3, 4), (5, 6)]) {
+        println("Sum = ${i + j}")
+    }
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+x = 100
+y = 200
+Sum = 3
+Sum = 7
+Sum = 11
+```
+
+> [!TIP]
+> 元组解构的本质就是模式匹配。`(x, y) = (100, 200)` 中，左侧的 `(x, y)` 是一个 tuple 模式，它匹配右侧的 `(100, 200)`，然后把 `100` 绑定到 `x`，`200` 绑定到 `y`。
+>
+> 在 `for-in` 中，`(i, j)` 依次匹配 `[(1,2), (3,4), (5,6)]` 中的每个元素，逐个解构。
+
+---
+
+## 5.3.5 Enum 模式的额外使用
+
+对于**只有一个构造器**的 enum（irrefutable enum），也可以在变量定义和 `for-in` 中使用。
+
+```Cangjie
+enum RedColor {
+    Red(Int64)                     // 只有一个构造器
+}
+
+main() {
+    // 变量定义中使用 enum 模式
+    let Red(red) = Red(0)          // 解构：提取出 0 绑定到 red
+    println("red = ${red}")
+
+    // for-in 中使用 enum 模式
+    for (Red(r) in [Red(10), Red(20), Red(30)]) {
+        println("r = ${r}")
+    }
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+red = 0
+r = 10
+r = 20
+r = 30
+```
+
+> [!CAUTION]
+> enum 模式在变量定义和 `for-in` 中使用时，要求 enum **只能有一个构造器**（irrefutable）。如果 enum 有多个构造器（如 `Red \| Green \| Blue`），就不能这样用，因为编译器无法确定一定能匹配到正确的构造器。
+>
+> 对多个构造器的 enum 进行解构，必须使用 `match` 表达式。
+
+---
+
+## 5.3.6 let pattern（模式匹配）
+
+一个 `let pattern` 的构成为 `let pattern <- expression`，其中各字段含义为：
+
+- `pattern`：模式，用于匹配 expression 的值类型和内容
+- `<-`：模式匹配操作符
+- `expression`：表达式，该表达式求值后，再和模式进行匹配
+
+```Cangjie
+enum MyOption {
+    | MySome(Int64) | MyNone
+}
+
+main() {
+    let a = MySome(3)
+    let c = if (let MySome(b) <- a) {
+        1 // 模式匹配成功，c = 1
+    } else {
+        2
+    }
+    println(c)
+}
+```
+
+### 条件中使用 let pattern
+
+`let pattern` 可以和 `if` 配合，在条件中进行模式匹配。多个条件之间可以用 `&&`（逻辑与）或 `||`（逻辑或）组合，也可以和普通 Bool 表达式混合使用。
+
+```Cangjie
+enum MyOption {
+    | MySome(Int64) | MyNone
+}
+
+main() {
+    let a = MySome(3)
+    let d = MySome(1)
+
+    // 两个 let pattern 用 && 连接：两种模式都匹配，条件的值为真
+    if (let MySome(e) <- a && let MySome(f) <- d) {
+        println("${e} ${f}") // 输出 3 1
+    }
+
+    // let pattern 与普通表达式用 && 连接：模式匹配后继续检查条件
+    if (let MySome(f) <- d && f > 3) {
+        println("${f}")
+    } else {
+        println("d is MyNone or value of d is less or equal to 3") // 打印该行
+    }
+
+    // 两个 let pattern 用 || 连接：至少一个匹配成功即可
+    if (let MySome(_) <- a || let MySome(_) <- d) {
+        println("at least one of a and d is MySome") // 打印该行
+    } else {
+        println("both a and d are MyNone")
+    }
+
+    // let pattern 与普通表达式用 || 连接
+    let g = 3
+    if (let MySome(_) <- a || g > 1) {
+        println("this") // 打印该行
+    } else {
+        println("that")
+    }
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+3 1
+d is MyNone or value of d is less or equal to 3
+at least one of a and d is MySome
+this
+```
+
+### 表达式的优先级
+
+`let pattern` 中表达式部分运算符优先级**不能低于 `..` 运算符**，如果用了优先级更低的运算符（如 `as`），需要用 `()` 包裹。
+
+```Cangjie
+enum MyOption {
+    | MySome(Int64) | MyNone
+}
+
+func fun(): Object {
+    MySome(3)
+}
+
+main() {
+    // if (let MySome(a) <- fun() as MyOption) {}  // ❌ 解析错误，as 优先级低于 ..
+    if (let MySome(a) <- (fun() as MyOption)) {}    // ✅ 正确，用括号提升优先级
+    if (let m <- 0..5) {                           // ✅ 正确，.. 优先级满足要求
+        println("m = ${m}")
+    }
+}
+```
+
+### 常见错误示例
+
+以下是一些错误的写法，需要注意避免：
+
+```Cangjie
+enum MyOption {
+    | MySome(Int64) | MyNone
+}
+
+main() {
+    let b = MySome(3)
+
+    // ❌ || 连接的条件中不能使用会绑定变量的 enum 模式
+    // if (let MySome(a) <- b || a > 1) {}
+
+    // ❌ && 右侧既不是 let pattern，也不是 Bool 类型的普通表达式
+    // if (let MySome(a) <- b && a + 1) {}
+
+    // ❌ a 在绑定它的 pattern 左侧使用（a 还没绑定）
+    // if (a > 3 && let MySome(a) <- b) {}
+
+    // ❌ a 只能在 if 分支使用，不能在 else 分支使用
+    if (let MySome(a) <- b && a > 3) {
+        println("${a} > 3")
+    } else {
+        // println("${a} < 3") // ❌ a 在 else 中不可见
+    }
+
+    // ❌ 使用 && 表示条件检查，而不是 where
+    // if (let MySome(a) <- b where a > 3) {}
+    
+    println("done")
+}
+```
+
+> [!CAUTION]
+> `let pattern` 有一些使用限制，需要特别注意：
+> 1. `||` **不能**连接带变量绑定的 enum 模式
+> 2. `&&` 右侧必须是 `let pattern` 或 `Bool` 表达式
+> 3. 绑定的变量不能在它本身所在的 pattern **左侧**使用
+> 4. `let pattern` 中绑定的变量只在 `if` 分支中可见，**不能在 `else` 分支中使用**
+> 5. 条件检查用 `&&`，**不能用 `where`**
+
+## 5.3.7 小结
+
+| 使用场景 | 允许的模式 | 示例 |
+|---------|-----------|------|
+| 变量定义 `let` | irrefutable 模式 | `let x = 100`、`let (a, b) = (1, 2)`、`let Red(r) = Red(0)` |
+| `for-in` | irrefutable 模式 | `for (i in 1..5)`、`for ((a,b) in pairs)`、`for (Red(r) in list)` |
+| 不可使用的 | refutable 模式 | 常量模式、类型模式等不能在变量定义中使用 |
+
+> [!TIP]
+> 简单记忆：**能保证 100% 匹配成功的模式**，才能在变量定义和 `for-in` 中使用。否则就用 `match`。
+d:["$","$L11",null,{"content":"$12","collection":"Cangjie/5_枚举类型和模式匹配","rootColPath":"Cangjie","allArticles":["$4:props:children:props:children:2:props:articles:0","$4:props:children:props:children:2:props:articles:1","$4:props:children:props:children:2:props:articles:2","$4:props:children:props:children:2:props:articles:3","$4:props:children:props:children:2:props:articles:4","$4:props:children:props:children:2:props:articles:5","$4:props:children:props:children:2:props:articles:6","$4:props:children:props:children:2:props:articles:7","$4:props:children:props:children:2:props:articles:8","$4:props:children:props:children:2:props:articles:9",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782987808713.5557},"$4:props:children:props:children:2:props:articles:10","$4:props:children:props:children:2:props:articles:11","$4:props:children:props:children:2:props:articles:12","$4:props:children:props:children:2:props:articles:13","$4:props:children:props:children:2:props:articles:14","$4:props:children:props:children:2:props:articles:15","$4:props:children:props:children:2:props:articles:16","$4:props:children:props:children:2:props:articles:17","$4:props:children:props:children:2:props:articles:18","$4:props:children:props:children:2:props:articles:19","$4:props:children:props:children:2:props:articles:20","$4:props:children:props:children:2:props:articles:21","$4:props:children:props:children:2:props:articles:22","$4:props:children:props:children:2:props:articles:23","$4:props:children:props:children:2:props:articles:24","$4:props:children:props:children:2:props:articles:25","$4:props:children:props:children:2:props:articles:26","$4:props:children:props:children:2:props:articles:27","$4:props:children:props:children:2:props:articles:28","$4:props:children:props:children:2:props:articles:29","$4:props:children:props:children:2:props:articles:30","$4:props:children:props:children:2:props:articles:31","$4:props:children:props:children:2:props:articles:32","$4:props:children:props:children:2:props:articles:33","$4:props:children:props:children:2:props:articles:34","$4:props:children:props:children:2:props:articles:35","$4:props:children:props:children:2:props:articles:36"],"currentSlug":"Cangjie/5_枚举类型和模式匹配/3_额外的模式匹配"}]
+10:null

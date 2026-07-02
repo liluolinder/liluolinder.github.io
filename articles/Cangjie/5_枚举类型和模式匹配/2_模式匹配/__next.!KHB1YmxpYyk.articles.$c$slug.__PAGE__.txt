@@ -1,0 +1,1990 @@
+1:"$Sreact.fragment"
+2:I[23597,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"TocSidebar"]
+9:I[59537,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleNavSidebar"]
+a:I[22016,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],""]
+b:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleContent"]
+e:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
+f:"$Sreact.suspense"
+11:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"MobileArticlePanel"]
+3:T49c5,
+## 5.2.1 什么是模式？
+
+对于包含匹配值的 `match` 表达式，`case` 之后支持哪些"模式"决定了 `match` 表达式的表达能力。
+
+**模式**就是"你想匹配的值长什么样"——它可以是一个具体的值、一个通配符、一个变量绑定，也可以是更复杂的组合。
+
+> [!TIP]
+> 模式就像是"寻人启事"上的描述：
+> - 常量模式："找一个叫张三的人"——具体指定
+> - 通配符模式："找一个人"——谁都行
+> - 绑定模式："找一个人，记下他的名字"——匹配的同时把值存起来
+>
+> 仓颉支持以下几种模式：**常量模式、通配符模式、绑定模式、tuple 模式、类型模式、enum 模式**，还可以嵌套组合使用。
+
+---
+
+## 5.2.2 常量模式
+
+常量模式可以是整数字面量、浮点数字面量、字符字面量、布尔字面量、字符串字面量（不支持字符串插值）、Unit 字面量。
+
+在包含匹配值的 match 表达式中使用常量模式时，要求常量模式表示的值的类型与待匹配值的类型相同，匹配成功的条件是待匹配的值与常量模式表示的值相等。
+
+下面的例子中，根据 `score` 的值（假设 score 只能取 0 到 100 间被 10 整除的值），输出考试成绩的等级：
+
+```Cangjie
+main() {
+    let score = 90
+    let level = match (score) {
+        case 0 | 10 | 20 | 30 | 40 | 50 => "D"
+        case 60 => "C"
+        case 70 | 80 => "B"
+        case 90 | 100 => "A" // 匹配成功
+        case _ => "Not a valid score"
+    }
+    println(level)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+A
+```
+
+### Rune 类型的常量模式
+
+在模式匹配的目标是静态类型为 `Rune` 的值时，`Rune` 字面量和单字符字符串字面量都可用于表示 `Rune` 类型字面量的常量模式。
+
+```Cangjie
+func translate(n: Rune) {
+    match (n) {
+        case "A" => 1
+        case "B" => 2
+        case "C" => 3
+        case _ => -1
+    }
+}
+
+main() {
+    println(translate(r"C"))
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+3
+```
+
+### Byte 类型的常量模式
+
+在模式匹配的目标是静态类型为 `Byte` 的值时，一个表示 ASCII 字符的字符串字面量可用于表示 `Byte` 类型字面量的常量模式。
+
+```Cangjie
+func translate(n: Byte) {
+    match (n) {
+        case "1" => 1
+        case "2" => 2
+        case "3" => 3
+        case _ => -1
+    }
+}
+
+main() {
+    println(translate(51)) // UInt32(r'3') == 51
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+3
+```
+
+---
+
+## 5.2.3 通配符模式
+
+通配符模式使用下划线 `_` 表示，可以匹配**任意值**。
+
+通配符模式通常作为最后一个 `case` 中的模式，用来匹配其他 `case` 未覆盖到的情况。就像上面的常量模式例子中，最后一个 `case` 使用 `_` 来匹配无效的 score 值。
+
+```Cangjie
+func wildcardPat(x: Int64) {
+    match (x) {
+        case _ => "_"   // 不管 x 是什么值，都能匹配
+    }
+}
+```
+
+> [!TIP]
+> `_` 就像"来者不拒"——不管传进来什么值，我都要。
+
+---
+
+## 5.2.4 绑定模式
+
+绑定模式使用 `id` 表示，`id` 是一个合法的标识符。与通配符模式相比，绑定模式同样可以匹配任意值，但绑定模式会将匹配到的值与 `id` 进行绑定，在 `=>` 之后可以通过 `id` 访问其绑定的值。
+
+下面的例子中，最后一个 `case` 中使用了绑定模式。其中，变量 `n` 属于 id 标识，用于绑定非 0 值：
+
+```Cangjie
+main() {
+    let x = -10
+    let y = match (x) {
+        case 0 => "zero"
+        case n => "x is not zero and x = ${n}" // 匹配成功
+    }
+    println(y)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+x is not zero and x = -10
+```
+
+> [!NOTE]
+> 绑定模式就像是"抓住它并贴上标签"——`case n =>` 的意思是"无论值是什么，把它叫作 `n`"。
+
+### 绑定模式的限制
+
+使用 `|` 连接多个模式时**不能使用**绑定模式，也不可嵌套出现在其他模式中，否则会报错：
+
+```Cangjie
+main() {
+    let opt = Some(0)
+    match (opt) {
+        case x | x => {} // Error, 不能在 | 连接的模式中引入变量
+        case Some(x) | Some(x) => {} // Error, 不能在 | 连接的模式中引入变量
+        case x: Int64 | x: String => {} // Error, 不能在 | 连接的模式中引入变量
+    }
+}
+```
+
+绑定模式 id 相当于新定义了一个名为 id 的**不可变变量**（其作用域从引入处开始到该 case 结尾处），因此在 `=>` 之后无法对 id 进行修改：
+
+```Cangjie
+main() {
+    let x = -10
+    let y = match (x) {
+        case 0 => "zero"
+        case n =>
+            n = n + 0 // Error, 'n' 不可修改
+            "x is not zero"
+    }
+    println(y)
+}
+```
+
+对于每个 case 分支，`=>` 之后变量作用域级别与 case 后 `=>` 前引入的变量作用域级别相同，在 `=>` 之后再次引入相同名字会触发重定义错误：
+
+```Cangjie
+main() {
+    let x = -10
+    let y = match (x) {
+        case 0 => "zero"
+        case n =>
+            let n = 0 // Error, 重复定义
+            println(n)
+            "x is not zero"
+    }
+    println(y)
+}
+```
+
+### 绑定模式 vs enum 构造器
+
+当模式的 `identifier` 为 **enum 构造器**时，该模式会被当成 enum 模式进行匹配，而不是绑定模式：
+
+```Cangjie
+enum RGBColor {
+    | Red | Green | Blue
+}
+
+main() {
+    let x = Red
+    let y = match (x) {
+        case Red => "red"   // 这里的 Red 是 enum 模式，不是绑定模式
+        case _ => "not red"
+    }
+    println(y)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+red
+```
+
+> [!CAUTION]
+> 如果标识符同时也是 enum 的构造器名，编译器优先将其视为 enum 模式。
+
+---
+
+## 5.2.5 Tuple 模式
+
+Tuple 模式用于 **tuple 值**的匹配，它的定义和 tuple 字面量类似：`(p_1, p_2, ..., p_n)`，区别在于这里的 `p_1` 到 `p_n`（n 大于等于 2）是**模式**（可以是本章节中介绍的任何模式，多个模式间使用逗号分隔）而不是表达式。
+
+例如：
+- `(1, 2, 3)` 是一个包含三个常量模式的 tuple 模式
+- `(x, y, _)` 是一个包含两个绑定模式、一个通配符模式的 tuple 模式
+
+给定一个 tuple 值 `tv` 和一个 tuple 模式 `tp`，当且仅当 `tv` 每个位置处的值均能与 `tp` 中对应位置处的模式相匹配，才称 `tp` 能匹配 `tv`。
+
+```Cangjie
+main() {
+    let tv = ("Alice", 24)
+    let s = match (tv) {
+        case ("Bob", age) => "Bob is ${age} years old"
+        case ("Alice", age) => "Alice is ${age} years old" // 匹配成功，"Alice" 是常量模式，'age' 是绑定模式
+        case (name, 100) => "${name} is 100 years old"
+        case (_, _) => "someone"
+    }
+    println(s)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+Alice is 24 years old
+```
+
+> [!TIP]
+> Tuple 模式让你可以**同时匹配多个值**，就像用筛子筛东西——每个位置都要对上。
+
+同一个 tuple 模式中**不允许**引入多个名称相同的绑定模式：
+
+```Cangjie
+main() {
+    let tv = ("Alice", 24)
+    let s = match (tv) {
+        case ("Bob", age) => "Bob is ${age} years old"
+        case ("Alice", age) => "Alice is ${age} years old"
+        case (name, 100) => "${name} is 100 years old"
+        case (x, x) => "someone" // Error, 不能引入同名的绑定模式
+    }
+    println(s)
+}
+```
+
+---
+
+## 5.2.6 类型模式
+
+类型模式用于判断一个值的**运行时类型**是否是某个类型的子类型。类型模式有两种形式：
+- `_: Type`（嵌套一个通配符模式 `_`）
+- `id: Type`（嵌套一个绑定模式 `id`）
+
+区别是后者会发生变量绑定，而前者不会。
+
+对于待匹配值 `v` 和类型模式 `id: Type`（或 `_: Type`）：
+1. 首先判断 `v` 的运行时类型是否是 `Type` 的子类型
+2. 若成立则视为匹配成功，否则视为匹配失败
+3. 如匹配成功，则将 `v` 的类型转换为 `Type` 并与 `id` 进行绑定（对于 `_: Type`，不存在绑定这一操作）
+
+假设有如下两个类，`Base` 和 `Derived`，并且 `Derived` 是 `Base` 的子类：
+
+```Cangjie
+open class Base {
+    var a: Int64
+    public init() {
+        a = 10
+    }
+}
+
+class Derived <: Base {
+    public init() {
+        a = 20
+    }
+}
+```
+
+下面的代码展示了使用类型模式并**匹配成功**的例子：
+
+```Cangjie
+func test1() {
+    var d = Derived()
+    var r = match (d) {
+        case b: Base => b.a // 匹配成功：Derived 是 Base 的子类
+        case _ => 0
+    }
+    println("r = ${r}")
+}
+```
+
+下面的代码展示了使用类型模式但**匹配失败**的例子：
+
+```Cangjie
+func test2() {
+    var b = Base()
+    var r = match (b) {
+        case d: Derived => d.a // 类型模式匹配失败：Base 不是 Derived 的子类
+        case _ => 0            // 匹配成功
+    }
+    println("r = ${r}")
+}
+
+main() {
+    test1()
+    test2()
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+r = 20
+r = 0
+```
+
+> [!TIP]
+> 类型模式就像"检查身份证"——看看这个人的实际身份是不是你期待的那样。`b: Base` 表示"如果 b 实际上是 Base 类型（或其子类），就把它当作 Base 来用"。
+
+---
+
+## 5.2.7 Enum 模式
+
+Enum 模式用于匹配 **enum 类型**的实例，它的定义和 enum 的构造器类似：
+- 无参构造器：`C`
+- 有参构造器：`C(p_1, p_2, ..., p_n)`
+
+构造器的**类型前缀可以省略**。
+
+例如：
+- `Some(1)` 是一个包含一个常量模式的 enum 模式
+- `Some(x)` 是一个包含一个绑定模式的 enum 模式
+
+给定一个 enum 实例 `ev` 和一个 enum 模式 `ep`，当且仅当 `ev` 的构造器名字和 `ep` 的构造器名字相同，且 `ev` 参数列表中每个位置处的值均能与 `ep` 中对应位置处的模式相匹配，才称 `ep` 能匹配 `ev`。
+
+```Cangjie
+enum TimeUnit {
+    | Year(UInt64)
+    | Month(UInt64)
+}
+
+main() {
+    let x = Year(2)
+    let s = match (x) {
+        case Year(n) => "x has ${n * 12} months" // 匹配成功
+        case TimeUnit.Month(n) => "x has ${n} months"
+    }
+    println(s)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+x has 24 months
+```
+
+### 多个 enum 模式用 `|` 连接
+
+当使用 `|` 连接多个 enum 模式时，每个模式必须独立且**不能引入新的变量**。这是因为 `|` 表示"或"的关系，而变量的引入需要明确的上下文，不能在多个模式之间共享。
+
+```Cangjie
+enum TimeUnit {
+    | Year(UInt64)
+    | Month(UInt64)
+}
+
+main() {
+    let x = Year(2)
+    let s = match (x) {
+        case Year(5) => "1:OK"
+        case Month(m) => "2:OK"
+        case Year(0) | Year(1) | Month(_) => "3:OK"
+        case Year(_) => "4:OK"
+        case Year(2) | Month(m) => "5:invalid" // Error, | 连接的模式中不能引入变量
+        case Year(n: UInt64) | Month(n: UInt64) => "6:invalid" // Error, | 连接的模式中不能引入变量
+    }
+    println(s)
+}
+```
+
+上述示例中，第二个 case 引入了一个新变量 `m`，但没有使用 `|` 连接其他模式，故合法。
+
+### 穷尽性检查
+
+使用 match 表达式匹配 enum 值时，要求 case 之后的模式要覆盖待匹配 enum 类型中的**所有构造器**，如果未做到完全覆盖，编译器将报错：
+
+```Cangjie
+enum RGBColor {
+    | Red | Green | Blue
+}
+
+main() {
+    let c = Green
+    let cs = match (c) { // Error, 没有覆盖 RGBColor 的所有构造器
+        case Red => "Red"
+        case Green => "Green"
+    }
+    println(cs)
+}
+```
+
+可以通过加上 `case Blue` 来实现完全覆盖，也可以在 match 表达式的最后通过使用 `case _` 来覆盖其他 case 未覆盖的情况：
+
+```Cangjie
+enum RGBColor {
+    | Red | Green | Blue
+}
+
+main() {
+    let c = Blue
+    let cs = match (c) {
+        case Red => "Red"
+        case Green => "Green"
+        case _ => "Other" // 匹配成功
+    }
+    println(cs)
+}
+```
+
+上述代码的执行结果为：
+
+```Bash
+Other
+```
+
+---
+
+## 5.2.8 模式守卫（pattern guard）
+
+在 `case` 分支的模式之后，可以使用 **pattern guard（模式守卫）** 进一步对匹配出来的结果进行判断，此为可选内容。
+
+pattern guard 表示本条 case 匹配成功后额外需要满足的条件，其使用 `where cond`（语法格式）表示，要求表达式 `cond` 的类型为 `Bool`。
+
+match 表达式执行时，会依次将 match 之后的表达式与每个 case 中的模式进行匹配。如果有 pattern guard，需要 `where` 之后的表达式的值为 `true`；如果 case 中有多个由 `|` 连接的模式，只要待匹配值和其中一个模式匹配则认为匹配成功。一旦匹配成功，将执行 `=>` 之后的代码，然后退出 match 表达式的执行，这意味着不会再去匹配它之后的 case。如果匹配不成功，会继续与它之后的 case 中的模式进行匹配，直到匹配成功。match 表达式可以保证一定存在匹配的 case 分支。
+
+在下面的例子中，使用到了 enum 模式。当 `RGBColor` 的构造器的参数值大于等于 0 时，输出它们的值；当参数值小于 0 时，即满足第一个 case 的 `where cond`，则认为它们的值等于 0：
+
+```Cangjie
+enum RGBColor {
+    | Red(Int16) | Green(Int16) | Blue(Int16)
+}
+
+main() {
+    let c = RGBColor.Green(-100)
+    let cs = match (c) {
+        case Red(r) where r < 0 => "Red = 0"
+        case Red(r) => "Red = ${r}"
+        case Green(g) where g < 0 => "Green = 0" // 匹配成功
+        case Green(g) => "Green = ${g}"
+        case Blue(b) where b < 0 => "Blue = 0"
+        case Blue(b) => "Blue = ${b}"
+    }
+    print(cs)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+Green = 0
+```
+
+> [!NOTE]
+> `where` 就像是"在匹配成功的基础上再加一道检查"——先匹配构造器（比如 `Red(r)`），再检查条件（比如 `where r < 0`），双重筛选。
+
+## 5.2.9 模式的嵌套组合
+
+Tuple 模式和 enum 模式可以**嵌套**任意模式。下面的代码展示了不同模式嵌套组合使用：
+
+```Cangjie
+enum TimeUnit {
+    | Year(UInt64)
+    | Month(UInt64)
+}
+
+enum Command {
+    | SetTimeUnit(TimeUnit)
+    | GetTimeUnit
+    | Quit
+}
+
+main() {
+    let command = (SetTimeUnit(Year(2022)), SetTimeUnit(Year(2024)))
+    match (command) {
+        case (SetTimeUnit(Year(year)), _) => println("Set year ${year}")   // 匹配成功
+        case (_, SetTimeUnit(Month(month))) => println("Set month ${month}")
+        case _ => ()
+    }
+}
+```
+
+编译并执行上述代码，输出结果为：
+
+```Bash
+Set year 2022
+```
+
+> [!TIP]
+> 嵌套组合就像一个"俄罗斯套娃"——大模式里面套小模式，层层递进匹配。上面的 `(SetTimeUnit(Year(year)), _)` 就是一个两层嵌套：先匹配 tuple，再匹配 enum，再匹配常量。
+
+---
+
+## 5.2.10 模式的 Refutability（可反驳性）
+
+模式可以分为两类：
+
+| 类型 | 含义 | 类比 |
+|------|------|------|
+| **refutable 模式** | 有可能和待匹配值**不匹配** | "这个人是穿红衣服的吗？"——不一定 |
+| **irrefutable 模式** | **总是**可以和待匹配值匹配 | "这里有个人吗？"——肯定有 |
+
+### 常量模式 — refutable
+
+常量模式是 **refutable** 模式。例如，下例中第一个 case 中的 `1` 和第二个 case 中的 `2` 都有可能和 `x` 的值不相等。
+
+```Cangjie
+func constPat(x: Int64) {
+    match (x) {
+        case 1 => "one"
+        case 2 => "two"
+        case _ => "_"
+    }
+}
+```
+
+### 通配符模式 — irrefutable
+
+通配符模式是 **irrefutable** 模式。例如，下例中无论 `x` 的值是多少，`_` 总能和其匹配。
+
+```Cangjie
+func wildcardPat(x: Int64) {
+    match (x) {
+        case _ => "_"
+    }
+}
+```
+
+### 绑定模式 — irrefutable
+
+绑定模式是 **irrefutable** 模式。例如，下例中无论 `x` 的值是多少，绑定模式 `a` 总能和其匹配。
+
+```Cangjie
+func varPat(x: Int64) {
+    match (x) {
+        case a => "x = ${a}"
+    }
+}
+```
+
+### Tuple 模式 — 取决于内部模式
+
+Tuple 模式是 **irrefutable** 模式，当且仅当其包含的每个模式都是 irrefutable 模式。
+
+例如，下例中 `(1, 2)` 和 `(a, 2)` 都有可能和 `x` 的值不匹配，所以它们是 **refutable** 模式；而 `(a, b)` 可以匹配任何 `x` 的值，所以它是 **irrefutable** 模式。
+
+```Cangjie
+func tuplePat(x: (Int64, Int64)) {
+    match (x) {
+        case (1, 2) => "(1, 2)"
+        case (a, 2) => "(${a}, 2)"
+        case (a, b) => "(${a}, ${b})"
+    }
+}
+```
+
+### 类型模式 — refutable
+
+类型模式是 **refutable** 模式。例如，下例中（假设 Base 是 Derived 的父类，并且 Base 实现了接口 I），`x` 的运行时类型有可能既不是 Base 也不是 Derived，所以 `a: Derived` 和 `b: Base` 均是 refutable 模式。
+
+```Cangjie
+interface I {}
+
+open class Base <: I {}
+
+class Derived <: Base {}
+
+func typePat(x: I) {
+    match (x) {
+        case a: Derived => "Derived"
+        case b: Base => "Base"
+        case _ => "Other"
+    }
+}
+```
+
+### Enum 模式 — 取决于构造器个数
+
+Enum 模式是 **irrefutable** 模式，当且仅当它对应的 enum 类型中**只有一个有参构造器**，且 enum 模式中包含的其他模式也是 irrefutable 模式。
+
+例如，对于下例中的 `E1` 和 `E2` 定义：
+- 函数 `enumPat1` 中的 `A(1)` 是 refutable 模式，`A(a)` 是 irrefutable 模式（因为 E1 只有一个构造器 A）
+- 函数 `enumPat2` 中的 `B(b)` 和 `C(c)` 均是 refutable 模式（因为 E2 有两个构造器）
+
+```Cangjie
+enum E1 {
+    A(Int64)
+}
+
+enum E2 {
+    B(Int64) | C(Int64)
+}
+
+func enumPat1(x: E1) {
+    match (x) {
+        case A(1) => "A(1)"
+        case A(a) => "A(${a})"
+    }
+}
+
+func enumPat2(x: E2) {
+    match (x) {
+        case B(b) => "B(${b})"
+        case C(c) => "C(${c})"
+    }
+}
+```
+
+> [!NOTE]
+> refutable（可反驳）和 irrefutable（不可反驳）这两个概念，简单理解就是：这个模式**有没有可能匹配不上**。
+>
+> - `_` 永远能匹配上 → irrefutable
+> - `42` 不一定能匹配上 → refutable（因为 x 可能是 43）
+>
+> 理解这个概念对于写出正确的 match 表达式很有帮助。
+
+---
+
+## 5.2.11 小结
+
+| 模式类型 | 语法 | 说明 | 可反驳性 |
+|---------|------|------|---------|
+| 常量模式 | `42`、`"hello"`、`true` | 匹配具体值 | refutable |
+| 通配符模式 | `_` | 匹配任意值 | irrefutable |
+| 绑定模式 | `id` | 匹配并将值绑定到变量 | irrefutable |
+| Tuple 模式 | `(p1, p2)` | 匹配 tuple 的每个元素 | 取决于内部模式 |
+| 类型模式 | `id: Type` 或 `_: Type` | 匹配运行时类型 | refutable |
+| Enum 模式 | `C(p1, p2)` | 匹配 enum 的构造器 | 取决于构造器个数 |
+| 嵌套组合 | 上述模式的任意组合 | 层层递进匹配 | 取决于最内层模式 |
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],"$L4","$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"cr6T9KQahRiE4c5A_XrIV"}
+4:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L9",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782987808711.1875},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"published":true,"mtime":1782987808711.2603},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/4_函数/0_前言","title":"前言","description":"仓颉的函数——从基础到进阶","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":0,"published":true,"mtime":1782987808712.508},{"slug":"Cangjie/5_枚举类型和模式匹配/0_前言","title":"前言","description":"仓颉的枚举类型和模式匹配","date":"2026-07-02","tags":["Cangjie","入门教程"],"collection":"Cangjie/5_枚举类型和模式匹配","sort":0,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782987808711.2603},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制——if分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"published":true,"mtime":1782987808712.4219},{"slug":"Cangjie/4_函数/1_定义函数","title":"定义函数","description":"学会编写可复用的代码块","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":1,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/5_枚举类型和模式匹配/1_枚举类型","title":"枚举类型","description":"列举一个类型的所有可能取值","date":"2026-07-02","tags":["Cangjie","入门教程"],"collection":"Cangjie/5_枚举类型和模式匹配","sort":1,"published":true,"mtime":1782987808713.5557},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782987808711.2603},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"published":true,"mtime":1782987808712.4219},{"slug":"Cangjie/4_函数/2_调用函数","title":"调用函数","description":"学会灵活调用仓颉函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":2,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/5_枚举类型和模式匹配/2_模式匹配","title":"模式匹配","description":"match 表达式中支持的各种模式","date":"2026-07-02","tags":["Cangjie","入门教程"],"collection":"Cangjie/5_枚举类型和模式匹配","sort":2,"published":true,"mtime":1782987808713.5557},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782987808711.2603},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"published":true,"mtime":1782987808712.4219},{"slug":"Cangjie/4_函数/3_函数类型","title":"函数类型","description":"仓颉中函数也是一等公民","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":3,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/5_枚举类型和模式匹配/3_额外的模式匹配","title":"额外的模式匹配","description":"在变量定义和for-in中使用模式","date":"2026-07-02","tags":["Cangjie","入门教程"],"collection":"Cangjie/5_枚举类型和模式匹配","sort":3,"published":true,"mtime":1782987808713.5557},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782987808711.2603},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"published":true,"mtime":1782987808712.4219},{"slug":"Cangjie/4_函数/4_lambda表达式","title":"Lambda表达式","description":"快速创建匿名函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":4,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"published":true,"mtime":1782987808712.508},{"slug":"Cangjie/4_函数/5_嵌套函数","title":"嵌套函数","description":"函数内部定义函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":5,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"published":true,"mtime":1782987808712.508},{"slug":"Cangjie/4_函数/6_闭包","title":"闭包","description":"捕获变量的函数与lambda","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":6,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/4_函数/7_函数重载","title":"函数重载","description":"同名函数的不同形态","date":"2026-07-02","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":7,"published":true,"mtime":1782987808712.971},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/2_基本数据类型/10_nothing类型","title":"Nothing类型","description":"仓颉的基本数据类型——Nothing类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/2_基本数据类型/11_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"published":true,"mtime":1782987808711.6108},{"slug":"Cangjie/2_基本数据类型/12_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":12,"published":true,"mtime":1782987808711.6108}],"currentSlug":"Cangjie/5_枚举类型和模式匹配/2_模式匹配"}]]}]}]
+c:T49c5,
+## 5.2.1 什么是模式？
+
+对于包含匹配值的 `match` 表达式，`case` 之后支持哪些"模式"决定了 `match` 表达式的表达能力。
+
+**模式**就是"你想匹配的值长什么样"——它可以是一个具体的值、一个通配符、一个变量绑定，也可以是更复杂的组合。
+
+> [!TIP]
+> 模式就像是"寻人启事"上的描述：
+> - 常量模式："找一个叫张三的人"——具体指定
+> - 通配符模式："找一个人"——谁都行
+> - 绑定模式："找一个人，记下他的名字"——匹配的同时把值存起来
+>
+> 仓颉支持以下几种模式：**常量模式、通配符模式、绑定模式、tuple 模式、类型模式、enum 模式**，还可以嵌套组合使用。
+
+---
+
+## 5.2.2 常量模式
+
+常量模式可以是整数字面量、浮点数字面量、字符字面量、布尔字面量、字符串字面量（不支持字符串插值）、Unit 字面量。
+
+在包含匹配值的 match 表达式中使用常量模式时，要求常量模式表示的值的类型与待匹配值的类型相同，匹配成功的条件是待匹配的值与常量模式表示的值相等。
+
+下面的例子中，根据 `score` 的值（假设 score 只能取 0 到 100 间被 10 整除的值），输出考试成绩的等级：
+
+```Cangjie
+main() {
+    let score = 90
+    let level = match (score) {
+        case 0 | 10 | 20 | 30 | 40 | 50 => "D"
+        case 60 => "C"
+        case 70 | 80 => "B"
+        case 90 | 100 => "A" // 匹配成功
+        case _ => "Not a valid score"
+    }
+    println(level)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+A
+```
+
+### Rune 类型的常量模式
+
+在模式匹配的目标是静态类型为 `Rune` 的值时，`Rune` 字面量和单字符字符串字面量都可用于表示 `Rune` 类型字面量的常量模式。
+
+```Cangjie
+func translate(n: Rune) {
+    match (n) {
+        case "A" => 1
+        case "B" => 2
+        case "C" => 3
+        case _ => -1
+    }
+}
+
+main() {
+    println(translate(r"C"))
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+3
+```
+
+### Byte 类型的常量模式
+
+在模式匹配的目标是静态类型为 `Byte` 的值时，一个表示 ASCII 字符的字符串字面量可用于表示 `Byte` 类型字面量的常量模式。
+
+```Cangjie
+func translate(n: Byte) {
+    match (n) {
+        case "1" => 1
+        case "2" => 2
+        case "3" => 3
+        case _ => -1
+    }
+}
+
+main() {
+    println(translate(51)) // UInt32(r'3') == 51
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+3
+```
+
+---
+
+## 5.2.3 通配符模式
+
+通配符模式使用下划线 `_` 表示，可以匹配**任意值**。
+
+通配符模式通常作为最后一个 `case` 中的模式，用来匹配其他 `case` 未覆盖到的情况。就像上面的常量模式例子中，最后一个 `case` 使用 `_` 来匹配无效的 score 值。
+
+```Cangjie
+func wildcardPat(x: Int64) {
+    match (x) {
+        case _ => "_"   // 不管 x 是什么值，都能匹配
+    }
+}
+```
+
+> [!TIP]
+> `_` 就像"来者不拒"——不管传进来什么值，我都要。
+
+---
+
+## 5.2.4 绑定模式
+
+绑定模式使用 `id` 表示，`id` 是一个合法的标识符。与通配符模式相比，绑定模式同样可以匹配任意值，但绑定模式会将匹配到的值与 `id` 进行绑定，在 `=>` 之后可以通过 `id` 访问其绑定的值。
+
+下面的例子中，最后一个 `case` 中使用了绑定模式。其中，变量 `n` 属于 id 标识，用于绑定非 0 值：
+
+```Cangjie
+main() {
+    let x = -10
+    let y = match (x) {
+        case 0 => "zero"
+        case n => "x is not zero and x = ${n}" // 匹配成功
+    }
+    println(y)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+x is not zero and x = -10
+```
+
+> [!NOTE]
+> 绑定模式就像是"抓住它并贴上标签"——`case n =>` 的意思是"无论值是什么，把它叫作 `n`"。
+
+### 绑定模式的限制
+
+使用 `|` 连接多个模式时**不能使用**绑定模式，也不可嵌套出现在其他模式中，否则会报错：
+
+```Cangjie
+main() {
+    let opt = Some(0)
+    match (opt) {
+        case x | x => {} // Error, 不能在 | 连接的模式中引入变量
+        case Some(x) | Some(x) => {} // Error, 不能在 | 连接的模式中引入变量
+        case x: Int64 | x: String => {} // Error, 不能在 | 连接的模式中引入变量
+    }
+}
+```
+
+绑定模式 id 相当于新定义了一个名为 id 的**不可变变量**（其作用域从引入处开始到该 case 结尾处），因此在 `=>` 之后无法对 id 进行修改：
+
+```Cangjie
+main() {
+    let x = -10
+    let y = match (x) {
+        case 0 => "zero"
+        case n =>
+            n = n + 0 // Error, 'n' 不可修改
+            "x is not zero"
+    }
+    println(y)
+}
+```
+
+对于每个 case 分支，`=>` 之后变量作用域级别与 case 后 `=>` 前引入的变量作用域级别相同，在 `=>` 之后再次引入相同名字会触发重定义错误：
+
+```Cangjie
+main() {
+    let x = -10
+    let y = match (x) {
+        case 0 => "zero"
+        case n =>
+            let n = 0 // Error, 重复定义
+            println(n)
+            "x is not zero"
+    }
+    println(y)
+}
+```
+
+### 绑定模式 vs enum 构造器
+
+当模式的 `identifier` 为 **enum 构造器**时，该模式会被当成 enum 模式进行匹配，而不是绑定模式：
+
+```Cangjie
+enum RGBColor {
+    | Red | Green | Blue
+}
+
+main() {
+    let x = Red
+    let y = match (x) {
+        case Red => "red"   // 这里的 Red 是 enum 模式，不是绑定模式
+        case _ => "not red"
+    }
+    println(y)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+red
+```
+
+> [!CAUTION]
+> 如果标识符同时也是 enum 的构造器名，编译器优先将其视为 enum 模式。
+
+---
+
+## 5.2.5 Tuple 模式
+
+Tuple 模式用于 **tuple 值**的匹配，它的定义和 tuple 字面量类似：`(p_1, p_2, ..., p_n)`，区别在于这里的 `p_1` 到 `p_n`（n 大于等于 2）是**模式**（可以是本章节中介绍的任何模式，多个模式间使用逗号分隔）而不是表达式。
+
+例如：
+- `(1, 2, 3)` 是一个包含三个常量模式的 tuple 模式
+- `(x, y, _)` 是一个包含两个绑定模式、一个通配符模式的 tuple 模式
+
+给定一个 tuple 值 `tv` 和一个 tuple 模式 `tp`，当且仅当 `tv` 每个位置处的值均能与 `tp` 中对应位置处的模式相匹配，才称 `tp` 能匹配 `tv`。
+
+```Cangjie
+main() {
+    let tv = ("Alice", 24)
+    let s = match (tv) {
+        case ("Bob", age) => "Bob is ${age} years old"
+        case ("Alice", age) => "Alice is ${age} years old" // 匹配成功，"Alice" 是常量模式，'age' 是绑定模式
+        case (name, 100) => "${name} is 100 years old"
+        case (_, _) => "someone"
+    }
+    println(s)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+Alice is 24 years old
+```
+
+> [!TIP]
+> Tuple 模式让你可以**同时匹配多个值**，就像用筛子筛东西——每个位置都要对上。
+
+同一个 tuple 模式中**不允许**引入多个名称相同的绑定模式：
+
+```Cangjie
+main() {
+    let tv = ("Alice", 24)
+    let s = match (tv) {
+        case ("Bob", age) => "Bob is ${age} years old"
+        case ("Alice", age) => "Alice is ${age} years old"
+        case (name, 100) => "${name} is 100 years old"
+        case (x, x) => "someone" // Error, 不能引入同名的绑定模式
+    }
+    println(s)
+}
+```
+
+---
+
+## 5.2.6 类型模式
+
+类型模式用于判断一个值的**运行时类型**是否是某个类型的子类型。类型模式有两种形式：
+- `_: Type`（嵌套一个通配符模式 `_`）
+- `id: Type`（嵌套一个绑定模式 `id`）
+
+区别是后者会发生变量绑定，而前者不会。
+
+对于待匹配值 `v` 和类型模式 `id: Type`（或 `_: Type`）：
+1. 首先判断 `v` 的运行时类型是否是 `Type` 的子类型
+2. 若成立则视为匹配成功，否则视为匹配失败
+3. 如匹配成功，则将 `v` 的类型转换为 `Type` 并与 `id` 进行绑定（对于 `_: Type`，不存在绑定这一操作）
+
+假设有如下两个类，`Base` 和 `Derived`，并且 `Derived` 是 `Base` 的子类：
+
+```Cangjie
+open class Base {
+    var a: Int64
+    public init() {
+        a = 10
+    }
+}
+
+class Derived <: Base {
+    public init() {
+        a = 20
+    }
+}
+```
+
+下面的代码展示了使用类型模式并**匹配成功**的例子：
+
+```Cangjie
+func test1() {
+    var d = Derived()
+    var r = match (d) {
+        case b: Base => b.a // 匹配成功：Derived 是 Base 的子类
+        case _ => 0
+    }
+    println("r = ${r}")
+}
+```
+
+下面的代码展示了使用类型模式但**匹配失败**的例子：
+
+```Cangjie
+func test2() {
+    var b = Base()
+    var r = match (b) {
+        case d: Derived => d.a // 类型模式匹配失败：Base 不是 Derived 的子类
+        case _ => 0            // 匹配成功
+    }
+    println("r = ${r}")
+}
+
+main() {
+    test1()
+    test2()
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+r = 20
+r = 0
+```
+
+> [!TIP]
+> 类型模式就像"检查身份证"——看看这个人的实际身份是不是你期待的那样。`b: Base` 表示"如果 b 实际上是 Base 类型（或其子类），就把它当作 Base 来用"。
+
+---
+
+## 5.2.7 Enum 模式
+
+Enum 模式用于匹配 **enum 类型**的实例，它的定义和 enum 的构造器类似：
+- 无参构造器：`C`
+- 有参构造器：`C(p_1, p_2, ..., p_n)`
+
+构造器的**类型前缀可以省略**。
+
+例如：
+- `Some(1)` 是一个包含一个常量模式的 enum 模式
+- `Some(x)` 是一个包含一个绑定模式的 enum 模式
+
+给定一个 enum 实例 `ev` 和一个 enum 模式 `ep`，当且仅当 `ev` 的构造器名字和 `ep` 的构造器名字相同，且 `ev` 参数列表中每个位置处的值均能与 `ep` 中对应位置处的模式相匹配，才称 `ep` 能匹配 `ev`。
+
+```Cangjie
+enum TimeUnit {
+    | Year(UInt64)
+    | Month(UInt64)
+}
+
+main() {
+    let x = Year(2)
+    let s = match (x) {
+        case Year(n) => "x has ${n * 12} months" // 匹配成功
+        case TimeUnit.Month(n) => "x has ${n} months"
+    }
+    println(s)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+x has 24 months
+```
+
+### 多个 enum 模式用 `|` 连接
+
+当使用 `|` 连接多个 enum 模式时，每个模式必须独立且**不能引入新的变量**。这是因为 `|` 表示"或"的关系，而变量的引入需要明确的上下文，不能在多个模式之间共享。
+
+```Cangjie
+enum TimeUnit {
+    | Year(UInt64)
+    | Month(UInt64)
+}
+
+main() {
+    let x = Year(2)
+    let s = match (x) {
+        case Year(5) => "1:OK"
+        case Month(m) => "2:OK"
+        case Year(0) | Year(1) | Month(_) => "3:OK"
+        case Year(_) => "4:OK"
+        case Year(2) | Month(m) => "5:invalid" // Error, | 连接的模式中不能引入变量
+        case Year(n: UInt64) | Month(n: UInt64) => "6:invalid" // Error, | 连接的模式中不能引入变量
+    }
+    println(s)
+}
+```
+
+上述示例中，第二个 case 引入了一个新变量 `m`，但没有使用 `|` 连接其他模式，故合法。
+
+### 穷尽性检查
+
+使用 match 表达式匹配 enum 值时，要求 case 之后的模式要覆盖待匹配 enum 类型中的**所有构造器**，如果未做到完全覆盖，编译器将报错：
+
+```Cangjie
+enum RGBColor {
+    | Red | Green | Blue
+}
+
+main() {
+    let c = Green
+    let cs = match (c) { // Error, 没有覆盖 RGBColor 的所有构造器
+        case Red => "Red"
+        case Green => "Green"
+    }
+    println(cs)
+}
+```
+
+可以通过加上 `case Blue` 来实现完全覆盖，也可以在 match 表达式的最后通过使用 `case _` 来覆盖其他 case 未覆盖的情况：
+
+```Cangjie
+enum RGBColor {
+    | Red | Green | Blue
+}
+
+main() {
+    let c = Blue
+    let cs = match (c) {
+        case Red => "Red"
+        case Green => "Green"
+        case _ => "Other" // 匹配成功
+    }
+    println(cs)
+}
+```
+
+上述代码的执行结果为：
+
+```Bash
+Other
+```
+
+---
+
+## 5.2.8 模式守卫（pattern guard）
+
+在 `case` 分支的模式之后，可以使用 **pattern guard（模式守卫）** 进一步对匹配出来的结果进行判断，此为可选内容。
+
+pattern guard 表示本条 case 匹配成功后额外需要满足的条件，其使用 `where cond`（语法格式）表示，要求表达式 `cond` 的类型为 `Bool`。
+
+match 表达式执行时，会依次将 match 之后的表达式与每个 case 中的模式进行匹配。如果有 pattern guard，需要 `where` 之后的表达式的值为 `true`；如果 case 中有多个由 `|` 连接的模式，只要待匹配值和其中一个模式匹配则认为匹配成功。一旦匹配成功，将执行 `=>` 之后的代码，然后退出 match 表达式的执行，这意味着不会再去匹配它之后的 case。如果匹配不成功，会继续与它之后的 case 中的模式进行匹配，直到匹配成功。match 表达式可以保证一定存在匹配的 case 分支。
+
+在下面的例子中，使用到了 enum 模式。当 `RGBColor` 的构造器的参数值大于等于 0 时，输出它们的值；当参数值小于 0 时，即满足第一个 case 的 `where cond`，则认为它们的值等于 0：
+
+```Cangjie
+enum RGBColor {
+    | Red(Int16) | Green(Int16) | Blue(Int16)
+}
+
+main() {
+    let c = RGBColor.Green(-100)
+    let cs = match (c) {
+        case Red(r) where r < 0 => "Red = 0"
+        case Red(r) => "Red = ${r}"
+        case Green(g) where g < 0 => "Green = 0" // 匹配成功
+        case Green(g) => "Green = ${g}"
+        case Blue(b) where b < 0 => "Blue = 0"
+        case Blue(b) => "Blue = ${b}"
+    }
+    print(cs)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+Green = 0
+```
+
+> [!NOTE]
+> `where` 就像是"在匹配成功的基础上再加一道检查"——先匹配构造器（比如 `Red(r)`），再检查条件（比如 `where r < 0`），双重筛选。
+
+## 5.2.9 模式的嵌套组合
+
+Tuple 模式和 enum 模式可以**嵌套**任意模式。下面的代码展示了不同模式嵌套组合使用：
+
+```Cangjie
+enum TimeUnit {
+    | Year(UInt64)
+    | Month(UInt64)
+}
+
+enum Command {
+    | SetTimeUnit(TimeUnit)
+    | GetTimeUnit
+    | Quit
+}
+
+main() {
+    let command = (SetTimeUnit(Year(2022)), SetTimeUnit(Year(2024)))
+    match (command) {
+        case (SetTimeUnit(Year(year)), _) => println("Set year ${year}")   // 匹配成功
+        case (_, SetTimeUnit(Month(month))) => println("Set month ${month}")
+        case _ => ()
+    }
+}
+```
+
+编译并执行上述代码，输出结果为：
+
+```Bash
+Set year 2022
+```
+
+> [!TIP]
+> 嵌套组合就像一个"俄罗斯套娃"——大模式里面套小模式，层层递进匹配。上面的 `(SetTimeUnit(Year(year)), _)` 就是一个两层嵌套：先匹配 tuple，再匹配 enum，再匹配常量。
+
+---
+
+## 5.2.10 模式的 Refutability（可反驳性）
+
+模式可以分为两类：
+
+| 类型 | 含义 | 类比 |
+|------|------|------|
+| **refutable 模式** | 有可能和待匹配值**不匹配** | "这个人是穿红衣服的吗？"——不一定 |
+| **irrefutable 模式** | **总是**可以和待匹配值匹配 | "这里有个人吗？"——肯定有 |
+
+### 常量模式 — refutable
+
+常量模式是 **refutable** 模式。例如，下例中第一个 case 中的 `1` 和第二个 case 中的 `2` 都有可能和 `x` 的值不相等。
+
+```Cangjie
+func constPat(x: Int64) {
+    match (x) {
+        case 1 => "one"
+        case 2 => "two"
+        case _ => "_"
+    }
+}
+```
+
+### 通配符模式 — irrefutable
+
+通配符模式是 **irrefutable** 模式。例如，下例中无论 `x` 的值是多少，`_` 总能和其匹配。
+
+```Cangjie
+func wildcardPat(x: Int64) {
+    match (x) {
+        case _ => "_"
+    }
+}
+```
+
+### 绑定模式 — irrefutable
+
+绑定模式是 **irrefutable** 模式。例如，下例中无论 `x` 的值是多少，绑定模式 `a` 总能和其匹配。
+
+```Cangjie
+func varPat(x: Int64) {
+    match (x) {
+        case a => "x = ${a}"
+    }
+}
+```
+
+### Tuple 模式 — 取决于内部模式
+
+Tuple 模式是 **irrefutable** 模式，当且仅当其包含的每个模式都是 irrefutable 模式。
+
+例如，下例中 `(1, 2)` 和 `(a, 2)` 都有可能和 `x` 的值不匹配，所以它们是 **refutable** 模式；而 `(a, b)` 可以匹配任何 `x` 的值，所以它是 **irrefutable** 模式。
+
+```Cangjie
+func tuplePat(x: (Int64, Int64)) {
+    match (x) {
+        case (1, 2) => "(1, 2)"
+        case (a, 2) => "(${a}, 2)"
+        case (a, b) => "(${a}, ${b})"
+    }
+}
+```
+
+### 类型模式 — refutable
+
+类型模式是 **refutable** 模式。例如，下例中（假设 Base 是 Derived 的父类，并且 Base 实现了接口 I），`x` 的运行时类型有可能既不是 Base 也不是 Derived，所以 `a: Derived` 和 `b: Base` 均是 refutable 模式。
+
+```Cangjie
+interface I {}
+
+open class Base <: I {}
+
+class Derived <: Base {}
+
+func typePat(x: I) {
+    match (x) {
+        case a: Derived => "Derived"
+        case b: Base => "Base"
+        case _ => "Other"
+    }
+}
+```
+
+### Enum 模式 — 取决于构造器个数
+
+Enum 模式是 **irrefutable** 模式，当且仅当它对应的 enum 类型中**只有一个有参构造器**，且 enum 模式中包含的其他模式也是 irrefutable 模式。
+
+例如，对于下例中的 `E1` 和 `E2` 定义：
+- 函数 `enumPat1` 中的 `A(1)` 是 refutable 模式，`A(a)` 是 irrefutable 模式（因为 E1 只有一个构造器 A）
+- 函数 `enumPat2` 中的 `B(b)` 和 `C(c)` 均是 refutable 模式（因为 E2 有两个构造器）
+
+```Cangjie
+enum E1 {
+    A(Int64)
+}
+
+enum E2 {
+    B(Int64) | C(Int64)
+}
+
+func enumPat1(x: E1) {
+    match (x) {
+        case A(1) => "A(1)"
+        case A(a) => "A(${a})"
+    }
+}
+
+func enumPat2(x: E2) {
+    match (x) {
+        case B(b) => "B(${b})"
+        case C(c) => "C(${c})"
+    }
+}
+```
+
+> [!NOTE]
+> refutable（可反驳）和 irrefutable（不可反驳）这两个概念，简单理解就是：这个模式**有没有可能匹配不上**。
+>
+> - `_` 永远能匹配上 → irrefutable
+> - `42` 不一定能匹配上 → refutable（因为 x 可能是 43）
+>
+> 理解这个概念对于写出正确的 match 表达式很有帮助。
+
+---
+
+## 5.2.11 小结
+
+| 模式类型 | 语法 | 说明 | 可反驳性 |
+|---------|------|------|---------|
+| 常量模式 | `42`、`"hello"`、`true` | 匹配具体值 | refutable |
+| 通配符模式 | `_` | 匹配任意值 | irrefutable |
+| 绑定模式 | `id` | 匹配并将值绑定到变量 | irrefutable |
+| Tuple 模式 | `(p1, p2)` | 匹配 tuple 的每个元素 | 取决于内部模式 |
+| 类型模式 | `id: Type` 或 `_: Type` | 匹配运行时类型 | refutable |
+| Enum 模式 | `C(p1, p2)` | 匹配 enum 的构造器 | 取决于构造器个数 |
+| 嵌套组合 | 上述模式的任意组合 | 层层递进匹配 | 取决于最内层模式 |
+5:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$La",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-07-02"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"模式匹配"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"match 表达式中支持的各种模式"}]]}],["$","$Lb",null,{"content":"$c"}],"$Ld"]}]}]
+6:["$","script","script-0",{"src":"/_next/static/chunks/0g4o6d4sifcpo.js","async":true}]
+7:["$","script","script-1",{"src":"/_next/static/chunks/1ssz3eabjrzaj.js","async":true}]
+8:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
+12:T49c5,
+## 5.2.1 什么是模式？
+
+对于包含匹配值的 `match` 表达式，`case` 之后支持哪些"模式"决定了 `match` 表达式的表达能力。
+
+**模式**就是"你想匹配的值长什么样"——它可以是一个具体的值、一个通配符、一个变量绑定，也可以是更复杂的组合。
+
+> [!TIP]
+> 模式就像是"寻人启事"上的描述：
+> - 常量模式："找一个叫张三的人"——具体指定
+> - 通配符模式："找一个人"——谁都行
+> - 绑定模式："找一个人，记下他的名字"——匹配的同时把值存起来
+>
+> 仓颉支持以下几种模式：**常量模式、通配符模式、绑定模式、tuple 模式、类型模式、enum 模式**，还可以嵌套组合使用。
+
+---
+
+## 5.2.2 常量模式
+
+常量模式可以是整数字面量、浮点数字面量、字符字面量、布尔字面量、字符串字面量（不支持字符串插值）、Unit 字面量。
+
+在包含匹配值的 match 表达式中使用常量模式时，要求常量模式表示的值的类型与待匹配值的类型相同，匹配成功的条件是待匹配的值与常量模式表示的值相等。
+
+下面的例子中，根据 `score` 的值（假设 score 只能取 0 到 100 间被 10 整除的值），输出考试成绩的等级：
+
+```Cangjie
+main() {
+    let score = 90
+    let level = match (score) {
+        case 0 | 10 | 20 | 30 | 40 | 50 => "D"
+        case 60 => "C"
+        case 70 | 80 => "B"
+        case 90 | 100 => "A" // 匹配成功
+        case _ => "Not a valid score"
+    }
+    println(level)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+A
+```
+
+### Rune 类型的常量模式
+
+在模式匹配的目标是静态类型为 `Rune` 的值时，`Rune` 字面量和单字符字符串字面量都可用于表示 `Rune` 类型字面量的常量模式。
+
+```Cangjie
+func translate(n: Rune) {
+    match (n) {
+        case "A" => 1
+        case "B" => 2
+        case "C" => 3
+        case _ => -1
+    }
+}
+
+main() {
+    println(translate(r"C"))
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+3
+```
+
+### Byte 类型的常量模式
+
+在模式匹配的目标是静态类型为 `Byte` 的值时，一个表示 ASCII 字符的字符串字面量可用于表示 `Byte` 类型字面量的常量模式。
+
+```Cangjie
+func translate(n: Byte) {
+    match (n) {
+        case "1" => 1
+        case "2" => 2
+        case "3" => 3
+        case _ => -1
+    }
+}
+
+main() {
+    println(translate(51)) // UInt32(r'3') == 51
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+3
+```
+
+---
+
+## 5.2.3 通配符模式
+
+通配符模式使用下划线 `_` 表示，可以匹配**任意值**。
+
+通配符模式通常作为最后一个 `case` 中的模式，用来匹配其他 `case` 未覆盖到的情况。就像上面的常量模式例子中，最后一个 `case` 使用 `_` 来匹配无效的 score 值。
+
+```Cangjie
+func wildcardPat(x: Int64) {
+    match (x) {
+        case _ => "_"   // 不管 x 是什么值，都能匹配
+    }
+}
+```
+
+> [!TIP]
+> `_` 就像"来者不拒"——不管传进来什么值，我都要。
+
+---
+
+## 5.2.4 绑定模式
+
+绑定模式使用 `id` 表示，`id` 是一个合法的标识符。与通配符模式相比，绑定模式同样可以匹配任意值，但绑定模式会将匹配到的值与 `id` 进行绑定，在 `=>` 之后可以通过 `id` 访问其绑定的值。
+
+下面的例子中，最后一个 `case` 中使用了绑定模式。其中，变量 `n` 属于 id 标识，用于绑定非 0 值：
+
+```Cangjie
+main() {
+    let x = -10
+    let y = match (x) {
+        case 0 => "zero"
+        case n => "x is not zero and x = ${n}" // 匹配成功
+    }
+    println(y)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+x is not zero and x = -10
+```
+
+> [!NOTE]
+> 绑定模式就像是"抓住它并贴上标签"——`case n =>` 的意思是"无论值是什么，把它叫作 `n`"。
+
+### 绑定模式的限制
+
+使用 `|` 连接多个模式时**不能使用**绑定模式，也不可嵌套出现在其他模式中，否则会报错：
+
+```Cangjie
+main() {
+    let opt = Some(0)
+    match (opt) {
+        case x | x => {} // Error, 不能在 | 连接的模式中引入变量
+        case Some(x) | Some(x) => {} // Error, 不能在 | 连接的模式中引入变量
+        case x: Int64 | x: String => {} // Error, 不能在 | 连接的模式中引入变量
+    }
+}
+```
+
+绑定模式 id 相当于新定义了一个名为 id 的**不可变变量**（其作用域从引入处开始到该 case 结尾处），因此在 `=>` 之后无法对 id 进行修改：
+
+```Cangjie
+main() {
+    let x = -10
+    let y = match (x) {
+        case 0 => "zero"
+        case n =>
+            n = n + 0 // Error, 'n' 不可修改
+            "x is not zero"
+    }
+    println(y)
+}
+```
+
+对于每个 case 分支，`=>` 之后变量作用域级别与 case 后 `=>` 前引入的变量作用域级别相同，在 `=>` 之后再次引入相同名字会触发重定义错误：
+
+```Cangjie
+main() {
+    let x = -10
+    let y = match (x) {
+        case 0 => "zero"
+        case n =>
+            let n = 0 // Error, 重复定义
+            println(n)
+            "x is not zero"
+    }
+    println(y)
+}
+```
+
+### 绑定模式 vs enum 构造器
+
+当模式的 `identifier` 为 **enum 构造器**时，该模式会被当成 enum 模式进行匹配，而不是绑定模式：
+
+```Cangjie
+enum RGBColor {
+    | Red | Green | Blue
+}
+
+main() {
+    let x = Red
+    let y = match (x) {
+        case Red => "red"   // 这里的 Red 是 enum 模式，不是绑定模式
+        case _ => "not red"
+    }
+    println(y)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+red
+```
+
+> [!CAUTION]
+> 如果标识符同时也是 enum 的构造器名，编译器优先将其视为 enum 模式。
+
+---
+
+## 5.2.5 Tuple 模式
+
+Tuple 模式用于 **tuple 值**的匹配，它的定义和 tuple 字面量类似：`(p_1, p_2, ..., p_n)`，区别在于这里的 `p_1` 到 `p_n`（n 大于等于 2）是**模式**（可以是本章节中介绍的任何模式，多个模式间使用逗号分隔）而不是表达式。
+
+例如：
+- `(1, 2, 3)` 是一个包含三个常量模式的 tuple 模式
+- `(x, y, _)` 是一个包含两个绑定模式、一个通配符模式的 tuple 模式
+
+给定一个 tuple 值 `tv` 和一个 tuple 模式 `tp`，当且仅当 `tv` 每个位置处的值均能与 `tp` 中对应位置处的模式相匹配，才称 `tp` 能匹配 `tv`。
+
+```Cangjie
+main() {
+    let tv = ("Alice", 24)
+    let s = match (tv) {
+        case ("Bob", age) => "Bob is ${age} years old"
+        case ("Alice", age) => "Alice is ${age} years old" // 匹配成功，"Alice" 是常量模式，'age' 是绑定模式
+        case (name, 100) => "${name} is 100 years old"
+        case (_, _) => "someone"
+    }
+    println(s)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+Alice is 24 years old
+```
+
+> [!TIP]
+> Tuple 模式让你可以**同时匹配多个值**，就像用筛子筛东西——每个位置都要对上。
+
+同一个 tuple 模式中**不允许**引入多个名称相同的绑定模式：
+
+```Cangjie
+main() {
+    let tv = ("Alice", 24)
+    let s = match (tv) {
+        case ("Bob", age) => "Bob is ${age} years old"
+        case ("Alice", age) => "Alice is ${age} years old"
+        case (name, 100) => "${name} is 100 years old"
+        case (x, x) => "someone" // Error, 不能引入同名的绑定模式
+    }
+    println(s)
+}
+```
+
+---
+
+## 5.2.6 类型模式
+
+类型模式用于判断一个值的**运行时类型**是否是某个类型的子类型。类型模式有两种形式：
+- `_: Type`（嵌套一个通配符模式 `_`）
+- `id: Type`（嵌套一个绑定模式 `id`）
+
+区别是后者会发生变量绑定，而前者不会。
+
+对于待匹配值 `v` 和类型模式 `id: Type`（或 `_: Type`）：
+1. 首先判断 `v` 的运行时类型是否是 `Type` 的子类型
+2. 若成立则视为匹配成功，否则视为匹配失败
+3. 如匹配成功，则将 `v` 的类型转换为 `Type` 并与 `id` 进行绑定（对于 `_: Type`，不存在绑定这一操作）
+
+假设有如下两个类，`Base` 和 `Derived`，并且 `Derived` 是 `Base` 的子类：
+
+```Cangjie
+open class Base {
+    var a: Int64
+    public init() {
+        a = 10
+    }
+}
+
+class Derived <: Base {
+    public init() {
+        a = 20
+    }
+}
+```
+
+下面的代码展示了使用类型模式并**匹配成功**的例子：
+
+```Cangjie
+func test1() {
+    var d = Derived()
+    var r = match (d) {
+        case b: Base => b.a // 匹配成功：Derived 是 Base 的子类
+        case _ => 0
+    }
+    println("r = ${r}")
+}
+```
+
+下面的代码展示了使用类型模式但**匹配失败**的例子：
+
+```Cangjie
+func test2() {
+    var b = Base()
+    var r = match (b) {
+        case d: Derived => d.a // 类型模式匹配失败：Base 不是 Derived 的子类
+        case _ => 0            // 匹配成功
+    }
+    println("r = ${r}")
+}
+
+main() {
+    test1()
+    test2()
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+r = 20
+r = 0
+```
+
+> [!TIP]
+> 类型模式就像"检查身份证"——看看这个人的实际身份是不是你期待的那样。`b: Base` 表示"如果 b 实际上是 Base 类型（或其子类），就把它当作 Base 来用"。
+
+---
+
+## 5.2.7 Enum 模式
+
+Enum 模式用于匹配 **enum 类型**的实例，它的定义和 enum 的构造器类似：
+- 无参构造器：`C`
+- 有参构造器：`C(p_1, p_2, ..., p_n)`
+
+构造器的**类型前缀可以省略**。
+
+例如：
+- `Some(1)` 是一个包含一个常量模式的 enum 模式
+- `Some(x)` 是一个包含一个绑定模式的 enum 模式
+
+给定一个 enum 实例 `ev` 和一个 enum 模式 `ep`，当且仅当 `ev` 的构造器名字和 `ep` 的构造器名字相同，且 `ev` 参数列表中每个位置处的值均能与 `ep` 中对应位置处的模式相匹配，才称 `ep` 能匹配 `ev`。
+
+```Cangjie
+enum TimeUnit {
+    | Year(UInt64)
+    | Month(UInt64)
+}
+
+main() {
+    let x = Year(2)
+    let s = match (x) {
+        case Year(n) => "x has ${n * 12} months" // 匹配成功
+        case TimeUnit.Month(n) => "x has ${n} months"
+    }
+    println(s)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+x has 24 months
+```
+
+### 多个 enum 模式用 `|` 连接
+
+当使用 `|` 连接多个 enum 模式时，每个模式必须独立且**不能引入新的变量**。这是因为 `|` 表示"或"的关系，而变量的引入需要明确的上下文，不能在多个模式之间共享。
+
+```Cangjie
+enum TimeUnit {
+    | Year(UInt64)
+    | Month(UInt64)
+}
+
+main() {
+    let x = Year(2)
+    let s = match (x) {
+        case Year(5) => "1:OK"
+        case Month(m) => "2:OK"
+        case Year(0) | Year(1) | Month(_) => "3:OK"
+        case Year(_) => "4:OK"
+        case Year(2) | Month(m) => "5:invalid" // Error, | 连接的模式中不能引入变量
+        case Year(n: UInt64) | Month(n: UInt64) => "6:invalid" // Error, | 连接的模式中不能引入变量
+    }
+    println(s)
+}
+```
+
+上述示例中，第二个 case 引入了一个新变量 `m`，但没有使用 `|` 连接其他模式，故合法。
+
+### 穷尽性检查
+
+使用 match 表达式匹配 enum 值时，要求 case 之后的模式要覆盖待匹配 enum 类型中的**所有构造器**，如果未做到完全覆盖，编译器将报错：
+
+```Cangjie
+enum RGBColor {
+    | Red | Green | Blue
+}
+
+main() {
+    let c = Green
+    let cs = match (c) { // Error, 没有覆盖 RGBColor 的所有构造器
+        case Red => "Red"
+        case Green => "Green"
+    }
+    println(cs)
+}
+```
+
+可以通过加上 `case Blue` 来实现完全覆盖，也可以在 match 表达式的最后通过使用 `case _` 来覆盖其他 case 未覆盖的情况：
+
+```Cangjie
+enum RGBColor {
+    | Red | Green | Blue
+}
+
+main() {
+    let c = Blue
+    let cs = match (c) {
+        case Red => "Red"
+        case Green => "Green"
+        case _ => "Other" // 匹配成功
+    }
+    println(cs)
+}
+```
+
+上述代码的执行结果为：
+
+```Bash
+Other
+```
+
+---
+
+## 5.2.8 模式守卫（pattern guard）
+
+在 `case` 分支的模式之后，可以使用 **pattern guard（模式守卫）** 进一步对匹配出来的结果进行判断，此为可选内容。
+
+pattern guard 表示本条 case 匹配成功后额外需要满足的条件，其使用 `where cond`（语法格式）表示，要求表达式 `cond` 的类型为 `Bool`。
+
+match 表达式执行时，会依次将 match 之后的表达式与每个 case 中的模式进行匹配。如果有 pattern guard，需要 `where` 之后的表达式的值为 `true`；如果 case 中有多个由 `|` 连接的模式，只要待匹配值和其中一个模式匹配则认为匹配成功。一旦匹配成功，将执行 `=>` 之后的代码，然后退出 match 表达式的执行，这意味着不会再去匹配它之后的 case。如果匹配不成功，会继续与它之后的 case 中的模式进行匹配，直到匹配成功。match 表达式可以保证一定存在匹配的 case 分支。
+
+在下面的例子中，使用到了 enum 模式。当 `RGBColor` 的构造器的参数值大于等于 0 时，输出它们的值；当参数值小于 0 时，即满足第一个 case 的 `where cond`，则认为它们的值等于 0：
+
+```Cangjie
+enum RGBColor {
+    | Red(Int16) | Green(Int16) | Blue(Int16)
+}
+
+main() {
+    let c = RGBColor.Green(-100)
+    let cs = match (c) {
+        case Red(r) where r < 0 => "Red = 0"
+        case Red(r) => "Red = ${r}"
+        case Green(g) where g < 0 => "Green = 0" // 匹配成功
+        case Green(g) => "Green = ${g}"
+        case Blue(b) where b < 0 => "Blue = 0"
+        case Blue(b) => "Blue = ${b}"
+    }
+    print(cs)
+}
+```
+
+编译执行上述代码，输出结果为：
+
+```Bash
+Green = 0
+```
+
+> [!NOTE]
+> `where` 就像是"在匹配成功的基础上再加一道检查"——先匹配构造器（比如 `Red(r)`），再检查条件（比如 `where r < 0`），双重筛选。
+
+## 5.2.9 模式的嵌套组合
+
+Tuple 模式和 enum 模式可以**嵌套**任意模式。下面的代码展示了不同模式嵌套组合使用：
+
+```Cangjie
+enum TimeUnit {
+    | Year(UInt64)
+    | Month(UInt64)
+}
+
+enum Command {
+    | SetTimeUnit(TimeUnit)
+    | GetTimeUnit
+    | Quit
+}
+
+main() {
+    let command = (SetTimeUnit(Year(2022)), SetTimeUnit(Year(2024)))
+    match (command) {
+        case (SetTimeUnit(Year(year)), _) => println("Set year ${year}")   // 匹配成功
+        case (_, SetTimeUnit(Month(month))) => println("Set month ${month}")
+        case _ => ()
+    }
+}
+```
+
+编译并执行上述代码，输出结果为：
+
+```Bash
+Set year 2022
+```
+
+> [!TIP]
+> 嵌套组合就像一个"俄罗斯套娃"——大模式里面套小模式，层层递进匹配。上面的 `(SetTimeUnit(Year(year)), _)` 就是一个两层嵌套：先匹配 tuple，再匹配 enum，再匹配常量。
+
+---
+
+## 5.2.10 模式的 Refutability（可反驳性）
+
+模式可以分为两类：
+
+| 类型 | 含义 | 类比 |
+|------|------|------|
+| **refutable 模式** | 有可能和待匹配值**不匹配** | "这个人是穿红衣服的吗？"——不一定 |
+| **irrefutable 模式** | **总是**可以和待匹配值匹配 | "这里有个人吗？"——肯定有 |
+
+### 常量模式 — refutable
+
+常量模式是 **refutable** 模式。例如，下例中第一个 case 中的 `1` 和第二个 case 中的 `2` 都有可能和 `x` 的值不相等。
+
+```Cangjie
+func constPat(x: Int64) {
+    match (x) {
+        case 1 => "one"
+        case 2 => "two"
+        case _ => "_"
+    }
+}
+```
+
+### 通配符模式 — irrefutable
+
+通配符模式是 **irrefutable** 模式。例如，下例中无论 `x` 的值是多少，`_` 总能和其匹配。
+
+```Cangjie
+func wildcardPat(x: Int64) {
+    match (x) {
+        case _ => "_"
+    }
+}
+```
+
+### 绑定模式 — irrefutable
+
+绑定模式是 **irrefutable** 模式。例如，下例中无论 `x` 的值是多少，绑定模式 `a` 总能和其匹配。
+
+```Cangjie
+func varPat(x: Int64) {
+    match (x) {
+        case a => "x = ${a}"
+    }
+}
+```
+
+### Tuple 模式 — 取决于内部模式
+
+Tuple 模式是 **irrefutable** 模式，当且仅当其包含的每个模式都是 irrefutable 模式。
+
+例如，下例中 `(1, 2)` 和 `(a, 2)` 都有可能和 `x` 的值不匹配，所以它们是 **refutable** 模式；而 `(a, b)` 可以匹配任何 `x` 的值，所以它是 **irrefutable** 模式。
+
+```Cangjie
+func tuplePat(x: (Int64, Int64)) {
+    match (x) {
+        case (1, 2) => "(1, 2)"
+        case (a, 2) => "(${a}, 2)"
+        case (a, b) => "(${a}, ${b})"
+    }
+}
+```
+
+### 类型模式 — refutable
+
+类型模式是 **refutable** 模式。例如，下例中（假设 Base 是 Derived 的父类，并且 Base 实现了接口 I），`x` 的运行时类型有可能既不是 Base 也不是 Derived，所以 `a: Derived` 和 `b: Base` 均是 refutable 模式。
+
+```Cangjie
+interface I {}
+
+open class Base <: I {}
+
+class Derived <: Base {}
+
+func typePat(x: I) {
+    match (x) {
+        case a: Derived => "Derived"
+        case b: Base => "Base"
+        case _ => "Other"
+    }
+}
+```
+
+### Enum 模式 — 取决于构造器个数
+
+Enum 模式是 **irrefutable** 模式，当且仅当它对应的 enum 类型中**只有一个有参构造器**，且 enum 模式中包含的其他模式也是 irrefutable 模式。
+
+例如，对于下例中的 `E1` 和 `E2` 定义：
+- 函数 `enumPat1` 中的 `A(1)` 是 refutable 模式，`A(a)` 是 irrefutable 模式（因为 E1 只有一个构造器 A）
+- 函数 `enumPat2` 中的 `B(b)` 和 `C(c)` 均是 refutable 模式（因为 E2 有两个构造器）
+
+```Cangjie
+enum E1 {
+    A(Int64)
+}
+
+enum E2 {
+    B(Int64) | C(Int64)
+}
+
+func enumPat1(x: E1) {
+    match (x) {
+        case A(1) => "A(1)"
+        case A(a) => "A(${a})"
+    }
+}
+
+func enumPat2(x: E2) {
+    match (x) {
+        case B(b) => "B(${b})"
+        case C(c) => "C(${c})"
+    }
+}
+```
+
+> [!NOTE]
+> refutable（可反驳）和 irrefutable（不可反驳）这两个概念，简单理解就是：这个模式**有没有可能匹配不上**。
+>
+> - `_` 永远能匹配上 → irrefutable
+> - `42` 不一定能匹配上 → refutable（因为 x 可能是 43）
+>
+> 理解这个概念对于写出正确的 match 表达式很有帮助。
+
+---
+
+## 5.2.11 小结
+
+| 模式类型 | 语法 | 说明 | 可反驳性 |
+|---------|------|------|---------|
+| 常量模式 | `42`、`"hello"`、`true` | 匹配具体值 | refutable |
+| 通配符模式 | `_` | 匹配任意值 | irrefutable |
+| 绑定模式 | `id` | 匹配并将值绑定到变量 | irrefutable |
+| Tuple 模式 | `(p1, p2)` | 匹配 tuple 的每个元素 | 取决于内部模式 |
+| 类型模式 | `id: Type` 或 `_: Type` | 匹配运行时类型 | refutable |
+| Enum 模式 | `C(p1, p2)` | 匹配 enum 的构造器 | 取决于构造器个数 |
+| 嵌套组合 | 上述模式的任意组合 | 层层递进匹配 | 取决于最内层模式 |
+d:["$","$L11",null,{"content":"$12","collection":"Cangjie/5_枚举类型和模式匹配","rootColPath":"Cangjie","allArticles":["$4:props:children:props:children:2:props:articles:0","$4:props:children:props:children:2:props:articles:1","$4:props:children:props:children:2:props:articles:2","$4:props:children:props:children:2:props:articles:3","$4:props:children:props:children:2:props:articles:4","$4:props:children:props:children:2:props:articles:5","$4:props:children:props:children:2:props:articles:6","$4:props:children:props:children:2:props:articles:7","$4:props:children:props:children:2:props:articles:8","$4:props:children:props:children:2:props:articles:9",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782987808713.5557},"$4:props:children:props:children:2:props:articles:10","$4:props:children:props:children:2:props:articles:11","$4:props:children:props:children:2:props:articles:12","$4:props:children:props:children:2:props:articles:13","$4:props:children:props:children:2:props:articles:14","$4:props:children:props:children:2:props:articles:15","$4:props:children:props:children:2:props:articles:16","$4:props:children:props:children:2:props:articles:17","$4:props:children:props:children:2:props:articles:18","$4:props:children:props:children:2:props:articles:19","$4:props:children:props:children:2:props:articles:20","$4:props:children:props:children:2:props:articles:21","$4:props:children:props:children:2:props:articles:22","$4:props:children:props:children:2:props:articles:23","$4:props:children:props:children:2:props:articles:24","$4:props:children:props:children:2:props:articles:25","$4:props:children:props:children:2:props:articles:26","$4:props:children:props:children:2:props:articles:27","$4:props:children:props:children:2:props:articles:28","$4:props:children:props:children:2:props:articles:29","$4:props:children:props:children:2:props:articles:30","$4:props:children:props:children:2:props:articles:31","$4:props:children:props:children:2:props:articles:32","$4:props:children:props:children:2:props:articles:33","$4:props:children:props:children:2:props:articles:34","$4:props:children:props:children:2:props:articles:35","$4:props:children:props:children:2:props:articles:36"],"currentSlug":"Cangjie/5_枚举类型和模式匹配/2_模式匹配"}]
+10:null
