@@ -1,0 +1,688 @@
+1:"$Sreact.fragment"
+2:I[23597,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"TocSidebar"]
+9:I[59537,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleNavSidebar"]
+a:I[22016,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],""]
+b:I[96438,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"ArticleContent"]
+e:I[97367,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
+f:"$Sreact.suspense"
+11:I[28093,["/_next/static/chunks/0o--8oop24u_f.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4o6d4sifcpo.js","/_next/static/chunks/1ssz3eabjrzaj.js"],"MobileArticlePanel"]
+3:T1b5e,
+## 4.7.1 什么是函数重载？
+
+你有没有遇到过这种情况：你想写一个"加法"函数，但它既要能加整数、又要能加小数，甚至还要能加三个数？如果每种情况都要起不同的名字（比如 `addInt`、`addFloat`、`addThree`），用起来会很麻烦。
+
+**函数重载**就是解决这个问题的——**同一个函数名，可以对应多个不同的函数定义**，只要它们的参数不同就行。
+
+> [!TIP]
+> 生活中的类比：**"打开"这个动作，可以有不同的打开方式**：
+> - 打开**门** → 握住门把手转动
+> - 打开**窗户** → 向上推
+> - 打开**电脑** → 按电源键
+>
+> 动作都叫"打开"，但具体怎么做取决于你面对的是什么东西。
+>
+> 函数重载也是一样：**函数名相同，但参数不同，它们就是不同的函数**。编译器会根据你调用时传入的参数，自动选择正确的那个。
+
+### 对比：没有重载 vs 有重载
+
+```Cangjie
+// 没有重载：每种情况都要取不同的名字
+func addInt(a: Int64, b: Int64): Int64 { return a + b }
+func addFloat(a: Float64, b: Float64): Float64 { return a + b }
+
+// 有重载：同一个名字，参数不同就行
+func add(a: Int64, b: Int64): Int64 { return a + b }
+func add(a: Float64, b: Float64): Float64 { return a + b }
+```
+
+有重载的好处：调用时只用记一个名字 `add`，编译器自动匹配合适的版本。
+
+---
+
+## 4.7.2 重载的条件：同名不同参
+
+两个函数构成重载的条件是：**函数名相同，参数不同**。
+
+"参数不同"有两种情况：
+
+| 情况 | 说明 | 例子 |
+|------|------|------|
+| 参数个数不同 | 一个 1 个参数，另一个 2 个参数 | `f(a)` 和 `f(a, b)` |
+| 参数类型不同 | 参数个数相同，但类型不同 | `f(Int64)` 和 `f(Float64)` |
+
+```Cangjie
+func f(a: Int64): Unit {}          // 一个 Int64 参数
+
+func f(a: Float64): Unit {}         // 一个 Float64 参数（类型不同）
+
+func f(a: Int64, b: Float64): Unit {} // 两个参数（个数不同）
+```
+
+> [!NOTE]
+> 上例定义了三个同名函数 `f`：
+> - `f(Int64)` — 接收一个整数
+> - `f(Float64)` — 接收一个小数
+> - `f(Int64, Float64)` — 接收一个整数加一个小数
+>
+> 当你调用 `f(42)` 时，编译器自动选第一个；调用 `f(3.14)` 时，选第二个；调用 `f(42, 3.14)` 时，选第三个。
+>
+> **你不必告诉编译器用哪个版本——它会自动帮你选。**
+
+---
+
+## 4.7.3 不同作用域的重载
+
+函数定义在不同的作用域（一个在外面，一个在里面），也可以构成重载——在两个函数都可见的地方，它们同时存在。
+
+```Cangjie
+func f(a: Int64): Unit {}          // 全局作用域：f(Int64)
+
+func g() {
+    func f(a: Float64): Unit {}    // g 函数内部：f(Float64)
+    // 在 g 内部，两个 f 都可见
+    f(42)     // 调用全局的 f(Int64)
+    f(3.14)   // 调用局部的 f(Float64)
+}
+```
+
+> [!TIP]
+> 这就像"小区的快递收发室"和"你家门口"都有笔——你站在家门口时，优先用门口的笔（内层作用域），但两支笔都能用。
+
+---
+
+## 4.7.4 什么情况**不**构成重载？
+
+不是所有同名的情况都叫重载。以下几种情况**不能重载**，如果写在同一个作用域会报错：
+
+### 1. 变量不能重载
+
+变量即使类型不同，也不能用同一个名字定义两次：
+
+```Cangjie
+main() {
+    var f: (Int64) -> Unit    // 第一次声明变量 f
+    var f: (Float64) -> Unit  // ❌ 报错：变量 f 已经定义了
+}
+```
+
+> [!NOTE]
+> 重载是函数声明的"特权"，变量**不适用**。
+
+### 2. 函数和变量不能同名
+
+即使一个是变量、一个是函数，也不能同名：
+
+```Cangjie
+main() {
+    var f: (Int64) -> Unit           // 变量 f
+    func f(a: Float64): Unit {}      // ❌ 报错：函数和变量不能同名
+}
+```
+
+### 3. 静态函数和实例函数不能重载
+
+在 class 中，静态成员函数和实例成员函数之间不能重载：
+
+```Cangjie
+class C {
+    public static func f(a: Int64): Unit {}   // 静态函数
+    public func f(a: Float64): Unit {}         // ❌ 报错：实例函数，不能和静态的重载
+}
+```
+
+> [!CAUTION]
+> 简单记忆：**只有"函数-函数"可以重载，而且必须在同一类角色下**（不能一个静态、一个实例）。
+
+---
+
+## 4.7.5 函数重载决议：编译器怎么选？
+
+当你调用一个重载函数时，编译器会从候选函数中挑出最合适的一个。这个过程叫**重载决议**，主要有两条规则：
+
+### 规则一：内层的先选
+
+如果同一个函数名在**外层**和**内层**都有定义，优先选内层的。
+
+```Cangjie
+open class Base {}
+
+class Sub <: Base {}
+
+func outer() {
+    func g(a: Sub) {
+        print("1")
+    }
+
+    func inner() {
+        func g(a: Base) {
+            print("2")
+        }
+
+        g(Sub()) // 输出：2（选内层的 g）
+    }
+}
+```
+
+> [!TIP]
+> 就像你口袋里有一支笔（内层），包里也有一支笔（外层）——你站在那儿的时候，优先摸口袋里的。
+
+### 规则二：参数更匹配的先选
+
+如果几个函数在**同一层**，编译器选参数**最匹配**的那个。
+
+什么叫"最匹配"？简单说：**你的实参类型和哪个形参类型最接近，就选哪个**。
+
+```Cangjie
+open class Base {}
+
+class Sub <: Base {}
+
+func outer() {
+    func g(a: Sub) {      // g 接收 Sub 类型
+        print("1")
+    }
+    func g(a: Base) {     // g 接收 Base 类型
+        print("2")
+    }
+
+    g(Sub()) // 输出：1（Sub 比 Base 更匹配 Sub 类型的实参）
+}
+```
+
+> [!TIP]
+> 规则二很好理解：你递了一瓶可乐，服务员会给你一个"可乐杯"（最匹配的），而不是泛泛的"杯子"。
+
+### 特殊情况：父子类视为同一层
+
+父类和子类中定义的函数，在重载决议时当成**同一层**处理，按"参数最匹配"来选：
+
+```Cangjie
+open class Base {
+    public func g(a: Sub) {
+        print("1")
+    }
+}
+
+class Sub <: Base {
+    public func g(a: Base) {
+        print("2")
+    }
+}
+
+func outer() {
+    let s: Sub = Sub()
+    s.g(Sub()) // 输出：1（父类的 g 参数是 Sub，更匹配）
+}
+```
+
+> [!NOTE]
+> 这里的 `s.g(Sub())` 调用时，父类的 `g(Sub)` 和子类的 `g(Base)` 都能匹配。但 `Sub` 类型的实参显然更匹配 `g(Sub)`，所以选父类的版本。
+
+---
+
+## 4.7.6 小结
+
+| 知识点 | 要点 | 一句话记住 |
+|--------|------|-----------|
+| 重载条件 | 同名函数，参数个数或类型不同 | 同名不同参 |
+| 不同作用域 | 内层外层的同名函数在同一作用域中构成重载 | 远近都有 |
+| **不**构成重载 | 静态与实例成员函数、变量之间、变量与函数 | 有些不能同名 |
+| 重载决议规则一 | 优先选**内层**作用域的 | 近的先选 |
+| 重载决议规则二 | 同一层内选参数**最匹配**的 | 准的先选 |
+| 父子类 | 视为同一作用域，按规则二选 | 不分你我，只看谁合适 |
+0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L2",null,{"content":"$3"}],"$L4","$L5"]}],["$L6","$L7"],"$L8"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"vKJemjeJRPs_ky0q42LE4"}
+4:["$","aside",null,{"className":"fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10","children":["$","div",null,{"className":"liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto","children":[["$","h3",null,{"className":"text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider","children":"合集"}],["$","div",null,{"className":"w-full h-px bg-blue-100/50 dark:bg-blue-900/30"}],["$","$L9",null,{"rootPath":"Cangjie","rootName":"Cangjie","articles":[{"slug":"Cangjie/1_初识仓颉/0_前言","title":"初识仓颉","description":"从零开始，走进仓颉的世界","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":0,"published":true,"mtime":1782986047850.0527},{"slug":"Cangjie/2_基本数据类型/0_前言","title":"前言","description":"仓颉的基本数据类型详解","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":0,"published":true,"mtime":1782986047850.126},{"slug":"Cangjie/3_逻辑控制/0_前言","title":"逻辑控制","description":"仓颉的逻辑控制——分支与循环","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":0,"published":true,"mtime":1782986047850.484},{"slug":"Cangjie/4_函数/0_前言","title":"前言","description":"仓颉的函数——从基础到进阶","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":0,"published":true,"mtime":1782986047851.4631},{"slug":"Cangjie/1_初识仓颉/1_第一个仓颉程序","title":"第一个仓颉程序","description":"步入Cangjie的世界，从零运行起你的第一个程序","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":1,"published":true,"mtime":1782986047850.126},{"slug":"Cangjie/2_基本数据类型/1_整数类型","title":"整数类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":1,"published":true,"mtime":1782986047850.484},{"slug":"Cangjie/3_逻辑控制/1_if分支结构","title":"if分支结构","description":"仓颉的逻辑控制——if分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":1,"published":true,"mtime":1782986047851.328},{"slug":"Cangjie/4_函数/1_定义函数","title":"定义函数","description":"学会编写可复用的代码块","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":1,"published":true,"mtime":1782986047851.8804},{"slug":"Cangjie/1_初识仓颉/2_仓颉的注释","title":"仓颉的注释","description":"为程序解释含义","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":2,"published":true,"mtime":1782986047850.126},{"slug":"Cangjie/2_基本数据类型/2_浮点类型","title":"浮点类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":2,"published":true,"mtime":1782986047850.484},{"slug":"Cangjie/3_逻辑控制/2_match分支结构","title":"match分支结构","description":"仓颉的逻辑控制——match分支结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":2,"published":true,"mtime":1782986047851.328},{"slug":"Cangjie/4_函数/2_调用函数","title":"调用函数","description":"学会灵活调用仓颉函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":2,"published":true,"mtime":1782986047851.8804},{"slug":"Cangjie/1_初识仓颉/3_仓颉的标识符","title":"仓颉的标识符","description":"为程序元素命名","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":3,"published":true,"mtime":1782986047850.126},{"slug":"Cangjie/2_基本数据类型/3_字符型","title":"字符型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":3,"published":true,"mtime":1782986047850.484},{"slug":"Cangjie/3_逻辑控制/3_while循环结构","title":"while循环结构","description":"仓颉的逻辑控制——while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":3,"published":true,"mtime":1782986047851.328},{"slug":"Cangjie/4_函数/3_函数类型","title":"函数类型","description":"仓颉中函数也是一等公民","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":3,"published":true,"mtime":1782986047851.8804},{"slug":"Cangjie/1_初识仓颉/4_仓颉的变量","title":"仓颉的变量","description":"更方便的管理数据","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/1_初识仓颉","sort":4,"published":true,"mtime":1782986047850.126},{"slug":"Cangjie/2_基本数据类型/4_字符串型","title":"字符串型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":4,"published":true,"mtime":1782986047850.484},{"slug":"Cangjie/3_逻辑控制/4_do-while循环结构","title":"do-while循环结构","description":"仓颉的逻辑控制——do-while循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":4,"published":true,"mtime":1782986047851.328},{"slug":"Cangjie/4_函数/4_lambda表达式","title":"Lambda表达式","description":"快速创建匿名函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":4,"published":true,"mtime":1782986047851.8804},{"slug":"Cangjie/2_基本数据类型/5_布尔类型","title":"布尔类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":5,"published":true,"mtime":1782986047850.484},{"slug":"Cangjie/3_逻辑控制/5_for-in循环结构","title":"for-in循环结构","description":"仓颉的逻辑控制——for-in循环结构","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":5,"published":true,"mtime":1782986047851.328},{"slug":"Cangjie/4_函数/5_嵌套函数","title":"嵌套函数","description":"函数内部定义函数","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":5,"published":true,"mtime":1782986047851.8804},{"slug":"Cangjie/2_基本数据类型/6_元组类型","title":"元组类型","description":"仓颉的基本数据类型","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":6,"published":true,"mtime":1782986047850.484},{"slug":"Cangjie/3_逻辑控制/6_循环控制","title":"循环控制","description":"仓颉的逻辑控制——break 与 continue","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/3_逻辑控制","sort":6,"published":true,"mtime":1782986047851.4631},{"slug":"Cangjie/4_函数/6_闭包","title":"闭包","description":"捕获变量的函数与lambda","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":6,"published":true,"mtime":1782986047851.8804},{"slug":"Cangjie/2_基本数据类型/7_数组类型","title":"数组类型","description":"仓颉的基本数据类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":7,"published":true,"mtime":1782986047850.484},{"slug":"Cangjie/4_函数/7_函数重载","title":"函数重载","description":"同名函数的不同形态","date":"2026-07-02","tags":["Cangjie","入门教程"],"collection":"Cangjie/4_函数","sort":7,"published":true,"mtime":1782986047851.8804},{"slug":"Cangjie/2_基本数据类型/8_区间类型","title":"区间类型","description":"仓颉的基本数据类型——区间类型","date":"2026-06-25","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":8,"published":true,"mtime":1782986047850.484},{"slug":"Cangjie/2_基本数据类型/9_Unit类型","title":"Unit类型","description":"仓颉的基本数据类型——Unit类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":9,"published":true,"mtime":1782986047850.484},{"slug":"Cangjie/2_基本数据类型/10_nothing类型","title":"Nothing类型","description":"仓颉的基本数据类型——Nothing类型","date":"2026-07-01","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":10,"published":true,"mtime":1782986047850.484},{"slug":"Cangjie/2_基本数据类型/11_运算符","title":"运算符","description":"仓颉的基本运算操作符","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":11,"published":true,"mtime":1782986047850.484},{"slug":"Cangjie/2_基本数据类型/12_类型转换","title":"类型转换","description":"仓颉的基本数据类型——数值类型转换","date":"2026-06-24","tags":["Cangjie","入门教程"],"collection":"Cangjie/2_基本数据类型","sort":12,"published":true,"mtime":1782986047850.484}],"currentSlug":"Cangjie/4_函数/7_函数重载"}]]}]}]
+c:T1b5e,
+## 4.7.1 什么是函数重载？
+
+你有没有遇到过这种情况：你想写一个"加法"函数，但它既要能加整数、又要能加小数，甚至还要能加三个数？如果每种情况都要起不同的名字（比如 `addInt`、`addFloat`、`addThree`），用起来会很麻烦。
+
+**函数重载**就是解决这个问题的——**同一个函数名，可以对应多个不同的函数定义**，只要它们的参数不同就行。
+
+> [!TIP]
+> 生活中的类比：**"打开"这个动作，可以有不同的打开方式**：
+> - 打开**门** → 握住门把手转动
+> - 打开**窗户** → 向上推
+> - 打开**电脑** → 按电源键
+>
+> 动作都叫"打开"，但具体怎么做取决于你面对的是什么东西。
+>
+> 函数重载也是一样：**函数名相同，但参数不同，它们就是不同的函数**。编译器会根据你调用时传入的参数，自动选择正确的那个。
+
+### 对比：没有重载 vs 有重载
+
+```Cangjie
+// 没有重载：每种情况都要取不同的名字
+func addInt(a: Int64, b: Int64): Int64 { return a + b }
+func addFloat(a: Float64, b: Float64): Float64 { return a + b }
+
+// 有重载：同一个名字，参数不同就行
+func add(a: Int64, b: Int64): Int64 { return a + b }
+func add(a: Float64, b: Float64): Float64 { return a + b }
+```
+
+有重载的好处：调用时只用记一个名字 `add`，编译器自动匹配合适的版本。
+
+---
+
+## 4.7.2 重载的条件：同名不同参
+
+两个函数构成重载的条件是：**函数名相同，参数不同**。
+
+"参数不同"有两种情况：
+
+| 情况 | 说明 | 例子 |
+|------|------|------|
+| 参数个数不同 | 一个 1 个参数，另一个 2 个参数 | `f(a)` 和 `f(a, b)` |
+| 参数类型不同 | 参数个数相同，但类型不同 | `f(Int64)` 和 `f(Float64)` |
+
+```Cangjie
+func f(a: Int64): Unit {}          // 一个 Int64 参数
+
+func f(a: Float64): Unit {}         // 一个 Float64 参数（类型不同）
+
+func f(a: Int64, b: Float64): Unit {} // 两个参数（个数不同）
+```
+
+> [!NOTE]
+> 上例定义了三个同名函数 `f`：
+> - `f(Int64)` — 接收一个整数
+> - `f(Float64)` — 接收一个小数
+> - `f(Int64, Float64)` — 接收一个整数加一个小数
+>
+> 当你调用 `f(42)` 时，编译器自动选第一个；调用 `f(3.14)` 时，选第二个；调用 `f(42, 3.14)` 时，选第三个。
+>
+> **你不必告诉编译器用哪个版本——它会自动帮你选。**
+
+---
+
+## 4.7.3 不同作用域的重载
+
+函数定义在不同的作用域（一个在外面，一个在里面），也可以构成重载——在两个函数都可见的地方，它们同时存在。
+
+```Cangjie
+func f(a: Int64): Unit {}          // 全局作用域：f(Int64)
+
+func g() {
+    func f(a: Float64): Unit {}    // g 函数内部：f(Float64)
+    // 在 g 内部，两个 f 都可见
+    f(42)     // 调用全局的 f(Int64)
+    f(3.14)   // 调用局部的 f(Float64)
+}
+```
+
+> [!TIP]
+> 这就像"小区的快递收发室"和"你家门口"都有笔——你站在家门口时，优先用门口的笔（内层作用域），但两支笔都能用。
+
+---
+
+## 4.7.4 什么情况**不**构成重载？
+
+不是所有同名的情况都叫重载。以下几种情况**不能重载**，如果写在同一个作用域会报错：
+
+### 1. 变量不能重载
+
+变量即使类型不同，也不能用同一个名字定义两次：
+
+```Cangjie
+main() {
+    var f: (Int64) -> Unit    // 第一次声明变量 f
+    var f: (Float64) -> Unit  // ❌ 报错：变量 f 已经定义了
+}
+```
+
+> [!NOTE]
+> 重载是函数声明的"特权"，变量**不适用**。
+
+### 2. 函数和变量不能同名
+
+即使一个是变量、一个是函数，也不能同名：
+
+```Cangjie
+main() {
+    var f: (Int64) -> Unit           // 变量 f
+    func f(a: Float64): Unit {}      // ❌ 报错：函数和变量不能同名
+}
+```
+
+### 3. 静态函数和实例函数不能重载
+
+在 class 中，静态成员函数和实例成员函数之间不能重载：
+
+```Cangjie
+class C {
+    public static func f(a: Int64): Unit {}   // 静态函数
+    public func f(a: Float64): Unit {}         // ❌ 报错：实例函数，不能和静态的重载
+}
+```
+
+> [!CAUTION]
+> 简单记忆：**只有"函数-函数"可以重载，而且必须在同一类角色下**（不能一个静态、一个实例）。
+
+---
+
+## 4.7.5 函数重载决议：编译器怎么选？
+
+当你调用一个重载函数时，编译器会从候选函数中挑出最合适的一个。这个过程叫**重载决议**，主要有两条规则：
+
+### 规则一：内层的先选
+
+如果同一个函数名在**外层**和**内层**都有定义，优先选内层的。
+
+```Cangjie
+open class Base {}
+
+class Sub <: Base {}
+
+func outer() {
+    func g(a: Sub) {
+        print("1")
+    }
+
+    func inner() {
+        func g(a: Base) {
+            print("2")
+        }
+
+        g(Sub()) // 输出：2（选内层的 g）
+    }
+}
+```
+
+> [!TIP]
+> 就像你口袋里有一支笔（内层），包里也有一支笔（外层）——你站在那儿的时候，优先摸口袋里的。
+
+### 规则二：参数更匹配的先选
+
+如果几个函数在**同一层**，编译器选参数**最匹配**的那个。
+
+什么叫"最匹配"？简单说：**你的实参类型和哪个形参类型最接近，就选哪个**。
+
+```Cangjie
+open class Base {}
+
+class Sub <: Base {}
+
+func outer() {
+    func g(a: Sub) {      // g 接收 Sub 类型
+        print("1")
+    }
+    func g(a: Base) {     // g 接收 Base 类型
+        print("2")
+    }
+
+    g(Sub()) // 输出：1（Sub 比 Base 更匹配 Sub 类型的实参）
+}
+```
+
+> [!TIP]
+> 规则二很好理解：你递了一瓶可乐，服务员会给你一个"可乐杯"（最匹配的），而不是泛泛的"杯子"。
+
+### 特殊情况：父子类视为同一层
+
+父类和子类中定义的函数，在重载决议时当成**同一层**处理，按"参数最匹配"来选：
+
+```Cangjie
+open class Base {
+    public func g(a: Sub) {
+        print("1")
+    }
+}
+
+class Sub <: Base {
+    public func g(a: Base) {
+        print("2")
+    }
+}
+
+func outer() {
+    let s: Sub = Sub()
+    s.g(Sub()) // 输出：1（父类的 g 参数是 Sub，更匹配）
+}
+```
+
+> [!NOTE]
+> 这里的 `s.g(Sub())` 调用时，父类的 `g(Sub)` 和子类的 `g(Base)` 都能匹配。但 `Sub` 类型的实参显然更匹配 `g(Sub)`，所以选父类的版本。
+
+---
+
+## 4.7.6 小结
+
+| 知识点 | 要点 | 一句话记住 |
+|--------|------|-----------|
+| 重载条件 | 同名函数，参数个数或类型不同 | 同名不同参 |
+| 不同作用域 | 内层外层的同名函数在同一作用域中构成重载 | 远近都有 |
+| **不**构成重载 | 静态与实例成员函数、变量之间、变量与函数 | 有些不能同名 |
+| 重载决议规则一 | 优先选**内层**作用域的 | 近的先选 |
+| 重载决议规则二 | 同一层内选参数**最匹配**的 | 准的先选 |
+| 父子类 | 视为同一作用域，按规则二选 | 不分你我，只看谁合适 |
+5:["$","div",null,{"className":"xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$La",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2026-07-02"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Cangjie",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Cangjie"]}],["$","span","入门教程",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","入门教程"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"函数重载"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"同名函数的不同形态"}]]}],["$","$Lb",null,{"content":"$c"}],"$Ld"]}]}]
+6:["$","script","script-0",{"src":"/_next/static/chunks/0g4o6d4sifcpo.js","async":true}]
+7:["$","script","script-1",{"src":"/_next/static/chunks/1ssz3eabjrzaj.js","async":true}]
+8:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
+12:T1b5e,
+## 4.7.1 什么是函数重载？
+
+你有没有遇到过这种情况：你想写一个"加法"函数，但它既要能加整数、又要能加小数，甚至还要能加三个数？如果每种情况都要起不同的名字（比如 `addInt`、`addFloat`、`addThree`），用起来会很麻烦。
+
+**函数重载**就是解决这个问题的——**同一个函数名，可以对应多个不同的函数定义**，只要它们的参数不同就行。
+
+> [!TIP]
+> 生活中的类比：**"打开"这个动作，可以有不同的打开方式**：
+> - 打开**门** → 握住门把手转动
+> - 打开**窗户** → 向上推
+> - 打开**电脑** → 按电源键
+>
+> 动作都叫"打开"，但具体怎么做取决于你面对的是什么东西。
+>
+> 函数重载也是一样：**函数名相同，但参数不同，它们就是不同的函数**。编译器会根据你调用时传入的参数，自动选择正确的那个。
+
+### 对比：没有重载 vs 有重载
+
+```Cangjie
+// 没有重载：每种情况都要取不同的名字
+func addInt(a: Int64, b: Int64): Int64 { return a + b }
+func addFloat(a: Float64, b: Float64): Float64 { return a + b }
+
+// 有重载：同一个名字，参数不同就行
+func add(a: Int64, b: Int64): Int64 { return a + b }
+func add(a: Float64, b: Float64): Float64 { return a + b }
+```
+
+有重载的好处：调用时只用记一个名字 `add`，编译器自动匹配合适的版本。
+
+---
+
+## 4.7.2 重载的条件：同名不同参
+
+两个函数构成重载的条件是：**函数名相同，参数不同**。
+
+"参数不同"有两种情况：
+
+| 情况 | 说明 | 例子 |
+|------|------|------|
+| 参数个数不同 | 一个 1 个参数，另一个 2 个参数 | `f(a)` 和 `f(a, b)` |
+| 参数类型不同 | 参数个数相同，但类型不同 | `f(Int64)` 和 `f(Float64)` |
+
+```Cangjie
+func f(a: Int64): Unit {}          // 一个 Int64 参数
+
+func f(a: Float64): Unit {}         // 一个 Float64 参数（类型不同）
+
+func f(a: Int64, b: Float64): Unit {} // 两个参数（个数不同）
+```
+
+> [!NOTE]
+> 上例定义了三个同名函数 `f`：
+> - `f(Int64)` — 接收一个整数
+> - `f(Float64)` — 接收一个小数
+> - `f(Int64, Float64)` — 接收一个整数加一个小数
+>
+> 当你调用 `f(42)` 时，编译器自动选第一个；调用 `f(3.14)` 时，选第二个；调用 `f(42, 3.14)` 时，选第三个。
+>
+> **你不必告诉编译器用哪个版本——它会自动帮你选。**
+
+---
+
+## 4.7.3 不同作用域的重载
+
+函数定义在不同的作用域（一个在外面，一个在里面），也可以构成重载——在两个函数都可见的地方，它们同时存在。
+
+```Cangjie
+func f(a: Int64): Unit {}          // 全局作用域：f(Int64)
+
+func g() {
+    func f(a: Float64): Unit {}    // g 函数内部：f(Float64)
+    // 在 g 内部，两个 f 都可见
+    f(42)     // 调用全局的 f(Int64)
+    f(3.14)   // 调用局部的 f(Float64)
+}
+```
+
+> [!TIP]
+> 这就像"小区的快递收发室"和"你家门口"都有笔——你站在家门口时，优先用门口的笔（内层作用域），但两支笔都能用。
+
+---
+
+## 4.7.4 什么情况**不**构成重载？
+
+不是所有同名的情况都叫重载。以下几种情况**不能重载**，如果写在同一个作用域会报错：
+
+### 1. 变量不能重载
+
+变量即使类型不同，也不能用同一个名字定义两次：
+
+```Cangjie
+main() {
+    var f: (Int64) -> Unit    // 第一次声明变量 f
+    var f: (Float64) -> Unit  // ❌ 报错：变量 f 已经定义了
+}
+```
+
+> [!NOTE]
+> 重载是函数声明的"特权"，变量**不适用**。
+
+### 2. 函数和变量不能同名
+
+即使一个是变量、一个是函数，也不能同名：
+
+```Cangjie
+main() {
+    var f: (Int64) -> Unit           // 变量 f
+    func f(a: Float64): Unit {}      // ❌ 报错：函数和变量不能同名
+}
+```
+
+### 3. 静态函数和实例函数不能重载
+
+在 class 中，静态成员函数和实例成员函数之间不能重载：
+
+```Cangjie
+class C {
+    public static func f(a: Int64): Unit {}   // 静态函数
+    public func f(a: Float64): Unit {}         // ❌ 报错：实例函数，不能和静态的重载
+}
+```
+
+> [!CAUTION]
+> 简单记忆：**只有"函数-函数"可以重载，而且必须在同一类角色下**（不能一个静态、一个实例）。
+
+---
+
+## 4.7.5 函数重载决议：编译器怎么选？
+
+当你调用一个重载函数时，编译器会从候选函数中挑出最合适的一个。这个过程叫**重载决议**，主要有两条规则：
+
+### 规则一：内层的先选
+
+如果同一个函数名在**外层**和**内层**都有定义，优先选内层的。
+
+```Cangjie
+open class Base {}
+
+class Sub <: Base {}
+
+func outer() {
+    func g(a: Sub) {
+        print("1")
+    }
+
+    func inner() {
+        func g(a: Base) {
+            print("2")
+        }
+
+        g(Sub()) // 输出：2（选内层的 g）
+    }
+}
+```
+
+> [!TIP]
+> 就像你口袋里有一支笔（内层），包里也有一支笔（外层）——你站在那儿的时候，优先摸口袋里的。
+
+### 规则二：参数更匹配的先选
+
+如果几个函数在**同一层**，编译器选参数**最匹配**的那个。
+
+什么叫"最匹配"？简单说：**你的实参类型和哪个形参类型最接近，就选哪个**。
+
+```Cangjie
+open class Base {}
+
+class Sub <: Base {}
+
+func outer() {
+    func g(a: Sub) {      // g 接收 Sub 类型
+        print("1")
+    }
+    func g(a: Base) {     // g 接收 Base 类型
+        print("2")
+    }
+
+    g(Sub()) // 输出：1（Sub 比 Base 更匹配 Sub 类型的实参）
+}
+```
+
+> [!TIP]
+> 规则二很好理解：你递了一瓶可乐，服务员会给你一个"可乐杯"（最匹配的），而不是泛泛的"杯子"。
+
+### 特殊情况：父子类视为同一层
+
+父类和子类中定义的函数，在重载决议时当成**同一层**处理，按"参数最匹配"来选：
+
+```Cangjie
+open class Base {
+    public func g(a: Sub) {
+        print("1")
+    }
+}
+
+class Sub <: Base {
+    public func g(a: Base) {
+        print("2")
+    }
+}
+
+func outer() {
+    let s: Sub = Sub()
+    s.g(Sub()) // 输出：1（父类的 g 参数是 Sub，更匹配）
+}
+```
+
+> [!NOTE]
+> 这里的 `s.g(Sub())` 调用时，父类的 `g(Sub)` 和子类的 `g(Base)` 都能匹配。但 `Sub` 类型的实参显然更匹配 `g(Sub)`，所以选父类的版本。
+
+---
+
+## 4.7.6 小结
+
+| 知识点 | 要点 | 一句话记住 |
+|--------|------|-----------|
+| 重载条件 | 同名函数，参数个数或类型不同 | 同名不同参 |
+| 不同作用域 | 内层外层的同名函数在同一作用域中构成重载 | 远近都有 |
+| **不**构成重载 | 静态与实例成员函数、变量之间、变量与函数 | 有些不能同名 |
+| 重载决议规则一 | 优先选**内层**作用域的 | 近的先选 |
+| 重载决议规则二 | 同一层内选参数**最匹配**的 | 准的先选 |
+| 父子类 | 视为同一作用域，按规则二选 | 不分你我，只看谁合适 |
+d:["$","$L11",null,{"content":"$12","collection":"Cangjie/4_函数","rootColPath":"Cangjie","allArticles":["$4:props:children:props:children:2:props:articles:0","$4:props:children:props:children:2:props:articles:1","$4:props:children:props:children:2:props:articles:2","$4:props:children:props:children:2:props:articles:3","$4:props:children:props:children:2:props:articles:4","$4:props:children:props:children:2:props:articles:5","$4:props:children:props:children:2:props:articles:6","$4:props:children:props:children:2:props:articles:7",{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true,"mtime":1782986047851.8804},"$4:props:children:props:children:2:props:articles:8","$4:props:children:props:children:2:props:articles:9","$4:props:children:props:children:2:props:articles:10","$4:props:children:props:children:2:props:articles:11","$4:props:children:props:children:2:props:articles:12","$4:props:children:props:children:2:props:articles:13","$4:props:children:props:children:2:props:articles:14","$4:props:children:props:children:2:props:articles:15","$4:props:children:props:children:2:props:articles:16","$4:props:children:props:children:2:props:articles:17","$4:props:children:props:children:2:props:articles:18","$4:props:children:props:children:2:props:articles:19","$4:props:children:props:children:2:props:articles:20","$4:props:children:props:children:2:props:articles:21","$4:props:children:props:children:2:props:articles:22","$4:props:children:props:children:2:props:articles:23","$4:props:children:props:children:2:props:articles:24","$4:props:children:props:children:2:props:articles:25","$4:props:children:props:children:2:props:articles:26","$4:props:children:props:children:2:props:articles:27","$4:props:children:props:children:2:props:articles:28","$4:props:children:props:children:2:props:articles:29","$4:props:children:props:children:2:props:articles:30","$4:props:children:props:children:2:props:articles:31","$4:props:children:props:children:2:props:articles:32"],"currentSlug":"Cangjie/4_函数/7_函数重载"}]
+10:null
